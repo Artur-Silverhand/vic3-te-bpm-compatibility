@@ -12,13 +12,14 @@ from legacy_tax import rewrite as rewrite_tax,LAWS
 from synthetic_tax import FiscalModel
 from script_syntax import top_spans,walk,parse as ast_parse
 from test_support import built_patch
+from source_state import load_lock,load_research
 
 
 class PatchContracts(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.manifest = built_patch()
-        cls.lock = json.loads((ROOT/'sources.lock.json').read_text(encoding='utf-8'))
+        cls.lock = load_lock(ROOT)
 
     def test_quoted_braces_and_comments_do_not_change_scope(self):
         sample = 'x = { desc = "literal } # still quoted" if = { a = yes } } # }\ny = { a = no }'
@@ -55,7 +56,7 @@ class PatchContracts(unittest.TestCase):
         emitted = blocks((OUTPUT/'common/ideologies/zzzzzz_tbcp_ideologies.txt').read_text(encoding='utf-8-sig'))
         self.assertEqual(len(emitted), 103)
         self.assertEqual(len({v['key'] for v in emitted}), 103)
-        allowed = set(json.loads((ROOT/'docs/research/2026-11-07-github-overlap.json').read_text(encoding='utf-8'))['timeline_new_lawgroups'])
+        allowed = set(load_research(ROOT)['timeline_new_lawgroups'])
         policy=json.loads((ROOT/'docs/decisions/ideology-correspondences.json').read_text(encoding='utf-8'))
         for entity in emitted:
             base = rewrite_tax(original[entity['key']]['body'])[0]
@@ -129,7 +130,7 @@ class PatchContracts(unittest.TestCase):
         self.assertEqual(normalized(result['on_enact']),'first = yes second = yes')
 
     def test_all_shared_laws_keep_integration_hooks(self):
-        data=json.loads((ROOT/'docs/research/2026-11-07-github-overlap.json').read_text(encoding='utf-8'))
+        data=load_research(ROOT)
         emitted={v['key']:v for v in blocks((OUTPUT/'common/laws/zzzzzz_tbcp_laws.txt').read_text(encoding='utf-8-sig'))}
         self.assertEqual(len(emitted),70)
         for entry in data['comparisons']['timeline_bpm']['shared_entities']:
@@ -384,7 +385,7 @@ class PatchContracts(unittest.TestCase):
 
     def test_shadow_masks_keep_every_retained_definition_verbatim(self):
         report=json.loads((ROOT/'docs/conflicts/shadow-definitions.json').read_text(encoding='utf-8'))
-        research=json.loads((ROOT/'docs/research/2026-11-07-github-overlap.json').read_text(encoding='utf-8'))
+        research=load_research(ROOT)
         game=Path(research['sources']['game']['root'])
         removed={}
         for entry in report['shadow_definitions_resolved']:
@@ -483,7 +484,7 @@ class PatchContracts(unittest.TestCase):
         self.assertEqual(processed,53)
 
     def test_foreign_coup_event_and_acw_target_are_present_without_restoring_domestic_coups(self):
-        te_game=Path(json.loads((ROOT/'docs/research/2026-11-07-github-overlap.json').read_text(encoding='utf-8'))['sources']['game']['root'])
+        te_game=Path(load_research(ROOT)['sources']['game']['root'])
         original=next(n['raw'] for n in blocks((te_game/'events/iberia_events/ip4_coup_events.txt').read_text(encoding='utf-8-sig'))
                       if n['key']=='ip4_coup.11')
         restored=blocks((OUTPUT/'events/tbcp_foreign_coup_events.txt').read_text(encoding='utf-8-sig'))

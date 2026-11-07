@@ -8,13 +8,14 @@ from build_patch import ROOT,OUTPUT,blocks,normalized
 from script_syntax import parse,Field,walk,scalars
 from synthetic_cabinet import CabinetModel
 from test_support import built_patch
+from source_state import load_lock
 
 
 class CabinetContracts(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.manifest=built_patch()
-        lock=json.loads((ROOT/'sources.lock.json').read_text(encoding='utf-8'))
+        lock=load_lock(ROOT)
         cls.bpm=Path(lock['mods']['bpm']['mod_root'])
         cls.effects={}
         for relative in ['common/scripted_effects/BPM_CAB_effects.txt',

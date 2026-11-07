@@ -4,12 +4,17 @@ import unittest
 from build_patch import ROOT,VERSION,digest
 from audit_patch import audit as audit_files
 from audit_runtime_graph import audit as audit_graph
+from source_state import source_state
 
 
 def verify():
     destination=ROOT/'docs/validation/synthetic-gate.json'
     destination.write_text(json.dumps({'version':VERSION,'status':'RUNNING'})+'\n',encoding='utf-8')
     tool_hashes={p.relative_to(ROOT).as_posix():digest(p) for p in sorted((ROOT/'tools').glob('*')) if p.suffix in {'.py','.ps1'}}
+    try:inputs=source_state(ROOT)
+    except Exception as error:
+        destination.write_text(json.dumps({'version':VERSION,'status':'FAIL','input_error':str(error)})+'\n',encoding='utf-8')
+        raise
     suite=unittest.defaultTestLoader.discover(str(ROOT/'tools'),pattern='test_*.py')
     result=unittest.TextTestRunner(verbosity=1).run(suite)
     if not result.wasSuccessful():
@@ -20,12 +25,16 @@ def verify():
     except Exception as error:
         destination.write_text(json.dumps({'version':VERSION,'status':'FAIL','audit_error':str(error)})+'\n',encoding='utf-8')
         raise
+    if inputs!=source_state(ROOT):
+        destination.write_text(json.dumps({'version':VERSION,'status':'FAIL','input_error':'Inputs changed during gate'})+'\n',encoding='utf-8')
+        raise ValueError('Inputs changed during gate')
     assert tool_hashes=={p.relative_to(ROOT).as_posix():digest(p) for p in sorted((ROOT/'tools').glob('*')) if p.suffix in {'.py','.ps1'}},'Tools changed during gate'
     record={'version':VERSION,'status':'PASS' if not graph['gate_failures'] else 'FAIL',
             'tests_run':result.testsRun,'tests_passed':True,
             'graph_failures':graph['gate_failures'],'graph_nodes':graph['patched_nodes'],
             'graph_edges':graph['patched_edges'],'patch_sha256':files['patch_sha256'],
             'tools_sha256':tool_hashes,
+            'source_state':inputs,
             'game_launched':False,'engine_or_performance_verified':False,
             'scope':'structural regression, ambiguity, call-cycle, reference and synthetic state contracts'}
     destination.write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')

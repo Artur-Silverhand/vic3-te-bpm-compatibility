@@ -9,9 +9,11 @@ import json
 from pathlib import Path
 import shutil
 import uuid
+import re
 
 from build_patch import ROOT,OUTPUT,VERSION,digest
 from prepare_local_profile import documents
+from source_state import require_fresh_inputs
 
 
 def files(root):return {p.relative_to(root).as_posix():p for p in root.rglob('*') if p.is_file()}
@@ -69,11 +71,14 @@ def install():
     assert gate['status']=='PASS' and gate['version']==VERSION
     assert gate['patch_sha256']=={rel:digest(p) for rel,p in files(OUTPUT).items()},'Build changed after gate'
     assert gate['tools_sha256']=={p.relative_to(ROOT).as_posix():digest(p) for p in sorted((ROOT/'tools').glob('*')) if p.suffix in {'.py','.ps1'}},'Tools changed after gate'
+    require_fresh_inputs(gate,ROOT)
     profile_path=ROOT/'docs/validation/installed-profile.json'
     profile=json.loads(profile_path.read_text(encoding='utf-8'))
+    required={label:gate['source_state']['sources'][label]['commit'] for label in ('timeline','bpm')}
+    assert profile['source_commits']==required,'Installed parent mods differ; prepare a complete new profile'
     target=Path(profile['packages']['patch']['path']).resolve()
     mod_root=(documents()/'Paradox Interactive/Victoria 3/mod').resolve()
-    assert target.parent==mod_root and target.name=='tbcp_patch_040dev','Unexpected installation target'
+    assert target.parent==mod_root and re.fullmatch(r'tbcp_patch_(?:040dev|\d+\.\d+\.\d+(?:-[A-Za-z0-9][A-Za-z0-9.-]*)?)',target.name),'Unexpected installation target'
     baseline=Path(profile['packages']['patch'].get('baseline_snapshot',str(ROOT/'runtime/local-mods/tbcp_patch_040dev')))
     stamp=datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S')
     backup=ROOT/'runtime/backups'/('installed-patch-before-'+VERSION+'-'+stamp)

@@ -14,6 +14,7 @@ import sys
 
 from build_patch import ROOT,OUTPUT,REPORT,digest
 from script_syntax import parse,Field,scalars,walk
+from source_state import load_research
 
 DATABASES={'common/scripted_effects':'effect','common/scripted_triggers':'trigger',
            'common/script_values':'value','common/on_actions':'hook',
@@ -220,7 +221,7 @@ def analyze(files,cache):
 
 
 def audit():
-    research=json.loads(REPORT.read_text(encoding='utf-8'));cache={}
+    research=load_research(ROOT);cache={}
     baseline_files=load_vfs(research,cache)
     baseline=analyze(baseline_files,cache)
     combined=dict(baseline_files)

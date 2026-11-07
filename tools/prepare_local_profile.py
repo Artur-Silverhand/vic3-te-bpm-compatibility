@@ -11,8 +11,10 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import uuid
 
 from build_patch import ROOT, OUTPUT, VERSION
+from source_state import load_lock,source_state
 
 RUNTIME_DIRECTORIES={'.metadata','common','events','gui','gfx','localization','map_data',
                      'dlc','dlc_metadata','music','sound','fonts','shaders'}
@@ -37,13 +39,29 @@ def documents():
 def file_sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def profiles(lock,version):
+    result={key:dict(value) for key,value in PROFILES.items()}
+    for label,short,title in [('timeline','te','Timeline Extended'),('bpm','bpm','Better Politics Mod')]:
+        commit=lock['mods'][label]['commit'];number=1 if label=='timeline' else 2
+        result[label]['name']=f'TBCP {number} - {title} [{commit[:8]}]'
+        original='48a28e73' if label=='timeline' else 'd785d399'
+        if not commit.startswith(original) or version!='0.6.0-dev':
+            result[label]['folder']=f'tbcp_{short}_{commit[:8]}_{version}'
+            result[label]['id']=str(uuid.uuid5(uuid.NAMESPACE_URL,'tbcp/'+label+'/'+commit+'/'+version))
+    result['patch']['name']='TBCP 3 - Compatibility '+version
+    if version!='0.6.0-dev':result['patch']['folder']='tbcp_patch_'+version
+    return result
+
+
 def prepare(destination):
-    lock=json.loads((ROOT/'sources.lock.json').read_text(encoding='utf-8'))
+    lock=load_lock(ROOT)
+    source_state(ROOT)
+    selected=profiles(lock,VERSION)
     build=json.loads((ROOT/'docs/validation/build-manifest.json').read_text(encoding='utf-8'))
     assert build['version']==VERSION and not build['game_runs_performed']
     destination=destination.resolve()
     # Resolve and check all paths before creating the first package.
-    targets={key:destination/config['folder'] for key,config in PROFILES.items()}
+    targets={key:destination/config['folder'] for key,config in selected.items()}
     for target in targets.values():
         if target.exists():raise FileExistsError('Existing folder left untouched: '+str(target))
     plan={};input_manifest={}
@@ -80,7 +98,7 @@ def prepare(destination):
         metadata_path=target/'.metadata/metadata.json'
         metadata=json.loads(metadata_path.read_text(encoding='utf-8-sig'))
         original_identity={'name':metadata['name'],'id':metadata['id']}
-        metadata['name']=PROFILES[label]['name'];metadata['id']=PROFILES[label]['id']
+        metadata['name']=selected[label]['name'];metadata['id']=selected[label]['id']
         # Dependency identity and ordering are set manually in a separate
         # launcher playset. Do not invent an unverified relationships schema.
         metadata['relationships']=[]

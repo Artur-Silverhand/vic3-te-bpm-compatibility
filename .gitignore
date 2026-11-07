@@ -17,4 +17,6 @@ __pycache__/
 .DS_Store
 .codex/
 .agents/
+/paths.local.json
+/update-candidate.json
 

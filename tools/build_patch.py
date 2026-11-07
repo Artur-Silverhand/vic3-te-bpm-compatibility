@@ -22,11 +22,12 @@ from economic_adapters import build_economy
 from legacy_tax import integrate as integrate_legacy_tax
 from safety_merge import integrate as integrate_safety
 from cabinet_adapters import integrate as integrate_cabinet
+from source_state import load_lock,load_research,research_path,project
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "patch"
-REPORT = ROOT / "docs/research/2026-11-07-github-overlap.json"
-VERSION = '0.6.0-dev'
+REPORT = research_path(ROOT)
+VERSION = project(ROOT)['patch_version']
 
 
 def blocks(text: str) -> list[dict]:
@@ -73,9 +74,9 @@ def write(relative: str, text: str) -> None:
 
 
 def generate() -> dict:
-    lock = json.loads((ROOT/'sources.lock.json').read_text(encoding='utf-8'))
+    lock = load_lock(ROOT)
     assert digest(REPORT) == lock['research_reports']['github']['sha256'], 'Research report changed'
-    research = json.loads(REPORT.read_text(encoding='utf-8'))
+    research = load_research(ROOT,lock)
     for name in ('timeline', 'bpm'):
         config = lock['mods'][name]
         current = subprocess.check_output(['git', '-C', config['checkout'], 'rev-parse', 'HEAD'], text=True).strip()
@@ -217,7 +218,7 @@ def generate() -> dict:
     for relative,body in generated.items():write(relative,body)
     metadata = {'name': 'Timeline Extended + BPM — Compatibility (Development)',
                 'id': '44a453ae-01a4-49e4-991c-4f1eaa2ae614', 'version': VERSION,
-                'supported_game_version': '1.15.0',
+                'supported_game_version': project(ROOT)['supported_game_version'],
                 'short_description': 'Development compatibility candidate. Requires pinned TE and full BPM. Runtime acceptance pending; read README.',
                 'tags': ['Gameplay', 'Interest Groups'], 'relationships': [],
                 'game_custom_data': {'multiplayer_synchronized': True}}

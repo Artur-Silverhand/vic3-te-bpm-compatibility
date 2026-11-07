@@ -1,7 +1,7 @@
 {
   "version": "0.6.0-dev",
   "status": "PASS",
-  "tests_run": 61,
+  "tests_run": 79,
   "tests_passed": true,
   "graph_failures": [],
   "graph_nodes": 40258,
@@ -176,9 +176,9 @@
     "TESTING.md": "1e7230e82f36a843610bebf26fd64e32b82f6e44a039fb37e875bee824267af6"
   },
   "tools_sha256": {
-    "tools/audit_patch.py": "3ebaff7fafd31f309567e5f902b90dee5d9d61c633a83a2c3fddd636d9a4aa6e",
-    "tools/audit_runtime_graph.py": "e39ad1cf214adec077d6778640afd22ac57dfd3dcfdfc755796eb892e1c2c304",
-    "tools/build_patch.py": "04a944899d96adac4acbc31c310591119feab157dfb215d8a73b334f3cbe1af7",
+    "tools/audit_patch.py": "8de9102730da25a3d2509f233849cbcacc03428f1de78706efd56e8cb97c37bd",
+    "tools/audit_runtime_graph.py": "3dfd1dba30100ffb2517e3d90d7fa1eba26d5cc6bdb5d7c5781a0313ff6d0c26",
+    "tools/build_patch.py": "716aa89d4477350fd924092f5b38ebd9401a311d324a656c2625a1eb415eab43",
     "tools/cabinet_adapters.py": "d59ff43cfd416c8ca0e85d6663f4939350d8b25b7ed6a5efeffd9dec9a1e424d",
     "tools/character_merge.py": "46351ca6d9f5e12a56763c552ea92427db48a6f21efec82e0eef37b551f54125",
     "tools/collect_test_logs.ps1": "cb3c27c25136f59df9572a3e04da07755b859fa4dbc8b9d4a772c77a1471cf15",
@@ -188,23 +188,94 @@
     "tools/inspect_mod_overlap.py": "183eef2fc3e345a6785bb3de143a03f48db239c611ead30c0d8be201f51a08d0",
     "tools/law_merge.py": "7426631b3b2beed4c3cf3b4795d2582fe9ead5cf65dfbf33b80c94ee242af557",
     "tools/legacy_tax.py": "75fc606e38881d3b709ae0d28350cf8446e607e36c6941c9a38ec6e6ddbbdae3",
-    "tools/package_patch.py": "1079008a1a3b0359127e2729bf6c609d0a420a81ff51a1b4a205b2b3df20c297",
+    "tools/package_patch.py": "3574b80ad2d056a49ee81a498554afae499ebb5234da04847a4b84e1710d47fd",
     "tools/party_merge.py": "f3209e03daad48c2bfb31300d1ae37a4810cd77297f2de3ddebc60e33080df7f",
-    "tools/prepare_local_profile.py": "050147ed48adf31804f95d0eef899cde7c4a9cd0d8ab61fd0aa915b286b4c374",
+    "tools/prepare_local_profile.py": "ed5c9e4d55b284745d5527daad7f53bcbd922531934db348d06ba7284eabf2bd",
     "tools/record_spec_sources.py": "e5f5f55ed5548ea3e80c7535f3cdfd89175cd87476252093dce7123f8a9af724",
     "tools/remaining_merge.py": "44617dc08bb7c4fd6f969194e0ebdc227694d3efebf5451d5cc6834c0272b106",
     "tools/safety_merge.py": "5e8b9cd25f698b9cf702e78d70719d3ba3067e1ac936ee2921aea5e234c49b99",
     "tools/script_syntax.py": "2432aad9d5730c2c711959a3074f2f736a7ce070cf8302817fabdf5075a52c0b",
+    "tools/source_state.py": "0e7e16e6262a9672898570da2b754482b6320438bb358b65409a8db182bc7b3d",
     "tools/synthetic_cabinet.py": "e60fd1d12fd6b449bdd4aea03c9ca991b7d92f19841ea17c07f613e6548eb6d4",
     "tools/synthetic_tax.py": "c1843ddb5d21274f73957ca9b32a6c3b6a41c482c14773125092984b1f340c02",
     "tools/tax_ai.py": "6b8e6fb391cf9d37a94258644475595463147de2bf2ee417b33e39f834630017",
-    "tools/test_cabinet.py": "08989fca932f37e1ee1485435ba4ccf94e4c07e281d14c53635e1726a94b99c1",
+    "tools/test_cabinet.py": "66197738fdb13f2c0a97a3f593f14ef3bdb0f6271c7beefe36a46ef7b53dd331",
     "tools/test_installer.py": "aedacb33fb2b849dd97ff31eee3e6d2b460531a5fcfa8f4106b8c5ff882530ab",
-    "tools/test_patch.py": "d4de1fdddeabb275b44e0ad20f217342f2b2d6e95c2fd1bf5c534663c8030566",
+    "tools/test_patch.py": "b408acdb3792759aac1b084f105ffe17bf9bf1cbf1cf5a4ff8b3b941abde5e3d",
+    "tools/test_release_update.py": "34405d57d4c82cb43cb380027bcd1ecded1b35bcfb28342256076d2d1032f45b",
     "tools/test_support.py": "568d83cbb5755d9b582a680c4647477acf6b098b3762a79504d9e0bedc4a8c52",
     "tools/test_synthetic.py": "ccb46a6d48f8cb242aa98e5e9a2704d8253468213e78059b495cab54977eef88",
-    "tools/update_installed_patch.py": "334b7d34573860b8d5af0af62dbecf292e90f309cd0b2d893acb00bccee0ae01",
-    "tools/verify_patch.py": "822323a793ee5d03929a5b4d7d1588acb3bc6c49a19f3cc1e99c4aa004d02067"
+    "tools/test_updates.py": "fe1065830e7c7b0f6c6919ef5e47a8a9b5c6936b4be1ebeb0e54d26952dd697b",
+    "tools/update_installed_patch.py": "8bdfbd01ff22ce60488c916409a8b39d8fc5956592dd35783baf56e9b5f3347d",
+    "tools/update_patch.py": "b1cbce01832287b3c04f84d1b840d591a2761280558a4f7d3a1fe9fcd9de72c2",
+    "tools/verify_patch.py": "f35ab6d48878e325b1b32eb9bb3e9805a24c6bce23d341a0a3c40577130b7121"
+  },
+  "source_state": {
+    "schema_version": 1,
+    "scope": [
+      ".metadata",
+      "common",
+      "events",
+      "gui",
+      "map_data",
+      "localization"
+    ],
+    "lock_sha256": "d7feed1ca7d3e2eb3daafa8e15df684a0879a2e678c31ce7c6f8d62845d72cad",
+    "research_sha256": "cac0024f250457857f80297db367f510b247e05fe6fe177efaeb17d54019f9a8",
+    "project_sha256": "aa0c11523cd1618c0486a63b027aa4b2ba8e8f2f50c5900dca9fb8538905ab3e",
+    "update_review_sha256": null,
+    "game": {
+      "version": "1.15.0",
+      "launcher_settings_sha256": "4b7032eeb5fc7f0f64b60690d5d2b1bbc4b7ca5119b44bb76eb2f7788a9fd91c",
+      "steam_build_id": "26453692"
+    },
+    "sources": {
+      "timeline": {
+        "files": 1248,
+        "baseline_scope": [
+          ".metadata",
+          "common",
+          "events",
+          "gui"
+        ],
+        "baseline_hashed_files": 1194,
+        "sha256": "4b536e0f3e0b79e5afe1939dfa713ab5108bdff7798ecacfbcae2714b4fa3833",
+        "commit": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
+        "helpers": {
+          "scripts/generators/gen_tax_code.py": "6e035083acd37feeadef0a46f92f617592f012cc2251208c6017e3eef5b423b5",
+          "paradox_file_parser.py": "ae29b3f78b85802856aae90d4ac8605bf463aa42564d3a0c9242c4c71291e26f",
+          "organize_loc.py": "80a44eb178b57e4fcee8da80c550e5cce3955577beeade6a2b3ce84c9066a6fd",
+          "path_constants.py": "4bf9f8e2bea7b999e028f7c8070c2f31a89196a90a5395b91db1cf4e2b5d5636",
+          "scripts/_path_detect.py": "df99dba834865ceda141393b505c9e69966a14adfb04cf61fcc885171b53d525",
+          "vanilla_parsed/common/pop_needs.json": "cbfe5cb595db6d100e1758cab2f9bd4c2324e8b81f16383ac91f33bfb2bf7a52",
+          "vanilla_parsed/common/goods.json": "958f35146193e2f8a896e74bddf3022d160dbb143573037f70f92318bc08ee07"
+        }
+      },
+      "bpm": {
+        "files": 1674,
+        "baseline_scope": [
+          ".metadata",
+          "common",
+          "events",
+          "gui"
+        ],
+        "baseline_hashed_files": 658,
+        "sha256": "4e5fa83b001f5426c3a17a1cb28421eadb67637d7940b4e7fc3b293080eca877",
+        "commit": "d785d399001ceaa87a1153ca7e0fb4ba512d8425"
+      },
+      "game": {
+        "files": 5865,
+        "baseline_scope": [
+          ".metadata",
+          "common",
+          "events",
+          "gui",
+          "map_data"
+        ],
+        "baseline_hashed_files": 3856,
+        "sha256": "b8d2bd962d4cca53221d74bcd8cef84526a5c939d2ff557d92b78040ce7b92dd"
+      }
+    }
   },
   "game_launched": false,
   "engine_or_performance_verified": false,

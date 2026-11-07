@@ -10,10 +10,11 @@ import io
 from build_patch import ROOT, OUTPUT, REPORT, blocks, digest, normalized
 from inspect_mod_overlap import TOKEN
 from script_syntax import parse as structured_parse,top_spans
+from source_state import load_research
 
 
 def audit():
-    research=json.loads(REPORT.read_text(encoding='utf-8'))
+    research=load_research(ROOT)
     catalog=defaultdict(set); hooks=defaultdict(list)
     for label,source in research['sources'].items():
         root=Path(source['root'])
