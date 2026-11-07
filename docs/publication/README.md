@@ -1,0 +1,32 @@
+# Публикация 0.6.0-dev
+
+- Репозиторий: https://github.com/Artur-Silverhand/vic3-te-bpm-compatibility
+- Prerelease: https://github.com/Artur-Silverhand/vic3-te-bpm-compatibility/releases/tag/v0.6.0-dev
+- Проверенный ZIP: 627916 байт,
+  SHA256 `4e816b169b6579830848b52eb4b19c099cb93a0953436bdbd4a9f8c68a85b537`.
+
+## Workshop
+
+Отдельная копия готовится командой:
+
+```powershell
+python .\release\prepare_workshop.py --install
+```
+
+Команда требует свежий синтетический PASS. Она создаёт новую папку
+tbcp_workshop_060dev в каталоге модов Known Documents, с отдельным ID и именем
+Timeline Extended + BPM - Compatibility [Experimental]. Существующую копию
+не перезаписывает. Игровой профиль TBCP 1/2/3 остаётся прежним.
+
+Скрипты, GUI и локализация в копии побайтно совпадают с проверенным патчем.
+Различаются только метаданные доставки и сведения об авторстве; добавлен BUILD.json.
+Лаунчер может записать идентификатор Workshop в эту отдельную копию.
+
+Описание: [workshop-description.bbcode](workshop-description.bbcode).
+Обязательные исходные моды: TE 3721261891 и полный BPM 2932134122.
+Загружается только патч; полные моды не перепубликуются.
+Порядок: TE → полный BPM → патч. Локальный и Workshop-патч одновременно не включать.
+
+Первый Workshop upload выполняется через лаунчер, открытый пользователем через
+Steam. Игра для этого не запускается. Полученный ID/URL нужно записать после
+фактического успешного upload; подготовленная копия сама по себе не означает публикацию.
