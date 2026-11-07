@@ -1,0 +1,33 @@
+﻿### Coup Pulse Events
+
+namespace = coup_pulse_events
+
+# TBCP: coup_pulse_events.1 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.2 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.3 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.4 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.5 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.6 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.7 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.8 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.9 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_pulse_events.10 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+namespace = coup_aftermath_events
+
+# TBCP: coup_aftermath_events.1 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_aftermath_events.2 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_aftermath_events.3 supplied by events/_agitators_events/bpm_coup_events.txt.
+
+# TBCP: coup_aftermath_events.4 supplied by events/_agitators_events/bpm_coup_events.txt.

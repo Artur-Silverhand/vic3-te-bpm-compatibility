@@ -1,0 +1,12 @@
+﻿
+# Country scope. Evaluated after the previous TE share modifier is removed.
+tbcp_construction_private_share = {
+    value = te_construction_market_private_share_target
+    if = {
+        limit = { te_free_market_construction_on = yes }
+        subtract = {
+            value = modifier:country_private_construction_allocation_mult
+            multiply = 100
+        }
+    }
+}

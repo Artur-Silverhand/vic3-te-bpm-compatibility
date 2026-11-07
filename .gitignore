@@ -1,0 +1,20 @@
+# Local inputs and installed packages are not part of this repository.
+/sources/upstream/
+/runtime/
+/dist/
+/release/workshop-content/
+/release/workshop.vdf
+/release/workshop-upload-result.json
+/docs/validation/installed-*.json
+/docs/validation/prepared-profile.json
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.tbcp-tmp-*
+.DS_Store
+.codex/
+.agents/
+

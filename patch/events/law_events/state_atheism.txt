@@ -1,0 +1,19 @@
+﻿namespace = state_atheism
+
+# Debate Event - Opium of the Masses
+# TBCP: state_atheism.1 supplied by events/_law_events/bpm_state_atheism.txt.
+
+# Advancement event - Society of the Godless
+# TBCP: state_atheism.2 supplied by events/_law_events/bpm_state_atheism.txt.
+
+# Stall event - Works of Charity
+# TBCP: state_atheism.3 supplied by events/_law_events/bpm_state_atheism.txt.
+
+#Extraterritoriality in God's Nation - Stall
+# TBCP: state_atheism.4 supplied by events/_law_events/bpm_state_atheism.txt.
+
+#A River's New Bearing - Debate
+# TBCP: state_atheism.5 supplied by events/_law_events/bpm_state_atheism.txt.
+
+#Golden Indulgences - Advance
+# TBCP: state_atheism.6 supplied by events/_law_events/bpm_state_atheism.txt.

@@ -1,0 +1,1127 @@
+﻿on_five_year_pulse_country = {
+	on_actions = {
+		on_bpm_five_year_pulse_country
+	}
+}
+
+on_yearly_pulse_country = {
+	on_actions = {
+		on_bpm_yearly_pulse_country
+	}
+}
+
+on_half_yearly_pulse_country = {
+	on_actions = {
+		on_bpm_half_yearly_pulse_country
+		on_bpm_fasicst_ultramilitarism
+	}
+}
+
+on_monthly_pulse_country = {
+	on_actions = {
+		on_bpm_monthly_pulse_country
+		bpm_update_enactment_success_on_action
+		bpm_on_actions_colonial_check
+	}
+}
+
+on_law_activated = {
+	on_actions = {
+		on_bpm_law_activated
+	}
+}
+
+on_government_reformed = {
+	on_actions = {
+		on_bpm_government_reformed
+	}
+}
+
+on_election_campaign_start = {
+	on_actions = {
+		on_bpm_election_campaign_start
+	}
+}
+
+# on_election_campaign_end = {
+# 	on_actions = {
+# 		on_bpm_election_campaign_end
+# 	}
+# }
+
+on_secession_start = {
+	on_actions = {
+		on_bpm_country_releasing
+		on_bpm_seccession_start
+	}
+}
+
+on_revolution_start = {
+	on_actions = {
+		on_bpm_country_releasing
+		on_bpm_revolution_start
+	}
+}
+
+on_capitulation = {
+	on_actions = {
+		on_bpm_capitulation
+	}
+}
+
+on_default = {
+	on_actions = {
+		on_bpm_default
+	}
+}
+
+on_diplo_play_war_start = {
+	on_actions = {
+		on_bpm_diplo_play_war_start
+	}
+}
+
+
+on_wargoal_enforced = {
+	on_actions = {
+		on_bpm_wargoal_enforced
+	}
+}
+
+on_investment_increased ={ 
+	on_actions = {
+		on_bpm_investment_increased
+	}
+}
+
+on_investment_decreased ={ 
+	on_actions = {
+		on_bpm_investment_decreased
+	}
+}
+
+# Root = The applicable country
+# scope:technology = The technology type they just acquired
+on_acquired_technology = {
+	on_actions = {
+		on_bpm_acquired_technology
+		on_bpm_acquired_technology_peoples_spring
+	}
+}
+
+on_country_released_as_independent = {
+	on_actions = {
+		on_bpm_country_releasing
+	}
+}
+
+on_country_released_as_own_subject = {
+	on_actions = {
+		on_bpm_country_releasing
+	}
+}
+
+on_country_released_as_overlord_subject = {
+	on_actions = {
+		on_bpm_country_releasing
+	}
+}
+
+on_country_formed = {
+	on_actions = {
+		on_bpm_country_formed
+	}
+}
+
+on_revolution_end = {
+	on_actions = {
+		on_bpm_country_releasing
+		on_bpm_civil_war_won
+	}
+}
+
+#on_peace_agreement_signed_war_participant = {
+#	on_actions = {
+#		on_bpm_peace_agreement_signed_war_participant
+#	}
+#}
+
+
+
+on_party_created = {
+	on_actions = {
+		on_bpm_party_created
+	}
+}
+
+on_new_ruler = { 
+	on_actions = {
+		on_bpm_new_ruler
+	}
+}
+
+on_character_became_adult = {
+	on_actions = {
+		on_bpm_character_become_adult
+	}
+}
+
+on_bpm_character_become_adult = {
+	effect = {
+		owner = {
+			trigger_event = hog_regency.3
+		}
+	}
+}
+
+on_character_creation = {
+	on_actions = {
+		on_bpm_character_creation
+	}
+}
+
+on_bpm_five_year_pulse_country = {
+	effect = {
+		every_interest_group = {
+			limit = { bpm_interest_group_is_activated = yes }
+			bpm_reorder_ideologies = yes
+		}
+	}
+}
+
+on_bpm_yearly_pulse_country = {
+	events = {
+		#bpm_1st_intl.1
+		#bpm_2nd_intl.1
+		#bpm_2nd_intl.7
+	}
+
+	effect = {
+		bpm_rename_igs = yes
+	}
+}
+
+on_bpm_half_yearly_pulse_country = {
+	events = {
+		bpm_ig_attraction_utils.2
+	}
+	effect = {
+		owner = { 
+			update_party_support = yes
+			bpm_setup_country_stubbornness = yes
+			bpm_half_yearly_decrement_party_loyalty = yes
+			bpm_setup_basic_igs = yes
+			bpm_ig_update_ig_ban_support = yes
+		}
+	}
+}
+
+on_bpm_monthly_pulse_country = {
+	events = {
+		bpm_ig_attraction_utils.1
+		bpm_anarchist_split.1
+		bpm_revsoc_utils.3
+		bpm_socdem_utils.1
+		bpm_radlib_utils.1
+		bpm_radlib_utils.2
+		bpm_socialist_utils.3
+		bpm_socialist_utils.4
+		bpm_socialist_utils.7
+		bpm_colony_events.2
+		bpm_colony_events.3
+		bpm_frankfurt_parliament_events.13
+		hog_regency.3
+	}
+
+	effect = {
+		bpm_auto_cabinet_appoint = yes
+		if = {
+			limit = {
+				ig:ig_fascists ?= { 
+					has_ideology = ideology:ideology_nonexistent 
+					bpm_interest_group_is_activated = yes
+				}
+			}
+			bpm_initialize_fascists = yes
+		}
+		if = {
+			limit = {
+				ig:ig_anarchists ?= { 				
+					bpm_interest_group_is_activated = yes
+					has_ideology = ideology:ideology_nonexistent 
+				}
+			}
+			bpm_initialize_anarchists = yes
+		}
+		if = {
+			limit = {
+				ig:ig_revolutionist_socialists ?= { 
+					has_ideology = ideology:ideology_nonexistent 
+					bpm_interest_group_is_activated = yes
+				}
+			}
+			bpm_initialize_revsocs = yes
+		}
+		if = {
+			limit = {
+				ig:ig_socialists ?= { 
+					has_ideology = ideology:ideology_nonexistent 
+					bpm_interest_group_is_activated = yes
+				}
+			}
+			bpm_initialize_socialists = yes
+		}
+		if = {
+			limit = {
+				ig:ig_market_liberals ?= { 
+					bpm_interest_group_is_activated = yes
+					has_ideology = ideology:ideology_nonexistent 
+				}
+			}
+			bpm_initialize_marlibs = yes
+			if = {
+				limit = {
+					exists = c:BIC
+					this = c:BIC
+				}
+				trigger_event = { id = bpm_marlib_split.2 }
+			}
+			else_if = {
+				limit = {
+					exists = c:GBR
+					this = c:GBR
+				}
+				ig:ig_industrialists ?= { 
+					leader = {
+						remove_variable = conservative_party_leader
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				ig:ig_reformist_socialists ?= { 
+					bpm_interest_group_is_activated = yes
+					has_ideology = ideology:ideology_nonexistent 
+				}
+			}
+			bpm_initialize_refsocs = yes
+		}
+		if = {
+			limit = {
+				ig:ig_national_liberals ?= { 
+					has_ideology = ideology:ideology_nonexistent 
+					bpm_interest_group_is_activated = yes
+				}
+			}
+			bpm_initialize_natlibs = yes
+			if = {
+				limit = {
+					bpm_country_is_latin_american = yes
+					has_journal_entry = je_positivist_movement
+				}
+				trigger_event = { id = positivism.2 popup = yes }
+			}
+		}
+		if = {
+			limit = {
+				has_law = law_type:law_colonial_administration
+				NOT = { has_variable = bpm_on_col_adm }
+			}
+			bpm_colonial_admin_activate_effect = yes
+		}
+		if = {
+			limit = {
+				modifier:country_bpm_change_primary_culture_to_overlord = yes
+				NOT = { has_variable = bpm_colony_primary_culture_set_to_overlord }
+			}
+			trigger_event = { id = bpm_colony_events.1 days = 1 }
+		}
+		if = {
+			limit = {
+				modifier:country_bpm_change_primary_culture_to_overlord = yes
+				has_variable = bpm_current_overlord
+				NOT = { var:bpm_current_overlord = top_overlord }
+			}
+			trigger_event = { id = bpm_colony_events.1 days = 1 }
+		}
+		if = {
+			limit = {
+				modifier:country_bpm_change_primary_culture_to_overlord = no
+				has_variable = bpm_colony_primary_culture_set_to_overlord
+			}
+			bpm_colony_reset_primary_culture = yes
+		}
+		owner = {
+			bpm_update_political_stability = yes
+			bpm_update_igs_current_party = yes
+			bpm_institution_workaround_effect = yes
+
+			if = {
+				limit = { is_player = yes }
+				bpm_rename_igs = yes
+				bpm_ig_update_ig_ban_support = yes
+				every_interest_group = {
+					limit = { bpm_interest_group_is_activated = yes }
+					bpm_reorder_ideologies = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				game_date > 1844.1.1
+				game_date < 1845.1.1
+				NOT = { has_variable = bpm_1848_famine_activated }
+				is_in_geographic_region = geographic_region_western_europe
+			}
+			set_variable = bpm_1848_famine_activated
+		}
+		# 6 months cooldown
+		if = {
+			limit = {
+				has_variable = bpm_cpal_removal_flag
+			}
+			change_variable = {
+				name = bpm_cpal_removal_flag
+				add = 1
+			}
+			if = {
+				limit = {
+					var:bpm_cpal_removal_flag >= 6
+				}
+				remove_variable = bpm_cpal_removal_flag
+				remove_variable = bpm_cannot_promise_a_law
+			}
+		}
+	}
+}
+
+bpm_on_actions_colonial_check = {
+	effect = {
+		if = {
+			limit = {
+				NOT = { owner = { has_law = law_type:law_colonial_administration } }
+				owner = { has_variable = bpm_on_col_adm }
+			}
+			if = {
+				limit = {
+					is_subject = yes
+					is_subject_type = subject_type_colony
+				}
+				change_subject_type = subject_type_dominion
+			}
+			remove_variable = bpm_on_col_adm
+			every_interest_group = {
+				limit = {
+					OR = {
+						is_interest_group_type = ig_landowners
+						is_interest_group_type = ig_industrialists
+						is_interest_group_type = ig_armed_forces
+						is_interest_group_type = ig_conservatives
+					}
+				}
+				remove_ideology = ideology_dop_metropole_loyalist
+				bpm_reorder_ideologies = yes
+			}
+		}
+	}
+}
+
+on_bpm_law_activated = {
+	effect = {
+		if = {
+			limit = {
+				owner = {
+					NOT = {
+						has_variable = bpm_norec
+					}
+				}
+			}
+			owner = { 
+				set_variable = {
+					name = bpm_norec
+					days = 1
+				}
+			}
+			owner = {
+				bpm_setup_country_stubbornness = yes
+				bpm_institution_workaround_effect = yes
+				bpm_cache_country_igs_radical_opposition_effect = yes
+			}
+			type = {
+				save_scope_as = lawtype
+			}
+
+			if = {
+				limit = {
+					game_date > 1836.1.1
+					owner = { is_revolutionary = no }
+				}
+				if = {
+					limit = {
+						OR = {
+							scope:lawtype = law_type:law_presidential_republic
+							scope:lawtype = law_type:law_parliamentary_republic
+						}
+					}
+					owner = { trigger_event = bpm_send_notification.1 }
+				}
+				else_if = {
+					limit = {
+						scope:lawtype = law_type:law_council_republic
+					}
+					owner = { trigger_event = bpm_send_notification.2 }
+				}
+				else_if = {
+					limit = {
+						scope:lawtype = law_type:law_monarchy
+					}
+					owner = { trigger_event = bpm_send_notification.3 }
+				}
+			}
+
+			if = {
+				limit = { 
+					OR = {
+						scope:lawtype = law_type:law_no_home_affairs
+						scope:lawtype = law_type:law_guaranteed_liberties
+					}
+					owner = { has_law_or_variant = law_type:law_state_atheism }
+				}
+				owner = { activate_law = law_type:law_total_separation }
+			}
+
+			if = {
+				limit = { scope:lawtype = law_type:law_serfdom }
+				owner = { set_variable = bpm_country_has_serfdom }
+			}
+			else_if = {
+				limit = {
+					scope:lawtype = {
+						is_same_law_group_as = law_type:law_serfdom
+						NOT = { this = law_type:law_serfdom }
+					}
+					owner = { has_variable = bpm_country_has_serfdom }
+				}
+				owner = {
+					remove_variable = bpm_country_has_serfdom
+					if = {
+						limit = { is_player = no }
+						if = {
+							limit = {
+								OR = {
+									tbcp_tax_has_land_based = yes
+									tbcp_tax_has_consumption_based = yes
+								}
+							}
+							tbcp_tax_activate_per_capita = yes
+						}
+						if = {
+							limit = {
+								has_law = law_type:law_traditionalism
+							}
+							activate_law = law_type:law_agrarianism	
+						}
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					owner = { has_journal_entry = je_bpm_modernizers }
+					owner.ig:ig_conservatives ?= {
+						law_stance = {
+							value >= approve
+							law = scope:lawtype
+						}
+					}
+				}
+				owner = { 
+					change_variable = {
+						name = bpm_je_modernizers_conservative_laws_passed
+						add = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					owner = { has_journal_entry = je_bpm_modernizers }
+					OR = {
+						owner.ig:ig_liberals ?= {
+							law_stance = {
+								value >= approve
+								law = scope:lawtype
+							}
+						}
+						owner.ig:ig_radicals ?= {
+							law_stance = {
+								value >= approve
+								law = scope:lawtype
+							}
+						}
+					}
+				}
+				owner = { 
+					change_variable = {
+						name = bpm_je_modernizers_liberal_laws_passed
+						add = 1
+					}
+				}
+			}
+		}
+	}
+}
+
+on_bpm_seccession_start = {
+	effect = {
+		scope:target = {
+			set_variable = bpm_can_new_constitution
+		}
+	}
+}
+
+on_bpm_capitulation = {
+	effect = {
+		owner = {
+			add_modifier = {
+				name = bpm_country_recently_lost_war
+				years = 1
+			}
+		}
+	}
+}
+
+on_bpm_new_ruler = {
+	# events = {
+	# 	bpm_election_events.1
+	# }
+	effect = {
+		owner = {
+			if = {
+				limit = {
+					is_player = yes
+					has_law = law_type:law_presidential_republic
+					NOT = { has_law = law_type:law_autocracy }
+				}
+				trigger_event = { id = bpm_election_events.1 days = 30 }
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					this = c:USA
+					has_variable = bpm_2nd_party_system
+					OR = {
+						NOT = { is_set = var:bpm_last_president }
+						var:bpm_last_president ?= {
+							is_character_alive = no
+						}
+					}
+				}
+				trigger_event = { id = bpm_acw_events.25 days = 0 }
+				set_variable = {
+					name = bpm_last_president
+					value = root
+				}
+			}
+			else_if = {
+				limit = {
+					this = c:BRZ
+					has_law = law_type:law_monarchy
+				}
+				if = {
+					limit = {
+						game_date >= 1878.1.26
+						ruler = {
+							has_template = brz_isabel_template
+						}	
+					}
+					create_character = {
+						template = brz_luis_orleans_template
+					}
+				}
+				else_if = {
+					limit = {
+						ruler = {
+							has_template = brz_luis_orleans_template
+						}	
+					}
+					trigger_event = { id = brazil_monarchy.1 popup = yes }
+				}
+			}
+		}
+		bpm_character_remove_from_ministry = yes
+	}
+}
+
+on_bpm_default = {
+	effect = {
+		bpm_remove_political_stability_big = yes
+	}
+}
+
+on_bpm_diplo_play_war_start = {
+	effect = {
+		
+		# Removing Rigidity from participants
+		if = {
+			limit = {
+				war = {
+					attacker_warleader = {
+						country_rank > rank_value:insignificant_power
+					}
+					defender_warleader = {
+						country_rank > rank_value:insignificant_power
+					}
+				}
+			}
+			every_scope_play_involved = {
+				bpm_add_political_stability_big = yes
+			}
+		}
+
+		# Removing permanent military defunding modifier for aggressors
+		war = {
+			if = {
+				limit = {
+					NOT = { has_war_goal = colonization_rights }
+					NOT = {
+						any_country = {
+							OR = {
+								is_revolutionary = yes
+								is_secessionist = yes
+							}
+						}
+					}
+				}
+				attacker_warleader = {
+					bpm_clear_upgradeable_country_modifier = { MOD = bpm_repeatable_law_army_defunding_result_permanent }
+					every_cobelligerent_in_war = {
+						bpm_clear_upgradeable_country_modifier = { MOD = bpm_repeatable_law_army_defunding_result_permanent }
+					}
+				}
+			}
+		}
+	}
+}
+
+on_bpm_wargoal_enforced = {
+	effect = {
+		scope:target = {
+			if = {
+				limit = {
+					has_modifier = country_cut_down_to_size
+				}
+				activate_law = law_type:law_disarmed_nation
+			}
+			if = {
+				limit = {
+					has_variable = frankfurt_opposer
+					has_modifier = country_humiliated
+				}
+				set_global_variable = bpm_frankfurt_complete
+			}
+			if = {
+				limit = {
+					has_variable = frankfurt_leader
+					has_modifier = country_humiliated
+				}
+				set_global_variable = frankfurt_dissolved
+				remove_global_variable = bpm_frankfurt_war
+			}
+		}
+	}
+	# events = {
+	# 	italian_springtime.8
+	# }
+}
+
+on_bpm_revolution_start = {
+	effect = {
+		bpm_add_political_stability_big = yes # Crackdowns, most disloyal people left for revolution
+		scope:target = {
+			set_variable = bpm_can_new_constitution
+		}
+
+		if = {
+			limit = {
+				owner = {
+					country_has_primary_culture = cu:manchu
+					OR = {
+						is_secessionist = yes
+						is_revolutionary = yes
+					}
+				}
+			}
+			remove_primary_culture = cu:manchu
+			every_scope_character = {
+				limit= {
+					OR = {
+						has_role_of_type = politician
+						has_role_of_type = general
+					}
+					culture = cu:manchu
+				}
+				kill_character = yes
+			}
+		}
+
+		# Set target as a potential legitimator of syndicalism if they win
+		if = {
+			limit = {
+				country_rank >= rank_value:unrecognized_regional_power
+				has_journal_entry = je_bpm_syndicalism
+				var:bpm_je_syndicalism >= 0.66
+			}
+			scope:target = { 
+				set_variable = bpm_can_legitimize_syndicalism
+			}
+		}
+
+		# Enact Council Republic if revoluition is obviously communist
+		#if = {
+		#	limit = {
+		#		scope:target = {
+		#			is_secessionist = no
+		#			any_interest_group = {
+		#				is_in_government = yes
+		#				bmp_ig_is_socialist = yes
+		#				is_strongest_ig_in_government = yes
+		#			}
+		#		}
+		#	}
+		#	scope:target = { activate_law = law_type:law_council_republic }
+
+		#	# Also activate syndicalism if this is a syndicalist revolution
+		#	if = {
+		#		limit = {
+		#			has_journal_entry = je_bpm_syndicalism
+		#			var:bpm_je_syndicalism >= 0.66
+		#		}
+		#		scope:target = { activate_law = law_type:law_syndicalism }
+		#	}
+		#}
+
+		# Pass along agrarian socialism progress to rebels
+		if = {
+			limit = {
+				has_variable = bpm_agrarian_socialism_power
+			}
+
+			scope:target = {
+				set_variable = {
+					name = bpm_agrarian_socialism_power
+					value = root.var:bpm_agrarian_socialism_power
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				has_law = law_type:law_monarchy
+				scope:target ?= {
+					NOT = { has_law = law_type:law_monarchy }
+				}
+			}
+			set_variable = bpm_active_anti_monarchist_revolution
+		}
+		if = {
+			limit = {
+				NOT = { has_law = law_type:law_monarchy }
+				scope:target ?= {
+					has_law = law_type:law_monarchy
+				}
+			}
+			set_variable = bpm_active_monarchist_revolution
+		}
+		if = {
+			limit = {
+				NOT = { has_law = law_type:law_council_republic }
+				scope:target ?= {
+					has_law = law_type:law_council_republic
+				}
+			}
+			set_variable = bpm_active_socialist_revolution
+		}
+
+		# Inherit Russia's specific modifiers
+		if = {
+			limit = {
+				this ?= c:RUS
+			}
+			if = { limit = { has_modifier = bpm_russia_obschina } scope:target = { add_modifier = { name = bpm_russia_obschina } } }
+			if = { limit = { has_modifier = bpm_russia_obschina_empowered } scope:target = { add_modifier = { name = bpm_russia_obschina_empowered } } }
+			if = { limit = { has_modifier = bpm_russia_ad_hoc_governance } scope:target = { add_modifier = { name = bpm_russia_ad_hoc_governance } } }
+		}
+	}
+}
+
+on_bpm_acquired_technology = {
+	effect = {
+		bpm_setup_basic_igs = yes
+	}
+}
+
+on_bpm_acquired_technology_peoples_spring = {
+	effect = {
+
+	}
+}
+
+on_bpm_civil_war_won = {
+	effect = {
+		if = {
+			limit = {
+				has_variable = bpm_can_new_constitution
+			}
+			trigger_event = { id = bpm_provisional_government_events.1 days = 7 popup = yes }
+		}
+
+		if = {
+			limit = { has_variable = bpm_can_legitimize_syndicalism }
+			trigger_event = { id = bpm_syndicalism.1 days = 2 popup = yes }
+		}
+
+		if = {
+			limit = {
+				bpm_country_is_bourgeois_republic = yes
+				has_variable = bpm_active_anti_monarchist_revolution
+			}
+			trigger_event = bpm_send_notification.1
+			remove_variable = bpm_active_anti_monarchist_revolution
+		}
+		else_if = {
+			limit = {
+				has_law = law_type:law_council_republic
+				has_variable = bpm_active_socialist_revolution	
+			}
+			trigger_event = bpm_send_notification.2
+			remove_variable = bpm_active_socialist_revolution
+		}
+		else_if = {
+			limit = {
+				has_law = law_type:law_monarchy
+				has_variable = bpm_active_monarchist_revolution
+			}
+			trigger_event = bpm_send_notification.3
+			remove_variable = bpm_active_monarchist_revolution
+		}
+	}
+}
+
+on_bpm_government_reformed = {
+	effect = {
+		bpm_update_single_party_ideology_support = yes
+		bpm_cache_country_igs_radical_opposition_effect = yes
+		if = {
+			limit = {
+				has_law = law_type:law_political_officers
+			}
+			every_scope_admiral = {
+				limit = { interest_group = { is_in_government = no bpm_ig_is_state_institutional = no } }
+				kill_character = {
+					hidden = yes
+					value = yes
+				}
+			}
+			every_scope_general = {
+				limit = { interest_group = { is_in_government = no bpm_ig_is_state_institutional = no } }
+				kill_character = {
+					hidden = yes
+					value = yes
+				}
+			}
+		}
+	}
+}
+
+on_bpm_election_campaign_start = {
+	events = {
+		bpm_japan.1
+	}
+	effect = {
+		every_active_party = {
+			limit = {
+				is_party_type = one_party_independents
+			}
+
+			add_momentum = -200
+		}
+		bpm_remove_political_stability_small = yes
+	}
+}
+
+# on_bpm_election_campaign_end = {
+# 	effect = {
+# 		every_active_party = {
+# 			limit = {
+# 				is_party_type = one_party_independents
+# 			}
+
+# 			add_momentum = -200
+# 		}
+# 		bpm_remove_political_stability_small = yes
+# 		if = {
+# 			limit = {
+# 				this = c:USA
+# 				has_variable = bpm_2nd_party_system
+# 			}
+# 			trigger_event = { id = bpm_acw_events.24 days = 0 }
+# 			set_variable = {
+# 				name = bpm_last_president
+# 				value = ruler
+# 			}
+# 		}
+# 	}
+# }
+
+on_bpm_country_releasing = {
+	effect = {
+		bpm_copy_variables_to_new_country = yes
+		scope:target = {
+			bpm_setup_country = yes
+		}
+	}
+}
+
+on_bpm_country_formed = {
+	effect = {
+		if = {
+			limit = { NOT = { has_law = law_type:law_confederated }}
+			activate_law = law_type:law_federated
+		}
+		#bpm_setup_country = yes
+	}
+}
+
+bpm_on_actions_stubbornness = {
+	effect = {
+		owner = { bpm_setup_country_stubbornness = yes }
+	}
+}
+
+on_bpm_investment_increased = {
+	effect ={ 
+		owner = { bpm_institution_workaround_effect = yes }
+	}
+}
+
+on_bpm_investment_decreased = { 
+	effect = { 
+		owner = { bpm_institution_workaround_effect = yes }
+	}
+}
+
+on_bpm_party_created = {
+	effect = {
+		if = {
+			limit = {
+				game_date > 1836.1.1
+			}
+			bpm_set_new_party_loyalty = yes
+		}
+	}
+}
+
+on_bpm_character_creation = {
+	effect = {
+		if = {
+			limit = {
+				home_country ?= {
+					any_interest_group = {
+						type = root.interest_group.type
+						bpm_interest_group_is_activated = no
+					}
+				}
+				has_role = character_role_agitator
+				is_historical = no
+			}
+			if = {
+				limit = {
+					owner ?= {
+						is_country_alive = yes
+					}
+					is_in_exile_pool = no
+				}
+				owner = {
+					random_interest_group = {
+						weight = {
+							value = bpm_base_agitator_weight
+						}
+						save_scope_as = selected_ig
+					}
+					create_character = {
+						role = character_role_agitator
+						interest_group = scope:selected_ig
+					}
+				}
+			}
+			kill_character = {
+				hidden = yes
+				value = yes
+			}
+		}
+	}
+}
+
+on_bpm_fasicst_ultramilitarism = {
+	random_events = {
+		chance_of_no_event = 2
+		1 = bpm_lobby.1
+		1 = bpm_lobby.2
+	}
+}
+
+on_game_started = {
+	on_actions = {
+		on_bpm_game_started
+	}
+}
+
+on_bpm_game_started = {
+	effect = {
+		every_country = {
+			trigger_event = { id = bpm_misc.5 }
+			bpm_auto_cabinet_appoint = yes
+		}
+	}
+}
+
+on_yearly_pulse_character = {
+	on_actions = {
+		on_bpm_yearly_pulse_character
+	}
+}
+
+on_bpm_yearly_pulse_character = {
+	effect = {
+		if = {
+			limit = {
+				has_role = bpm_character_role_regent
+			}
+			if = {
+				limit = {
+					has_variable = regency_years
+				}
+				change_variable = { name = regency_years add = 1 }
+			}
+			else = {
+				set_variable = { name = regency_years value = 0 }
+			}
+		}
+		if = { # Handles total years in power, not consecutive years. Mostly for Japan.
+			limit = {
+				has_role = bpm_character_role_hog
+			}
+			if = {
+				limit = {
+					has_variable = year_in_power
+				}
+				change_variable = { name = year_in_power add = 1 } # Keeps track of how long one has been Regent
+			}
+			else = {
+				set_variable = { name = year_in_power value = 1 } # In case all else fails
+			}
+		}
+	}
+}

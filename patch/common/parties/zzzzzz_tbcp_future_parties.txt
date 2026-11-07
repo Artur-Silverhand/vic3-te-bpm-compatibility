@@ -1,0 +1,1110 @@
+﻿REPLACE:green_party = {
+	color = {
+34 139 34
+	}
+	name = {
+first_valid = {
+			triggered_desc = {
+				desc = party_die_gruenen
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_les_verts
+				trigger = {
+					country_has_primary_culture = cu:french
+				}
+			}
+			triggered_desc = {
+				desc = party_miljoepartiet
+				trigger = {
+					country_has_primary_culture = cu:swedish
+				}
+			}
+			triggered_desc = {
+				desc = party_de_groenen
+				trigger = {
+					OR = {
+						exists = c:NET
+						exists = c:BEL
+					}
+					OR = {
+						c:NET ?= THIS
+						c:BEL ?= THIS
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_verdi
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					NOR = {
+						c:AUS ?= this
+						c:KUK ?= this
+						c:HRE ?= this
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_the_greens
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:australian
+						country_has_primary_culture = cu:anglo_canadian
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_green
+				trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+	icon = {
+default = "/gfx/interface/icons/political_parties/green_party.dds"
+	}
+	unlocking_technologies = {
+environmental_movement
+	}
+	valid_for_country = {
+always = yes
+	}
+	available_for_interest_group = {
+owner = {
+			country_has_voting_franchise = yes
+			OR = {
+				py:green_party ?= {
+					any_member = {}
+				}
+				ig:ig_intelligentsia ?= {
+					ig_counts_as_marginal = no
+				}
+				ig:ig_rural_folk ?= {
+					ig_counts_as_marginal = no
+				}
+			}
+		}
+		leader ?= {
+			NOR = {
+				has_ideology = ideology:ideology_fascist
+				has_ideology = ideology:ideology_integralist
+				has_ideology = ideology:ideology_ethno_nationalist
+				has_ideology = ideology:ideology_vanguardist
+			}
+		}
+	
+bpm_interest_group_is_activated = yes
+NOT = { bpm_is_party_banned = { PARTY = green_party } }
+	}
+	join_weight = {
+value = {
+			value = -5
+			desc = "base_value"
+		}
+		if = { # environmentalists love green parties
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_environmentalists
+				}
+			}
+			add = {
+				value = 10
+				desc = "from_environmentalism"
+			}
+		}
+		if = { # pacifists and humanitarians are natural allies
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_pacifist
+						has_ideology = ideology:ideology_humanitarian
+						has_ideology = ideology:ideology_humanitarian_royalist
+					}
+				}
+			}
+			add = {
+				value = 5
+				desc = "from_progressive_values"
+			}
+		}
+		if = { # reformers and state socialists lean green
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_reformer
+						has_ideology = ideology:ideology_state_socialist
+						has_ideology = ideology:ideology_radical
+					}
+				}
+			}
+			add = {
+				value = 3
+				desc = "from_left_progressive"
+			}
+		}
+		if = { # feminists often align with green movements
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_feminist
+				}
+			}
+			add = {
+				value = 3
+				desc = "from_feminist"
+			}
+		}
+		if = { # rural folk have natural connection to land conservation
+			limit = {
+				is_interest_group_type = ig_rural_folk
+			}
+			add = {
+				value = 3
+				desc = "from_rural_conservation"
+			}
+		}
+		if = { # intelligentsia is the academic base
+			limit = {
+				is_interest_group_type = ig_intelligentsia
+			}
+			add = {
+				value = 2
+				desc = "from_academic_base"
+			}
+		}
+		if = { # a powerful environmentalist IG draws others in
+			limit = {
+				is_powerful = no
+				owner = {
+					any_interest_group = {
+						is_powerful = yes
+						leader ?= {
+							has_ideology = ideology:ideology_environmentalists
+						}
+					}
+				}
+			}
+			add = {
+				value = 3
+				desc = "from_strong_green_movement"
+			}
+		}
+		if = { # industrialists oppose environmental regulation
+			limit = {
+				is_interest_group_type = ig_industrialists
+			}
+			add = {
+				value = -5
+				desc = "from_industry_opposition"
+			}
+		}
+		if = { # reactionaries don't care about environment
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_reactionary
+				}
+			}
+			add = {
+				value = -5
+				desc = "from_reactionary"
+			}
+		}
+		if = { # far right opposes green politics
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_fascist
+						has_ideology = ideology:ideology_integralist
+						has_ideology = ideology:ideology_ethno_nationalist
+					}
+				}
+			}
+			add = {
+				value = -10
+				desc = "from_far_right"
+			}
+		}
+		if = { # militarists oppose pacifist green politics
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_jingoist
+						has_ideology = ideology:ideology_jingoist_leader
+					}
+				}
+			}
+			add = {
+				value = -3
+				desc = "from_militarist"
+			}
+		}
+		if = { # armed forces don't go green
+			limit = {
+				is_interest_group_type = ig_armed_forces
+			}
+			add = {
+				value = -3
+				desc = "from_military"
+			}
+		}
+		if = { # communists have their own party
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_vanguardist
+					}
+				}
+			}
+			add = {
+				value = -8
+				desc = "from_communist"
+			}
+		}
+		if = { # market liberals prefer free trade party
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_market_liberal
+				}
+			}
+			add = {
+				value = -3
+				desc = "from_market_liberal"
+			}
+		}
+		# First Past the Post (amendment_first_past_the_post): one of the two
+		# largest parties, as te_fptp_effects.txt ranks them monthly. In place
+		# of the party-size multipliers (the else_ifs below), so a major party
+		# never fills up: each group joining first takes a little off instead.
+		if = {
+			limit = {
+				owner = {
+					te_fptp_in_force = yes
+					has_variable = te_fptp_two_majors
+					has_variable = te_fptp_major_green_party
+				}
+			}
+			add = {
+				value = te_fptp_major_party_join_weight
+				desc = "te_fptp_major_party_join"
+			}
+			if = {
+				limit = { scope:number > 0 }
+				add = {
+					value = scope:number
+					multiply = te_fptp_major_party_crowding_weight
+					desc = "te_fptp_major_party_crowding"
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 1
+				is_powerful = no
+				ig_counts_as_marginal = no
+			}
+			multiply = {
+				value = 2
+				desc = "from_influential_supporting_member"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 2
+			}
+			multiply = {
+				value = 0.5
+				desc = "from_two_prior_members"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 3
+			}
+			multiply = {
+				value = 0.05
+				desc = "from_three_prior_members"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number > 3
+			}
+			multiply = {
+				value = 0.0
+				desc = "from_more_than_three_prior_members"
+			}
+		}
+		# First Past the Post: any party but the two largest.
+		if = {
+			limit = {
+				owner = {
+					te_fptp_in_force = yes
+					has_variable = te_fptp_two_majors
+					NOT = { has_variable = te_fptp_major_green_party }
+				}
+			}
+			add = {
+				value = te_fptp_minor_party_join_weight
+				desc = "te_fptp_minor_party_join"
+			}
+		}
+	}
+}
+
+REPLACE:populist_party = {
+	color = {
+255 140 0
+	}
+	name = {
+first_valid = {
+			triggered_desc = {
+				desc = party_america_first
+				trigger = {
+					exists = c:USA
+					c:USA ?= THIS
+				}
+			}
+			triggered_desc = {
+				desc = party_national_rally
+				trigger = {
+					country_has_primary_culture = cu:french
+				}
+			}
+			triggered_desc = {
+				desc = party_five_star_movement
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					NOR = {
+						c:AUS ?= this
+						c:KUK ?= this
+						c:HRE ?= this
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_reform_party
+				trigger = {
+					exists = c:GBR
+					c:GBR ?= THIS
+				}
+			}
+			triggered_desc = {
+				desc = party_alternative_fuer_deutschland
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:north_german
+						country_has_primary_culture = cu:south_german
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_sweden_democrats
+				trigger = {
+					country_has_primary_culture = cu:swedish
+				}
+			}
+			triggered_desc = {
+				desc = party_one_nation
+				trigger = {
+					country_has_primary_culture = cu:australian
+				}
+			}
+			triggered_desc = {
+				desc = party_bharatiya_janata
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:hindustani
+						country_has_primary_culture = cu:avadhi
+						country_has_primary_culture = cu:rajput
+						country_has_primary_culture = cu:marathi
+						country_has_primary_culture = cu:gujarati
+						country_has_primary_culture = cu:bengali
+						country_has_primary_culture = cu:panjabi
+						country_has_primary_culture = cu:telegu
+						country_has_primary_culture = cu:tamil
+						country_has_primary_culture = cu:kannada
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_true_finns
+				trigger = {
+					country_has_primary_culture = cu:finnish
+				}
+			}
+			triggered_desc = {
+				desc = party_freedom_party_populist
+				trigger = {
+					exists = c:NET
+					c:NET ?= THIS
+				}
+			}
+			triggered_desc = {
+				desc = party_lei_e_ordem
+				trigger = {
+					country_has_primary_culture = cu:brazilian
+				}
+			}
+			triggered_desc = {
+				desc = party_populist
+				trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+	icon = {
+default = "/gfx/interface/icons/political_parties/populist_party.dds"
+	}
+	unlocking_technologies = {
+social_media
+	}
+	valid_for_country = {
+always = yes
+	}
+	available_for_interest_group = {
+owner = {
+			country_has_voting_franchise = yes
+			OR = {
+				py:populist_party ?= {
+					any_member = {}
+				}
+				ig:ig_rural_folk ?= {
+					ig_counts_as_marginal = no
+				}
+				ig:ig_petty_bourgeoisie ?= {
+					ig_counts_as_marginal = no
+				}
+			}
+		}
+		leader ?= {
+			NOR = {
+				has_ideology = ideology:ideology_communist_leader
+				has_ideology = ideology:ideology_vanguardist
+				has_ideology = ideology:ideology_anarchist
+			}
+		}
+	
+bpm_interest_group_is_activated = yes
+NOT = { bpm_is_party_banned = { PARTY = populist_party } }
+	}
+	join_weight = {
+value = {
+			value = -5
+			desc = "base_value"
+		}
+		if = { # ethno-nationalists are drawn to populism
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_ethno_nationalist
+				}
+			}
+			add = {
+				value = 8
+				desc = "from_ethno_nationalism"
+			}
+		}
+		if = { # reactionaries embrace populist rhetoric
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_reactionary
+				}
+			}
+			add = {
+				value = 5
+				desc = "from_reactionary"
+			}
+		}
+		if = { # jingoists find populism appealing
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_jingoist
+						has_ideology = ideology:ideology_jingoist_leader
+					}
+				}
+			}
+			add = {
+				value = 5
+				desc = "from_jingoist"
+			}
+		}
+		if = { # paternalists and traditionalists lean populist
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_paternalistic
+						has_ideology = ideology:ideology_traditionalist
+					}
+				}
+			}
+			add = {
+				value = 3
+				desc = "from_traditionalist"
+			}
+		}
+		if = { # devout often align with populist movements
+			limit = {
+				is_interest_group_type = ig_devout
+			}
+			add = {
+				value = 3
+				desc = "from_devout"
+			}
+		}
+		if = { # rural folk are the populist base
+			limit = {
+				is_interest_group_type = ig_rural_folk
+			}
+			add = {
+				value = 4
+				desc = "from_rural_base"
+			}
+		}
+		if = { # petty bourgeoisie's anxieties drive populism
+			limit = {
+				is_interest_group_type = ig_petty_bourgeoisie
+			}
+			add = {
+				value = 3
+				desc = "from_petit_bourgeois_anxiety"
+			}
+		}
+		if = { # armed forces sometimes back populists
+			limit = {
+				is_interest_group_type = ig_armed_forces
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_jingoist
+						has_ideology = ideology:ideology_jingoist_leader
+						has_ideology = ideology:ideology_ethno_nationalist
+					}
+				}
+			}
+			add = {
+				value = 3
+				desc = "from_military_nationalists"
+			}
+		}
+		if = { # a powerful populist IG draws weaker ones
+			limit = {
+				is_powerful = no
+				owner = {
+					any_interest_group = {
+						is_powerful = yes
+						leader ?= {
+							has_ideology = ideology:ideology_ethno_nationalist
+						}
+					}
+				}
+			}
+			add = {
+				value = 4
+				desc = "from_strong_populist_movement"
+			}
+		}
+		if = { # liberals and reformers strongly oppose populism
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_liberal_leader
+						has_ideology = ideology:ideology_reformer
+						has_ideology = ideology:ideology_humanitarian
+						has_ideology = ideology:ideology_humanitarian_royalist
+					}
+				}
+			}
+			add = {
+				value = -8
+				desc = "from_liberal_opposition"
+			}
+		}
+		if = { # leftists have their own movements
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_state_socialist
+					}
+				}
+			}
+			add = {
+				value = -10
+				desc = "from_leftist"
+			}
+		}
+		if = { # moderates are repelled by extreme rhetoric
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_moderate
+				}
+			}
+			add = {
+				value = -5
+				desc = "from_moderate"
+			}
+		}
+		if = { # intelligentsia views populism skeptically
+			limit = {
+				is_interest_group_type = ig_intelligentsia
+			}
+			add = {
+				value = -4
+				desc = "from_intelligentsia"
+			}
+		}
+		if = { # environmentalists oppose populist dismissiveness
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_environmentalists
+				}
+			}
+			add = {
+				value = -5
+				desc = "from_environmentalist"
+			}
+		}
+		if = { # fascists have their own party
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_fascist
+						has_ideology = ideology:ideology_integralist
+					}
+				}
+			}
+			add = {
+				value = -5
+				desc = "from_fascist_distinction"
+			}
+		}
+		# First Past the Post (amendment_first_past_the_post): one of the two
+		# largest parties, as te_fptp_effects.txt ranks them monthly. In place
+		# of the party-size multipliers (the else_ifs below), so a major party
+		# never fills up: each group joining first takes a little off instead.
+		if = {
+			limit = {
+				owner = {
+					te_fptp_in_force = yes
+					has_variable = te_fptp_two_majors
+					has_variable = te_fptp_major_populist_party
+				}
+			}
+			add = {
+				value = te_fptp_major_party_join_weight
+				desc = "te_fptp_major_party_join"
+			}
+			if = {
+				limit = { scope:number > 0 }
+				add = {
+					value = scope:number
+					multiply = te_fptp_major_party_crowding_weight
+					desc = "te_fptp_major_party_crowding"
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 1
+				is_powerful = no
+				ig_counts_as_marginal = no
+			}
+			multiply = {
+				value = 2
+				desc = "from_influential_supporting_member"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 2
+			}
+			multiply = {
+				value = 0.5
+				desc = "from_two_prior_members"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 3
+			}
+			multiply = {
+				value = 0.05
+				desc = "from_three_prior_members"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number > 3
+			}
+			multiply = {
+				value = 0.0
+				desc = "from_more_than_three_prior_members"
+			}
+		}
+		# First Past the Post: any party but the two largest.
+		if = {
+			limit = {
+				owner = {
+					te_fptp_in_force = yes
+					has_variable = te_fptp_two_majors
+					NOT = { has_variable = te_fptp_major_populist_party }
+				}
+			}
+			add = {
+				value = te_fptp_minor_party_join_weight
+				desc = "te_fptp_minor_party_join"
+			}
+		}
+	}
+}
+
+REPLACE:technocratic_party = {
+	color = {
+70 130 180
+	}
+	name = {
+first_valid = {
+			triggered_desc = {
+				desc = party_forward
+				trigger = {
+					exists = c:USA
+					c:USA ?= THIS
+				}
+			}
+			triggered_desc = {
+				desc = party_en_marche
+				trigger = {
+					country_has_primary_culture = cu:french
+				}
+			}
+			triggered_desc = {
+				desc = party_ciudadanos
+				trigger = {
+					country_has_primary_culture = cu:spanish
+				}
+			}
+			triggered_desc = {
+				desc = party_neos
+				trigger = {
+					exists = c:AUS
+					c:AUS ?= THIS
+				}
+			}
+			triggered_desc = {
+				desc = party_aam_aadmi
+				trigger = {
+					OR = {
+						country_has_primary_culture = cu:hindustani
+						country_has_primary_culture = cu:avadhi
+						country_has_primary_culture = cu:panjabi
+					}
+				}
+			}
+			triggered_desc = {
+				desc = party_technocratic
+				trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+	icon = {
+default = "/gfx/interface/icons/political_parties/technocratic_party.dds"
+	}
+	unlocking_technologies = {
+machine_learning
+	}
+	valid_for_country = {
+always = yes
+	}
+	available_for_interest_group = {
+owner = {
+			country_has_voting_franchise = yes
+			OR = {
+				py:technocratic_party ?= {
+					any_member = {}
+				}
+				ig:ig_industrialists ?= {
+					ig_counts_as_marginal = no
+				}
+				ig:ig_intelligentsia ?= {
+					ig_counts_as_marginal = no
+				}
+			}
+		}
+		leader ?= {
+			NOR = {
+				has_ideology = ideology:ideology_fascist
+				has_ideology = ideology:ideology_integralist
+				has_ideology = ideology:ideology_ethno_nationalist
+				has_ideology = ideology:ideology_communist_leader
+				has_ideology = ideology:ideology_vanguardist
+				has_ideology = ideology:ideology_anarchist
+			}
+		}
+	
+bpm_interest_group_is_activated = yes
+NOT = { bpm_is_party_banned = { PARTY = technocratic_party } }
+	}
+	join_weight = {
+value = {
+			value = -5
+			desc = "base_value"
+		}
+		if = { # corporatists and technocrats love this
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_corporate
+				}
+			}
+			add = {
+				value = 8
+				desc = "from_corporate"
+			}
+		}
+		if = { # transhumanists are natural allies
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_optimist_transhumanist
+				}
+			}
+			add = {
+				value = 8
+				desc = "from_transhumanist"
+			}
+		}
+		if = { # market liberals favor technocratic efficiency
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_market_liberal
+				}
+			}
+			add = {
+				value = 5
+				desc = "from_market_liberal"
+			}
+		}
+		if = { # moderates appreciate evidence-based policy
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_moderate
+				}
+			}
+			add = {
+				value = 5
+				desc = "from_moderate"
+			}
+		}
+		if = { # reformers drawn to rational governance
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_reformer
+						has_ideology = ideology:ideology_liberal_leader
+					}
+				}
+			}
+			add = {
+				value = 3
+				desc = "from_reformer"
+			}
+		}
+		if = { # industrialists are the core base
+			limit = {
+				is_interest_group_type = ig_industrialists
+			}
+			add = {
+				value = 5
+				desc = "from_industrialist_base"
+			}
+		}
+		if = { # intelligentsia provides expertise
+			limit = {
+				is_interest_group_type = ig_intelligentsia
+			}
+			add = {
+				value = 4
+				desc = "from_expertise"
+			}
+		}
+		if = { # environmentalists can align if technocratic approaches help
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_environmentalists
+				}
+			}
+			add = {
+				value = 2
+				desc = "from_green_tech"
+			}
+		}
+		if = { # reactionaries reject technocracy
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_reactionary
+				}
+			}
+			add = {
+				value = -8
+				desc = "from_reactionary"
+			}
+		}
+		if = { # populists are anti-expert
+			limit = {
+				leader ?= {
+					has_ideology = ideology:ideology_ethno_nationalist
+				}
+			}
+			add = {
+				value = -8
+				desc = "from_populist_opposition"
+			}
+		}
+		if = { # devout distrust secular technocrats
+			limit = {
+				is_interest_group_type = ig_devout
+			}
+			add = {
+				value = -5
+				desc = "from_religious_skepticism"
+			}
+		}
+		if = { # rural folk see technocrats as distant elitists
+			limit = {
+				is_interest_group_type = ig_rural_folk
+			}
+			add = {
+				value = -4
+				desc = "from_rural_skepticism"
+			}
+		}
+		if = { # socialists and communists oppose corporate technocracy
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_state_socialist
+					}
+				}
+			}
+			add = {
+				value = -5
+				desc = "from_socialist_opposition"
+			}
+		}
+		if = { # landowners resist disruption of traditional hierarchies
+			limit = {
+				is_interest_group_type = ig_landowners
+			}
+			add = {
+				value = -3
+				desc = "from_landowner_tradition"
+			}
+		}
+		if = { # jingoists don't care for technocratic restraint
+			limit = {
+				leader ?= {
+					OR = {
+						has_ideology = ideology:ideology_jingoist
+						has_ideology = ideology:ideology_jingoist_leader
+					}
+				}
+			}
+			add = {
+				value = -3
+				desc = "from_militarist"
+			}
+		}
+		# First Past the Post (amendment_first_past_the_post): one of the two
+		# largest parties, as te_fptp_effects.txt ranks them monthly. In place
+		# of the party-size multipliers (the else_ifs below), so a major party
+		# never fills up: each group joining first takes a little off instead.
+		if = {
+			limit = {
+				owner = {
+					te_fptp_in_force = yes
+					has_variable = te_fptp_two_majors
+					has_variable = te_fptp_major_technocratic_party
+				}
+			}
+			add = {
+				value = te_fptp_major_party_join_weight
+				desc = "te_fptp_major_party_join"
+			}
+			if = {
+				limit = { scope:number > 0 }
+				add = {
+					value = scope:number
+					multiply = te_fptp_major_party_crowding_weight
+					desc = "te_fptp_major_party_crowding"
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 1
+				is_powerful = no
+				ig_counts_as_marginal = no
+			}
+			multiply = {
+				value = 2
+				desc = "from_influential_supporting_member"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 2
+			}
+			multiply = {
+				value = 0.5
+				desc = "from_two_prior_members"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number = 3
+			}
+			multiply = {
+				value = 0.05
+				desc = "from_three_prior_members"
+			}
+		}
+		else_if = {
+			limit = {
+				scope:number > 3
+			}
+			multiply = {
+				value = 0.0
+				desc = "from_more_than_three_prior_members"
+			}
+		}
+		# First Past the Post: any party but the two largest.
+		if = {
+			limit = {
+				owner = {
+					te_fptp_in_force = yes
+					has_variable = te_fptp_two_majors
+					NOT = { has_variable = te_fptp_major_technocratic_party }
+				}
+			}
+			add = {
+				value = te_fptp_minor_party_join_weight
+				desc = "te_fptp_minor_party_join"
+			}
+		}
+	}
+}

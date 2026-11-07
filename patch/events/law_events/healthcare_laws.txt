@@ -1,0 +1,13 @@
+﻿namespace = healthcare_laws
+
+# TBCP: healthcare_laws.1 supplied by events/_law_events/bpm_healthcare_laws.txt.
+
+# TBCP: healthcare_laws.2 supplied by events/_law_events/bpm_healthcare_laws.txt.
+
+# TBCP: healthcare_laws.3 supplied by events/_law_events/bpm_healthcare_laws.txt.
+
+# TBCP: healthcare_laws.4 supplied by events/_law_events/bpm_healthcare_laws.txt.
+
+# TBCP: healthcare_laws.5 supplied by events/_law_events/bpm_healthcare_laws.txt.
+
+# TBCP: healthcare_laws.6 supplied by events/_law_events/bpm_healthcare_laws.txt.

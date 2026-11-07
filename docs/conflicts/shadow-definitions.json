@@ -1,0 +1,4690 @@
+{
+  "shadow_definitions_resolved": [
+    {
+      "category": "events",
+      "key": "BRZ_populism.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_populism.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_populism.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_populism.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_populism.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_populism.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_vargas.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_vargas.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_vargas.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_vargas.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "BRZ_vargas.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_vargas.txt",
+      "suppressed_paths": [
+        "events/brazil/vargas.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "agitators_law_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_agitators_law_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/agitators_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anarchism_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_anarchism_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_anarchism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anarchism_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_anarchism_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_anarchism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anarchy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_anarchy_law.txt",
+      "suppressed_paths": [
+        "events/law_events/anarchy_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anarchy.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_anarchy_law.txt",
+      "suppressed_paths": [
+        "events/law_events/anarchy_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anarchy.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_anarchy_law.txt",
+      "suppressed_paths": [
+        "events/law_events/anarchy_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anti_state_religion.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_anti_state_religion_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/anti_state_religion_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anti_state_religion.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_anti_state_religion_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/anti_state_religion_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "anti_state_religion.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_anti_state_religion_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/anti_state_religion_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "bp1_misc.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_misc_events.txt",
+      "suppressed_paths": [
+        "events/brazil/misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "brazilian_minors.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_brazilian_minors.txt",
+      "suppressed_paths": [
+        "events/brazil/brazilian_minors.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "brazilian_slavery.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_brazilian_slavery.txt",
+      "suppressed_paths": [
+        "events/brazil/brazilian_slavery.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "brazilian_slavery.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_brazilian_slavery.txt",
+      "suppressed_paths": [
+        "events/brazil/brazilian_slavery.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "bureaucracy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_bureaucracy.txt",
+      "suppressed_paths": [
+        "events/law_events/bureaucracy.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "bureaucracy.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_bureaucracy.txt",
+      "suppressed_paths": [
+        "events/law_events/bureaucracy.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "bureaucracy.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_bureaucracy.txt",
+      "suppressed_paths": [
+        "events/law_events/bureaucracy.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "cable_street.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_communist_fascist_election_events.txt",
+      "suppressed_paths": [
+        "events/election_events/communist_fascist_election_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caciquismo.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_election_rigging.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_election_rigging.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caciquismo.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_election_rigging.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_election_rigging.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caste_conflict.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_caste_conflict.txt",
+      "suppressed_paths": [
+        "events/india_events/caste_conflict.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caste_conflict.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_caste_conflict.txt",
+      "suppressed_paths": [
+        "events/india_events/caste_conflict.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caste_conflict.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_caste_conflict.txt",
+      "suppressed_paths": [
+        "events/india_events/caste_conflict.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caste_conflict.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_caste_conflict.txt",
+      "suppressed_paths": [
+        "events/india_events/caste_conflict.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caste_conflict.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_caste_conflict.txt",
+      "suppressed_paths": [
+        "events/india_events/caste_conflict.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caudillo.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_caudillo.txt",
+      "suppressed_paths": [
+        "events/brazil/caudillo.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caudillo.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_caudillo.txt",
+      "suppressed_paths": [
+        "events/brazil/caudillo.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caudillo.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_caudillo.txt",
+      "suppressed_paths": [
+        "events/brazil/caudillo.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "caudillo.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_caudillo.txt",
+      "suppressed_paths": [
+        "events/brazil/caudillo.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "central_america.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_central_america_events.txt",
+      "suppressed_paths": [
+        "events/central_america_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "central_america.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_central_america_events.txt",
+      "suppressed_paths": [
+        "events/central_america_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "character_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_character_events.txt",
+      "suppressed_paths": [
+        "events/character_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "children_rights_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_children_rights_events.txt",
+      "suppressed_paths": [
+        "events/law_events/children_rights_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "children_rights_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_children_rights_events.txt",
+      "suppressed_paths": [
+        "events/law_events/children_rights_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "children_rights_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_children_rights_events.txt",
+      "suppressed_paths": [
+        "events/law_events/children_rights_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "children_rights_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_children_rights_events.txt",
+      "suppressed_paths": [
+        "events/law_events/children_rights_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "children_rights_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_children_rights_events.txt",
+      "suppressed_paths": [
+        "events/law_events/children_rights_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "children_rights_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_children_rights_events.txt",
+      "suppressed_paths": [
+        "events/law_events/children_rights_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "citizenship_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_citizenship_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/citizenship_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "citizenship_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_citizenship_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/citizenship_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "citizenship_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_citizenship_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/citizenship_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "citizenship_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_citizenship_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/citizenship_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "citizenship_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_citizenship_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/citizenship_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "citizenship_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_citizenship_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/citizenship_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coffee_with_milk.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_coffee_with_milk.txt",
+      "suppressed_paths": [
+        "events/brazil/coffee_with_milk.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coffee_with_milk.16",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_coffee_with_milk.txt",
+      "suppressed_paths": [
+        "events/brazil/coffee_with_milk.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "colonial_administration_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_colonial_administration_events.txt",
+      "suppressed_paths": [
+        "events/colonial_administration_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "colonization.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_colonization_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/colonization_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "colonization.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_colonization_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/colonization_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "colonization.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_colonization_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/colonization_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "colonization.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_colonization_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/colonization_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "communism.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_communism.txt",
+      "suppressed_paths": [
+        "events/communism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "communism.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_communism.txt",
+      "suppressed_paths": [
+        "events/communism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "communism.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_communism.txt",
+      "suppressed_paths": [
+        "events/communism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "communist_elections.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_communist_fascist_election_events.txt",
+      "suppressed_paths": [
+        "events/election_events/communist_fascist_election_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "communist_elections.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_communist_fascist_election_events.txt",
+      "suppressed_paths": [
+        "events/election_events/communist_fascist_election_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "congo_free_state_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_congo_free_state_events.txt",
+      "suppressed_paths": [
+        "events/congo_free_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "conscription_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_conscription_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/conscription_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "conscription_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_conscription_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/conscription_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "conscription_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_conscription_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/conscription_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "corporate_state.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_corporate_state_events.txt",
+      "suppressed_paths": [
+        "events/law_events/corporate_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "corporate_state.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_corporate_state_events.txt",
+      "suppressed_paths": [
+        "events/law_events/corporate_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "corporate_state.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_corporate_state_events.txt",
+      "suppressed_paths": [
+        "events/law_events/corporate_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "corporate_state.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_corporate_state_events.txt",
+      "suppressed_paths": [
+        "events/law_events/corporate_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "corporate_state.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_corporate_state_events.txt",
+      "suppressed_paths": [
+        "events/law_events/corporate_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "corporate_state.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_corporate_state_events.txt",
+      "suppressed_paths": [
+        "events/law_events/corporate_state_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "council_republic_law_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_council_republic_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/council_republic_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "council_republic_law_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_council_republic_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/council_republic_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "council_republic_law_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_council_republic_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/council_republic_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_aftermath_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_aftermath_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_aftermath_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_aftermath_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "coup_pulse_events.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_coup_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/coup_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "devorismo.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_portuguese_political_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_portuguese_political_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "devorismo.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_portuguese_political_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_portuguese_political_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "distribution_of_power_laws.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_distribution_of_power_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/distribution_of_power_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "economy_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_economy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/economy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "economy_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_economy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/economy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "economy_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_economy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/economy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "economy_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_economy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/economy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "economy_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_economy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/economy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "economy_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_economy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/economy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "education_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_education_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/education_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "education_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_education_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/education_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "education_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_education_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/education_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "education_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_education_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/education_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "education_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_education_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/education_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "education_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_education_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/education_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_contextual_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_contextual_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_contextual_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_contextual_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_contextual_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_contextual_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_contextual_events.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_contextual_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_contextual_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_liberal_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_liberal_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_liberal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_liberal_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_liberal_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_liberal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_other_parties_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_other_parties_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_other_parties_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_other_parties_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_other_parties_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_other_parties_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "election_other_parties_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_election_events/bpm_election_other_parties_events.txt",
+      "suppressed_paths": [
+        "events/election_events/election_other_parties_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.41",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.51",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.52",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ep2_meiji_pulse.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "ethiopia.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_ethiopia.txt",
+      "suppressed_paths": [
+        "events/ethiopia.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "famine_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_major_famine_events.txt",
+      "suppressed_paths": [
+        "events/major_famine_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fascism_events.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_fascism_events.txt",
+      "suppressed_paths": [
+        "events/fascism_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "formation.17",
+      "winner_owner": "timeline",
+      "winner_path": "events/te_formation_overrides.txt",
+      "suppressed_paths": [
+        "events/misc_unifications.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "free_speech_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_free_speech_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/free_speech_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "free_speech_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_free_speech_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/free_speech_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "free_speech_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_free_speech_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/free_speech_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "free_speech_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_free_speech_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/free_speech_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "free_speech_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_free_speech_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/free_speech_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "free_speech_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_free_speech_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/free_speech_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fund_lobbies_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fund_lobbies_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fund_lobbies_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fund_lobbies_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "fund_lobbies_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "generic_laws.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events_01.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "german_unification.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/bpm_german_unification.txt",
+      "suppressed_paths": [
+        "events/german_unification.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "gg_korea.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "healthcare_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_healthcare_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/healthcare_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "healthcare_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_healthcare_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/healthcare_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "healthcare_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_healthcare_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/healthcare_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "healthcare_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_healthcare_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/healthcare_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "healthcare_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_healthcare_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/healthcare_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "healthcare_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_healthcare_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/healthcare_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.14",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.15",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.16",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.17",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.18",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.19",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.20",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.21",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "historical_agitators.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/historic_agitator_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/historic_agitator_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.14",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.15",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.16",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.17",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.18",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "india_events.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_india_misc_events.txt",
+      "suppressed_paths": [
+        "events/india_events/india_misc_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "internal_security_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_internal_security_events.txt",
+      "suppressed_paths": [
+        "events/law_events/internal_security_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "internal_security_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_internal_security_events.txt",
+      "suppressed_paths": [
+        "events/law_events/internal_security_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "internal_security_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_internal_security_events.txt",
+      "suppressed_paths": [
+        "events/law_events/internal_security_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "internal_security_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_internal_security_events.txt",
+      "suppressed_paths": [
+        "events/law_events/internal_security_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "internal_security_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_internal_security_events.txt",
+      "suppressed_paths": [
+        "events/law_events/internal_security_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "internal_security_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_internal_security_events.txt",
+      "suppressed_paths": [
+        "events/law_events/internal_security_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "isolation.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_isolationism_law.txt",
+      "suppressed_paths": [
+        "events/law_events/isolationism_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "isolation.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_isolationism_law.txt",
+      "suppressed_paths": [
+        "events/law_events/isolationism_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "iwakura_mission.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_iwakura_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_monarchy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_imperial_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_monarchy.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_imperial_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_monarchy.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_imperial_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_monarchy.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_imperial_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_monarchy.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_imperial_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_monarchy.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_bpm_japan_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_imperial_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "japan_religion.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_japan_religion_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/japan_religion_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "korea_monarchy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "korea_monarchy.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "korea_monarchy.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/zz_ep1_korea_events.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_ep1_korea_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "labor_rights.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_labor_rights_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/labor_rights_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "labor_rights.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_labor_rights_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/labor_rights_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "labor_rights.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_labor_rights_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/labor_rights_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "labor_rights.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_labor_rights_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/labor_rights_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "labor_rights.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_labor_rights_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/labor_rights_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "labor_rights.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_labor_rights_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/labor_rights_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "land_ownership_law_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_land_ownership_law_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/land_ownership_law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "law_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "law_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "law_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_law_events.txt",
+      "suppressed_paths": [
+        "events/law_events/law_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "laws_police.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_laws_police.txt",
+      "suppressed_paths": [
+        "events/law_events/laws_police.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "laws_police.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_laws_police.txt",
+      "suppressed_paths": [
+        "events/law_events/laws_police.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "laws_police.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_laws_police.txt",
+      "suppressed_paths": [
+        "events/law_events/laws_police.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "liberalism.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_liberalism.txt",
+      "suppressed_paths": [
+        "events/liberalism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "liberalism.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_liberalism.txt",
+      "suppressed_paths": [
+        "events/liberalism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "liberalism.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_liberalism.txt",
+      "suppressed_paths": [
+        "events/liberalism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "liberalism.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_liberalism.txt",
+      "suppressed_paths": [
+        "events/liberalism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_core.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.14",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.15",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.16",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.17",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.18",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.19",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.20",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.21",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.22",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.23",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.24",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.25",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.26",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.27",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.28",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.29",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.30",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_01.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_01.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.31",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.32",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.33",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.34",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.35",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.36",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.37",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.38",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.39",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.40",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.51",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.52",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.53",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.54",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.55",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.56",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.57",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.58",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.59",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.60",
+      "winner_owner": "patch",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_03.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_03.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_events.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_proposal.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_proposal.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_proposal.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "lobby_proposal.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_soi_events/_bpm_lobbies_events_04.txt",
+      "suppressed_paths": [
+        "events/soi_events/00_lobbies_events_04.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "marx_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/bpm_karl_marx_events.txt",
+      "suppressed_paths": [
+        "events/karl_marx_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "meiji.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_meiji_restoration.txt",
+      "suppressed_paths": [
+        "events/meiji_restoration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "migration_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_migration_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/migration_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "migration_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_migration_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/migration_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "migration_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_migration_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/migration_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "migration_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_migration_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/migration_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "migration_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_migration_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/migration_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "migration_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_migration_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/migration_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "monarchy_law_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_monarchy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/monarchy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "monarchy_law_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_monarchy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/monarchy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "monarchy_law_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_monarchy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/monarchy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "monarchy_law_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_monarchy_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/monarchy_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "mughal.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_india_events/zz_bpm_mughal_events.txt",
+      "suppressed_paths": [
+        "events/india_events/mughal_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "natural_borders.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_natural_borders.txt",
+      "suppressed_paths": [
+        "events/agitators_events/natural_borders.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "natural_borders.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_natural_borders.txt",
+      "suppressed_paths": [
+        "events/agitators_events/natural_borders.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "natural_borders.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_natural_borders.txt",
+      "suppressed_paths": [
+        "events/agitators_events/natural_borders.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "natural_borders.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_natural_borders.txt",
+      "suppressed_paths": [
+        "events/agitators_events/natural_borders.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "natural_borders.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_natural_borders.txt",
+      "suppressed_paths": [
+        "events/agitators_events/natural_borders.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "neighbor_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_neighbor_events.txt",
+      "suppressed_paths": [
+        "events/neighbor_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "neighbor_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_neighbor_events.txt",
+      "suppressed_paths": [
+        "events/neighbor_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "neighbor_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_neighbor_events.txt",
+      "suppressed_paths": [
+        "events/neighbor_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "neighbor_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_neighbor_events.txt",
+      "suppressed_paths": [
+        "events/neighbor_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "neighbor_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_neighbor_events.txt",
+      "suppressed_paths": [
+        "events/neighbor_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "neighbor_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_neighbor_events.txt",
+      "suppressed_paths": [
+        "events/neighbor_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "nihilism.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_nihilism.txt",
+      "suppressed_paths": [
+        "events/nihilism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paraguay.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_paraguay.txt",
+      "suppressed_paths": [
+        "events/brazil/paraguay.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paraguay.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_paraguay.txt",
+      "suppressed_paths": [
+        "events/brazil/paraguay.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paraguay.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_paraguay.txt",
+      "suppressed_paths": [
+        "events/brazil/paraguay.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paraguay.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_paraguay.txt",
+      "suppressed_paths": [
+        "events/brazil/paraguay.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.11",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.14",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.15",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.16",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "paris_commune_pulse_events.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_paris_commune_pulse_events.txt",
+      "suppressed_paths": [
+        "events/agitators_events/paris_commune_pulse_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "pedro.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_pedro_brazil_events.txt",
+      "suppressed_paths": [
+        "events/brazil/pedro_brazil_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "peru_bolivia_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_peru_bolivia.txt",
+      "suppressed_paths": [
+        "events/brazil/peru_bolivia.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "philippines.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_philippines_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/philippines_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "portugal_regeneration.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_portuguese_political_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_portuguese_political_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "portugal_regeneration.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_portuguese_political_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_portuguese_political_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "portugal_regeneration.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_ip4_portuguese_political_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/ip4_portuguese_political_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "positivism.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_positivism.txt",
+      "suppressed_paths": [
+        "events/brazil/positivism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "positivism_pulse.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_positivism.txt",
+      "suppressed_paths": [
+        "events/brazil/positivism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "raj.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_british_raj_events.txt",
+      "suppressed_paths": [
+        "events/british_raj_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "regency.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/000_bpm_regency_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/regency_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "regency.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/000_bpm_regency_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/regency_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "republic_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_republic_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/republic_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "republic_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_republic_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/republic_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "republic_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_republic_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/republic_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "revolution_pulse_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_revolution_events_02.txt",
+      "suppressed_paths": [
+        "events/agitators_events/revolution_events_02.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "revolution_pulse_events.12",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_revolution_events_02.txt",
+      "suppressed_paths": [
+        "events/agitators_events/revolution_events_02.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "revolution_pulse_events.13",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_revolution_events_02.txt",
+      "suppressed_paths": [
+        "events/agitators_events/revolution_events_02.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "revolution_pulse_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_agitators_events/bpm_revolution_events_02.txt",
+      "suppressed_paths": [
+        "events/agitators_events/revolution_events_02.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rhine_confederation.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_natural_borders.txt",
+      "suppressed_paths": [
+        "events/agitators_events/natural_borders.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rights_of_women_laws.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_rights_of_women_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/rights_of_women_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rlit.001",
+      "winner_owner": "bpm",
+      "winner_path": "events/_rlit_events.txt",
+      "suppressed_paths": [
+        "events/rlit_cluster1_golden_age.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "rlit.052",
+      "winner_owner": "bpm",
+      "winner_path": "events/_rlit_events.txt",
+      "suppressed_paths": [
+        "events/rlit_cluster2_crossroads.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "russia_monarchy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_russia_events.txt",
+      "suppressed_paths": [
+        "events/russia_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "sa_migration.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_brazil/zz_bpm_south_america_migration.txt",
+      "suppressed_paths": [
+        "events/brazil/south_america_migration.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "secession_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/bpm_secession_situations.txt",
+      "suppressed_paths": [
+        "events/secession_situations.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "shogunate.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_japan_events/bpm_ep2_shogunate_events.txt",
+      "suppressed_paths": [
+        "events/japan_events/ep2_shogunate_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "single_party_state.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_single_party_state_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/single_party_state_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "single_party_state.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_single_party_state_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/single_party_state_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "single_party_state.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_single_party_state_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/single_party_state_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "single_party_state.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_single_party_state_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/single_party_state_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "single_party_state.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_single_party_state_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/single_party_state_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "single_party_state.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_single_party_state_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/single_party_state_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slave_revolt.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_slave_revolts.txt",
+      "suppressed_paths": [
+        "events/slave_revolts.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slave_revolt.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_slave_revolts.txt",
+      "suppressed_paths": [
+        "events/slave_revolts.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slave_revolt.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_slave_revolts.txt",
+      "suppressed_paths": [
+        "events/slave_revolts.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "slavery_law_events.7",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_slavery_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/slavery_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "sol_events.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_standard_of_living_events.txt",
+      "suppressed_paths": [
+        "events/standard_of_living_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "sol_events.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_standard_of_living_events.txt",
+      "suppressed_paths": [
+        "events/standard_of_living_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "state_atheism.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_state_atheism.txt",
+      "suppressed_paths": [
+        "events/law_events/state_atheism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "state_atheism.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_state_atheism.txt",
+      "suppressed_paths": [
+        "events/law_events/state_atheism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "state_atheism.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_state_atheism.txt",
+      "suppressed_paths": [
+        "events/law_events/state_atheism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "state_atheism.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_state_atheism.txt",
+      "suppressed_paths": [
+        "events/law_events/state_atheism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "state_atheism.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_state_atheism.txt",
+      "suppressed_paths": [
+        "events/law_events/state_atheism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "state_atheism.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_state_atheism.txt",
+      "suppressed_paths": [
+        "events/law_events/state_atheism.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "suffragist_events.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_suffragist_events.txt",
+      "suppressed_paths": [
+        "events/suffragist_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "tax.1",
+      "winner_owner": "patch",
+      "winner_path": "events/_law_events/bpm_tax_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/tax_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "tax.2",
+      "winner_owner": "patch",
+      "winner_path": "events/_law_events/bpm_tax_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/tax_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "tax.3",
+      "winner_owner": "patch",
+      "winner_path": "events/_law_events/bpm_tax_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/tax_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "tax.4",
+      "winner_owner": "patch",
+      "winner_path": "events/_law_events/bpm_tax_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/tax_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "tax.5",
+      "winner_owner": "patch",
+      "winner_path": "events/_law_events/bpm_tax_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/tax_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "tax.6",
+      "winner_owner": "patch",
+      "winner_path": "events/_law_events/bpm_tax_laws.txt",
+      "suppressed_paths": [
+        "events/law_events/tax_laws.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "technocracy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_technocracy_law.txt",
+      "suppressed_paths": [
+        "events/law_events/technocracy_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "technocracy.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_technocracy_law.txt",
+      "suppressed_paths": [
+        "events/law_events/technocracy_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "technocracy.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_technocracy_law.txt",
+      "suppressed_paths": [
+        "events/law_events/technocracy_law.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "theocracy.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_theocracy.txt",
+      "suppressed_paths": [
+        "events/law_events/theocracy.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "theocracy.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_theocracy.txt",
+      "suppressed_paths": [
+        "events/law_events/theocracy.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "theocracy.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_theocracy.txt",
+      "suppressed_paths": [
+        "events/law_events/theocracy.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "two_spains.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_two_spains_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/two_spains_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "two_spains.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/iberia_events/_two_spains_events.txt",
+      "suppressed_paths": [
+        "events/iberia_events/two_spains_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "unable_to_enact.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_unable_to_enact_events.txt",
+      "suppressed_paths": [
+        "events/law_events/unable_to_enact_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "unable_to_enact.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_unable_to_enact_events.txt",
+      "suppressed_paths": [
+        "events/law_events/unable_to_enact_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.1",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.10",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.2",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.3",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.4",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.5",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.6",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.7",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.8",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "utilitarian.9",
+      "winner_owner": "patch",
+      "winner_path": "events/_india_events/zz_bpm_utilitarian.txt",
+      "suppressed_paths": [
+        "events/india_events/utilitarian.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "victoria.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_victoria_events.txt",
+      "suppressed_paths": [
+        "events/victoria_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "warlord_china_events.100",
+      "winner_owner": "bpm",
+      "winner_path": "events/_warlord_china_events.txt",
+      "suppressed_paths": [
+        "events/warlord_china_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.10",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.2",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.3",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.4",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.5",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.6",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.8",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "welfare_laws.9",
+      "winner_owner": "bpm",
+      "winner_path": "events/_law_events/bpm_welfare_laws_events.txt",
+      "suppressed_paths": [
+        "events/law_events/welfare_laws_events.txt"
+      ]
+    },
+    {
+      "category": "events",
+      "key": "zanzibar.1",
+      "winner_owner": "bpm",
+      "winner_path": "events/_zanzibar_events.txt",
+      "suppressed_paths": [
+        "events/zanzibar_events.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "country_gdp_per_capita",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/extra_script_values.txt",
+      "suppressed_paths": [
+        "common/script_values/ip5_je_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "leverage_threshold_to_invite",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/extra_script_values.txt",
+      "suppressed_paths": [
+        "common/script_values/00_diplomacy_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_great_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_insignificant_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_leverage_gain",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_major_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_by_rank",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_great_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_insignificant_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_major_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_minor_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_unrecognized_major_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_unrecognized_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_mandate_progress_per_unrecognized_regional_power_member",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_minor_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_unrecognized_major_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_unrecognized_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    },
+    {
+      "category": "script_values",
+      "key": "power_bloc_unrecognized_regional_power_non_leader_members",
+      "winner_owner": "timeline",
+      "winner_path": "common/script_values/modified.txt",
+      "suppressed_paths": [
+        "common/script_values/01_power_bloc_values.txt"
+      ]
+    }
+  ],
+  "files_masked": [
+    "common/script_values/00_diplomacy_values.txt",
+    "common/script_values/01_power_bloc_values.txt",
+    "common/script_values/ip5_je_values.txt",
+    "events/agitators_events/agitators_law_events.txt",
+    "events/agitators_events/coup_events.txt",
+    "events/agitators_events/historic_agitator_events.txt",
+    "events/agitators_events/land_ownership_law_events.txt",
+    "events/agitators_events/natural_borders.txt",
+    "events/agitators_events/paris_commune_pulse_events.txt",
+    "events/agitators_events/revolution_events_02.txt",
+    "events/brazil/brazilian_minors.txt",
+    "events/brazil/brazilian_slavery.txt",
+    "events/brazil/caudillo.txt",
+    "events/brazil/coffee_with_milk.txt",
+    "events/brazil/misc_events.txt",
+    "events/brazil/paraguay.txt",
+    "events/brazil/pedro_brazil_events.txt",
+    "events/brazil/peru_bolivia.txt",
+    "events/brazil/positivism.txt",
+    "events/brazil/south_america_migration.txt",
+    "events/brazil/vargas.txt",
+    "events/british_raj_events.txt",
+    "events/central_america_events.txt",
+    "events/character_events.txt",
+    "events/colonial_administration_events.txt",
+    "events/communism.txt",
+    "events/congo_free_state_events.txt",
+    "events/election_events/communist_fascist_election_events.txt",
+    "events/election_events/election_contextual_events.txt",
+    "events/election_events/election_liberal_events.txt",
+    "events/election_events/election_other_parties_events.txt",
+    "events/ethiopia.txt",
+    "events/fascism_events.txt",
+    "events/german_unification.txt",
+    "events/iberia_events/ip4_anarchism_events.txt",
+    "events/iberia_events/ip4_election_rigging.txt",
+    "events/iberia_events/ip4_portuguese_political_events.txt",
+    "events/iberia_events/philippines_events.txt",
+    "events/iberia_events/regency_events.txt",
+    "events/iberia_events/two_spains_events.txt",
+    "events/india_events/caste_conflict.txt",
+    "events/india_events/india_misc_events.txt",
+    "events/india_events/mughal_events.txt",
+    "events/india_events/utilitarian.txt",
+    "events/japan_events/ep2_imperial_events.txt",
+    "events/japan_events/ep2_iwakura_events.txt",
+    "events/japan_events/ep2_meiji_restoration.txt",
+    "events/japan_events/ep2_shogunate_events.txt",
+    "events/japan_events/japan_religion_events.txt",
+    "events/karl_marx_events.txt",
+    "events/law_events/anarchy_law.txt",
+    "events/law_events/anti_state_religion_law_events.txt",
+    "events/law_events/bureaucracy.txt",
+    "events/law_events/children_rights_events.txt",
+    "events/law_events/citizenship_laws.txt",
+    "events/law_events/colonization_laws.txt",
+    "events/law_events/conscription_laws.txt",
+    "events/law_events/corporate_state_events.txt",
+    "events/law_events/council_republic_law_events.txt",
+    "events/law_events/distribution_of_power_laws.txt",
+    "events/law_events/economy_laws.txt",
+    "events/law_events/education_laws.txt",
+    "events/law_events/free_speech_laws.txt",
+    "events/law_events/healthcare_laws.txt",
+    "events/law_events/internal_security_events.txt",
+    "events/law_events/isolationism_law.txt",
+    "events/law_events/labor_rights_laws.txt",
+    "events/law_events/law_events.txt",
+    "events/law_events/law_events_01.txt",
+    "events/law_events/laws.txt",
+    "events/law_events/laws_police.txt",
+    "events/law_events/migration_laws.txt",
+    "events/law_events/monarchy_laws.txt",
+    "events/law_events/republic_laws.txt",
+    "events/law_events/rights_of_women_laws.txt",
+    "events/law_events/single_party_state_laws.txt",
+    "events/law_events/slavery_laws.txt",
+    "events/law_events/state_atheism.txt",
+    "events/law_events/tax_laws.txt",
+    "events/law_events/technocracy_law.txt",
+    "events/law_events/theocracy.txt",
+    "events/law_events/unable_to_enact_events.txt",
+    "events/law_events/welfare_laws_events.txt",
+    "events/liberalism.txt",
+    "events/major_famine_events.txt",
+    "events/meiji_restoration.txt",
+    "events/misc_unifications.txt",
+    "events/neighbor_events.txt",
+    "events/nihilism.txt",
+    "events/rlit_cluster1_golden_age.txt",
+    "events/rlit_cluster2_crossroads.txt",
+    "events/russia_events.txt",
+    "events/secession_situations.txt",
+    "events/slave_revolts.txt",
+    "events/soi_events/00_ep1_korea_events.txt",
+    "events/soi_events/00_lobbies_events_01.txt",
+    "events/soi_events/00_lobbies_events_03.txt",
+    "events/soi_events/00_lobbies_events_04.txt",
+    "events/standard_of_living_events.txt",
+    "events/suffragist_events.txt",
+    "events/victoria_events.txt",
+    "events/warlord_china_events.txt",
+    "events/zanzibar_events.txt"
+  ],
+  "future_party_ban_families": {
+    "green_party": "radical_party",
+    "populist_party": "reactionary_party",
+    "technocratic_party": "liberal_party"
+  },
+  "restored_referenced_game_events": [
+    "ip4_coup.11"
+  ],
+  "checkpoint_success": "sole BPM effect; vanilla phase increment removed at original path"
+}

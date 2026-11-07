@@ -1,0 +1,71 @@
+﻿namespace = lobby_events
+
+# Impressive Tax Reform
+# TBCP: lobby_events.40 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Differences Aside
+# TBCP: lobby_events.31 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# A Shining Example
+# TBCP: lobby_events.32 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Less Is More
+# TBCP: lobby_events.33 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Laudable Legislation
+# TBCP: lobby_events.34 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Unfavorable Opinion
+# TBCP: lobby_events.35 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Against Free Trade Proposal
+# TBCP: lobby_events.36 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Voting Matters
+# TBCP: lobby_events.37 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Unwanted Legislation
+# TBCP: lobby_events.38 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Trading With Enthusiasm
+# TBCP: lobby_events.39 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Ever-Increasing Influence
+
+# TBCP: lobby_events.51 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Business of Legislation
+
+# TBCP: lobby_events.52 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Contradictory Correspondence
+
+# TBCP: lobby_events.53 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Unconventional Guest
+
+# TBCP: lobby_events.54 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Problematic Policing
+
+# TBCP: lobby_events.55 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# A Disreputable Bookkeeper
+
+# TBCP: lobby_events.56 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Advancement in Medicine
+
+# TBCP: lobby_events.57 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Gifts Among Friends
+
+# TBCP: lobby_events.58 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Lobbyist Lectures in Capital
+
+# TBCP: lobby_events.59 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.
+
+# Accidental Good Press for Anti-Lobby Country
+
+# TBCP: lobby_events.60 supplied by events/_soi_events/_bpm_lobbies_events_03.txt.

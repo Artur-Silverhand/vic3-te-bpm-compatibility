@@ -1,0 +1,18 @@
+﻿namespace = shogunate
+
+# Accession of Ieyoshi
+# TBCP: shogunate.1 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.2 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.3 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.4 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.5 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.6 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.7 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.
+
+# TBCP: shogunate.8 supplied by events/_japan_events/bpm_ep2_shogunate_events.txt.

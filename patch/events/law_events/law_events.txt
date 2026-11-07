@@ -1,0 +1,9 @@
+﻿namespace = law_events
+
+# Debate event
+# TBCP: law_events.1 supplied by events/_law_events/bpm_law_events.txt.
+
+# TBCP: law_events.5 supplied by events/_law_events/bpm_law_events.txt.
+
+
+# TBCP: law_events.6 supplied by events/_law_events/bpm_law_events.txt.

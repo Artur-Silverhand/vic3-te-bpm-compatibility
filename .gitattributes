@@ -1,0 +1,3 @@
+# Preserve verified runtime bytes, including BOM and LF.
+* -text
+

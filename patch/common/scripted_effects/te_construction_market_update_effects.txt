@@ -1,0 +1,250 @@
+﻿# Country scope, market games only (te_construction_market_on_border_changes):
+# re-place the sites after the map changes. te_cm_placing_site lets the site's
+# can_build_government accept these create_building calls (see
+# common/buildings/te_construction_market_site.txt).
+te_construction_market_country_update_sites = {
+	set_global_variable = {
+		name = te_cm_placing_site
+		value = 1
+	}
+	every_state = {
+		if = {
+			limit = {
+				any_scope_building = {
+					is_under_construction = yes
+				}
+			}
+			te_construction_market_set_specified_level = {
+				SPEC_LEVEL = 1
+				SPEC_TYPE = te_construction_market_site
+			}
+		}
+		te_construction_market_state_on_end = yes
+	}
+	# A country that has lost every state stays alive while its war goes on,
+	# with no capital to place in.
+	if = {
+		limit = {
+			exists = capital
+			NOT = {
+				any_scope_building = {
+					is_building_type = te_construction_market_site
+				}
+			}
+		}
+		capital = {
+			create_building = {
+				building = te_construction_market_site
+				level = 1
+			}
+		}
+	}
+	remove_global_variable = te_cm_placing_site
+}
+
+
+te_construction_market_country_update_data = {
+	te_construction_market_country_update_private_share = yes
+	te_construction_market_apply_per_site_modifier = yes
+}
+
+
+te_construction_market_country_update_private_share = {
+	remove_modifier = te_construction_market_private_share_modifier
+	add_modifier = {
+		name = te_construction_market_private_share_modifier
+		multiplier = tbcp_construction_private_share
+	}
+}
+
+
+te_construction_market_apply_per_site_modifier = {
+	# Per-site capacity modifier (te_construction_market_capacity_modifier
+	# = `building_throughput_add = 1`), scaled by the staffing-adjusted
+	# per-site target.
+	#
+	# Why the country-variable handoff: `add_modifier = { multiplier = X }`
+	# inside `every_scope_building` evaluates X in the OUTER (country)
+	# scope, not the building scope of the iteration. The compensator
+	# in te_construction_market_employment_adjusted_per_site reads
+	# `occupancy`, which is undefined at country scope — the else branch
+	# fires (multiply 10), modifier inflates to +1000%+.
+	#
+	# Several attempted workarounds (save_temporary_scope_value_as,
+	# save_temporary_scope_as + scope:X.<script_value>, set_variable on
+	# building + scope:X.var:Y) all silently fell back to multiplier=1.
+	# Buildings appear not to support variables; saved-scope traversal
+	# only works for value-triggers, not script values.
+	#
+	# Working pattern: write the building-scope-evaluated value into a
+	# country variable (via `owner = { set_variable { value = prev.<script_value> } }`),
+	# then have add_modifier read `owner.var:te_cm_capacity_mult`. The
+	# country-scope variable lookup works even from add_modifier's
+	# outer-scope evaluation context.
+	#
+	# The variable MUST persist past this effect. The engine stores the
+	# `multiplier` EXPRESSION with the modifier and re-evaluates it on
+	# later ticks (decay / tooltip / recalculation), not just at add time.
+	# A `remove_variable` at the end of this effect therefore makes every
+	# later re-evaluation read `'none'` (`jomini_scriptvalue.cpp` spam,
+	# per-site scaling silently lost) until the next weekly pulse
+	# re-applies it. Nothing needs cleaning up: the next call simply
+	# overwrites the variable. See the "Variables backing
+	# `add_modifier { multiplier = ... }` must persist beyond the call
+	# site" bullet in docs/guides/scripting_best_practices.md.
+	#
+	# Multi-site caveat: one country variable is shared across all of the
+	# country's sites, so between pulses every site's modifier re-evaluates
+	# against the LAST site's value. That is pre-existing and unchanged by
+	# the persistence fix (before it, those re-evaluations returned
+	# `'none'`, which is strictly worse). A per-site redesign is separate
+	# work and is deliberately not attempted here.
+	#
+	# Clear at start each call so a stale value never leaks across ticks
+	# or partial iterations. Harmless for the persistence rule above: it is
+	# re-set before `add_modifier` in the same block.
+	remove_variable = te_cm_capacity_mult
+	every_scope_building = {
+		limit = {
+			is_building_type = te_construction_market_site
+		}
+		remove_modifier = te_construction_market_capacity_modifier
+		# Compute in building scope (prev = this building), write to
+		# country variable on the owner.
+		owner = {
+			set_variable = {
+				name = te_cm_capacity_mult
+				value = prev.te_construction_market_employment_adjusted_per_site
+			}
+		}
+		add_modifier = {
+			name = te_construction_market_capacity_modifier
+			multiplier = owner.var:te_cm_capacity_mult
+		}
+	}
+}
+
+
+te_construction_market_update_price_stabilizer = {
+	# if = {
+	# 	limit = {
+	# 		NOT = {
+	# 			has_variable = te_construction_market_price_stabilizer
+	# 		}
+	# 	}
+	set_variable = {
+		name = te_construction_market_price_stabilizer
+		value = te_construction_market_price_stabilizer_next_value
+	}
+	# }
+	# else = {
+
+	# 	if = {
+	# 		limit = { var:te_construction_market_price_stabilizer < te_construction_market_price }
+	# 		change_variable = {
+	# 			name = te_construction_market_price_stabilizer
+	# 			add = 10
+	# 		}
+	# 	}
+	# 	else = {
+	# 		change_variable = {
+	# 			name = te_construction_market_price_stabilizer
+	# 			subtract = 10
+	# 		}
+	# 	}
+	# }
+}
+
+# Fixed Budget mode: move the quantity the budget buys 1 / N of the way toward
+# budget / this week's price (te_construction_market_budget_quantity_next_value;
+# why only part of the way, and how N follows the market:
+# te_construction_market_target_values.txt). Runs in the weekly pulse after the
+# price stabilizer and before the sites are sized.
+te_construction_market_update_budget_quantity = {
+	if = {
+		limit = {
+			te_construction_market_budget_mode_on = yes
+		}
+		set_variable = {
+			name = te_construction_market_budget_quantity
+			value = te_construction_market_budget_quantity_next_value
+		}
+	}
+}
+
+
+# Construction panel mode buttons. Each carries the purchase over, so the
+# switch itself changes nothing that week: Fixed Budget starts from what the
+# purchase costs now (te_construction_market_budget_seed), Fixed Quantity from
+# the quantity the budget is buying now. The two effects write the variable
+# before changing the mode, because te_construction_market_public_setting reads
+# the mode.
+te_construction_market_switch_to_budget_mode = {
+	te_construction_market_init_target = yes
+	set_variable = {
+		name = te_construction_market_public_budget
+		value = te_construction_market_budget_seed
+	}
+	set_variable = {
+		name = te_construction_market_budget_quantity
+		value = te_construction_market_budget_seed_quantity
+	}
+	set_variable = te_construction_market_budget_mode
+	te_construction_market_country_update_private_share = yes
+	te_construction_market_apply_per_site_modifier = yes
+}
+
+te_construction_market_switch_to_quantity_mode = {
+	te_construction_market_init_target = yes
+	set_variable = {
+		name = te_construction_market_public_target
+		value = {
+			value = te_construction_market_public_setting
+			round = yes
+		}
+	}
+	remove_variable = te_construction_market_budget_mode
+	te_construction_market_country_update_private_share = yes
+	te_construction_market_apply_per_site_modifier = yes
+}
+
+
+# Fixed Budget +/- buttons: change the weekly budget by $AMOUNT$ (negative to
+# cut it). The quantity bought follows over the next weeks, a raise more slowly
+# than a cut (te_construction_market_update_budget_quantity), except that a
+# budget of 0 stops government buying at once, as a quantity of 0 does: with
+# nothing left to buy, there is no price change to chase.
+te_construction_market_change_budget = {
+	if = {
+		limit = {
+			NOT = { has_variable = te_construction_market_public_budget }
+		}
+		set_variable = {
+			name = te_construction_market_public_budget
+			value = 0
+		}
+	}
+	change_variable = {
+		name = te_construction_market_public_budget
+		add = $AMOUNT$
+	}
+	if = {
+		limit = {
+			var:te_construction_market_public_budget < 1
+		}
+		te_construction_market_clear_budget = yes
+	}
+}
+
+te_construction_market_clear_budget = {
+	set_variable = {
+		name = te_construction_market_public_budget
+		value = 0
+	}
+	set_variable = {
+		name = te_construction_market_budget_quantity
+		value = 0
+	}
+	te_construction_market_country_update_private_share = yes
+	te_construction_market_apply_per_site_modifier = yes
+}

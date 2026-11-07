@@ -1,0 +1,122 @@
+{
+  "recorded_utc": "2026-11-07T08:56:03.079948+00:00",
+  "sources": {
+    "timeline": {
+      "scope": [
+        ".metadata",
+        "common",
+        "events",
+        "gui"
+      ],
+      "normalization": "CRLF to LF only; no BOM/comment/whitespace normalization",
+      "github_root": "D:\\dev\\Victoria 3\\sources\\upstream\\Vic3TimelineExtended",
+      "workshop_root": "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\3721261891",
+      "exact_files": 2,
+      "line_endings_only_files": 1180,
+      "changed_after_normalization": [
+        {
+          "path": "common/parties/zz_te_party_join_weights.txt",
+          "github_sha256": "a6e862c847575494723cc111732a8b267931639ae93841fb3b101d7d305186f6",
+          "workshop_sha256": "401e3c935584ae3ac57b56a9b02d7a7f636b043bbc71b25f4ffa2dc994b5ac1b",
+          "github_lf_sha256": "5adaa5cfdfb9a90ee49c90820bfbc96be96f801f6306d7786fabf6cdf2c1edaa",
+          "workshop_lf_sha256": "401e3c935584ae3ac57b56a9b02d7a7f636b043bbc71b25f4ffa2dc994b5ac1b"
+        },
+        {
+          "path": "common/scripted_effects/gm_effects.txt",
+          "github_sha256": "f6ac5dbb39a05cc10cde6ea8cda2ef55e5f0a4246e3f882eaad21f848bc9ce04",
+          "workshop_sha256": "f7081595aa9a682da3dbcb7e04288477f574c1d41308b9fa158391726344678c",
+          "github_lf_sha256": "bd7fa61184a4896f1a90844f5e2000308020433423721bf3e6b5c206ef027afe",
+          "workshop_lf_sha256": "f7081595aa9a682da3dbcb7e04288477f574c1d41308b9fa158391726344678c"
+        },
+        {
+          "path": "common/scripted_effects/gm_monument_effects.txt",
+          "github_sha256": "5c867c59c384bd68494250703006e5169ea340d2faeb8822f3359a74de1d4089",
+          "workshop_sha256": "8962c94e02658553befc1ec2d7cad198f3f784ba123fa756346210311caebebe",
+          "github_lf_sha256": "4f11632145b3b7768de208d3294f1fcd101e2a4c93159806f202839b8efdbbf6",
+          "workshop_lf_sha256": "8962c94e02658553befc1ec2d7cad198f3f784ba123fa756346210311caebebe"
+        },
+        {
+          "path": "common/scripted_effects/gm_trophy_effects.txt",
+          "github_sha256": "3a8ec064ada73d15af645ba5b9e88afbf12cb569b35dce8f229ff893f4ac0ed0",
+          "workshop_sha256": "fe86d697ef4096123c498c12542a9d66a8d41325d3a215c057082d4227861745",
+          "github_lf_sha256": "8e9eacb0a9db20cd0eccb64be47671e89205ecc139577294cd750d5b78b57624",
+          "workshop_lf_sha256": "fe86d697ef4096123c498c12542a9d66a8d41325d3a215c057082d4227861745"
+        },
+        {
+          "path": "common/scripted_effects/te_debug_demog_effects.txt",
+          "github_sha256": "bc9dd61e462b2aedc52cf1587a359c175d7c2716bf6f237083f34d3cb3299ab0",
+          "workshop_sha256": "bd89acf56a066a05bdd820320682d4592d9b0e2d5e54f14193349bce57d544a2",
+          "github_lf_sha256": "38809f79070d8a8a7aba7224db9239726c6dcae58e82daf90ae16ddc6a1bda8b",
+          "workshop_lf_sha256": "bd89acf56a066a05bdd820320682d4592d9b0e2d5e54f14193349bce57d544a2"
+        },
+        {
+          "path": "common/scripted_effects/te_demog_um_effects.txt",
+          "github_sha256": "d97aebb1af46a1030b57e431dc876189da200c5d49d9ab9105861c928e84c4c9",
+          "workshop_sha256": "ff13e24720f8ccf90ccfde7127b64325650921050fc73f075ff2d98adf6bb831",
+          "github_lf_sha256": "83ec63c1c6ff2b4451bbb24935faf15c218639a298ed96fc76ba32375839947d",
+          "workshop_lf_sha256": "ff13e24720f8ccf90ccfde7127b64325650921050fc73f075ff2d98adf6bb831"
+        },
+        {
+          "path": "common/scripted_effects/te_demog_wave_effects.txt",
+          "github_sha256": "8f62b698874dd65688b858c00f540d3359146f0e19ae0feda19a9d10016e8066",
+          "workshop_sha256": "5a07d7ad9f1dfe32d177460ed36f39e2741bfdc681400a689f9cb3fae8dfa56a",
+          "github_lf_sha256": "f999689387580fae4cfc8bc028cf312de292a06205d0cd7f421fca1b71073b07",
+          "workshop_lf_sha256": "5a07d7ad9f1dfe32d177460ed36f39e2741bfdc681400a689f9cb3fae8dfa56a"
+        },
+        {
+          "path": "common/scripted_triggers/monument_triggers.txt",
+          "github_sha256": "36b7a8c89427d5bb5880562e7ed975f1910818e84317879ec22df1b3934a60a0",
+          "workshop_sha256": "92499a33cb0e98c4e4cbb4e36aa76a866ceba8d3b61a95284d53aee9badb4429",
+          "github_lf_sha256": "214f7964d9afd28f77fa858b0a630ebefe00d57bc3fe42cbc381b9cca074fb00",
+          "workshop_lf_sha256": "92499a33cb0e98c4e4cbb4e36aa76a866ceba8d3b61a95284d53aee9badb4429"
+        },
+        {
+          "path": "events/extra_law_events.txt",
+          "github_sha256": "5beb97aec88bd22690fe17e2fe2ed5979f5d2aaa719416e147d2bc6b21153f44",
+          "workshop_sha256": "bce55d0a00c12ef423a85bb4e40e267a061cfd29a41e2fbc4f7a194b84e1a0f9",
+          "github_lf_sha256": "1da7d5c279758b641b8da70e46c6713d6f18d9df314158558fab5a878941024e",
+          "workshop_lf_sha256": "bce55d0a00c12ef423a85bb4e40e267a061cfd29a41e2fbc4f7a194b84e1a0f9"
+        },
+        {
+          "path": "events/monument_events.txt",
+          "github_sha256": "082f24ef63173c668bbfe0b01fab478e28492e8957a031da432bf682b7990136",
+          "workshop_sha256": "a4bcc38057f1c50104d4b8b6368bc30800b38cf5ce087618f7cb84573184458f",
+          "github_lf_sha256": "1bb0996436ae3736ed92574983227dca64d913f4e8db845b5a917e845f936f69",
+          "workshop_lf_sha256": "a4bcc38057f1c50104d4b8b6368bc30800b38cf5ce087618f7cb84573184458f"
+        },
+        {
+          "path": "events/te_debug_demog_events.txt",
+          "github_sha256": "51bd63026731b24b9c5ccf4642cef8764205040431b2006769a64c6633c4be33",
+          "workshop_sha256": "f1c9b31e972a18d9023d71fbe21223f0527a5e945ae32dc00038749f7828ce01",
+          "github_lf_sha256": "ceac48ad60f5ed77855a51f35b03dfdb44f20babd7fd5a5177a54eb791b3db98",
+          "workshop_lf_sha256": "f1c9b31e972a18d9023d71fbe21223f0527a5e945ae32dc00038749f7828ce01"
+        },
+        {
+          "path": "events/te_debug_demog_um_events.txt",
+          "github_sha256": "ae548714d5b5c7befe11be74e0569a90c22f1f0b627e9f1ad914fa85e20fe07b",
+          "workshop_sha256": "83fcc978f4a6398ebade8c3e605fe39d00ba4ef2fcef5ba58e4c9d317ec3d35a",
+          "github_lf_sha256": "e0233b42ab1ad8f797879ea39afc74c72fbeb871bef55737a87c1e3150d80de5",
+          "workshop_lf_sha256": "83fcc978f4a6398ebade8c3e605fe39d00ba4ef2fcef5ba58e4c9d317ec3d35a"
+        }
+      ],
+      "only_github": [],
+      "only_workshop": []
+    },
+    "bpm": {
+      "scope": [
+        ".metadata",
+        "common",
+        "events",
+        "gui"
+      ],
+      "normalization": "CRLF to LF only; no BOM/comment/whitespace normalization",
+      "github_root": "D:\\dev\\Victoria 3\\sources\\upstream\\Better-Politics-Mod-Vic-3\\better-politics-mod",
+      "workshop_root": "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2932134122",
+      "exact_files": 8,
+      "line_endings_only_files": 653,
+      "changed_after_normalization": [],
+      "only_github": [],
+      "only_workshop": []
+    }
+  }
+}

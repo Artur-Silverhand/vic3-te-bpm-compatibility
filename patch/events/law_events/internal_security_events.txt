@@ -1,0 +1,19 @@
+﻿namespace = internal_security_events
+
+# Stall event - Forced disappearance
+# TBCP: internal_security_events.1 supplied by events/_law_events/bpm_internal_security_events.txt.
+
+# Advancement event - Counterintelligence
+# TBCP: internal_security_events.2 supplied by events/_law_events/bpm_internal_security_events.txt.
+
+# Debate event - People worry about privacy
+# TBCP: internal_security_events.3 supplied by events/_law_events/bpm_internal_security_events.txt.
+
+# Advancement event - Violent supression of protesters
+# TBCP: internal_security_events.4 supplied by events/_law_events/bpm_internal_security_events.txt.
+
+# Debate event - Government needs info
+# TBCP: internal_security_events.5 supplied by events/_law_events/bpm_internal_security_events.txt.
+
+# Stall event - Terrorist attack
+# TBCP: internal_security_events.6 supplied by events/_law_events/bpm_internal_security_events.txt.

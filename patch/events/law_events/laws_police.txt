@@ -1,0 +1,9 @@
+﻿namespace = laws_police
+
+# TBCP: laws_police.1 supplied by events/_law_events/bpm_laws_police.txt.
+
+# The Papers' Police Polemics
+# TBCP: laws_police.2 supplied by events/_law_events/bpm_laws_police.txt.
+
+# The Rally Run Roughshod
+# TBCP: laws_police.3 supplied by events/_law_events/bpm_laws_police.txt.

@@ -1,0 +1,13 @@
+﻿namespace = children_rights_events
+
+# TBCP: children_rights_events.1 supplied by events/_law_events/bpm_children_rights_events.txt.
+
+# TBCP: children_rights_events.2 supplied by events/_law_events/bpm_children_rights_events.txt.
+
+# TBCP: children_rights_events.3 supplied by events/_law_events/bpm_children_rights_events.txt.
+
+# TBCP: children_rights_events.4 supplied by events/_law_events/bpm_children_rights_events.txt.
+
+# TBCP: children_rights_events.5 supplied by events/_law_events/bpm_children_rights_events.txt.
+
+# TBCP: children_rights_events.6 supplied by events/_law_events/bpm_children_rights_events.txt.

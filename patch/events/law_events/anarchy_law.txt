@@ -1,0 +1,11 @@
+﻿namespace = anarchy
+
+# Stall event - Propaganda of the Deed
+# anarchists assassinate reactionary IG leader
+# TBCP: anarchy.1 supplied by events/_law_events/bpm_anarchy_law.txt.
+
+# Debate Event - Remove an institution for progress
+# TBCP: anarchy.2 supplied by events/_law_events/bpm_anarchy_law.txt.
+
+# Advance event - Mutual Aid
+# TBCP: anarchy.3 supplied by events/_law_events/bpm_anarchy_law.txt.

@@ -1,0 +1,180 @@
+﻿namespace = colonial_administration_events
+
+# TBCP: colonial_administration_events.1 supplied by events/_colonial_administration_events.txt.
+
+# Colonial Collapse event
+colonial_administration_events.2 = {
+	type = country_event
+	placement = root
+
+	title = colonial_administration_events.2.t
+	desc = colonial_administration_events.2.d
+	flavor = colonial_administration_events.2.f
+
+	event_image = {
+		video = "asia_sepoy_mutiny"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 3
+
+	cooldown = { days = long_modifier_time }
+
+	trigger = {
+		# triggered by on_action - on_monthly_pulse_country
+		is_subject = no
+		NOT = {
+			has_variable = colonial_collapse_var
+		}
+		OR = {
+			has_variable = senegal_subject_var
+			has_variable = zanj_subject_var
+			has_variable = southern_africa_subject_var
+			has_variable = congo_subject_var
+		}
+	}
+
+	immediate = {
+		set_variable = colonial_collapse_var
+		ordered_state = {
+			limit = {
+				is_homeland_of_country_cultures = root
+			}
+			order_by = gdp
+			save_scope_as = colonial_evacuation_state
+		}
+	}
+
+	option = {
+		name = colonial_administration_events.2.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_wants_radicals = yes
+				}
+				add = 10
+			}
+		}
+		custom_tooltip = {
+			text = some_european_pops_abandon_africa_tt
+			every_scope_pop = {
+				limit = {
+					culture = {
+						has_discrimination_trait_group = heritage_group_european
+					}
+				}
+				random_list = {
+					25 = {
+						move_pop = scope:colonial_evacuation_state
+					}
+					75 = {
+
+					}
+				}
+			}
+		}
+		every_scope_culture = {
+			limit = {
+				root = {
+					cultural_acceptance_base = { target = prev value <= acceptance_status_4 }
+				}
+			}
+			prev = {
+				add_radicals = {
+					culture = prev
+					value = 0.8
+				}
+			}
+		}
+		add_modifier = {
+			name = colony_alone_modifier
+			days = long_modifier_time
+		}
+		trigger_event = { id = independence.2 days = 1 }
+	}
+
+	option = {
+		name = colonial_administration_events.2.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_avoids_radicals = yes
+				}
+				add = 10
+			}
+		}
+		trigger = {
+			has_technology_researched = nationalism
+			OR = {
+				has_law_or_variant = law_type:law_no_colonial_affairs
+				has_law_or_variant = law_type:law_multicultural
+				has_law_or_variant = law_type:law_council_republic
+				any_political_movement = {
+					is_political_movement_type = movement_cultural_minority
+					political_movement_support >= 0.10
+				}
+			}
+		}
+		highlighted_option = yes
+		custom_tooltip = {
+			text = most_european_pops_abandon_africa_tt
+			every_scope_pop = {
+				limit = {
+					culture = {
+						has_discrimination_trait_group = heritage_group_european
+					}
+				}
+				random_list = {
+					75 = {
+						move_pop = scope:colonial_evacuation_state
+					}
+					25 = {
+
+					}
+				}
+			}
+		}
+		capital = {
+			every_scope_culture = {
+				limit = {
+					has_homeland = prev
+					NOT = {
+						is_primary_culture_of = prev.owner
+					}
+				}
+				prev.owner = {
+					add_primary_culture = prev
+				}
+			}
+		}
+		every_primary_culture = {
+			limit = {
+				has_discrimination_trait_group = heritage_group_european
+			}
+			prev = {
+				remove_primary_culture = prev
+			}
+		}
+		hidden_effect = {
+			country_remove_colonial_variables = yes
+			every_scope_character = {
+				limit = {
+					culture = {
+						has_discrimination_trait_group = heritage_group_european
+					}
+					is_immortal = no
+				}
+				retire_character = {
+					hidden = yes
+				}
+			}
+		}
+		trigger_event = { id = independence.2 days = 1 }
+	}
+}

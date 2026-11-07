@@ -1,0 +1,7 @@
+﻿namespace = conscription_laws
+
+# TBCP: conscription_laws.1 supplied by events/_law_events/bpm_conscription_laws.txt.
+
+# TBCP: conscription_laws.2 supplied by events/_law_events/bpm_conscription_laws.txt.
+
+# TBCP: conscription_laws.3 supplied by events/_law_events/bpm_conscription_laws.txt.

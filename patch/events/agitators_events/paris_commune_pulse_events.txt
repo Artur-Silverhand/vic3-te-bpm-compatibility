@@ -1,0 +1,51 @@
+﻿namespace = paris_commune_pulse_events
+
+# 1 - Seizing Church and State
+# TBCP: paris_commune_pulse_events.1 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 2 - Forty Warning Shots
+# TBCP: paris_commune_pulse_events.2 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 3 - For Want of a Nail
+# TBCP: paris_commune_pulse_events.3 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 4 - Petrol Maidens
+# TBCP: paris_commune_pulse_events.4 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 5 - Enemy Combatants
+# TBCP: paris_commune_pulse_events.5 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 6 - A Priest for Your Captain
+# TBCP: paris_commune_pulse_events.6 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 7 - Clapped With Irons
+# TBCP: paris_commune_pulse_events.7 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 8 - Four-Hundred Gun Salute
+# TBCP: paris_commune_pulse_events.8 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 9 - Our Bodies, Our Rules
+# TBCP: paris_commune_pulse_events.9 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+
+# 10 - A Fortress Falls
+# TBCP: paris_commune_pulse_events.10 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+
+# 11 - Working Co-op
+# TBCP: paris_commune_pulse_events.11 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 12 - Off to School
+# TBCP: paris_commune_pulse_events.12 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 13 - Capital Punishments
+# TBCP: paris_commune_pulse_events.13 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 14 - First In, Best Dressed
+# TBCP: paris_commune_pulse_events.14 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 15 - Recusing the Republicans
+# TBCP: paris_commune_pulse_events.15 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.
+
+# 16 - Go and Fight!
+# TBCP: paris_commune_pulse_events.16 supplied by events/_agitators_events/bpm_paris_commune_pulse_events.txt.

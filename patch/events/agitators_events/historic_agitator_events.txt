@@ -1,0 +1,264 @@
+﻿namespace = historical_agitators
+
+#cooldowns handled by variables
+# TBCP: historical_agitators.1 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.2 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.3 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.4 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.5 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.6 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+historical_agitators.7 = { #Giuseppe Mazzini
+	type = country_event
+	placement = root
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:historic_agitator_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	title = historical_agitators.7.t
+	desc = historical_agitators.7.d
+	flavor = historical_agitators.7.f
+
+	duration = 3
+
+	dlc = dlc004
+
+	trigger = {
+		#Fired by character interaction
+	}
+
+	cancellation_trigger = {
+		scope:historic_agitator_scope = {
+			is_character_alive = no
+		}
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = {
+				has_variable = mazzini_var
+			}
+			save_scope_as = historic_agitator_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:historic_agitator_scope }
+	}
+
+	option = {
+		name = historical_agitators.7.a
+		default_option = yes
+		scope:historic_agitator_scope = {
+			add_trait = special_character_mazzini_popularity
+		}
+	}
+	option = {
+		name = historical_agitators.7.b
+		add_modifier = {
+			name = modifier_mazzini_democratism
+			days = normal_modifier_time
+		}
+		add_radicals = {
+			value = small_radicals
+			interest_group = scope:historic_agitator_scope.interest_group
+		}
+	}
+}
+
+# TBCP: historical_agitators.8 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.9 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.10 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.11 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.12 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.13 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.14 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.15 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.16 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.17 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.18 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.19 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.20 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+# TBCP: historical_agitators.21 supplied by events/_agitators_events/historic_agitator_events.txt.
+
+historical_agitators.22 = { #John Frost
+	type = country_event
+	placement = root
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:historic_agitator_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	title = historical_agitators.22.t
+	desc = historical_agitators.22.d
+	flavor = historical_agitators.22.f
+
+	duration = 3
+
+	dlc = dlc004
+
+	trigger = {
+		# triggered by on_action - historical_agitators_yearly_events
+		has_dlc_feature = voice_of_the_people_content
+		NOR = {
+			has_law_or_variant = law_type:law_universal_suffrage
+			has_law_or_variant = law_type:law_census_voting
+		}
+		country_has_primary_culture = cu:british
+		any_scope_state = {
+			state_region = s:STATE_WALES
+			turmoil > 0.10
+		}
+		any_scope_character = {
+			has_variable = john_frost_var
+		}
+		any_country = {
+			is_subject_of = root
+			any_scope_state = {
+				state_region = s:STATE_TASMANIA
+			}
+		}
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = {
+				has_variable = john_frost_var
+			}
+			save_scope_as = historic_agitator_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		random_country = {
+			limit = {
+				is_subject_of = root
+				any_scope_state = {
+					state_region = s:STATE_TASMANIA
+				}
+			}
+			save_scope_as = tasmania_owner_scope
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:historic_agitator_scope }
+	}
+
+	option = {
+		name = historical_agitators.22.a
+		default_option = yes
+		revoke_temporary_event_immortality = { CHARACTER = scope:historic_agitator_scope }
+		scope:historic_agitator_scope = {
+			kill_character = yes
+		}
+		add_radicals = {
+			value = medium_radicals
+			interest_group = scope:historic_agitator_scope.interest_group
+		}
+	}
+	option = {
+		name = historical_agitators.22.b
+		scope:historic_agitator_scope = {
+			exile_character_with_martyrdom = yes
+		}
+	}
+	option = {
+		name = historical_agitators.22.c
+		scope:historic_agitator_scope = {
+			transfer_character = scope:tasmania_owner_scope
+		}
+	}
+}
+
+historical_agitators.23 = { #Florence Nightingale
+	type = country_event
+	placement = root
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:historic_agitator_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	title = historical_agitators.23.t
+	desc = historical_agitators.23.d
+	flavor = historical_agitators.23.f
+
+	duration = 3
+
+	trigger = {
+		#Fired by character interaction
+	}
+
+	cancellation_trigger = {
+		scope:historic_agitator_scope = {
+			is_character_alive = no
+		}
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = {
+				has_template = GBR_florence_nightingale
+			}
+			save_scope_as = historic_agitator_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:historic_agitator_scope }
+	}
+
+	option = {
+		name = historical_agitators.23.a
+		default_option = yes
+		scope:historic_agitator_scope = {
+			add_trait = special_character_nightingale_popularity
+		}
+		add_modifier = {
+			name = modifier_nightingale_soldiers
+			days = very_long_modifier_time
+		}
+	}
+	option = {
+		name = historical_agitators.23.b
+		add_modifier = {
+			name = modifier_nightingale_movement
+			days = normal_modifier_time
+		}
+		add_radicals = {
+			value = small_radicals
+			interest_group = scope:historic_agitator_scope.interest_group
+		}
+	}
+}

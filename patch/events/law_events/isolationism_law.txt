@@ -1,0 +1,9 @@
+﻿namespace = isolation
+
+# stall event - unequal treaties
+# TBCP: isolation.1 supplied by events/_law_events/bpm_isolationism_law.txt.
+
+# debate event - foreign dignitary murdered
+# TBCP: isolation.2 supplied by events/_law_events/bpm_isolationism_law.txt.
+
+# advancement events are in meiji restoration file

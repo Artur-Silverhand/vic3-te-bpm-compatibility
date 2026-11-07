@@ -1,0 +1,19 @@
+﻿namespace = education_laws
+
+# Any Schools: Advancement
+# TBCP: education_laws.1 supplied by events/_law_events/bpm_education_laws.txt.
+
+# Any Schools: Debate
+# TBCP: education_laws.2 supplied by events/_law_events/bpm_education_laws.txt.
+
+# Any Schools: Stall
+# TBCP: education_laws.3 supplied by events/_law_events/bpm_education_laws.txt.
+
+# Public Schools: Advancement
+# TBCP: education_laws.4 supplied by events/_law_events/bpm_education_laws.txt.
+
+# Public: Debate
+# TBCP: education_laws.5 supplied by events/_law_events/bpm_education_laws.txt.
+
+# Public: Stall
+# TBCP: education_laws.6 supplied by events/_law_events/bpm_education_laws.txt.

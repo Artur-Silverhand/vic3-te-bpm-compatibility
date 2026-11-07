@@ -1,0 +1,19 @@
+﻿namespace = japan_monarchy
+
+# Accession of Komei
+# TBCP: japan_monarchy.1 supplied by events/_bpm_japan_events.txt.
+
+# Accession of Meiji
+# TBCP: japan_monarchy.2 supplied by events/_bpm_japan_events.txt.
+
+# Accession of Taisho
+# TBCP: japan_monarchy.3 supplied by events/_bpm_japan_events.txt.
+
+# Accession of Showa
+# TBCP: japan_monarchy.4 supplied by events/_bpm_japan_events.txt.
+
+# One Emperor, One Era
+# TBCP: japan_monarchy.5 supplied by events/_bpm_japan_events.txt.
+
+# Death of the Retired Emperor
+# TBCP: japan_monarchy.6 supplied by events/_bpm_japan_events.txt.

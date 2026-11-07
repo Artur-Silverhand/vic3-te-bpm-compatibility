@@ -1,0 +1,885 @@
+﻿namespace = communism
+
+# Completion event 1
+# TBCP: communism.1 supplied by events/_communism.txt.
+
+# Completion event 2, choose ideology
+communism.2 = {
+	type = country_event
+	placement = root
+	title = communism.2.t
+	desc = communism.2.d
+	flavor = communism.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "ip5_soviet_deliberation"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		# triggered by communsim JE 2
+	}
+
+	fire_only_once = yes
+
+	immediate = {
+		ig:ig_trade_unions ?= {
+			save_scope_as = unions
+			leader = {
+				save_scope_as = union_leader
+				set_temporary_event_immortality = { DURATION = 3 }
+			}
+		}
+	}
+
+	option = { # communism
+		name = communism.2.b
+		default_option = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_communism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_communist_leader }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_communist_leader
+			}
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+	option = { # vanguardism
+		name = communism.2.a
+		trigger = {
+			has_technology_researched = political_agitation
+			custom_tooltip = {
+				text = vanguardism_viable_tt
+				vanguardism_coefficient > 1
+			}
+		}
+		show_as_unavailable = {
+			has_technology_researched = political_agitation
+		}
+		highlighted_option = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_vanguardism
+		}
+		custom_tooltip = chose_vanguardism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_vanguardist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_vanguardist
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				trigger = {
+					vanguardism_coefficient >= 2
+				}
+				add = 40
+			}
+		}
+	}
+	option = { # anarchism
+		name = communism.2.c
+		trigger = {
+			any_political_movement = {
+				is_political_movement_type = movement_anarchist
+			}
+		}
+		show_as_unavailable = {
+			has_technology_researched = anarchism
+		}
+		highlighted_option = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_anarchism
+		}
+		custom_tooltip = chose_anarchism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_anarchist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_anarchist
+			}
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				trigger = {
+					any_political_movement = {
+						is_political_movement_type = movement_anarchist
+						political_movement_support >= 0.1
+					}
+				}
+				add = 25
+			}
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:union_leader }
+		if = {
+			limit = {
+				NOT = { has_global_variable = socialist_world_republic }
+			}
+			add_journal_entry = {
+				type = je_state_and_revolution
+			}
+		}
+		add_journal_entry = {
+			type = je_social_revolution
+		}
+		custom_tooltip = {
+			text = form_white_movement_tt
+			if = {
+				limit = {
+					NOT = {
+						any_political_movement = {
+							is_political_movement_type = movement_anti_communist
+						}
+					}
+				}
+				create_political_movement = {
+					type = movement_anti_communist
+				}
+			}
+		}
+		je_communism_2_cleanup = yes
+	}
+}
+
+# IG Converted by Vanguard
+communism.3 = {
+	type = country_event
+	placement = root
+	title = communism.3.t
+	desc = communism.3.d
+	flavor = communism.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { days = short_modifier_time }
+
+	trigger = {
+		# triggered by journal entry - je_extraordinary_commission [on_weekly_pulse]
+		has_technology_researched = political_agitation
+		any_interest_group = {
+			ig_counts_as_marginal = yes
+			OR = {
+				is_interest_group_type = ig_rural_folk
+				is_interest_group_type = ig_intelligentsia
+				is_interest_group_type = ig_armed_forces
+				is_interest_group_type = ig_trade_unions
+			}
+			any_scope_character = {
+				NOR = {
+					has_role_of_type = agitator
+					has_role_of_type = ruler
+				}
+				has_ideology = ideology:ideology_vanguardist
+			}
+			leader = {
+				NOR = {
+					has_ideology = ideology:ideology_vanguardist
+					has_ideology = ideology:ideology_communist_leader
+					has_ideology = ideology:ideology_anarchist
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_interest_group = {
+			limit = {
+				ig_counts_as_marginal = yes
+				OR = {
+					is_interest_group_type = ig_rural_folk
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_armed_forces
+					is_interest_group_type = ig_trade_unions
+				}
+				any_scope_character = {
+					NOR = {
+						has_role_of_type = agitator
+						has_role_of_type = ruler
+					}
+					has_ideology = ideology:ideology_vanguardist
+				}
+				leader = {
+					NOR = {
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_anarchist
+					}
+				}
+			}
+			save_scope_as = new_vanguard_ig
+			set_variable = chose_vanguardism
+			ordered_scope_character = {
+				limit = {
+					NOR = {
+						has_role_of_type = agitator
+						has_role_of_type = ruler
+					}
+					has_ideology = ideology:ideology_vanguardist
+				}
+				order_by = prominence
+				position = 0
+				save_scope_as = new_vanguard_leader
+				set_temporary_event_immortality = { DURATION = 3 }
+				set_as_interest_group_leader = yes
+			}
+		}
+	}
+
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_extraordinary_commission
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:new_vanguard_leader }
+	}
+
+	option = {
+		name = communism.3.a
+		default_option = yes
+		custom_tooltip = new_vanguard.tt
+		scope:new_vanguard_ig = {
+			add_modifier = {
+				name = new_vanguard_opinion
+				days = normal_modifier_time
+			}
+		}
+		ai_chance = {
+			base = 40
+		}
+	}
+	option = {
+		name = communism.3.b
+		custom_tooltip = new_vanguard.tt
+		scope:new_vanguard_ig = {
+			add_modifier = {
+				name = new_vanguard_clout
+				days = normal_modifier_time
+			}
+		}
+		ai_chance = {
+			base = 60
+		}
+	}
+}
+
+# Anarchist completion
+communism.4 = {
+	type = country_event
+	placement = root
+	title = communism.4.t
+	desc = communism.4.d
+	flavor = communism.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = communism.4.a
+		add_modifier = {
+			name = anarchist_utopia
+			days = normal_modifier_time
+		}
+	}
+	after = {
+		je_anarchy_cleanup = yes
+	}
+}
+
+# vanguard completion
+communism.5 = {
+	type = country_event
+	placement = root
+	title = communism.5.t
+	desc = communism.5.d
+	flavor = communism.5.f
+
+	duration = 3
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	event_image = {
+		video = "africa_soldiers_breaking_protest"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	trigger = {
+	}
+
+	option = {
+		name = communism.5.a
+		add_modifier = {
+			name = great_purge_modifier
+			days = normal_modifier_time
+		}
+	}
+	after = {
+		je_extraordinary_commission_cleanup = yes
+	}
+}
+
+# communist completion
+communism.6 = {
+	type = country_event
+	placement = root
+	title = communism.6.t
+	desc = communism.6.d
+	flavor = communism.6.f
+
+	duration = 3
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	trigger = {
+	}
+
+	option = {
+		name = communism.6.a
+		add_modifier = {
+			name = modifier_social_revolution
+			days = very_long_modifier_time
+		}
+	}
+	after = {
+		je_social_revolution_cleanup = yes
+	}
+}
+
+# Rising socialist leader
+communism.7 = {
+	type = country_event
+	placement = root
+	title = communism.7.t
+	desc = communism.7.d
+	flavor = communism.7.f
+
+	duration = 3
+
+	cooldown = { days = very_long_modifier_time }
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	trigger = {
+		# triggered by journal entry - je_communism_1 [on_monthly_pulse]
+		# triggered by on_action - on_yearly_events
+		NOT = { has_law_or_variant = law_type:law_council_republic }
+		any_interest_group = {
+			ig_counts_as_marginal = no
+			any_scope_character = {
+				OR = {
+					has_role_of_type = politician
+					has_role_of_type = agitator
+				}
+				NOT = { has_modifier = popular_socialist_leader }
+				OR = {
+					has_ideology = ideology:ideology_communist_leader
+					has_ideology = ideology:ideology_anarchist
+					has_ideology = ideology:ideology_vanguardist
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_interest_group = {
+			limit = {
+				ig_counts_as_marginal = no
+				any_scope_character = {
+					OR = {
+						has_role_of_type = politician
+						has_role_of_type = agitator
+					}
+					NOT = { has_modifier = popular_socialist_leader }
+					OR = {
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_anarchist
+						has_ideology = ideology:ideology_vanguardist
+					}
+				}
+			}
+			save_scope_as = popular_socialist_ig
+			random_scope_character = {
+				limit = {
+					OR = {
+						has_role_of_type = politician
+						has_role_of_type = agitator
+					}
+					NOT = { has_modifier = popular_socialist_leader }
+					OR = {
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_anarchist
+						has_ideology = ideology:ideology_vanguardist
+					}
+				}
+				save_scope_as = popular_socialist_leader
+				set_temporary_event_immortality = { DURATION = 3 }
+			}
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:popular_socialist_leader }
+	}
+
+	option = {
+		name = communism.7.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_avoids_radicals = yes
+				}
+				add = 10
+			}
+		}
+		trigger = {
+			scope:popular_socialist_ig = {
+				is_in_government = yes
+			}
+		}
+		default_option = yes
+		scope:popular_socialist_leader = {
+			add_modifier = {
+				name = popular_socialist_leader
+				days = long_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = communism.7.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_wants_radicals = yes
+				}
+				add = 10
+			}
+		}
+		trigger = {
+			scope:popular_socialist_ig = {
+				is_in_government = no
+			}
+		}
+		default_option = yes
+		scope:popular_socialist_leader = {
+			add_modifier = {
+				name = popular_socialist_leader
+				days = long_modifier_time
+			}
+		}
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+			}
+			add_radicals_in_state = {
+				value = large_radicals
+				strata = lower
+			}
+		}
+	}
+}
+
+# The Red Army
+# TBCP: communism.8 supplied by events/_communism.txt.
+
+# Worker coops, happy workers
+ communism.9 = {
+ 	type = country_event
+ 	placement = scope:coop_state
+ 	title = communism.9.t
+ 	desc = communism.9.d
+ 	flavor = communism.9.f
+
+ 	duration = 3
+
+ 	cooldown = { days = very_long_modifier_time }
+
+ 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+ 	event_image = {
+ 		video = "africa_prosperous_farm"
+ 	}
+
+ 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+ 	trigger = {
+ 		has_law_or_variant = law_type:law_council_republic
+		has_law_or_variant = law_type:law_cooperative_ownership
+ 		any_scope_state = {
+ 			is_incorporated = yes
+ 			NOT = { has_modifier = coop_loyalty_modifier }
+ 			NOT = { has_modifier = coop_migration_modifier }
+ 			any_scope_pop = {
+				pop_acceptance >= acceptance_status_4
+ 				standard_of_living > 15
+ 				workplace ?= {
+					NOR = {
+						is_building_type = building_manor_house
+						is_building_type = building_financial_district
+					}
+ 					cash_reserves_ratio > 0.25
+ 					weekly_profit > 5
+ 					occupancy >= 0.95
+ 					level >= 5
+ 				}
+ 			}
+ 		}
+ 	}
+
+ 	immediate = {
+ 		random_scope_state = {
+ 			limit = {
+				is_incorporated = yes
+				NOT = { has_modifier = coop_loyalty_modifier }
+				NOT = { has_modifier = coop_migration_modifier }
+				any_scope_pop = {
+					pop_acceptance >= acceptance_status_4
+					standard_of_living > 15
+					workplace ?= {
+						NOR = {
+							is_building_type = building_manor_house
+							is_building_type = building_financial_district
+						}
+						cash_reserves_ratio > 0.25
+						weekly_profit > 5
+						occupancy >= 0.95
+						level >= 5
+					}
+				}
+ 			}
+ 			save_scope_as = coop_state
+ 			random_scope_pop = {
+ 				limit = {
+					pop_acceptance >= acceptance_status_4
+					standard_of_living > 15
+					workplace ?= {
+						NOR = {
+							is_building_type = building_manor_house
+							is_building_type = building_financial_district
+						}
+						cash_reserves_ratio > 0.25
+						weekly_profit > 5
+						occupancy >= 0.95
+						level >= 5
+					}
+ 				}
+ 				save_scope_as = coop_pop
+ 				workplace = {
+ 					save_scope_as = coop_building
+ 				}
+ 			}
+ 		}
+ 	}
+
+ 	option = {
+ 		name = communism.9.a
+ 		default_option = yes
+ 		ai_chance = {
+ 			base = 1
+ 			modifier = {
+ 				trigger = {
+ 					ai_avoids_radicals = yes
+ 				}
+ 				add = 10
+ 			}
+ 		}
+ 		scope:coop_state = {
+ 			add_modifier = {
+ 				name = coop_loyalty_modifier
+ 				days = long_modifier_time
+ 			}
+ 		}
+ 	}
+
+ 	option = {
+ 		name = communism.9.b
+ 		scope:coop_state = {
+ 			add_modifier = {
+ 				name = coop_migration_modifier
+ 				days = long_modifier_time
+ 			}
+ 		}
+ 	}
+ }
+
+# Startup event 1
+communism.10 = {
+	type = country_event
+	placement = root
+	title = communism.10.t
+	desc = communism.10.d
+	flavor = communism.10.f
+
+	duration = 3
+
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		# triggered by communsim JE 1
+	}
+
+	option = {
+		name = communism.10.a
+		default_option = yes
+		capital = {
+			add_radicals_in_state = {
+				value = medium_radicals
+				pop_type = laborers
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				trigger = {
+					ai_wants_radicals = yes
+				}
+				add = 15
+			}
+		}
+	}
+	option = {
+		name = communism.10.b
+		trigger = {
+			custom_description = {
+				text = communism_10_b_option_trigger
+				any_interest_group = {
+					is_in_government = yes
+					OR = {
+						is_interest_group_type = ig_trade_unions
+						leader = {
+							has_socialist_ideology = yes
+						}
+					}
+				}
+			}
+		}
+		highlighted_option = yes
+		show_as_unavailable = {
+			always = yes
+		}
+		capital = {
+			add_radicals_in_state = {
+				value = small_radicals
+				pop_type = laborers
+			}
+		}
+		custom_tooltip = {
+			text = communism_var_tick_05_tt
+			set_variable = { name = communism_progress_var_add value = 0.5 }
+		}
+		ai_chance = {
+			base = 100
+			modifier = {
+				trigger = {
+					ai_avoids_radicals = yes
+				}
+				add = 10
+			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = {
+				has_technology_researched = socialism
+				country_has_laws_in_need_of_critical_modernization = no
+				NOT = {
+					any_political_movement = {
+						is_political_movement_type = movement_socialist
+					}
+				}
+			}
+			create_political_movement = { type = movement_socialist }
+		}
+		else_if = {
+			limit = {
+				has_technology_researched = anarchism
+				country_has_laws_in_need_of_critical_modernization = no
+				NOT = {
+					any_political_movement = {
+						OR = {
+							is_political_movement_type = movement_socialist
+							is_political_movement_type = movement_anarchist
+						}
+					}
+				}
+			}
+			create_political_movement = { type = movement_anarchist }
+		}
+	}
+}
+
+# Completion Event
+# TBCP: communism.11 supplied by events/_communism.txt.
+
+communism.12 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = communism.12.t
+	desc = communism.12.d
+	flavor = communism.12.f
+
+	event_image = {
+		video = "ep1_clandestine_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	trigger = {
+		# Fired by the Five-Year Plan cheat button
+	}
+
+	immediate = {
+		ig:ig_trade_unions ?= {
+			save_scope_as = proletariat_ig
+		}
+		generate_1_common_name = {
+			CULTURE_1 = primary_culture
+		}
+	}
+
+	cancellation_trigger = {
+		NOT = {
+			has_journal_entry = je_five_year_plan
+		}
+	}
+
+	option = {
+		name = communism.12.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_falsified_plan_figures
+			days = normal_modifier_time
+		}
+		kill_population_percent = {
+			pop_type = bureaucrats
+			percent = 0.025
+		}
+		add_radicals = {
+			value = medium_radicals
+			interest_group = ig:ig_trade_unions
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+
+	option = {
+		name = communism.12.b
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_censorship
+				has_law_or_variant = law_type:law_outlawed_dissent
+			}
+			NAND = {
+				has_law_or_variant = law_type:law_factory_councils
+				has_law_or_variant = law_type:law_communal_administration
+			}
+		}
+		highlighted_option = yes
+		show_as_unavailable = {
+			always = yes
+		}
+		custom_tooltip = {
+			text = je_five_year_plan_cheat_button_success_tt
+			je:je_five_year_plan ?= {
+				set_variable = five_year_plan_creative_accounting_var
+			}
+		}
+		add_radicals = {
+			value = large_radicals
+			interest_group = ig:ig_trade_unions
+		}
+		add_loyalists = {
+			value = large_radicals
+			pop_type = bureaucrats
+		}
+		add_modifier = {
+			name = modifier_fyp_censorship_campaign
+			days = normal_modifier_time
+		}
+	}
+
+	after = {
+		clear_generated_names = yes
+	}
+}
+
+communism.13 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		add_journal_entry = { type = je_five_year_plan }
+	}
+}

@@ -1,0 +1,39 @@
+﻿namespace = india_events
+
+# Most of these events use global variables, due to the fact that the BIC tag can disappear if a native-ruled India is created.
+
+# TBCP: india_events.1 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.2 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.3 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.4 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.5 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.6 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.7 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.8 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.9 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.10 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.11 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.12 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.13 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.14 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.15 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.16 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.17 supplied by events/_india_events/zz_bpm_india_misc_events.txt.
+
+# TBCP: india_events.18 supplied by events/_india_events/zz_bpm_india_misc_events.txt.

@@ -1,0 +1,8 @@
+﻿namespace = republic_laws
+
+
+# TBCP: republic_laws.1 supplied by events/_law_events/bpm_republic_laws.txt.
+
+# TBCP: republic_laws.2 supplied by events/_law_events/bpm_republic_laws.txt.
+
+# TBCP: republic_laws.3 supplied by events/_law_events/bpm_republic_laws.txt.

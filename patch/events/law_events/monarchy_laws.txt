@@ -1,0 +1,12 @@
+﻿namespace = monarchy_law_events
+
+# Popular Acclamation
+# TBCP: monarchy_law_events.1 supplied by events/_law_events/bpm_monarchy_laws.txt.
+
+# Worldly Whispers
+# TBCP: monarchy_law_events.2 supplied by events/_law_events/bpm_monarchy_laws.txt.
+
+# Imported Bluebloods?
+# TBCP: monarchy_law_events.3 supplied by events/_law_events/bpm_monarchy_laws.txt.
+
+# TBCP: monarchy_law_events.4 supplied by events/_law_events/bpm_monarchy_laws.txt.

@@ -1,0 +1,19 @@
+﻿namespace = economy_laws
+
+# Growth Exceeds Projections
+# TBCP: economy_laws.1 supplied by events/_law_events/bpm_economy_laws.txt.
+
+# Party Disputes
+# TBCP: economy_laws.2 supplied by events/_law_events/bpm_economy_laws.txt.
+
+# Dizzy With Success
+# TBCP: economy_laws.3 supplied by events/_law_events/bpm_economy_laws.txt.
+
+# Indefensible Extortion
+# TBCP: economy_laws.4 supplied by events/_law_events/bpm_economy_laws.txt.
+
+# The Marketplace of Ideas
+# TBCP: economy_laws.5 supplied by events/_law_events/bpm_economy_laws.txt.
+
+# Industry Suffers in [State]
+# TBCP: economy_laws.6 supplied by events/_law_events/bpm_economy_laws.txt.

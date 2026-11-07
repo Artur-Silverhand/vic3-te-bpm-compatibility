@@ -1,0 +1,39 @@
+﻿namespace = distribution_of_power_laws
+
+# Autocracy/Oligarchy: Advancement
+# TBCP: distribution_of_power_laws.1 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Autocracy/Oligarchy: Debate
+# TBCP: distribution_of_power_laws.2 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Autocracy/Oligarchy: Stall
+# TBCP: distribution_of_power_laws.3 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Out of Census/Universal Suffrage: Advancement
+# TBCP: distribution_of_power_laws.4 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Out of Census/Universal Suffrage: Debate
+# TBCP: distribution_of_power_laws.5 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Out of Census/Universal Suffrage: Stall
+# TBCP: distribution_of_power_laws.6 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+
+# To Census/Universal Suffrage: Advancement
+# TBCP: distribution_of_power_laws.7 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# To Census/Universal Suffrage: Debate
+# TBCP: distribution_of_power_laws.8 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# To Census/Universal Suffrage: Stall
+# TBCP: distribution_of_power_laws.9 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Out of Autocracy/Oligarchy: Advancement
+# TBCP: distribution_of_power_laws.10 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+# Out of Autocracy/Oligarchy: Debate
+# TBCP: distribution_of_power_laws.11 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.
+
+
+# Out of Autocracy/Oligarchy: Stall
+# TBCP: distribution_of_power_laws.12 supplied by events/_law_events/bpm_distribution_of_power_laws.txt.

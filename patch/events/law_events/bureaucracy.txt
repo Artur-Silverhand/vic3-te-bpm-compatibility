@@ -1,0 +1,10 @@
+﻿namespace = bureaucracy
+
+# Stall Event - Red Tape
+# TBCP: bureaucracy.1 supplied by events/_law_events/bpm_bureaucracy.txt.
+
+# Advance event - Meritocracy
+# TBCP: bureaucracy.2 supplied by events/_law_events/bpm_bureaucracy.txt.
+
+# Debate event - The Bureaucratic Struggle
+# TBCP: bureaucracy.3 supplied by events/_law_events/bpm_bureaucracy.txt.

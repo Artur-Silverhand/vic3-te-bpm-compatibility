@@ -1,0 +1,526 @@
+﻿namespace = BRZ_populism
+
+#Startup event
+# TBCP: BRZ_populism.1 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+#Coluna Prestes
+# TBCP: BRZ_populism.2 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+#Populist defeat - continued landowner regime
+BRZ_populism.3 = {
+	type = country_event
+	placement = ROOT
+
+	title = BRZ_populism.3.t
+	desc = BRZ_populism.3.d
+	flavor = BRZ_populism.3.f
+
+	event_image = {
+		video = "southamerica_aristocrats"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	cooldown = { days = normal_modifier_time }
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+
+	}
+
+	immediate = {
+		ig:ig_landowners ?= {
+			save_scope_as = landowners_ig
+		}
+	}
+
+	option = {
+		name = BRZ_populism.3.a
+		default_option = yes
+		add_loyalists = {
+			value = large_radicals
+			strata = upper
+		}
+	}
+
+	option = {
+		name = BRZ_populism.3.b
+		add_modifier = {
+			name = modifier_landowners_hegemony_retained
+			days = normal_modifier_time
+		}
+	}
+
+	after = {
+		je_populist_unrest_cleanup = yes
+	}
+}
+
+#An Ocean of Coffee
+BRZ_populism.4 = {
+	type = country_event
+	placement = scope:coffee_ocean_state
+
+	title = BRZ_populism.4.t
+	desc = BRZ_populism.4.d
+	flavor = BRZ_populism.4.f
+
+	event_image = {
+		video = "europenorthamerica_russian_serfs"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+	cooldown = { days = normal_modifier_time }
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+		# triggered by journal entry - je_populist_unrest [on_monthly_pulse]
+		OR = {
+			has_law_or_variant = law_type:law_tenant_farmers
+			has_law_or_variant = law_type:law_commercialized_agriculture
+			has_law_or_variant = law_type:law_peasant_proprietorship
+		}
+		any_scope_state = {
+			any_scope_building = {
+				is_building_type = building_coffee_plantation
+				level >= 15
+			}
+		}
+		market = {
+			mg:coffee = {
+				market_goods_cheaper >= 0.35
+			}
+		}
+	}
+
+	immediate = {
+		random_scope_state = {
+			limit = {
+				any_scope_building = {
+					is_building_type = building_coffee_plantation
+					level >= 15
+				}
+			}
+			save_scope_as = coffee_ocean_state
+		}
+	}
+
+	option = {
+		name = BRZ_populism.4.a
+		default_option = yes
+		add_radicals = {
+			value = medium_radicals
+			strata = middle
+		}
+		add_radicals = {
+			value = medium_radicals
+			strata = lower
+		}
+		scope:coffee_ocean_state = {
+			add_modifier = {
+				name = modifier_coffee_ocean_state_poverty
+				days = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = BRZ_populism.4.b
+		add_modifier = {
+			name = modifier_welfare_compromises_brazil
+			days = normal_modifier_time
+		}
+		add_radicals = {
+			value = small_radicals
+			strata = middle
+		}
+		add_radicals = {
+			value = small_radicals
+			strata = lower
+		}
+	}
+}
+
+#The Liberal Classes
+# TBCP: BRZ_populism.5 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+#Tenetist Revolt
+BRZ_populism.6 = {
+	type = country_event
+	placement = scope:revolt_state
+
+	title = BRZ_populism.6.t
+	desc = BRZ_populism.6.d
+	flavor = BRZ_populism.6.f
+
+	event_image = {
+		video = "unspecific_devastation"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	cooldown = { days = normal_modifier_time }
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+		# triggered by journal entry - je_populist_unrest [on_monthly_pulse]
+		any_scope_state = {
+			turmoil >= 0.25
+			is_incorporated = yes
+			NOT = {
+				is_capital = yes
+			}
+		}
+	}
+
+	immediate = {
+		ordered_scope_state = {
+			limit = {
+				turmoil >= 0.25
+				is_incorporated = yes
+				NOT = {
+					is_capital = yes
+				}
+			}
+			order_by = gdp
+			position = 0
+			check_range_bounds = no
+			save_scope_as = revolt_state
+			set_variable = tenetist_revolt_state
+		}
+	}
+
+	option = {
+		name = BRZ_populism.6.a
+		default_option = yes
+		if = {
+			limit = {
+				NOT = {
+					has_variable = tenetist_revolt_happened
+				}
+			}
+			set_variable = tenetist_revolt_happened
+		}
+		scope:revolt_state = {
+			add_radicals_in_state = {
+				value = very_large_radicals
+				strata = middle
+			}
+			add_radicals_in_state = {
+				value = medium_radicals
+				strata = lower
+			}
+			state_region = {
+				add_devastation = 10
+			}
+		}
+	}
+
+	option = {
+		name = BRZ_populism.6.b
+		trigger = {
+			any_military_formation = {
+				has_mobilization_option = mobilization_option:mobilization_option_aerial_recon
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = tenetist_revolt_happened
+				}
+			}
+			set_variable = tenetist_revolt_happened
+		}
+		scope:revolt_state = {
+			add_radicals_in_state = {
+				value = medium_radicals
+				strata = middle
+			}
+			add_radicals_in_state = {
+				value = small_radicals
+				strata = lower
+			}
+			state_region = {
+				add_devastation = 20
+			}
+		}
+	}
+}
+
+#A War of Fraud
+# TBCP: BRZ_populism.7 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+#The Liberal Alliance
+# TBCP: BRZ_populism.8 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+#The Manaus Commune
+# TBCP: BRZ_populism.9 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+namespace = BRZ_vargas
+
+###Vargas
+# TBCP: BRZ_vargas.1 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+# TBCP: BRZ_vargas.2 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+BRZ_vargas.3 = {
+	type = country_event
+	placement = ROOT
+
+	title = BRZ_vargas.3.t
+	desc = BRZ_vargas.3.d
+	flavor = BRZ_vargas.3.f
+
+	event_image = {
+		video = "southamerica_election"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	cooldown = { days = normal_modifier_time }
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+		# Fired by JE
+	}
+
+	immediate = {
+
+	}
+
+	option = {
+		name = BRZ_vargas.3.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_return_to_democracy_support
+			days = normal_modifier_time
+		}
+		add_loyalists = {
+			value = medium_radicals
+			strata = lower
+		}
+	}
+
+	option = {
+		name = BRZ_vargas.3.b
+		add_modifier = {
+			name = modifier_lessons_from_vargas
+			days = normal_modifier_time
+		}
+		add_loyalists = {
+			value = medium_radicals
+			strata = middle
+		}
+	}
+
+	after = {
+		je_new_republic_cleanup = yes
+	}
+}
+
+BRZ_vargas.4 = {
+	type = country_event
+	placement = scope:intervenor_state
+
+	title = BRZ_vargas.4.t
+	desc = BRZ_vargas.4.d
+	flavor = BRZ_vargas.4.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	cooldown = { days = short_modifier_time }
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+		# triggered by journal entry - je_new_republic [on_monthly_pulse]
+		any_scope_state = {
+			turmoil >= 0.15
+			is_incorporated = yes
+		}
+	}
+
+	immediate = {
+		random_scope_state = {
+			limit = {
+				turmoil >= 0.15
+				is_incorporated = yes
+			}
+			save_scope_as = intervenor_state
+		}
+		random_interest_group = {
+			limit = {
+				is_in_government = yes
+			}
+			save_scope_as = intervenor_ig
+		}
+	}
+
+	option = {
+		name = BRZ_vargas.4.a
+		default_option = yes
+		scope:intervenor_state = {
+			add_loyalists_in_state = {
+				value = medium_radicals
+			}
+			add_modifier = {
+				name = modifier_federal_intervenors
+				days = normal_modifier_time
+				is_decaying = yes
+			}
+		}
+	}
+
+	option = {
+		name = BRZ_vargas.4.b
+		scope:intervenor_ig = {
+			add_modifier = {
+				name = modifier_pleased_by_intervenor
+				days = short_modifier_time
+			}
+		}
+		scope:intervenor_state = {
+			add_loyalists_in_state = {
+				value = small_radicals
+			}
+			add_modifier = {
+				name = modifier_federal_intervenors
+				days = normal_modifier_time
+				multiplier = 0.5
+				is_decaying = yes
+			}
+		}
+	}
+}
+
+BRZ_vargas.5 = {
+	type = country_event
+	placement = scope:dissent_state
+
+	title = BRZ_vargas.5.t
+	desc = BRZ_vargas.5.d
+	flavor = BRZ_vargas.5.f
+
+	event_image = {
+		video = "unspecific_devastation"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	cooldown = { days = normal_modifier_time }
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+		# triggered by journal entry - je_new_republic [on_monthly_pulse]
+		OR = {
+			has_law_or_variant = law_type:law_autocracy
+			has_law_or_variant = law_type:law_oligarchy
+		}
+		any_interest_group = {
+			ig_counts_as_marginal = no
+			law_stance = {
+				law = law_type:law_autocracy
+				value < neutral
+			}
+			ig_approval < 0
+		}
+		any_scope_state = {
+			turmoil >= 0.15
+			is_incorporated = yes
+		}
+	}
+
+	immediate = {
+		random_scope_state = {
+			limit = {
+				turmoil >= 0.15
+				is_incorporated = yes
+			}
+			save_scope_as = dissent_state
+		}
+	}
+
+	option = {
+		name = BRZ_vargas.5.a
+		default_option = yes
+		scope:dissent_state = {
+			add_modifier = {
+				name = modifier_constitutionalist_dissent
+				days = short_modifier_time
+			}
+			kill_population_percent_in_state = {
+				percent = 0.02
+				pop_type = soldiers
+			}
+			kill_population_percent_in_state = {
+				percent = 0.02
+				pop_type = officers
+			}
+			state_region = {
+				add_devastation = 5
+			}
+		}
+	}
+
+	option = {
+		name = BRZ_vargas.5.b
+		scope:dissent_state = {
+			add_modifier = {
+				name = modifier_constitutionalist_dissent
+				days = short_modifier_time
+				multiplier = 0.5
+			}
+			kill_population_percent_in_state = {
+				percent = 0.05
+				pop_type = soldiers
+			}
+			kill_population_percent_in_state = {
+				percent = 0.05
+				pop_type = officers
+			}
+			state_region = {
+				add_devastation = 10
+			}
+		}
+	}
+}
+
+# TBCP: BRZ_vargas.6 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+# TBCP: BRZ_vargas.7 supplied by events/_brazil/zz_bpm_vargas.txt.
+
+# TBCP: BRZ_vargas.8 supplied by events/_brazil/zz_bpm_vargas.txt.

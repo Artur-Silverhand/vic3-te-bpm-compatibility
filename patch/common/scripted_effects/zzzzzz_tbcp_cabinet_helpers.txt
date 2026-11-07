@@ -1,0 +1,27 @@
+﻿tbcp_cabinet_try_add_leader = {
+    if = {
+        limit = { exists = scope:ranig.leader }
+        if = {
+            limit = {
+                scope:ranig.leader = { is_character_alive = yes owner = prev }
+                NOT = { is_target_in_variable_list = { name = bpm_CAB_char_select_pool target = scope:ranig.leader } }
+            }
+            add_to_variable_list = { name = bpm_CAB_char_select_pool target = scope:ranig.leader }
+            set_local_variable = { name = tbcp_cabinet_pick_added value = 1 }
+        }
+    }
+}
+
+tbcp_cabinet_try_add_created = {
+    if = {
+        limit = { exists = scope:ranchar }
+        if = {
+            limit = {
+                scope:ranchar = { is_character_alive = yes owner = prev }
+                NOT = { is_target_in_variable_list = { name = bpm_CAB_char_select_pool target = scope:ranchar } }
+            }
+            add_to_variable_list = { name = bpm_CAB_char_select_pool target = scope:ranchar }
+            set_local_variable = { name = tbcp_cabinet_pick_added value = 1 }
+        }
+    }
+}

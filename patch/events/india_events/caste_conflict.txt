@@ -1,0 +1,16 @@
+﻿namespace = caste_conflict
+
+# je_dravidian_movement starting event
+# TBCP: caste_conflict.1 supplied by events/_india_events/zz_bpm_caste_conflict.txt.
+
+# je_dravidian_movement completion event
+# TBCP: caste_conflict.2 supplied by events/_india_events/zz_bpm_caste_conflict.txt.
+
+# je_dravidian_movement fail event
+# TBCP: caste_conflict.3 supplied by events/_india_events/zz_bpm_caste_conflict.txt.
+
+# The Non-Brahmin Manifesto
+# TBCP: caste_conflict.4 supplied by events/_india_events/zz_bpm_caste_conflict.txt.
+
+# Untouchables and Outcasts
+# TBCP: caste_conflict.5 supplied by events/_india_events/zz_bpm_caste_conflict.txt.

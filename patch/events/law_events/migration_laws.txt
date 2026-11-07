@@ -1,0 +1,19 @@
+﻿namespace = migration_laws
+
+# More Migration: Advancement
+# TBCP: migration_laws.1 supplied by events/_law_events/bpm_migration_laws.txt.
+
+# More Migration: Debate
+# TBCP: migration_laws.2 supplied by events/_law_events/bpm_migration_laws.txt.
+
+# More Migration: Stall
+# TBCP: migration_laws.3 supplied by events/_law_events/bpm_migration_laws.txt.
+
+# Less Migration: Advancement
+# TBCP: migration_laws.4 supplied by events/_law_events/bpm_migration_laws.txt.
+
+# Less Migration: Debate
+# TBCP: migration_laws.5 supplied by events/_law_events/bpm_migration_laws.txt.
+
+# Less Migration: Stall
+# TBCP: migration_laws.6 supplied by events/_law_events/bpm_migration_laws.txt.

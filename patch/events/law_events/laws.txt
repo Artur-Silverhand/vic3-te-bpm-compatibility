@@ -1,0 +1,4 @@
+﻿
+namespace = laws
+
+# TBCP: laws.1 supplied by events/_law_events/bpm_laws.txt.

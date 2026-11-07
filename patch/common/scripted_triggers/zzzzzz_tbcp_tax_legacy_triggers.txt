@@ -1,0 +1,79 @@
+﻿tbcp_tax_has_consumption_based = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_consumption_based = yes
+    }
+    trigger_else = { has_law = law_type:law_consumption_based_taxation }
+}
+
+tbcp_tax_has_or_variant_consumption_based = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_consumption_based = yes
+    }
+    trigger_else = { has_law_or_variant = law_type:law_consumption_based_taxation }
+}
+
+tbcp_tax_has_land_based = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_land_based = yes
+    }
+    trigger_else = { has_law = law_type:law_land_based_taxation }
+}
+
+tbcp_tax_has_or_variant_land_based = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_land_based = yes
+    }
+    trigger_else = { has_law_or_variant = law_type:law_land_based_taxation }
+}
+
+tbcp_tax_has_per_capita = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_per_capita = yes
+    }
+    trigger_else = { has_law = law_type:law_per_capita_based_taxation }
+}
+
+tbcp_tax_has_or_variant_per_capita = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_per_capita = yes
+    }
+    trigger_else = { has_law_or_variant = law_type:law_per_capita_based_taxation }
+}
+
+tbcp_tax_has_proportional = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_proportional = yes
+    }
+    trigger_else = { has_law = law_type:law_proportional_taxation }
+}
+
+tbcp_tax_has_or_variant_proportional = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_proportional = yes
+    }
+    trigger_else = { has_law_or_variant = law_type:law_proportional_taxation }
+}
+
+tbcp_tax_has_graduated = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_graduated = yes
+    }
+    trigger_else = { has_law = law_type:law_graduated_taxation }
+}
+
+tbcp_tax_has_or_variant_graduated = {
+    trigger_if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        te_tax_code_equivalent_graduated = yes
+    }
+    trigger_else = { has_law_or_variant = law_type:law_graduated_taxation }
+}

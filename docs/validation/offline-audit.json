@@ -1,0 +1,1292 @@
+{
+  "method": "offline structural and selected typed-reference audit; not engine execution",
+  "unknown_replacements": [],
+  "unresolved_typed_references": [],
+  "typed_reference_occurrences": {
+    "law_type": 3040,
+    "ideology": 682,
+    "amendment_type": 661
+  },
+  "duplicate_generated_entities": [],
+  "shared_on_actions": [
+    {
+      "hook": "on_acquired_technology",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "add_arable_land_effect_on_action",
+        "fix_incompatible_laws",
+        "cultural_hegemony_tech_first_on_action",
+        "agricultural_diffusion_on_action",
+        "extra_headlines_tech",
+        "te_demog_lines_country_on_action",
+        "te_demog_wave_technology_on_action",
+        "on_bpm_acquired_technology",
+        "on_bpm_acquired_technology_peoples_spring"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_capitulation",
+      "fields": [
+        "events",
+        "on_actions"
+      ],
+      "callbacks": [
+        "on_bpm_capitulation"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_character_death",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "gm_character_death_on_action",
+        "bpm_update_chars"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_country_formed",
+      "fields": [
+        "events",
+        "on_actions"
+      ],
+      "callbacks": [
+        "agdiff_backfill_on_country_formed",
+        "te_bespoke_formation_dispatcher",
+        "gm_formed_on_action",
+        "nd_custody_on_country_formed",
+        "te_monetary_on_country_formed",
+        "te_tax_on_country_formed",
+        "te_tax_light_on_country_formed",
+        "on_bpm_country_formed"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_country_released_as_independent",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "agdiff_backfill_on_released_country",
+        "te_construction_market_on_released_independent",
+        "te_monetary_on_country_released",
+        "te_tax_on_country_released",
+        "te_tax_light_on_country_released",
+        "on_bpm_country_releasing"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_country_released_as_overlord_subject",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "agdiff_backfill_on_released_country",
+        "te_construction_market_on_released_overlord_subject",
+        "te_monetary_on_country_released",
+        "te_tax_on_country_released",
+        "te_tax_light_on_country_released",
+        "on_bpm_country_releasing"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_country_released_as_own_subject",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "agdiff_backfill_on_released_country",
+        "te_construction_market_on_released_own_subject",
+        "te_monetary_on_country_released",
+        "te_tax_on_country_released",
+        "te_tax_light_on_country_released",
+        "on_bpm_country_releasing"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_election_campaign_end",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "covert_warfare_election_end",
+        "te_jud_landmark_voided_election",
+        "un_mission_election_end_on_action",
+        "on_bpm_custom_elecend",
+        "bpm_reload_hog",
+        "bpm_cab_fill_positions_oa",
+        "bpm_reload_cabpool"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_election_campaign_start",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "te_liquid_democracy_campaign_start",
+        "bpm_reload_hog",
+        "on_bpm_election_campaign_start",
+        "bpm_party_establishment_momentum_oa"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_game_started",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "colonial_geography_game_start_on_action",
+        "te_init_global_state",
+        "te_decentralized_law_baseline_selfcheck",
+        "te_demog_on_game_started",
+        "te_fire_only_once_canary_arm",
+        "te_inh_on_game_started",
+        "te_jud_on_game_started",
+        "te_monetary_on_game_started",
+        "te_region_area_on_action",
+        "on_bpm_game_started"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_law_activated",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "fix_incompatible_laws_from_law_scope",
+        "te_fix_inconsistent_laws_from_law_scope",
+        "te_collective_governance_from_law_scope",
+        "te_free_elections_from_law_scope",
+        "language_reform_law_on_action",
+        "radical_law_backlash_on_action",
+        "banking_law_cascade_on_law_activated",
+        "te_banking_economy_law_cleanup",
+        "gm_law_activated_on_action",
+        "te_demog_lines_law_on_action",
+        "te_demog_ms_law_on_action",
+        "te_demog_pension_law_on_action",
+        "te_fptp_from_law_scope",
+        "te_jud_law_activated",
+        "te_tax_on_law_activated",
+        "te_tax_light_on_law_activated",
+        "on_bpm_law_activated",
+        "bpm_mandate_on_law_activated",
+        "bpm_ep_law_change"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_law_checkpoint_advance",
+      "fields": [
+        "on_actions",
+        "random_events"
+      ],
+      "callbacks": [
+        "bpm_update_enactment_success_on_action",
+        "bpm_update_guarantee_success_on_action"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_law_checkpoint_debate",
+      "fields": [
+        "on_actions",
+        "random_events"
+      ],
+      "callbacks": [
+        "bpm_update_enactment_success_on_action",
+        "bpm_update_guarantee_success_on_action"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_law_checkpoint_stall",
+      "fields": [
+        "on_actions",
+        "random_events"
+      ],
+      "callbacks": [
+        "bpm_update_enactment_success_on_action",
+        "bpm_update_guarantee_success_on_action"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_law_enactment_started",
+      "fields": [
+        "events",
+        "on_actions"
+      ],
+      "callbacks": [
+        "te_jud_enactment_started",
+        "bpm_dynamic_modifier_law_promise_add",
+        "on_bpm_law_enactment_started"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_monthly_pulse_country",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "civil_rights_country_monthly_on_action",
+        "colonial_geography_on_action",
+        "covert_warfare_monthly_country",
+        "ch_monthly_pulse_on_action",
+        "remove_invalid_buildings",
+        "cheaty_on_action",
+        "combined_arms_update_on_action",
+        "investment_pool_setup_on_action",
+        "international_relations_events_on_action",
+        "decolonization_events_on_action",
+        "irredentism_events_on_action",
+        "irredentism_bloc_approval_on_action",
+        "movement_events_te_on_action",
+        "society_technology_events_on_action",
+        "world_war_events_on_action",
+        "overbuild_protection_on_action",
+        "te_pm_retooling_weekly_schedule",
+        "st_dp_escalation_weekly_schedule",
+        "te_fix_inconsistent_laws_country_pulse",
+        "te_collective_governance_country_pulse",
+        "te_free_elections_country_pulse",
+        "operation_polo_on_action",
+        "aptitude_traits_cleanup_on_action",
+        "tech_marker_grants_on_action",
+        "te_barracks_doctrine_country_pulse",
+        "te_nation_source_flags_on_action",
+        "legacy_je_modifier_cleanup_on_action",
+        "monument_events_on_action",
+        "gm_country_on_action",
+        "gm_com_world_on_action",
+        "nd_country_monthly_cleanup_on_action",
+        "te_grid_ai_build_on_action",
+        "resettlement_country_on_action",
+        "rt_country_monthly_on_action",
+        "sol_expectations_monthly_on_action",
+        "space_race_on_action",
+        "te_ap_country_monthly_on_action",
+        "te_banking_entry_net",
+        "te_bodily_autonomy_country_monthly_on_action",
+        "te_company_monthly_on_action",
+        "te_covert_tech_can_research_selfcheck",
+        "te_tp_pulse",
+        "te_demog_country_monthly_on_action",
+        "te_fptp_country_pulse",
+        "te_gc_logistics_input_cut_selfcheck",
+        "te_seabed_monthly_country_on_action",
+        "te_gc_un_country_on_action",
+        "te_jmap_monthly_viewer",
+        "te_jud_monthly",
+        "te_monetary_monthly_on_action",
+        "te_debris_country_monthly_on_action",
+        "te_pb_summit_ai_on_action",
+        "te_tax_watchdog_on_action",
+        "te_tax_light_entry_net",
+        "trade_partner_update_on_action",
+        "un_mission_country_on_action",
+        "un_events_on_action",
+        "wonder_events_on_action",
+        "bpm_reload_hog",
+        "bpm_reload_synergy_player",
+        "bpm_reload_cabinet_picks_expectations",
+        "bpm_reload_urban_collectivization_modifier",
+        "on_bpm_monthly_pulse_country",
+        "bpm_update_enactment_success_on_action",
+        "bpm_on_actions_colonial_check",
+        "on_bpm_france_monthly_pulse",
+        "bpm_update_movements_oa",
+        "bpm_update_splits_oa",
+        "bpm_party_establishment_trend_oa",
+        "bpm_monthly_country_switcharoo",
+        "bpm_appointed_headofgov_check"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_new_ruler",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "gm_new_ruler_on_action",
+        "on_bpm_new_ruler"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_revolution_end",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "te_civil_war_on_revolution_end",
+        "on_bpm_country_releasing",
+        "on_bpm_civil_war_won"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_revolution_start",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "te_civil_war_on_start",
+        "te_construction_market_on_revolution_start",
+        "te_tp_civil_start",
+        "te_monetary_on_country_released",
+        "on_bpm_country_releasing",
+        "on_bpm_revolution_start"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_secession_start",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "te_civil_war_on_start",
+        "decol_iw_secession_on_action",
+        "te_construction_market_on_secession_start",
+        "te_tp_civil_start",
+        "te_monetary_on_country_released",
+        "on_bpm_country_releasing",
+        "on_bpm_seccession_start"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_wargoal_enforced",
+      "fields": [
+        "on_actions"
+      ],
+      "callbacks": [
+        "nd_custody_on_wargoal_enforced",
+        "te_construction_market_on_wargoal_enforced",
+        "ww_on_wargoal_enforced",
+        "on_bpm_wargoal_enforced"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    },
+    {
+      "hook": "on_yearly_pulse_country",
+      "fields": [
+        "events",
+        "on_actions"
+      ],
+      "callbacks": [
+        "te_amendment_petition_minority_script_preservation",
+        "te_amendment_petition_language_naturalization_requirement",
+        "te_amendment_petition_official_bilingualism",
+        "te_amendment_petition_national_champion_exemption",
+        "te_amendment_petition_cooperative_preference",
+        "te_amendment_petition_mandatory_minimums",
+        "te_amendment_petition_community_service",
+        "te_amendment_petition_corporate_data_exemption",
+        "te_amendment_petition_whistleblower_shield",
+        "te_amendment_petition_no_first_strike",
+        "te_amendment_petition_military_necessity_clause",
+        "te_amendment_petition_small_donor_matching",
+        "te_amendment_petition_religious_exemption",
+        "te_amendment_petition_spoils_system",
+        "te_amendment_petition_corporate_security_powers",
+        "te_amendment_petition_civilian_police_oversight",
+        "te_amendment_petition_estate_duties",
+        "te_amendment_petition_estate_duties_war",
+        "te_amendment_petition_perpetual_trusts",
+        "te_amendment_petition_birthright_endowment",
+        "te_amendment_petition_undivided_farm_succession",
+        "te_amendment_petition_habeas_corpus_suspension",
+        "te_amendment_petition_judicial_elections",
+        "te_amendment_petition_mixed_commercial_courts",
+        "te_amendment_petition_jury_trials",
+        "te_amendment_petition_military_tribunals",
+        "te_amendment_petition_peoples_tribunals",
+        "te_amendment_petition_human_in_the_loop",
+        "te_amendment_petition_first_past_the_post",
+        "ch_yearly_pulse_on_action",
+        "drugs_shortage_yearly_events",
+        "tech_spread_on_action",
+        "excess_private_construction_on_action",
+        "fix_incompatible_laws",
+        "construction_cost_scaling_on_action",
+        "colonial_collapse_on_action",
+        "decol_permanent_modifier_sync_on_action",
+        "add_arable_land_effect_on_action",
+        "assign_aptitude_traits_on_action",
+        "te_ai_decentralized_absorption_on_action",
+        "te_ai_seed_trade_center_on_action",
+        "local_climate_log_on_action",
+        "te_aipm_flat_staff_selfcheck",
+        "te_aipm_flat_output_selfcheck",
+        "te_banking_entry_selfcheck",
+        "te_demog_country_yearly_on_action",
+        "te_seabed_ai_policy_on_action",
+        "te_inh_yearly_on_action",
+        "te_inh_generation_primogeniture",
+        "te_inh_generation_forced_heirship",
+        "te_inh_generation_free_testation",
+        "te_inh_generation_estate_duties",
+        "te_inh_generation_universal_heir",
+        "te_inh_generation_possession_by_use",
+        "te_inh_first_cohort",
+        "te_inh_posthumous_title",
+        "te_jud_yearly",
+        "te_jud_landmark_free_soil",
+        "te_jud_landmark_otsu",
+        "te_jud_landmark_freedom_of_contract",
+        "te_jud_landmark_house_of_justice",
+        "te_jud_landmark_new_code",
+        "te_liquid_democracy_yearly_pulse",
+        "te_monetary_yearly_on_action",
+        "te_monetary_arrangement_yearly_on_action",
+        "on_yearly_intel_sharing_defense",
+        "on_bpm_yearly_pulse_country",
+        "bpm_do_ai_splits_oa",
+        "bpm_mandate_on_yearly_pulse_country",
+        "bpm_yearly_country_switcharoo"
+      ],
+      "policy": "retain additive source registrations; no extra registration"
+    }
+  ],
+  "independent_common_parser": [
+    {
+      "file": "patch/common/amendments/zzzzzz_tbcp_elections.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/common/customizable_localization/te_tax_generated_custom_loc.txt",
+      "definitions": 30
+    },
+    {
+      "file": "patch/common/defines/zzzzzz_tbcp_defines.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/common/history/countries/brz - brazil.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/common/history/countries/chl - chile.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/common/history/countries/usa - usa.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/common/ideologies/zzzzzz_tbcp_axes.txt",
+      "definitions": 95
+    },
+    {
+      "file": "patch/common/ideologies/zzzzzz_tbcp_ideologies.txt",
+      "definitions": 103
+    },
+    {
+      "file": "patch/common/ideologies/zzzzzz_tbcp_tax_ideologies.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/common/interest_groups/zzzzzz_tbcp_characters.txt",
+      "definitions": 21
+    },
+    {
+      "file": "patch/common/journal_entries/BPM_je_america.txt",
+      "definitions": 8
+    },
+    {
+      "file": "patch/common/journal_entries/zzzzzz_tbcp_tax_journals.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/common/laws/zzzzzz_tbcp_laws.txt",
+      "definitions": 70
+    },
+    {
+      "file": "patch/common/modifier_type_definitions/zzzzzz_tbcp_modifier_types.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/common/on_actions/00_code_on_actions.txt",
+      "definitions": 223
+    },
+    {
+      "file": "patch/common/on_actions/BPM_code_on_actions.txt",
+      "definitions": 56
+    },
+    {
+      "file": "patch/common/parties/zzzzzz_tbcp_future_parties.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/common/parties/zzzzzz_tbcp_parties.txt",
+      "definitions": 12
+    },
+    {
+      "file": "patch/common/power_bloc_principles/zzzzzz_tbcp_principles.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/common/production_methods/zzzzzz_tbcp_production.txt",
+      "definitions": 6
+    },
+    {
+      "file": "patch/common/script_values/00000_bpm_journal_values.txt",
+      "definitions": 14
+    },
+    {
+      "file": "patch/common/script_values/00_diplomacy_values.txt",
+      "definitions": 37
+    },
+    {
+      "file": "patch/common/script_values/01_power_bloc_values.txt",
+      "definitions": 8
+    },
+    {
+      "file": "patch/common/script_values/ip5_je_values.txt",
+      "definitions": 124
+    },
+    {
+      "file": "patch/common/script_values/te_fptp_values.txt",
+      "definitions": 14
+    },
+    {
+      "file": "patch/common/script_values/te_tax_generated_support_values.txt",
+      "definitions": 983
+    },
+    {
+      "file": "patch/common/script_values/te_tax_generated_values.txt",
+      "definitions": 1304
+    },
+    {
+      "file": "patch/common/script_values/te_tax_light_generated_values.txt",
+      "definitions": 301
+    },
+    {
+      "file": "patch/common/script_values/zzzzzz_tbcp_construction_values.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/common/scripted_effects/BPM_CAB_effects.txt",
+      "definitions": 39
+    },
+    {
+      "file": "patch/common/scripted_effects/BPM_CAB_SYNERGY_effects.txt",
+      "definitions": 7
+    },
+    {
+      "file": "patch/common/scripted_effects/te_construction_market_update_effects.txt",
+      "definitions": 10
+    },
+    {
+      "file": "patch/common/scripted_effects/te_fptp_effects.txt",
+      "definitions": 10
+    },
+    {
+      "file": "patch/common/scripted_effects/te_tax_generated_bill_effects.txt",
+      "definitions": 19
+    },
+    {
+      "file": "patch/common/scripted_effects/te_tax_generated_effects.txt",
+      "definitions": 71
+    },
+    {
+      "file": "patch/common/scripted_effects/te_tax_light_generated_effects.txt",
+      "definitions": 14
+    },
+    {
+      "file": "patch/common/scripted_effects/zzzzzz_tbcp_cabinet_helpers.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/common/scripted_effects/zzzzzz_tbcp_tax_legacy_effects.txt",
+      "definitions": 6
+    },
+    {
+      "file": "patch/common/scripted_guis/bpm_law_sway_guis.txt",
+      "definitions": 18
+    },
+    {
+      "file": "patch/common/scripted_guis/te_tax_sguis.txt",
+      "definitions": 39
+    },
+    {
+      "file": "patch/common/scripted_rules/00_scripted_rules.txt",
+      "definitions": 18
+    },
+    {
+      "file": "patch/common/scripted_rules/zzz_bpm_scripted_rules.txt",
+      "definitions": 0
+    },
+    {
+      "file": "patch/common/scripted_triggers/bpm_ig_extremist_triggers.txt",
+      "definitions": 17
+    },
+    {
+      "file": "patch/common/scripted_triggers/te_fptp_triggers.txt",
+      "definitions": 6
+    },
+    {
+      "file": "patch/common/scripted_triggers/te_tax_generated_triggers.txt",
+      "definitions": 56
+    },
+    {
+      "file": "patch/common/scripted_triggers/zzzzzz_tbcp_future_party_bans.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/common/scripted_triggers/zzzzzz_tbcp_tax_legacy_triggers.txt",
+      "definitions": 10
+    },
+    {
+      "file": "patch/common/static_modifiers/te_tax_generated_modifiers.txt",
+      "definitions": 84
+    },
+    {
+      "file": "patch/common/static_modifiers/te_tax_light_generated_modifiers.txt",
+      "definitions": 47
+    },
+    {
+      "file": "patch/common/technology/technologies/zzzzzz_tbcp_technologies.txt",
+      "definitions": 3
+    }
+  ],
+  "independent_event_parser": [
+    {
+      "file": "patch/events/_india_events/zz_bpm_utilitarian.txt",
+      "definitions": 11
+    },
+    {
+      "file": "patch/events/_law_events/bpm_tax_laws.txt",
+      "definitions": 7
+    },
+    {
+      "file": "patch/events/_soi_events/_bpm_lobbies_events_03.txt",
+      "definitions": 21
+    },
+    {
+      "file": "patch/events/agitators_events/agitators_law_events.txt",
+      "definitions": 30
+    },
+    {
+      "file": "patch/events/agitators_events/coup_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/agitators_events/historic_agitator_events.txt",
+      "definitions": 4
+    },
+    {
+      "file": "patch/events/agitators_events/land_ownership_law_events.txt",
+      "definitions": 18
+    },
+    {
+      "file": "patch/events/agitators_events/natural_borders.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/agitators_events/paris_commune_pulse_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/agitators_events/revolution_events_02.txt",
+      "definitions": 37
+    },
+    {
+      "file": "patch/events/bpm_frankfurt_parliament_events.txt",
+      "definitions": 33
+    },
+    {
+      "file": "patch/events/brazil/brazilian_minors.txt",
+      "definitions": 4
+    },
+    {
+      "file": "patch/events/brazil/brazilian_slavery.txt",
+      "definitions": 12
+    },
+    {
+      "file": "patch/events/brazil/caudillo.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/events/brazil/coffee_with_milk.txt",
+      "definitions": 15
+    },
+    {
+      "file": "patch/events/brazil/misc_events.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/events/brazil/paraguay.txt",
+      "definitions": 9
+    },
+    {
+      "file": "patch/events/brazil/pedro_brazil_events.txt",
+      "definitions": 7
+    },
+    {
+      "file": "patch/events/brazil/peru_bolivia.txt",
+      "definitions": 9
+    },
+    {
+      "file": "patch/events/brazil/positivism.txt",
+      "definitions": 8
+    },
+    {
+      "file": "patch/events/brazil/south_america_migration.txt",
+      "definitions": 4
+    },
+    {
+      "file": "patch/events/brazil/vargas.txt",
+      "definitions": 7
+    },
+    {
+      "file": "patch/events/british_raj_events.txt",
+      "definitions": 5
+    },
+    {
+      "file": "patch/events/central_america_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/character_events.txt",
+      "definitions": 5
+    },
+    {
+      "file": "patch/events/colonial_administration_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/communism.txt",
+      "definitions": 11
+    },
+    {
+      "file": "patch/events/congo_free_state_events.txt",
+      "definitions": 6
+    },
+    {
+      "file": "patch/events/election_events/communist_fascist_election_events.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/events/election_events/election_contextual_events.txt",
+      "definitions": 6
+    },
+    {
+      "file": "patch/events/election_events/election_liberal_events.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/events/election_events/election_other_parties_events.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/events/ethiopia.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/fascism_events.txt",
+      "definitions": 4
+    },
+    {
+      "file": "patch/events/german_unification.txt",
+      "definitions": 7
+    },
+    {
+      "file": "patch/events/iberia_events/ip4_anarchism_events.txt",
+      "definitions": 6
+    },
+    {
+      "file": "patch/events/iberia_events/ip4_election_rigging.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/iberia_events/ip4_portuguese_political_events.txt",
+      "definitions": 11
+    },
+    {
+      "file": "patch/events/iberia_events/philippines_events.txt",
+      "definitions": 10
+    },
+    {
+      "file": "patch/events/iberia_events/regency_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/iberia_events/two_spains_events.txt",
+      "definitions": 4
+    },
+    {
+      "file": "patch/events/india_events/caste_conflict.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/india_events/india_misc_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/india_events/mughal_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/india_events/utilitarian.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/japan_events/ep2_imperial_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/japan_events/ep2_iwakura_events.txt",
+      "definitions": 8
+    },
+    {
+      "file": "patch/events/japan_events/ep2_meiji_restoration.txt",
+      "definitions": 13
+    },
+    {
+      "file": "patch/events/japan_events/ep2_shogunate_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/japan_events/japan_religion_events.txt",
+      "definitions": 13
+    },
+    {
+      "file": "patch/events/karl_marx_events.txt",
+      "definitions": 4
+    },
+    {
+      "file": "patch/events/law_events/anarchy_law.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/anti_state_religion_law_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/bureaucracy.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/children_rights_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/citizenship_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/colonization_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/conscription_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/corporate_state_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/council_republic_law_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/distribution_of_power_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/economy_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/education_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/free_speech_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/healthcare_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/internal_security_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/isolationism_law.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/labor_rights_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/law_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/law_events_01.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/laws_police.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/migration_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/monarchy_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/republic_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/rights_of_women_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/single_party_state_laws.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/law_events/slavery_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/state_atheism.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/tax_laws.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/technocracy_law.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/law_events/theocracy.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/law_events/unable_to_enact_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/law_events/welfare_laws_events.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/liberalism.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/major_famine_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/meiji_restoration.txt",
+      "definitions": 14
+    },
+    {
+      "file": "patch/events/misc_unifications.txt",
+      "definitions": 21
+    },
+    {
+      "file": "patch/events/neighbor_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/nihilism.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/rlit_cluster1_golden_age.txt",
+      "definitions": 15
+    },
+    {
+      "file": "patch/events/rlit_cluster2_crossroads.txt",
+      "definitions": 17
+    },
+    {
+      "file": "patch/events/russia_events.txt",
+      "definitions": 13
+    },
+    {
+      "file": "patch/events/secession_situations.txt",
+      "definitions": 9
+    },
+    {
+      "file": "patch/events/slave_revolts.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/soi_events/00_ep1_korea_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/soi_events/00_lobbies_events_01.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/soi_events/00_lobbies_events_03.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/soi_events/00_lobbies_events_04.txt",
+      "definitions": 1
+    },
+    {
+      "file": "patch/events/standard_of_living_events.txt",
+      "definitions": 5
+    },
+    {
+      "file": "patch/events/suffragist_events.txt",
+      "definitions": 10
+    },
+    {
+      "file": "patch/events/tbcp_foreign_coup_events.txt",
+      "definitions": 2
+    },
+    {
+      "file": "patch/events/victoria_events.txt",
+      "definitions": 3
+    },
+    {
+      "file": "patch/events/warlord_china_events.txt",
+      "definitions": 5
+    },
+    {
+      "file": "patch/events/zanzibar_events.txt",
+      "definitions": 6
+    }
+  ],
+  "independent_parser_inherited_limitations": [
+    {
+      "file": "common/on_actions/00_code_on_actions.txt",
+      "key": "on_monthly_pulse_country",
+      "error": "Expected a valid symbol after key in object, got: 'on_monthly_pulse_country_portugal' after 'on_monthly_pulse_country_turkey'",
+      "proof": "normalized block identical to hash-verified inherited source; structured parser passed"
+    },
+    {
+      "file": "common/on_actions/00_code_on_actions.txt",
+      "key": "on_yearly_pulse_country",
+      "error": "Expected a valid symbol after key in object, got: 'kamehameha_coin_toss' after 'ryukyu_rivalry_coin_toss'",
+      "proof": "normalized block identical to hash-verified inherited source; structured parser passed"
+    },
+    {
+      "file": "common/on_actions/00_code_on_actions.txt",
+      "key": "on_half_yearly_pulse_country",
+      "error": "Expected a valid symbol after key in object, got: 'delay' after 'on_half_yearly_events'",
+      "proof": "normalized block identical to hash-verified inherited source; structured parser passed"
+    }
+  ],
+  "balanced_gui_files": [
+    "gui/00_te_country_panel_information.gui",
+    "gui/00_te_law_effects.gui",
+    "gui/BPM_country_panel.gui",
+    "gui/BPM_politics_panel_change_law.gui",
+    "gui/politics_panel_institutions.gui",
+    "gui/politics_panel_overview.gui",
+    "gui/pops_overview.gui"
+  ],
+  "engine_verified": false,
+  "render_verified": false,
+  "patch_sha256": {
+    ".metadata/metadata.json": "f472b53644acf9d97df1b28d62c121f6bcdc7d7a8d849ea3eb45de4304889f03",
+    "common/amendments/zzzzzz_tbcp_elections.txt": "34e3dcb7400a8fda00125001fd6b3a692c168ecc5362c4c202431c427c622f0f",
+    "common/customizable_localization/te_tax_generated_custom_loc.txt": "6535fc367872d95299adf3bb8bf2de45185135c5af16d2e02e1cb7b6dba9c224",
+    "common/defines/zzzzzz_tbcp_defines.txt": "18e6bca86e1afa217b3bab23e49724ebc4436c7a95a732441d86143c0b7bb6d1",
+    "common/history/countries/brz - brazil.txt": "1e1d38429e0c8070d351919c93b0ca4f2dc7847bb6de6f2b0b8a5c720d7fac0a",
+    "common/history/countries/chl - chile.txt": "a66eb2c3ab97d67d22dfdf48aecc0ab5e76577d4d938a72d8ef3c8673a14a967",
+    "common/history/countries/usa - usa.txt": "6c0eae26284b2dba61f4262cf0fe570d700249243e993acd82f18bc73ca64dd5",
+    "common/ideologies/zzzzzz_tbcp_axes.txt": "f6d48f4ec5ca43aa296f8fa3a199c8bf75dcd45909b72d528fcce49c7b3daf69",
+    "common/ideologies/zzzzzz_tbcp_ideologies.txt": "b70e7028544155503320e281e891b5b090702b0815f71cd301abbede99c0a354",
+    "common/ideologies/zzzzzz_tbcp_tax_ideologies.txt": "0874d5729b55c294d8c4efe8636033145bc2537f0ed069fcccc812a3f89870a4",
+    "common/interest_groups/zzzzzz_tbcp_characters.txt": "b8a803276bb8ec22556d704ba7b4e47c74075bc756cbcb8c4237a386fa95daab",
+    "common/journal_entries/BPM_je_america.txt": "372631fb824a1b3d88dec9fbf1f569b5837fd29dcb2f7b072f1169186d522eec",
+    "common/journal_entries/zzzzzz_tbcp_tax_journals.txt": "62a570ee2813e2c7cab3a2511562b981910a01828185848e99c9a45da54e12cf",
+    "common/laws/zzzzzz_tbcp_laws.txt": "6bc25ad3d5794ba7d775b7f16e487f61bde7baca6062436486717749425bc4ca",
+    "common/modifier_type_definitions/zzzzzz_tbcp_modifier_types.txt": "1f861982cc9793046fdf88006d8587cfb76dbf028f2a80d4f12dd1fab65e5b14",
+    "common/on_actions/00_code_on_actions.txt": "a8fb35b4f5d6b3fbb47a6da30b1706d2e1f29bc81acbdb78c4151db869d9ac46",
+    "common/on_actions/BPM_code_on_actions.txt": "7c465795ebc091f0bc9cd19bb1881c1a3da4e2e569d8632841c8425686347fab",
+    "common/parties/zzzzzz_tbcp_future_parties.txt": "08594dd2f28dcbacb932bcaafbf03cec1eb2893e6ac1f5b01fc9b5765e9c10fd",
+    "common/parties/zzzzzz_tbcp_parties.txt": "4b642b68345ccd095ae38dfd2e5cc282673438768e2a37b7845e13bb86ce26b4",
+    "common/power_bloc_principles/zzzzzz_tbcp_principles.txt": "9e0227625207bc404d8468fa48f2c885f3e885c3f5612667234f5cabb6b0422e",
+    "common/production_methods/zzzzzz_tbcp_production.txt": "e37ba6893a8b892954d1ec01fbbc3b43517ba97b474e3e1156e631f4eaaab8d1",
+    "common/script_values/00000_bpm_journal_values.txt": "d5585e7aa5d32aeab76bc3bb4849eee34f8800b7f344d6fb80035e498151a5b2",
+    "common/script_values/00_diplomacy_values.txt": "1729286e9ddfeb2d6b329e8c64172acfaf471f9883b25ad9f27cdabfc8350e21",
+    "common/script_values/01_power_bloc_values.txt": "88862b066cb350a0f9949f81ef83ce0784149126e1f3f34842c3b6a61a763e73",
+    "common/script_values/ip5_je_values.txt": "440ef21061dc15e7336b5c33a8c2c9b16ce7b773e5867e1639a0bb56f391fb96",
+    "common/script_values/te_fptp_values.txt": "1a430afdbe7d363b95deaf2072021a66f82866f09c7a9f37ec299d03f22cf3d3",
+    "common/script_values/te_tax_generated_support_values.txt": "3e2b4bb36d5687801f1014a746c88db5c24aa76a87fb9e115d400adf1ddb8091",
+    "common/script_values/te_tax_generated_values.txt": "7ab41799908f03f1c8ea5f84c003d8273aaa0dee49cd649d7c49bfbcc8e52606",
+    "common/script_values/te_tax_light_generated_values.txt": "bc4bd08c502e2b3bc7e513c209694613e2741ee6e797fc81ab13e9e8def812e1",
+    "common/script_values/zzzzzz_tbcp_construction_values.txt": "e56ac0db09a21ba86b226c13aa55f736ba77af4fb3927a1a1f9189c25f224c69",
+    "common/scripted_effects/BPM_CAB_effects.txt": "bf376e48d8758754b7ae4aea446bc392fe9a6480ad2d7abbc7e04b07f8bf2a88",
+    "common/scripted_effects/BPM_CAB_SYNERGY_effects.txt": "1ffe25a3e4d1e2d1bf36d0d94eb7e7a9f88274990a90a57fa43ee70f95aacc6c",
+    "common/scripted_effects/te_construction_market_update_effects.txt": "46b46f3f69a1e3fe7f3512750fd016ded0652211c5dd63d4d110b3f804264a09",
+    "common/scripted_effects/te_fptp_effects.txt": "63a2c491f757457918cb846d1bbae9be138582a957aa62c3f6a141ab034cf0e3",
+    "common/scripted_effects/te_tax_generated_bill_effects.txt": "e697f69c27fadcad29b4af937c97326b4e1265963676b760ce6ad97320eea256",
+    "common/scripted_effects/te_tax_generated_effects.txt": "4d23bc536b9e60204e13d810317d508956e8076ad6d771cba263cdab881e574c",
+    "common/scripted_effects/te_tax_light_generated_effects.txt": "f13d129401467ef8a66905a3aa4aa08d8ee57c372a7cc5090fd777b5cdd43e62",
+    "common/scripted_effects/zzzzzz_tbcp_cabinet_helpers.txt": "79d8902beb0bbb298a87bbd7324145cbd056c087b1c8446a343fee401436ba85",
+    "common/scripted_effects/zzzzzz_tbcp_tax_legacy_effects.txt": "1d7b54417c0933d0c2c6e82ea7e6ebc5a018231dcc0192c92752ff6756ac3e02",
+    "common/scripted_guis/bpm_law_sway_guis.txt": "9906b2e5e4a2c1d87bc07a8c691b01f1da6b93ab789e4acfde8f19980e783beb",
+    "common/scripted_guis/te_tax_sguis.txt": "5e87a683ddcfc33b593d303dd01f57dfd205910937565fcf8a13b02b3a90fd64",
+    "common/scripted_rules/00_scripted_rules.txt": "d69f99365b2aa1187379e7c80fafc3f3f1eaa9a2d5ecc1835d4b5b5a14573bc4",
+    "common/scripted_rules/zzz_bpm_scripted_rules.txt": "8620743b36fa582c69799ca6678764a1afde6f090b9ff3a09006dedbe66be61f",
+    "common/scripted_triggers/bpm_ig_extremist_triggers.txt": "59047282d14080a4f8e1397221edb8303879f73114f15d418247fef095bbf536",
+    "common/scripted_triggers/te_fptp_triggers.txt": "cb4b59c7a3145e8817a04e558d6e8404b9516cef97c4de46434e60aca65efc80",
+    "common/scripted_triggers/te_tax_generated_triggers.txt": "995601ddb7cb69d7b952329136a130532185e3f0a0b4ec506d503ad7401b997d",
+    "common/scripted_triggers/zzzzzz_tbcp_future_party_bans.txt": "0b5cfcc6848b3dba25cee451702bb878f7da509e5f8b630db22d66cc9f4cf29c",
+    "common/scripted_triggers/zzzzzz_tbcp_tax_legacy_triggers.txt": "de23367eb9bfabf01472597a45f2ffa074b076809e69312825952e55e092fdcc",
+    "common/static_modifiers/te_tax_generated_modifiers.txt": "ec50bff3607ff7f66dda1e84dbfce32ea49a1cf87d3e863ae9f8e93662bde285",
+    "common/static_modifiers/te_tax_light_generated_modifiers.txt": "3bfd6fc87af86c93b0d1fe2074400af06e371c682a4e42517a14d02c1482cc1b",
+    "common/technology/technologies/zzzzzz_tbcp_technologies.txt": "5b30e55928b63ddf4b408b86d1d76a5d728cd80cbbbccc85d4ba4bed004a3801",
+    "CREDITS.md": "9380d98f1f58230b7433fe3d5ef4702cd559902a31985e501f518cea939d26ca",
+    "events/_india_events/zz_bpm_utilitarian.txt": "ea43a0c2f16a37548623210c2579fb929eeb1be321e824f39c7d2eeb7fc3b5a6",
+    "events/_law_events/bpm_tax_laws.txt": "c23a999495e67122f29d24bafa89f749c0c8a6dcac11f396abd8e6d0770447ba",
+    "events/_soi_events/_bpm_lobbies_events_03.txt": "9c987d3625c2404faadfe564cda1b5a31129def4b253e73cc8d26c9470db2412",
+    "events/agitators_events/agitators_law_events.txt": "1cf6b5dfed8ae20b49948fd6143a6bb055198bbc2488f24a31eff4ab368c20a6",
+    "events/agitators_events/coup_events.txt": "c973a89068a0a9824827a0aac12f6b9c2e0a7e7682c1a584d2f7f156fca344db",
+    "events/agitators_events/historic_agitator_events.txt": "6135d7e5ddb9251630541d1c145096c1d567201a8a021323c1b21a26e312a678",
+    "events/agitators_events/land_ownership_law_events.txt": "722c5525b36e5a968dd2b45c2b1bb82a1d35289a3809d2dea4b973f5233cbc0d",
+    "events/agitators_events/natural_borders.txt": "5ddd506fc60d412533abf6b29858c9ac3ee0ff648134eb9eaff35021acc843b6",
+    "events/agitators_events/paris_commune_pulse_events.txt": "fd7f5394fd388773dcc2b0d33c22f127fee0fba1abae065b9ed4cdb5a880647e",
+    "events/agitators_events/revolution_events_02.txt": "8e6d6cd6dd26d6a5531f0730a0d90925db8ced9cf715f41d4ac324476f647082",
+    "events/bpm_frankfurt_parliament_events.txt": "cec790e9dc4b94847b26b12c107108fa061f722cbc15be10459afaac1f81e6d1",
+    "events/brazil/brazilian_minors.txt": "eb1476309c357daf2a05bc59636f516f95f93ee50fc934055e80229d0abd25fb",
+    "events/brazil/brazilian_slavery.txt": "2c79a9014128d90b0ea23856698bf070d81fed8c68942ab47884cfb2377f05b4",
+    "events/brazil/caudillo.txt": "254d1c937d5f3a205f7086ec72d7764002c900162dedc9a6b96d6fcaca017063",
+    "events/brazil/coffee_with_milk.txt": "0b1265ec027440e9515e103bf6c390620799bf452fbc335c13f7adbc2c9f78ff",
+    "events/brazil/misc_events.txt": "b0dd3f3b3c40e4b0fe79a40a4691ffb343fdd566ce25b019ffaab5c765a132c9",
+    "events/brazil/paraguay.txt": "a26f6b2cbf9c55a511f4a1257fcee3a4a6f29b5b3a52367aee347451bd0ca93f",
+    "events/brazil/pedro_brazil_events.txt": "5727b2a98076977a2b26046607e9c8ec66e640fd968973cc0f638f9259fa6ebb",
+    "events/brazil/peru_bolivia.txt": "9d3c92a37929bebc49f109d2d9813a31db450f6813de22bc56dca4e6e698474f",
+    "events/brazil/positivism.txt": "ab6ffbf39b42da659059b0039b082582d7e9fe5fa5108ba04ab5af3a1aefdad3",
+    "events/brazil/south_america_migration.txt": "8867738c16acbc13ae098d7d659e37772cd35089a06d21f4d7bc5929e046a186",
+    "events/brazil/vargas.txt": "afb0f7120083fdebb6ff0fbd05426728aa4004a4e92fc2b233ddeabae9444429",
+    "events/british_raj_events.txt": "dfa2040a1cbbd46db536d03db4a9c6b05abf15f65ee8d3cb1312cfd046acb409",
+    "events/central_america_events.txt": "586589ec883500e6a267ab88f7753c71ac5565506b6c30c8fc714d8e483ee726",
+    "events/character_events.txt": "15378d37094ff0fa3e5060a2fef64af2f7014b0ffc3cc72c5d9adb9f1d92be2a",
+    "events/colonial_administration_events.txt": "d1b8787752f69e70d0a42b1c5218c768fe6a4bee61974497efa163e0bfa7a592",
+    "events/communism.txt": "53b28412c89fd31ef244ff826a33abcd091bd3eae38921a5f7c423d86a6e95e7",
+    "events/congo_free_state_events.txt": "be06fc85ad32dbbf0f69c597cb8dd1b60394f61312970c55816aa858e1f4dc16",
+    "events/election_events/communist_fascist_election_events.txt": "7b63f0d8df947cdf45a88ef870a08a5055a10df9113fbff38b36ce706060e3b6",
+    "events/election_events/election_contextual_events.txt": "0be7016eaecf1144dca652d00b4b353c7e0e57f90ceefd160f541ce63d3606e9",
+    "events/election_events/election_liberal_events.txt": "507d8c425c2c4dca2f57dc70662a019d47b40bd59465307b8fb5c5954fd3b9fd",
+    "events/election_events/election_other_parties_events.txt": "afe71dff67efe4f2d532caebd02d097d4f478a4c3a4961055f4f7d8e6a0093dc",
+    "events/ethiopia.txt": "1a6ae7d9c3c9209861771f2042fb6af46d7e99a4258547068c27b272d1816d3a",
+    "events/fascism_events.txt": "86d85e3b71c29d61774dabc3085a09e25178e5b9330b2f7bba036371278e473a",
+    "events/german_unification.txt": "49d5acc5cc337030e5d14bfda5babb90846117fb2a4debf8f3940e17ff372797",
+    "events/iberia_events/ip4_anarchism_events.txt": "1553e916601c9d4f4851d58f0a8b672764b661efd94e67a101939e29cc0d2337",
+    "events/iberia_events/ip4_election_rigging.txt": "2c5a44721de7a1e703c930931550488c7c610ecb808ef3c39917b87db2d55c47",
+    "events/iberia_events/ip4_portuguese_political_events.txt": "1b11ff4cea73ea0df1dd97e2d61c9550e85f2fbed3ce799c4ed066f6dd29e85b",
+    "events/iberia_events/philippines_events.txt": "ca0fe5e1cae98b687e8c5d4a4b58f9392ef690c81a92486d3bebf8ceeb55c57c",
+    "events/iberia_events/regency_events.txt": "53eec396584fb0a0210c4d2d8f40a78e8fdcb67ef43349ede3a43c7f38b0ae13",
+    "events/iberia_events/two_spains_events.txt": "cbcaf3adb17beb87f2a9c930770f763591f032cb10290d494abb2311726566c1",
+    "events/india_events/caste_conflict.txt": "80a1084c9bbb525b872f7f0179d20e6568dbbf672093a878d17b578c74f0986c",
+    "events/india_events/india_misc_events.txt": "f0e6e8b310602baa365a630e4a89ef095f8c6f6594d171a5c932a5f0ee56e08b",
+    "events/india_events/mughal_events.txt": "d671055dd2f77c55270c89956ee72bd9620153e2ebc828db51d1bec3f88ddc9d",
+    "events/india_events/utilitarian.txt": "ddfa8502f6f1d20803ace1969556503d9fb8595b34c51595230edfe79935949f",
+    "events/japan_events/ep2_imperial_events.txt": "ad5fee3d6bbacd8b2c67581f588e9237f1fd5870536178b5b19a0e9eda693a16",
+    "events/japan_events/ep2_iwakura_events.txt": "42b5f223eb8e7074b907ca52360ecdda7e3633c9d27455660b4f093fcb2e49a4",
+    "events/japan_events/ep2_meiji_restoration.txt": "3f34729f9a006d39955233ebb4ed655c9e30fa3bc77304376e98ca5a65e6cf50",
+    "events/japan_events/ep2_shogunate_events.txt": "de95b371a6f80d04459d0df82dff7df5ef12fd6cd2f2a65a5dfe5697ef2fbb95",
+    "events/japan_events/japan_religion_events.txt": "b091c4bf771b668584aca968c05c705ce57d4f50d057845052f202f91bc5a5b8",
+    "events/karl_marx_events.txt": "e06d12f12391b6c1d340c2dd465c68734d34ac06bcb42b8e963251d4648c9f3d",
+    "events/law_events/anarchy_law.txt": "0d30119118d075a1faec109fe60f8bfa4ed145b030db94492ca27886d13ab872",
+    "events/law_events/anti_state_religion_law_events.txt": "703010fae2b7bba2fe5a08edaa30b59092086bd2dbf8e3b434abe46dfd3e7487",
+    "events/law_events/bureaucracy.txt": "481a5b13bc6a676d14fa1041852386a5007a971973a8c4c8951024d66cd7d208",
+    "events/law_events/children_rights_events.txt": "e5d3ba95a1923f83eb036e1a70641cd84828675d520b0394150cc04ac31c248e",
+    "events/law_events/citizenship_laws.txt": "416beb23c137ea1cd06a95ff376f1a42e9fc54f23794b65f09bbbcf473f9b4c1",
+    "events/law_events/colonization_laws.txt": "f0c464909a6c2673a2da27717d3ef9b9d730fc40b3dcd038e9253832a5348434",
+    "events/law_events/conscription_laws.txt": "4b766a1c43cb960f17f7ff6572e2575f72450a0a4bcf94b622a1c54609582cd7",
+    "events/law_events/corporate_state_events.txt": "48e4b04654685bdec11becf693f00da7f1bd336bf28ee3fe35837af4dd4b50e0",
+    "events/law_events/council_republic_law_events.txt": "e6dee3a4b27a1cb2857abbd7fddaee84476c2b55c3acbd8a04887550aeab03a7",
+    "events/law_events/distribution_of_power_laws.txt": "d058acbd83328cd24e403a4d55f0060bb27b4d9e612168526b69ae6f46729494",
+    "events/law_events/economy_laws.txt": "c5e747185ea48cd0ac6cb69645c4d77cd0cad5aa79d779e2d4fa253638d2a0f0",
+    "events/law_events/education_laws.txt": "d74f580323174fb770a9e7dc8c31cbb66de0fe63dd7a81121cf3ce7f56396887",
+    "events/law_events/free_speech_laws.txt": "546414a1cebf9f22929449c30404ca754ca3804b27abd9582d71721b9da8e5e4",
+    "events/law_events/healthcare_laws.txt": "5267456f6945273bc9bec2cbbb2f524ce55c4cf4ec11ac96cd6b6e2eba87ace3",
+    "events/law_events/internal_security_events.txt": "467f1123803589cab84aca9c2845fa479bb5e7796a2b05d993a277d66c85f1ab",
+    "events/law_events/isolationism_law.txt": "19205eac911b0ca340f41f7b678d782ad92c3ece1ddf0eed8061cb2780c0b9c9",
+    "events/law_events/labor_rights_laws.txt": "759c36666b6db874e513b7554ddfa273a937a6f9af23ebd28497e5306002e234",
+    "events/law_events/law_events.txt": "9d41670f979a2ffd6ddbfa2e5116fcf397dae373e70c295325901e3420f02834",
+    "events/law_events/law_events_01.txt": "7a96b43c13e4449f550bef16eaea243eb81d77009bb6d8ff741039d4d869c4d4",
+    "events/law_events/laws.txt": "4adbf3dca7f0a36b2e24655e8e3ca0d84ccc279fdc8efb33bb8f34351074b2e3",
+    "events/law_events/laws_police.txt": "34d11c365ce0c18159bb580148d1d231f826f87e900030cff0639c9492292837",
+    "events/law_events/migration_laws.txt": "75109467bab218c14b0e6877491a484ffe16d1d969bb2a9476786c7952c0372c",
+    "events/law_events/monarchy_laws.txt": "58cce6243788803d68a59f65cf7bbd22a92cab5ce8da708b00fb7360cdb1e6d9",
+    "events/law_events/republic_laws.txt": "e071efdb28893712f23ac6d58735e5c7c42402296359e8e940ec8ffa6195a62d",
+    "events/law_events/rights_of_women_laws.txt": "33f7b5d3f6232c1cf0c338b40418626692973bfe2870a036dfb998125577f7de",
+    "events/law_events/single_party_state_laws.txt": "b0fed391d993846edc73b8c58697ed7c628aa0e810cae073fcaac686a1ca155f",
+    "events/law_events/slavery_laws.txt": "65b6b68e4dace33b589e0f652cc7fe3679f2de3476c38f551245c7315bcf89b2",
+    "events/law_events/state_atheism.txt": "04a9aa69d2d657f1980bbe14b752399f2ea34a28481a88771dbd1cf408a20b95",
+    "events/law_events/tax_laws.txt": "b3fb4041735b51dbc19092d68b159db87e1bf6a2679bfcd3a230c05342290cfd",
+    "events/law_events/technocracy_law.txt": "7bb78f6a623e512085f8b4a95a912fe8115e4ee8721c94b13e8bc920e76ddbfe",
+    "events/law_events/theocracy.txt": "574d737dcce660675c55f8711be11288474987f219746135c7ef4152786d0a64",
+    "events/law_events/unable_to_enact_events.txt": "c3a3d01cc79606fa7faf0f72e89532bf47911bbbd7c5524f9ee07513b20b380d",
+    "events/law_events/welfare_laws_events.txt": "c9cb2dc26809928dcbdb24796fd64dd1d958281302eac2865b5cde2d57b16102",
+    "events/liberalism.txt": "b80f7c47cf55735980307756fc60657a44a4c12e2bccd9e4f9797997b4549829",
+    "events/major_famine_events.txt": "8c7b90d1cfded91f057e9d7dc11fb76861348e64b7adfbe20a86b1900f05f9d4",
+    "events/meiji_restoration.txt": "44afa9ffc0ea7c678e3e1f4faca03cacb8961ff6306ec44dd1af0dd9f4680755",
+    "events/misc_unifications.txt": "6413a42b45ad2243583caea71ce7ce80ac579cc7d553e37815f4812cfaaa6e4e",
+    "events/neighbor_events.txt": "0e6b138c8debd0820c98cd9d6fe32065cb1d532282172e69a8f60d0ad58ed2c1",
+    "events/nihilism.txt": "a6aa0a0512fb2b11ea5f4edd61518d2a479e98422e42e3e0b2a234761f41cc93",
+    "events/rlit_cluster1_golden_age.txt": "0712b1d03902980570846911a92f736cfb225fe1109385cc0ad0afd43f6608e2",
+    "events/rlit_cluster2_crossroads.txt": "9fdb6445f3ca885852914238d6abd8bf817c4384d02dc1d10a1a223a60f836c7",
+    "events/russia_events.txt": "d024cc26b4fa254c13f649322bb3d07b48d2a3a5aaea854ea298ad595df42d25",
+    "events/secession_situations.txt": "90b37019b9b89107e31a8ab79566d3108ee5d473481b6bf0319dbbc5327b47b6",
+    "events/slave_revolts.txt": "30954fed077e2ce4a6d7ead067ab5ba140af1a090398f760f5ddf3e8f78fc5e2",
+    "events/soi_events/00_ep1_korea_events.txt": "5ce4dfc8ee2ae7a44883177cb1b71b86896ad53747ba993d7d577d3db6f5b57e",
+    "events/soi_events/00_lobbies_events_01.txt": "162d0501580ef2616389b2c43336f683df52e35d8d0f358ef9074e005c77d2c8",
+    "events/soi_events/00_lobbies_events_03.txt": "276eb1bfd2c4764447b17f44f5b008325d24b58815b7dec76e5988dab5eee966",
+    "events/soi_events/00_lobbies_events_04.txt": "a9d4b4a66f82fd8c128fea8d89f74cb2255f7458968bd5c7cdad058f0d391fef",
+    "events/standard_of_living_events.txt": "9d288a04a01b301fd283d2e52def0ce4ecd508d33c966e8a71889cc13a91a369",
+    "events/suffragist_events.txt": "86fee3d304433503c0486cfdb541b7a2700af25db88f4cb72a12dae6b407cd8c",
+    "events/tbcp_foreign_coup_events.txt": "404da8baeca0365b82283f44686d9d4b5206fc6b596cfc080f75254a0aa83f8e",
+    "events/victoria_events.txt": "bb27cb2d7e01e03fb3b48500212095dc56b59dc9586c30955f42831bea5e8765",
+    "events/warlord_china_events.txt": "ace9da8358f3e335f83b7c3628b1bb6e31002c9486dd5ff67c68b9a8e458b4fc",
+    "events/zanzibar_events.txt": "dd3e89bb89b5be32f48eb80b62f5a25211d29e56a51cb60117dcefa886bb7bce",
+    "gui/00_te_country_panel_information.gui": "cda3039af72786d352b609db1cf7bd498b99513e112b8c9416de55b25883f74c",
+    "gui/00_te_law_effects.gui": "9dc181fd5840036f00ff440daa0ece4c6f2c09e7feaa9097807376750d9c6dc5",
+    "gui/BPM_country_panel.gui": "008605299ef318ecb0c39733d4d3b0336252e9bda1ab67dbfd0604da29d99902",
+    "gui/BPM_politics_panel_change_law.gui": "df2c8f6815d4c148acdb6a7591a86a25b2de2431cf11cd22a51d7e646376c702",
+    "gui/politics_panel_institutions.gui": "477304599dcf1fc6ebeb72a76a9291f77b5e123017091fe1979e320e2fa65c5b",
+    "gui/politics_panel_overview.gui": "b8c99aabcf78b0688483e67cea6828d955707da08d6fa5790f729db00b4bd478",
+    "gui/pops_overview.gui": "ae9ef779bd2b466c3e70f002a9057141164819e767fff31b98caf7b0e61a5368",
+    "localization/english/te_tax_generated_l_english.yml": "5505ca52bebc4f94521495c7c51d4e84a13df06101420dafd162fb482b4d7f35",
+    "README.md": "f9d6d9058efb2a5f1323fdbc3116fa1ead26fc5b188bc37fc1965e693a39399e",
+    "TESTING.md": "1e7230e82f36a843610bebf26fd64e32b82f6e44a039fb37e875bee824267af6"
+  }
+}

@@ -1,0 +1,21 @@
+﻿namespace = labor_rights
+
+# Mistreatment of Serfs
+# TBCP: labor_rights.1 supplied by events/_law_events/bpm_labor_rights_laws.txt.
+
+
+# Serfdom Debated
+# TBCP: labor_rights.2 supplied by events/_law_events/bpm_labor_rights_laws.txt.
+
+# Landowners demand compensation for lost serfs
+# TBCP: labor_rights.3 supplied by events/_law_events/bpm_labor_rights_laws.txt.
+
+# Direct action for workers protections
+# TBCP: labor_rights.4 supplied by events/_law_events/bpm_labor_rights_laws.txt.
+
+# Unions negotiate with industrialists
+# TBCP: labor_rights.5 supplied by events/_law_events/bpm_labor_rights_laws.txt.
+
+
+# Strikbreakers discourage worker movement
+# TBCP: labor_rights.6 supplied by events/_law_events/bpm_labor_rights_laws.txt.

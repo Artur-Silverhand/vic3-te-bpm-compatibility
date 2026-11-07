@@ -1,0 +1,18 @@
+﻿namespace = free_speech_laws
+
+# Pamphlet Distributed
+# TBCP: free_speech_laws.1 supplied by events/_law_events/bpm_free_speech_laws.txt.
+
+# Book burnings
+# TBCP: free_speech_laws.2 supplied by events/_law_events/bpm_free_speech_laws.txt.
+
+# Censoring Censorship
+# TBCP: free_speech_laws.3 supplied by events/_law_events/bpm_free_speech_laws.txt.
+
+# Overwhelming Propaganda
+# TBCP: free_speech_laws.4 supplied by events/_law_events/bpm_free_speech_laws.txt.
+
+# Ruler caught reading banned book
+# TBCP: free_speech_laws.5 supplied by events/_law_events/bpm_free_speech_laws.txt.
+
+# TBCP: free_speech_laws.6 supplied by events/_law_events/bpm_free_speech_laws.txt.

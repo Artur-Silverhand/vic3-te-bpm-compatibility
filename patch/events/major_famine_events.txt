@@ -1,0 +1,120 @@
+﻿namespace = famine_events
+
+# TBCP: famine_events.3 supplied by events/_major_famine_events.txt.
+
+famine_events.4 = { #donations
+	type = country_event
+	placement = ROOT
+
+	title = famine_events.4.t
+	desc = famine_events.4.d
+	flavor = famine_events.4.f
+
+	event_image = {
+		video = "africa_diplomats_negotiating"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+
+	fire_only_once = yes
+
+	trigger = {
+		# triggered by on_action - famine_yearly_events
+		any_country = {
+			relations:root > relations_threshold:cordial
+			NOT = { is_country_type = unrecognized }
+			NOT = { is_country_type = decentralized }
+			count >= 2
+		}
+		any_interest_group = {
+			is_powerful = yes
+		}
+		any_scope_state = {
+			has_famine = yes
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				relations:root > relations_threshold:cordial
+			}
+			save_scope_as = neighbor_country_1
+			set_variable = neighbor_country_1_var
+		}
+		random_country = {
+			limit = {
+				relations:root > relations_threshold:cordial
+				NOT = { has_variable = neighbor_country_1_var }
+			}
+			save_scope_as = neighbor_country_2
+		}
+		random_interest_group = {
+			limit = {
+				is_powerful = yes
+			}
+			save_scope_as = donations_ig
+		}
+		random_scope_state = {
+			limit = {
+				has_famine = yes
+			}
+			save_scope_as = famine_state
+		}
+	}
+
+	option = { #this country wants to donate
+		name = famine_events.4.a
+		change_relations = {
+			country = scope:neighbor_country_1
+			value = 30
+		}
+		scope:famine_state = {
+			add_modifier = {
+				name = famine_donations_modifier
+				days = normal_modifier_time
+			}
+		}
+	}
+
+	option = { #no THIS one wants to donate
+		name = famine_events.4.b
+		trigger = {
+			any_country = {
+				relations:root > relations_threshold:neutral
+				NOT = { has_variable = neighbor_country_1_var }
+			}
+		}
+		change_relations = {
+			country = scope:neighbor_country_2
+			value = 30
+		}
+		scope:famine_state = {
+			add_modifier = {
+				name = famine_donations_modifier
+				days = normal_modifier_time
+			}
+		}
+	}
+
+	option = { #we shall only accept internal donations
+		name = famine_events.4.c
+		default_option = yes
+		scope:donations_ig = {
+			add_modifier = {
+				name = donations_ig_modifier
+				days = normal_modifier_time
+			}
+		}
+		scope:famine_state = {
+			add_modifier = {
+				name = famine_internal_donations_modifier
+				days = normal_modifier_time
+			}
+		}
+	}
+}

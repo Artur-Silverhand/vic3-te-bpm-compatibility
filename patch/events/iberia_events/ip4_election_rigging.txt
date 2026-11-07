@@ -1,0 +1,5 @@
+﻿namespace = caciquismo
+
+# TBCP: caciquismo.1 supplied by events/iberia_events/_ip4_election_rigging.txt.
+
+# TBCP: caciquismo.2 supplied by events/iberia_events/_ip4_election_rigging.txt.

@@ -1,0 +1,227 @@
+﻿namespace = regency
+
+# Start of the regency
+# TBCP: regency.1 supplied by events/000_bpm_regency_events.txt.
+
+# New regent - for cases in which the current regent is immortal, but clearly needs to die.
+regency.2 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = regency.2.t
+	desc = regency.2.d
+	flavor = regency.2.f
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = scope:regent_scope
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	trigger = {
+		# triggered by on_action - regency_monthly_events
+		has_gov_regency = yes
+		ruler ?= {
+			OR = {
+				age >= 75
+				has_trait = psychological_affliction
+				has_trait = cancer
+				has_trait = senile
+			}
+		}
+	}
+
+	cooldown = { months = short_modifier_time }
+
+	cancellation_trigger = {
+
+	}
+
+	immediate = {
+		ruler ?= {
+			save_scope_as = regent_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+			interest_group ?= {
+				save_scope_as = ig_candidate_1
+				if = {
+					limit = {
+						NOT = {
+							any_scope_character = {
+								is_ruler_of_own_country = no
+								is_heir_of_own_country = no
+							}
+						}
+					}
+					ROOT = {
+						create_character = {
+							interest_group = scope:ig_candidate_1
+							role = character_role_politician
+							save_scope_as = backup_regent_scope
+							on_created = {
+								set_temporary_event_immortality = { DURATION = 3 }
+							}
+						}
+					}
+				}
+			}
+		}
+		ordered_interest_group = { # Just the most notable IG in government
+			limit = {
+				NOT = {
+					scope:ig_candidate_1 ?= this
+				}
+				is_in_government = yes
+				ig_counts_as_marginal = no
+			}
+			order_by = ig_clout
+			position = 0
+			check_range_bounds = no
+			save_scope_as = ig_candidate_2
+		}
+		ordered_interest_group = { # Any pro-monarchy IG
+			limit = {
+				NOR = {
+					scope:ig_candidate_1 ?= this
+					scope:ig_candidate_2 ?= this
+				}
+				law_stance = {
+					law = law_type:law_monarchy
+					value >= approve
+				}
+				ig_counts_as_marginal = no
+			}
+			order_by = ig_clout
+			position = 0
+			check_range_bounds = no
+			save_scope_as = ig_candidate_3
+		}
+		ordered_interest_group = {
+			limit = {
+				NOR = {
+					scope:ig_candidate_1 ?= this
+					scope:ig_candidate_2 ?= this
+					scope:ig_candidate_3 ?= this
+				}
+				law_stance = {
+					law = law_type:law_monarchy
+					value >= neutral
+				}
+				is_insurrectionary = no
+				ig_counts_as_marginal = no
+			}
+			order_by = this.leader.popularity
+			position = 0
+			check_range_bounds = no
+			save_scope_as = ig_candidate_4
+		}
+		heir ?= {
+			save_scope_as = monarch_scope
+		}
+	}
+
+	option = {
+		name = regency.2.a
+		default_option = yes
+		if = {
+			limit = {
+				scope:ig_candidate_1 ?= {
+					any_scope_character = {
+						is_ruler_of_own_country = no
+						is_heir_of_own_country = no
+					}
+				}
+			}
+			scope:ig_candidate_1 ?= {
+				ordered_scope_character = {
+					limit = {
+						is_ruler_of_own_country = no
+						is_heir_of_own_country = no
+					}
+					order_by = loyalty
+					position = 0
+					if = {
+						limit = {
+							has_role_of_type = agitator
+						}
+						replace_character_roles = { remove = { agitator } add = { politician } }
+					}
+					set_character_as_ruler = yes
+					designate_character_as_regent = {
+						YEARS = 0
+					}
+				}
+			}
+		}
+		else = {
+			scope:backup_regent_scope ?= {
+				set_character_as_ruler = yes
+				designate_character_as_regent = {
+					YEARS = 0
+				}
+			}
+		}
+	}
+
+	option = {
+		name = regency.2.b
+		trigger = {
+			exists = scope:ig_candidate_2
+		}
+		scope:ig_candidate_2.leader = {
+			set_character_as_ruler = yes
+			designate_character_as_regent = {
+				YEARS = 0
+			}
+		}
+	}
+
+	option = {
+		name = regency.2.c
+		trigger = {
+			exists = scope:ig_candidate_3
+		}
+		scope:ig_candidate_3.leader = {
+			set_character_as_ruler = yes
+			designate_character_as_regent = {
+				YEARS = 0
+			}
+		}
+	}
+
+	option = {
+		name = regency.2.e
+		trigger = {
+			exists = scope:ig_candidate_4
+		}
+		scope:ig_candidate_4.leader = {
+			set_character_as_ruler = yes
+			designate_character_as_regent = {
+				YEARS = 0
+			}
+		}
+	}
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:backup_regent_scope }
+		scope:regent_scope = {
+			hidden_effect = {
+				if = {
+					limit = {
+						is_immortal = yes
+						has_variable = regent_immortality_var
+					}
+					set_character_immortal = no
+				}
+				revoke_temporary_event_immortality = { CHARACTER = scope:regent_scope }
+				retire_character = yes
+			}
+		}
+	}
+}
+
+# End of the regency
+# TBCP: regency.3 supplied by events/000_bpm_regency_events.txt.

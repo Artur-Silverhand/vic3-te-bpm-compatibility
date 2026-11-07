@@ -1,0 +1,56 @@
+﻿namespace = central_america
+
+# Central American Reunification
+central_america.1 = {
+	type = country_event
+	placement = ROOT
+	title = central_america.1.t
+	desc = central_america.1.d
+	flavor =  central_america.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "unspecific_military_parade"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	trigger = {
+		# triggered by reunify_central_america je
+	}
+	immediate = {
+		save_scope_as = formation_country
+		cu:central_american = {
+			save_scope_as = unification_culture
+		}
+		every_country = {
+			limit = {
+				has_diplomatic_relevance = ROOT
+			}
+			post_notification = unification_notification_one_culture
+		}
+	}
+	option = {
+		name = central_america.1.a
+		add_modifier = {
+			name = unification_prestige
+			days = very_long_modifier_time
+		}
+		add_loyalists = {
+			value = 0.1
+		}
+	}
+	after = {
+		je_reunify_central_america_cleanup = yes
+	}
+}
+
+# Dissolution of Central America
+# TBCP: central_america.2 supplied by events/_central_america_events.txt.
+
+# State secedes
+# TBCP: central_america.3 supplied by events/_central_america_events.txt.
+

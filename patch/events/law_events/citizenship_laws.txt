@@ -1,0 +1,19 @@
+﻿namespace = citizenship_laws
+
+# More Discrimination: Advancement
+# TBCP: citizenship_laws.1 supplied by events/_law_events/bpm_citizenship_laws.txt.
+
+# More Discrimination: Debate
+# TBCP: citizenship_laws.2 supplied by events/_law_events/bpm_citizenship_laws.txt.
+
+# More Discrimination: Stall
+# TBCP: citizenship_laws.3 supplied by events/_law_events/bpm_citizenship_laws.txt.
+
+# Less Discrimination: Advancement
+# TBCP: citizenship_laws.4 supplied by events/_law_events/bpm_citizenship_laws.txt.
+
+# Less Discrimination: Debate
+# TBCP: citizenship_laws.5 supplied by events/_law_events/bpm_citizenship_laws.txt.
+
+# Less Discrimination: Stall
+# TBCP: citizenship_laws.6 supplied by events/_law_events/bpm_citizenship_laws.txt.

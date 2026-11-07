@@ -1,0 +1,31 @@
+﻿namespace = utilitarian
+
+# Good Governance For All, on JE completion
+# TBCP: utilitarian.1 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# False Promises, on JE fail
+# TBCP: utilitarian.2 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# A Project Without Progress, on JE time out
+# TBCP: utilitarian.3 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# Undue Influence
+# TBCP: utilitarian.4 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# Danger to Imperial Mission
+# TBCP: utilitarian.5 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# Strengthening Ties
+# TBCP: utilitarian.6 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# Delayed Decisions
+# TBCP: utilitarian.7 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# Equal Opportunities
+# TBCP: utilitarian.8 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# An Extraordinarily Demanding Vision
+# TBCP: utilitarian.9 supplied by events/_india_events/zz_bpm_utilitarian.txt.
+
+# The Study of Indian Society
+# TBCP: utilitarian.10 supplied by events/_india_events/zz_bpm_utilitarian.txt.

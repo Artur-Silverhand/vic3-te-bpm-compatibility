@@ -1,0 +1,331 @@
+﻿namespace = caudillo
+
+# Age of Caudillo startup event
+# TBCP: caudillo.1 supplied by events/_brazil/zz_bpm_caudillo.txt.
+
+# End of the Caudillo
+# TBCP: caudillo.2 supplied by events/_brazil/zz_bpm_caudillo.txt.
+
+# The Fist Clenches
+# TBCP: caudillo.3 supplied by events/_brazil/zz_bpm_caudillo.txt.
+
+# Continuismo
+# TBCP: caudillo.4 supplied by events/_brazil/zz_bpm_caudillo.txt.
+
+# Kingmaker
+caudillo.5 = {
+	type = country_event
+	placement = ROOT
+
+	title = caudillo.5.t
+	desc = caudillo.5.desc
+	flavor = caudillo.5.f
+
+	event_image = {
+		video = "unspecific_military_parade"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/ig_icons/armed_forces.dds"
+
+	duration = 3
+
+	trigger = {
+		# triggered by on_action
+	}
+
+	immediate = {
+		ig:ig_armed_forces ?= {
+			save_scope_as = army_scope
+			leader = {
+				save_scope_as = army_leader
+				set_temporary_event_immortality = { DURATION = 3 }
+				set_variable = caudillo_kingmaker
+			}
+		}
+		py:conservative_party ?= {
+			save_scope_as = conservative_party
+		}
+		py:liberal_party ?= {
+			save_scope_as = liberal_party
+		}
+		if = {
+			limit = {
+				any_active_party = {
+					party_has_members = yes
+					is_party_type = communist_party
+				}
+			}
+			py:communist_party = {
+				save_scope_as = communist_party
+			}
+		}
+		if = {
+			limit = {
+				any_active_party = {
+					party_has_members = yes
+					is_party_type = fascist_party
+				}
+			}
+			py:fascist_party = {
+				save_scope_as = fascist_party
+			}
+		}
+	}
+	option = {
+		name = caudillo.5.a
+		default_option = yes
+		if = {
+			limit = {
+				has_journal_entry = je_caudillo
+			}
+			custom_tooltip = {
+				text = gain_caudillo_points
+				je:je_caudillo ?= {
+					add_progress = { value = 100 name = je_caudillo_progress_bar }
+				}
+			}
+		}
+		custom_tooltip = {
+			text = armed_forces_support_conservative
+			ig:ig_armed_forces ?= {
+				leader = {
+					set_variable = caudillo_conservative
+				}
+			}
+		}
+		update_party_support = yes
+	}
+	option = {
+		name = caudillo.5.b
+		trigger = {
+			exists = scope:liberal_party
+		}
+		if = {
+			limit = {
+				has_journal_entry = je_caudillo
+			}
+			custom_tooltip = {
+				text = gain_caudillo_points
+				je:je_caudillo ?= {
+					add_progress = { value = 100 name = je_caudillo_progress_bar }
+				}
+			}
+		}
+		custom_tooltip = {
+			text = armed_forces_support_liberal
+			ig:ig_armed_forces ?= {
+				leader = {
+					set_variable = caudillo_liberal
+				}
+			}
+		}
+		update_party_support = yes
+	}
+	option = {
+		name = caudillo.5.c
+		trigger = {
+			any_active_party = {
+				party_has_members = yes
+				is_party_type = communist_party
+			}
+			ig:ig_armed_forces ?= {
+				leader = {
+					OR = {
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_communist_leader
+						has_ideology = ideology:ideology_anarchist
+					}
+				}
+			}
+		}
+		highlighted_option = yes
+		if = {
+			limit = {
+				has_journal_entry = je_caudillo
+			}
+			custom_tooltip = {
+				text = gain_caudillo_points
+				je:je_caudillo ?= {
+					add_progress = { value = 100 name = je_caudillo_progress_bar }
+				}
+			}
+		}
+		custom_tooltip = {
+			text = armed_forces_support_communist
+			ig:ig_armed_forces ?= {
+				leader = {
+					set_variable = caudillo_communist
+				}
+			}
+		}
+		update_party_support = yes
+	}
+	option = {
+		name = caudillo.5.d
+		trigger = {
+			any_active_party = {
+				party_has_members = yes
+				is_party_type = fascist_party
+			}
+			ig:ig_armed_forces ?= {
+				leader = {
+					OR = {
+						has_ideology = ideology:ideology_fascist
+						has_ideology = ideology:ideology_ethno_nationalist
+					}
+				}
+			}
+		}
+		highlighted_option = yes
+		if = {
+			limit = {
+				has_journal_entry = je_caudillo
+			}
+			custom_tooltip = {
+				text = gain_caudillo_points
+				je:je_caudillo ?= {
+					add_progress = { value = 100 name = je_caudillo_progress_bar }
+				}
+			}
+		}
+		custom_tooltip = {
+			text = armed_forces_support_fascist
+			ig:ig_armed_forces ?= {
+				leader = {
+					set_variable = caudillo_fascist
+				}
+			}
+		}
+		update_party_support = yes
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:army_leader }
+	}
+
+	cancellation_trigger = {
+		NOT = {
+			exists = scope:army_leader
+		}
+	}
+}
+
+caudillo.6 = {
+	type = country_event
+	placement = ROOT
+
+	title = caudillo.6.t
+	desc = caudillo.6.d
+	flavor = caudillo.6.f
+
+	gui_window = event_window_2char
+
+	left_icon = scope:leadership_challenge_commander
+	right_icon = scope:leadership_challenge_politician
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
+
+	icon = "gfx/interface/icons/ig_icons/armed_forces.dds"
+
+	cooldown = { days = normal_modifier_time }
+
+	duration = 3
+
+	trigger = {
+		# triggered by journal entry - je_caudillo [on_monthly_pulse]
+		has_journal_entry = je_caudillo
+		any_scope_character = {
+			OR = {
+				has_role_of_type = general
+				has_role_of_type = admiral
+			}
+			prominence > interest_group.leader.prominence
+			NOR = {
+				has_trait = reserved
+				has_trait = cautious
+			}
+			NOR = {
+				has_role_of_type = politician
+				is_ruler_of_own_country = yes
+				is_heir_of_own_country = yes
+			}
+			this.interest_group ?= {
+				leader = {
+					NOR = {
+						has_role_of_type = general
+						has_role_of_type = admiral
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = {
+				OR = {
+					has_role_of_type = general
+					has_role_of_type = admiral
+				}
+				prominence > interest_group.leader.prominence
+				NOR = {
+					has_trait = reserved
+					has_trait = cautious
+				}
+				NOR = {
+					has_role_of_type = politician
+					is_ruler_of_own_country = yes
+					is_heir_of_own_country = yes
+				}
+				this.interest_group ?= {
+					leader = {
+						NOR = {
+							has_role_of_type = general
+							has_role_of_type = admiral
+						}
+					}
+				}
+			}
+			save_scope_as = leadership_challenge_commander
+			set_temporary_event_immortality = { DURATION = 3 }
+			this.interest_group ?= {
+				save_scope_as = leadership_challenge_ig
+				leader = {
+					save_scope_as = leadership_challenge_politician
+					set_temporary_event_immortality = { DURATION = 3 }
+				}
+			}
+		}
+	}
+	option = {
+		name = caudillo.6.a
+		default_option = yes
+		custom_tooltip = politician_gets_pushed_out_tt
+		scope:leadership_challenge_commander = {
+			set_as_interest_group_leader = yes
+		}
+		custom_tooltip = {
+			text = gain_caudillo_points
+			je:je_caudillo ?= {
+				add_progress = { value = 100 name = je_caudillo_progress_bar }
+			}
+		}
+	}
+	option = {
+		name = caudillo.6.b
+		custom_tooltip = {
+			text = lose_caudillo_points
+			je:je_caudillo ?= {
+				add_progress = { value = -100 name = je_caudillo_progress_bar }
+			}
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:leadership_challenge_commander }
+		revoke_temporary_event_immortality = { CHARACTER = scope:leadership_challenge_politician }
+	}
+}

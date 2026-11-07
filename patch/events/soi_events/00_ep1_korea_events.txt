@@ -1,0 +1,44 @@
+﻿namespace = gg_korea
+
+# TBCP: gg_korea.1 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.2 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.3 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.4 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.5 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.6 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.7 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.8 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: gg_korea.9 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+namespace = korea_monarchy
+
+# TBCP: korea_monarchy.1 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: korea_monarchy.2 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+# TBCP: korea_monarchy.3 supplied by events/_soi_events/zz_ep1_korea_events.txt.
+
+korea_monarchy.4 = { # Byeon Yi
+	type = country_event
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		# triggered by on_action - korea_half_yearly_events
+		ruler ?= {
+			has_template = KOR_yi_hwan
+		}
+	}
+	immediate = {
+		create_character = {
+			template = KOR_yi_byeon
+		}
+	}
+}

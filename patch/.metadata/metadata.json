@@ -1,0 +1,15 @@
+{
+  "name": "Timeline Extended + BPM — Compatibility (Development)",
+  "id": "44a453ae-01a4-49e4-991c-4f1eaa2ae614",
+  "version": "0.6.0-dev",
+  "supported_game_version": "1.15.0",
+  "short_description": "Development compatibility candidate. Requires pinned TE and full BPM. Runtime acceptance pending; read README.",
+  "tags": [
+    "Gameplay",
+    "Interest Groups"
+  ],
+  "relationships": [],
+  "game_custom_data": {
+    "multiplayer_synchronized": true
+  }
+}

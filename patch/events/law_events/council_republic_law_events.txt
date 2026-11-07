@@ -1,0 +1,7 @@
+﻿namespace = council_republic_law_events
+
+# TBCP: council_republic_law_events.1 supplied by events/_law_events/bpm_council_republic_law_events.txt.
+
+# TBCP: council_republic_law_events.2 supplied by events/_law_events/bpm_council_republic_law_events.txt.
+
+# TBCP: council_republic_law_events.3 supplied by events/_law_events/bpm_council_republic_law_events.txt.

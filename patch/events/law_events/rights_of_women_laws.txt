@@ -1,0 +1,15 @@
+﻿namespace = rights_of_women_laws
+
+# TBCP: rights_of_women_laws.1 supplied by events/_law_events/bpm_rights_of_women_laws.txt.
+
+# TBCP: rights_of_women_laws.2 supplied by events/_law_events/bpm_rights_of_women_laws.txt.
+
+# TBCP: rights_of_women_laws.3 supplied by events/_law_events/bpm_rights_of_women_laws.txt.
+
+# TBCP: rights_of_women_laws.4 supplied by events/_law_events/bpm_rights_of_women_laws.txt.
+
+# TBCP: rights_of_women_laws.5 supplied by events/_law_events/bpm_rights_of_women_laws.txt.
+
+# TBCP: rights_of_women_laws.6 supplied by events/_law_events/bpm_rights_of_women_laws.txt.
+
+# TBCP: rights_of_women_laws.7 supplied by events/_law_events/bpm_rights_of_women_laws.txt.

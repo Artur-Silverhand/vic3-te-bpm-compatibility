@@ -1,0 +1,5 @@
+﻿bpm_is_green_party_banned = { bpm_is_radical_party_banned = yes }
+
+bpm_is_populist_party_banned = { bpm_is_reactionary_party_banned = yes }
+
+bpm_is_technocratic_party_banned = { bpm_is_liberal_party_banned = yes }

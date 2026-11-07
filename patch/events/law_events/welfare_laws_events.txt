@@ -1,0 +1,34 @@
+﻿namespace = welfare_laws
+
+
+# Houses of Faith
+# TBCP: welfare_laws.1 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+
+# The Principle of Population
+# TBCP: welfare_laws.2 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+
+# Prisons of the Poor
+# TBCP: welfare_laws.3 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+
+# Child of the Workhouse
+# TBCP: welfare_laws.4 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+
+# A Guiding Hand
+# TBCP: welfare_laws.5 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+
+# Idle Hands
+# TBCP: welfare_laws.6 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+# The Price of War
+# TBCP: welfare_laws.8 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+# Unionized Leverage
+# TBCP: welfare_laws.9 supplied by events/_law_events/bpm_welfare_laws_events.txt.
+
+# Ruler Urges Caution
+# TBCP: welfare_laws.10 supplied by events/_law_events/bpm_welfare_laws_events.txt.

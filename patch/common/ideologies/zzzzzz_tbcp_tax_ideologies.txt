@@ -1,0 +1,277 @@
+﻿REPLACE:ideology_physiocrat = {
+	icon = "gfx/interface/icons/ideology_icons/ideology_leader/ideology_leader_laissez_faire.dds"
+	
+	character_ideology = yes
+	show_in_list = yes
+
+	lawgroup_economic_system = {
+		law_traditionalism = strongly_disapprove
+		law_interventionism = disapprove
+		law_agrarianism = strongly_approve
+		law_laissez_faire = approve
+		law_cooperative_ownership = strongly_disapprove
+		law_command_economy = strongly_disapprove
+		law_extraction_economy = strongly_disapprove
+	}
+
+	lawgroup_land_reform = {
+		law_serfdom = strongly_disapprove
+		law_tenant_farmers = approve
+		law_peasant_proprietorship = neutral
+		law_collectivized_agriculture = approve
+		law_commercialized_agriculture = disapprove
+	}
+
+	lawgroup_taxation = {
+		law_consumption_based_taxation = disapprove
+		law_land_based_taxation = strongly_approve
+		law_per_capita_based_taxation = disapprove
+		law_proportional_taxation = disapprove
+		law_graduated_taxation = strongly_disapprove
+	}
+
+	lawgroup_trade_policy = {		
+		law_protectionism = disapprove
+		law_mercantilism = neutral		
+		law_isolationism = disapprove
+		law_free_trade = strongly_approve
+	}
+
+	lawgroup_repeatable_economy = {
+		law_repeatable_economy_liberalization = neutral
+		law_repeatable_economy_agricultural_investment = strongly_approve
+		law_repeatable_economy_peasant_corvee = approve
+		law_repeatable_economy_public_works = approve
+		law_repeatable_economy_forced_industrialization = strongly_disapprove
+	}
+
+	
+	interest_group_leader_trigger = {
+		ideology_physiocrat_valid_trigger = yes
+	}
+	
+	interest_group_leader_weight = {
+		value = 100
+		# less likely among more progressive IG's if they're angry
+		if = {
+			limit = {
+				OR = {
+					bpm_ig_is_left_wing = yes
+				}
+				ig_approval < 0
+			}
+			add = -75
+		}
+		# less likely among radical IGs
+		if = {
+			limit = {
+				bpm_ig_is_radical_left = yes
+			}
+			add = -75
+		}
+		# more likely in premodern lawsets
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_law_or_variant = law_type:law_traditionalism
+						has_law_or_variant = law_type:law_serfdom
+					}
+				}
+			}
+			add = 75
+		}
+
+		if = {
+			limit = {
+				bpm_ig_is_agrarian = yes
+				is_interest_group_type = ig_landowners
+			}
+			add = 15
+		}
+		
+		# less likely if reactionary or capitalist
+		if = {
+			limit = {
+				OR = {
+					is_interest_group_type = ig_reactionaries
+					is_interest_group_type = ig_industrialists
+				}
+			}
+			add = -75
+		}
+	}
+
+	non_interest_group_leader_trigger = {
+        interest_group = {
+    		ideology_physiocrat_valid_trigger = yes
+    	}
+		# Agitators should have an ideology at odds with current laws
+		NAND = {
+			has_role_of_type = agitator
+			owner = {
+				has_law_or_variant = law_type:law_agrarianism
+				tbcp_tax_has_or_variant_land_based = yes
+				NOT = { bpm_country_has_unfree_labor = yes }
+			}
+		}
+		
+	}
+	
+	non_interest_group_leader_weight = {
+		value = 100
+		# less likely when issues are not relevant
+	}
+}
+
+REPLACE:ideology_land_reformer = {
+	icon = "gfx/interface/icons/ideology_icons/ideology_leader/ideology_leader_land_reformer.dds"
+	
+	character_ideology = yes
+	show_in_list = yes
+	lawgroup_centralization = {
+		law_unitary = neutral
+		law_devolved = neutral
+		law_federated = neutral
+		law_confederated = neutral
+		law_ad_hoc_centralization = strongly_disapprove
+	}
+
+	lawgroup_taxation = {
+		law_land_based_taxation = strongly_disapprove
+		law_consumption_based_taxation = neutral
+		law_per_capita_based_taxation = neutral
+		law_proportional_taxation = neutral
+		law_graduated_taxation = neutral
+	}
+
+	lawgroup_land_reform = {
+		law_serfdom = strongly_disapprove
+		law_tenant_farmers = neutral
+		law_commercialized_agriculture = neutral
+		law_peasant_proprietorship = approve
+		law_collectivized_agriculture = neutral
+	}
+
+	interest_group_leader_trigger = {
+		ideology_land_reformer_valid_trigger = yes
+	}
+	
+	interest_group_leader_weight = {
+		value = 25
+		# less likely for urbanites
+		if = {
+			limit = {
+				OR = {
+					bpm_ig_is_urban_institutional = yes
+					bpm_ig_is_state_institutional = yes
+				}
+			}
+			add = -100
+		}
+		# less likely for right wingers
+		if = {
+			limit = {
+				bpm_ig_is_right_wing = yes
+			}
+			add = -100
+		}
+		# more likely when issues are relevant
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_law_or_variant = law_type:law_serfdom
+						tbcp_tax_has_or_variant_land_based = yes
+						has_law_or_variant = law_type:law_ad_hoc_centralization
+					}
+				}
+			}
+			add = 50
+		}
+		# more likely for displeased peasants
+		if = {
+			limit = {
+				is_interest_group_type = ig_rural_folk
+				ig_approval <= 0
+				owner = {
+					OR = {
+						has_law_or_variant = law_type:law_serfdom
+						has_law_or_variant = law_type:law_tenant_farmers
+						tbcp_tax_has_or_variant_land_based = yes
+					}
+				}
+			}
+			add = 150
+		}
+		# likely to emerge if landowners are powerful
+		if = {
+			limit = {
+				owner = {
+					exists = ig:ig_landowners
+					ig:ig_landowners = {
+						is_powerful = yes
+					}
+				}
+			}
+			add = 50
+		}
+		# likely to emerge if agrarian
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_law_or_variant = law_type:law_traditionalism
+						has_law_or_variant = law_type:law_agrarianism
+					}
+				}
+			}
+			add = 100
+		}
+		# will not happen if land reform is essentially done
+		if = {
+			limit = {
+				owner = {
+					NOT = {
+						tbcp_tax_has_or_variant_land_based = yes
+					}
+					OR = {
+						has_law_or_variant = law_type:law_peasant_proprietorship
+						has_law_or_variant = law_type:law_collectivized_agriculture
+					}
+				}
+			}
+			multiply = 0.01
+		}
+		# Pedro JE victory
+		if = {
+			limit = {
+				owner = {
+					has_variable = brz_enduring_empire
+				}
+			}
+			add = 50
+		}
+	}
+
+	non_interest_group_leader_trigger = {
+        interest_group = {
+    		ideology_land_reformer_valid_trigger = yes
+    	}
+		# Agitator ideologies should disapprove of a current law
+		NAND = {
+			has_role_of_type = agitator
+			owner = {
+				NOR = {
+					tbcp_tax_has_or_variant_land_based = yes
+					has_law_or_variant = law_type:law_ad_hoc_centralization
+				}
+				has_law_or_variant = law_type:law_peasant_proprietorship
+			}
+		}
+	}
+	
+	non_interest_group_leader_weight = {
+		value = 25
+	}
+}

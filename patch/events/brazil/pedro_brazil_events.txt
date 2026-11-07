@@ -1,0 +1,470 @@
+﻿namespace = pedro
+
+# Startup event
+# TBCP: pedro.1 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# Landowners become republicans
+# TBCP: pedro.2 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# Pedro comes of age
+# TBCP: pedro.3 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# Pedro is really old
+pedro.4 = {
+	type = country_event
+	placement = ROOT
+
+	title = pedro.4.t
+	desc = pedro.4.d
+	flavor = pedro.4.f
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = root.ruler
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	dlc = dlc008
+
+	fire_only_once = yes
+
+	trigger = {
+		# triggered by journal entry - je_pedro_brazil [on_monthly_pulse]
+		 # triggered by je_pedro_brazil
+		ruler = {
+			age >= 60
+		}
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = pedro_scope
+		}
+	}
+
+	option = {
+		name = pedro.4.a
+		default_option = yes
+		scope:pedro_scope = {
+			add_trait = sickly
+			set_character_immortal = no
+		}
+		remove_pedropoint_effect = yes
+	}
+}
+
+# Landowners or AF are Marginalized
+pedro.5 = {
+	type = country_event
+	placement = ROOT
+
+	title = pedro.5.t
+	desc = pedro.5.d
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				desc = pedro.5.f
+				trigger = {
+					scope:marginal_ig_scope = {
+						is_interest_group_type = ig_armed_forces
+					}
+				}
+			}
+			triggered_desc = {
+				desc = pedro.5.f2
+				trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+
+	event_image = {
+		video = "southamerica_aristocrats"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+
+	dlc = dlc008
+
+	fire_only_once = yes
+
+	trigger = {
+		# triggered by journal entry - je_pedro_brazil [on_monthly_pulse]
+		# triggered by je_pedro_brazil
+		OR = {
+			AND = {
+				NOT = { has_variable = pedro_lo_marginal_var }
+				ig:ig_landowners ?= {
+					ig_counts_as_marginal = yes
+				}
+			}
+			AND = {
+				NOT = { has_variable = pedro_af_marginal_var }
+				ig:ig_armed_forces ?= {
+					ig_counts_as_marginal = yes
+				}
+			}
+
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_variable = pedro_lo_marginal_var }
+				ig:ig_landowners ?= {
+					ig_counts_as_marginal = yes
+				}
+			}
+			set_variable = pedro_lo_marginal_var
+			ig:ig_landowners ?= {
+				save_scope_as = marginal_ig_scope
+			}
+		}
+		else = {
+			set_variable = pedro_af_marginal_var
+			ig:ig_armed_forces ?= {
+				save_scope_as = marginal_ig_scope
+			}
+		}
+		ruler = {
+			save_scope_as = pedro_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:pedro_scope }
+	}
+
+	option = {
+		name = pedro.5.a
+		default_option = yes
+		add_pedropoint_effect = yes
+	}
+}
+
+# Landowners or AF are Powerful and not in government
+pedro.6 = {
+	type = country_event
+	placement = ROOT
+
+	title = pedro.6.t
+	desc = pedro.6.d
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				desc = pedro.6.f
+				trigger = {
+					scope:powerful_ig_scope = {
+						is_interest_group_type = ig_armed_forces
+					}
+				}
+			}
+			triggered_desc = {
+				desc = pedro.6.f2
+				trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+
+	event_image = {
+		video = "southamerica_aristocrats"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+
+	dlc = dlc008
+
+	fire_only_once = yes
+
+	trigger = {
+		# triggered by journal entry - je_pedro_brazil [on_monthly_pulse]
+		# triggered by je_pedro_brazil
+		root.var:pedropoints <= 3
+		OR = {
+			AND = {
+				NOT = { has_variable = pedro_lo_powerful_var }
+				ig:ig_landowners ?= {
+					is_powerful = yes
+					is_in_government = no
+				}
+			}
+			AND = {
+				NOT = { has_variable = pedro_af_powerful_var }
+				ig:ig_armed_forces ?= {
+					is_powerful = yes
+					is_in_government = no
+				}
+			}
+
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_variable = pedro_lo_powerful_var }
+				ig:ig_landowners ?= {
+					is_powerful = yes
+					is_in_government = no
+				}
+			}
+			set_variable = pedro_lo_powerful_var
+			ig:ig_landowners ?= {
+				save_scope_as = powerful_ig_scope
+			}
+		}
+		else = {
+			set_variable = pedro_af_powerful_var
+			ig:ig_armed_forces ?= {
+				save_scope_as = powerful_ig_scope
+			}
+		}
+		ruler = {
+			save_scope_as = pedro_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:pedro_scope }
+	}
+
+	option = {
+		name = pedro.6.a
+		default_option = yes
+		scope:powerful_ig_scope = {
+			add_modifier = {
+				name = pedro_powerful_ig
+				days = normal_modifier_time
+			}
+		}
+		remove_pedropoint_effect = yes
+	}
+}
+
+# The Monarchy survives, ending event
+# TBCP: pedro.7 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# The Monarchy is overthrown in a landowner/AF coup, ending event
+# TBCP: pedro.8 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# The Republican Proposal
+# TBCP: pedro.9 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# President Pedro
+# TBCP: pedro.10 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# Enactment event
+pedro.11 = {
+	type = country_event
+	placement = ROOT
+
+	title = pedro.11.t
+	desc = pedro.11.d
+	flavor = pedro.11.f
+
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	duration = 3
+
+	dlc = dlc008
+
+	category = enactment
+
+	cooldown = { days = long_modifier_time }
+
+	trigger = {
+		# triggered by journal entry - je_pedro_brazil [on_monthly_pulse]
+		has_journal_entry = je_pedro_republic
+		is_enacting_law = law_type:law_presidential_republic
+	}
+
+	cancellation_trigger = {
+		OR = {
+			ruler = {
+				NOT = {
+					has_variable = is_pedro
+				}
+			}
+			NOT = {
+				exists = root.currently_enacting_law
+			}
+		}
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = pedro_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		currently_enacting_law = {
+			save_scope_as = current_law_scope
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:pedro_scope }
+	}
+
+	option = {
+		name = pedro.11.a
+		default_option = yes
+		add_enactment_phase = 1
+		add_loyalists = {
+			value = 0.05
+		}
+	}
+}
+
+# Death of Pedro's heirs
+# TBCP: pedro.12 supplied by events/_brazil/zz_bpm_pedro_brazil_events.txt.
+
+# isabel confirmed as heir
+pedro.13 = {
+	type = country_event
+	placement = ROOT
+
+	title = pedro.13.t
+	desc = pedro.13.d
+	flavor = pedro.13.f
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = root.heir
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	dlc = dlc008
+
+	trigger = {
+		# triggered by je_isabel completion
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = pedro_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		heir ?= {
+			save_scope_as = isabel_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		set_variable = isabel_confirmed_heir_var
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:pedro_scope }
+		revoke_temporary_event_immortality = { CHARACTER = scope:isabel_scope }
+		je_isabel_cleanup = yes
+	}
+
+	option = {
+		name = pedro.13.a
+		default_option = yes
+		scope:isabel_scope = {
+			remove_modifier = isabel_heir_popularity
+		}
+		scope:pedro_scope = {
+			remove_modifier = isabel_heir_popularity
+		}
+		add_pedropoint_effect_3 = yes
+	}
+}
+
+# To the Highest Standards
+pedro.14 = {
+	type = country_event
+	placement = ROOT
+
+	title = pedro.14.t
+	desc = pedro.14.d
+	flavor = pedro.14.f
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = root.ruler
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	dlc = dlc008
+
+	cooldown = { days = normal_modifier_time }
+
+	trigger = {
+		# triggered by journal entry - je_pedro_brazil [on_monthly_pulse]
+		# triggered by on_action - on_yearly_events
+		has_dlc_feature = rp1_content
+		ruler = {
+			has_trait = meticulous
+			age >= 21
+		}
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = ruler_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:ruler_scope }
+	}
+
+	option = {
+		name = pedro.14.a
+		default_option = yes
+		add_modifier = {
+			name = highest_standards_degrees
+			days = normal_modifier_time
+		}
+	}
+	option = {
+		name = pedro.14.b
+		trigger = {
+			NOT = { has_law_or_variant = law_type:law_free_trade }
+		}
+		add_modifier = {
+			name = highest_standards_trade
+			days = normal_modifier_time
+		}
+	}
+	option = {
+		name = pedro.14.c
+		add_modifier = {
+			name = highest_standards_construction
+			days = normal_modifier_time
+		}
+	}
+}

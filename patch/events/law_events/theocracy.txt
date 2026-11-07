@@ -1,0 +1,10 @@
+﻿namespace = theocracy
+
+# Advancement - Miracle Workers
+# TBCP: theocracy.1 supplied by events/_law_events/bpm_theocracy.txt.
+
+# Debate Event - Blasphemy
+# TBCP: theocracy.2 supplied by events/_law_events/bpm_theocracy.txt.
+
+# Stall event - religious pogroms
+# TBCP: theocracy.3 supplied by events/_law_events/bpm_theocracy.txt.

@@ -1,0 +1,101 @@
+﻿namespace = neighbor_events
+
+# Religious figures reach out to the other country
+# TBCP: neighbor_events.1 supplied by events/_neighbor_events.txt.
+
+# Military warns for potential conflict
+# TBCP: neighbor_events.2 supplied by events/_neighbor_events.txt.
+
+# Internationalist sentiment among unions
+# TBCP: neighbor_events.3 supplied by events/_neighbor_events.txt.
+
+# Industrialists want to invest in neighbor
+# TBCP: neighbor_events.4 supplied by events/_neighbor_events.txt.
+
+
+# Banned newspaper printed in neighboring country
+# TBCP: neighbor_events.5 supplied by events/_neighbor_events.txt.
+
+# Book banned in neighbor accepted by local publisher
+# TBCP: neighbor_events.6 supplied by events/_neighbor_events.txt.
+
+
+# Population notices neighbor has higher standard of living
+neighbor_events.7 = {
+	type = country_event
+	placement = scope:neighbor_neighbor_state
+
+	title = neighbor_events.7.t
+	desc = neighbor_events.7.d
+	flavor = neighbor_events.7.f
+
+	event_image = {
+		video = "middleeast_middleclass_cafe"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 3
+
+	cooldown = { days = stupidly_long_modifier_time }
+
+	trigger = {
+		# triggered by on_action - on_yearly_events
+		any_neighbouring_state = {
+			owner = {
+				NOT = { is_country_type = decentralized }
+				average_sol > root.average_sol
+			}
+		}
+		ig:ig_trade_unions ?= {
+			ig_counts_as_marginal = no
+		}
+	}
+
+	immediate = {
+		save_neighbor_with_state = {
+			CRITERIA = "NOT = { is_country_type = decentralized }
+				average_sol > root.average_sol"
+		}
+	}
+
+	option = {
+		name = neighbor_events.7.a
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = criticized_economic_injustice
+				days = short_modifier_time
+			}
+		}
+		every_interest_group = {
+			limit = {
+				has_hierarchic_ideology = yes
+				has_ideology = ideology:ideology_plutocratic
+			}
+			add_modifier = {
+				name = blamed_economic_inequality
+				days = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = neighbor_events.7.b
+		change_relations = {
+			country = scope:neighbor_country
+			value = -30
+		}
+	}
+
+	option = {
+		name = neighbor_events.7.c
+		default_option = yes
+		scope:neighbor_neighbor_state = {
+			add_radicals_in_state = {
+				value = medium_radicals
+			}
+		}
+	}
+}

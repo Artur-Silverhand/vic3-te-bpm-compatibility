@@ -1,0 +1,310 @@
+﻿namespace = communist_elections
+namespace = cable_street
+
+# The Red Scare
+communist_elections.1 = {
+	type = country_event
+	placement = ROOT
+
+	title = communist_elections.1.t
+	desc = communist_elections.1.d1
+	flavor = communist_elections.1.f
+
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 3
+
+	cooldown = { days = very_long_modifier_time }
+
+	trigger = {
+		# triggered by on_action - elections_monthly_events
+		NOT = { has_law_or_variant = law_type:law_single_party_state }
+		in_election_campaign = yes
+		NOT = { has_variable = mute_election_events }
+		NOT = { has_law_or_variant = law_type:law_council_republic }
+		NOT = { has_variable = red_scare_var }
+		# Leftists are running in the election but aren't in government
+		any_interest_group = {
+			is_in_government = no
+			has_party = yes
+			party = {
+				OR = {
+					is_party_type = communist_party
+					is_party_type = socialist_party
+					is_party_type = anarchist_party
+				}
+			}
+		}
+		# Any government IG is in a non-leftist party
+		any_interest_group = {
+			is_in_government = yes
+			has_party = yes
+			party = {
+				NOR = {
+					is_party_type = communist_party
+					is_party_type = socialist_party
+					is_party_type = anarchist_party
+				}
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = red_scare_var
+			days = short_modifier_time
+		}
+		random_interest_group = {
+			limit = {
+				is_in_government = no
+				has_party = yes
+				party = {
+					OR = {
+						is_party_type = communist_party
+						is_party_type = socialist_party
+						is_party_type = anarchist_party
+					}
+				}
+			}
+			party = {
+				save_scope_as = leftist_party
+			}
+		}
+		random_interest_group = {
+			limit = {
+				is_in_government = yes
+				has_party = yes
+				party = {
+					NOR = {
+						is_party_type = communist_party
+						is_party_type = socialist_party
+						is_party_type = anarchist_party
+					}
+				}
+			}
+			party = {
+				save_scope_as = anti_leftist_party
+			}
+		}
+	}
+
+	cancellation_trigger = {
+		in_election_campaign = no
+	}
+
+	option = { # These leftists are traitors to [country]
+		name = communist_elections.1.a
+		scope:leftist_party = {
+			add_momentum = momentum_large_decrease
+		}
+	}
+
+	option = { # This rhetoric is needlessly alarmist
+		name = communist_elections.1.b
+		default_option = yes
+		scope:leftist_party = {
+			add_momentum = momentum_medium_decrease
+		}
+		add_modifier = { # reduced government opinion
+			name = red_scare_minimized
+			days = short_modifier_time
+		}
+	}
+
+	option = { # Ban communist literature
+		name = communist_elections.1.c
+		highlighted_option = yes
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_outlawed_dissent
+				has_law_or_variant = law_type:law_censorship
+			}
+		}
+		scope:leftist_party = {
+			add_momentum = momentum_very_large_decrease
+			every_member = {
+				add_modifier = {
+					name = red_scare_communists_annoyed
+					days = short_modifier_time
+				}
+			}
+		}
+	}
+
+	option = { # Infiltrate and arrest the leadership
+		name = communist_elections.1.d
+		highlighted_option = yes
+		trigger = {
+			has_law_or_variant = law_type:law_secret_police
+		}
+		scope:leftist_party = {
+			add_momentum = momentum_very_large_decrease
+		}
+		add_modifier = { # costs some authority
+			name = infiltrating_communist_parties
+			days = short_modifier_time
+		}
+	}
+
+	option = { # They have every right to spread their ideas
+		name = communist_elections.1.e
+		highlighted_option = yes
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_right_of_assembly
+				has_law_or_variant = law_type:law_protected_speech
+			}
+		}
+		scope:leftist_party = {
+			add_momentum = momentum_small
+		}
+		scope:anti_leftist_party = {
+			every_member = {
+				add_modifier = {
+					name = red_scare_minimized
+					days = short_modifier_time
+				}
+			}
+		}
+	}
+}
+
+# Workers vote in the Council Republic. Trade Union party strongly preferred.
+communist_elections.2 = {
+	type = country_event
+	placement = ROOT
+
+	title = communist_elections.2.t
+	desc = communist_elections.2.d
+	flavor = communist_elections.2.f
+
+	event_image = {
+		video = "southamerica_election"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 3
+
+	cooldown = { days = very_long_modifier_time }
+
+	trigger = {
+		# triggered by on_action - elections_monthly_events
+		NOT = { has_law_or_variant = law_type:law_single_party_state }
+		in_election_campaign = yes
+		NOT = { has_variable = mute_election_events }
+		NOT = { has_variable = council_elections_var }
+		has_law_or_variant = law_type:law_council_republic
+		ig:ig_trade_unions ?= {
+			has_party = yes
+		}
+		any_active_party = {
+			party_has_members = yes
+			NOT = {
+				any_member = { is_interest_group_type = ig_trade_unions }
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = council_elections_var
+			days = short_modifier_time
+		}
+		ig:ig_trade_unions ?= {
+			save_scope_as = unions_ig
+			party = {
+				save_scope_as = unions_party
+			}
+		}
+		random_active_party = {
+			limit = {
+				party_has_members = yes
+				NOT = { this = scope:unions_party }
+			}
+			save_scope_as = anti_union_party
+		}
+	}
+
+	cancellation_trigger = {
+		in_election_campaign = no
+	}
+
+	option = { # The workers are always right
+		name = communist_elections.2.a
+		default_option = yes
+		scope:unions_party = {
+			add_momentum = momentum_very_large
+		}
+	}
+	option = { # voting for the worker's party is mandatory
+		name = communist_elections.2.b
+		highlighted_option = yes
+		trigger = {
+			custom_tooltip = {
+				text = communist_elections.2.tt
+				scope:unions_ig = {
+					is_in_government = yes
+				}
+			}
+			OR = {
+				has_law_or_variant = law_type:law_outlawed_dissent
+				has_law_or_variant = law_type:law_censorship
+			}
+		}
+		scope:unions_party = {
+			add_momentum = momentum_very_large
+		}
+		add_modifier = { # authority
+			name = mandatory_communist_support
+			days = short_modifier_time
+		}
+	}
+	option = { # other voices should also be heard
+		name = communist_elections.2.c
+		highlighted_option = yes
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_right_of_assembly
+				has_law_or_variant = law_type:law_protected_speech
+			}
+			custom_tooltip = {
+				text = communist_elections.2.c.tt
+				any_interest_group = {
+					has_party = yes
+					party = {
+						NOT = { THIS = scope:unions_party }
+					}
+				}
+			}
+		}
+		random_interest_group = {
+			limit = {
+				has_party = yes
+				party = {
+					NOT = { THIS = scope:unions_party }
+				}
+			}
+			party = {
+				add_momentum = momentum_large
+			}
+		}
+	}
+}
+
+# International Socialism
+# TBCP: communist_elections.3 supplied by events/_election_events/bpm_communist_fascist_election_events.txt.
+
+# Fascist paramilitaries intimidate voters
+# TBCP: communist_elections.4 supplied by events/_election_events/bpm_communist_fascist_election_events.txt.
+
+# Battle of Cable Street
+# TBCP: cable_street.1 supplied by events/_election_events/bpm_communist_fascist_election_events.txt.

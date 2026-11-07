@@ -1,0 +1,15 @@
+﻿namespace = mughal
+
+# TBCP: mughal.1 supplied by events/_india_events/zz_bpm_mughal_events.txt.
+
+# TBCP: mughal.2 supplied by events/_india_events/zz_bpm_mughal_events.txt.
+
+# TBCP: mughal.3 supplied by events/_india_events/zz_bpm_mughal_events.txt.
+
+# TBCP: mughal.4 supplied by events/_india_events/zz_bpm_mughal_events.txt.
+
+# TBCP: mughal.5 supplied by events/_india_events/zz_bpm_mughal_events.txt.
+
+# TBCP: mughal.6 supplied by events/_india_events/zz_bpm_mughal_events.txt.
+
+# TBCP: mughal.7 supplied by events/_india_events/zz_bpm_mughal_events.txt.

@@ -1,0 +1,448 @@
+﻿tbcp_tax_activate_consumption_based = {
+    if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        if = {
+            limit = { tax_level = very_low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 3 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 3 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 4 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 4 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = medium }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 5 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 5 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 6 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 6 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = very_high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 7 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 7 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+    }
+    else = { activate_law = law_type:law_consumption_based_taxation }
+}
+
+tbcp_tax_activate_land_based = {
+    if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        if = {
+            limit = { tax_level = very_low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 16 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 3 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 16 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 3 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 22 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 4 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 22 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 4 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = medium }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 28 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 5 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 28 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 5 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 34 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 6 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 34 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 6 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = very_high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 0 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 40 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 7 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 0 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 40 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 7 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+    }
+    else = { activate_law = law_type:law_land_based_taxation }
+}
+
+tbcp_tax_activate_per_capita = {
+    if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        if = {
+            limit = { tax_level = very_low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 2 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 8 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 8 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 3 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 2 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 8 }
+set_variable = { name = te_tax_en_head value = 8 }
+set_variable = { name = te_tax_en_cons value = 3 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 3 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 11 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 11 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 4 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 3 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 11 }
+set_variable = { name = te_tax_en_head value = 11 }
+set_variable = { name = te_tax_en_cons value = 4 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = medium }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 4 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 14 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 14 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 5 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 4 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 14 }
+set_variable = { name = te_tax_en_head value = 14 }
+set_variable = { name = te_tax_en_cons value = 5 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 5 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 17 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 17 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 6 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 5 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 17 }
+set_variable = { name = te_tax_en_head value = 17 }
+set_variable = { name = te_tax_en_cons value = 6 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = very_high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 6 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 0 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 20 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 20 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 7 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 6 }
+set_variable = { name = te_tax_en_div value = 0 }
+set_variable = { name = te_tax_en_land value = 20 }
+set_variable = { name = te_tax_en_head value = 20 }
+set_variable = { name = te_tax_en_cons value = 7 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+    }
+    else = { activate_law = law_type:law_per_capita_based_taxation }
+}
+
+tbcp_tax_activate_proportional = {
+    if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        if = {
+            limit = { tax_level = very_low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 4 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 1 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 3 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 4 }
+set_variable = { name = te_tax_en_div value = 1 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 3 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 6 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 2 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 4 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 6 }
+set_variable = { name = te_tax_en_div value = 2 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 4 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = medium }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 8 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 4 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 5 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 8 }
+set_variable = { name = te_tax_en_div value = 4 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 5 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 10 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 6 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 6 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 10 }
+set_variable = { name = te_tax_en_div value = 6 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 6 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = very_high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 12 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 8 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 7 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 12 }
+set_variable = { name = te_tax_en_div value = 8 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 7 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+    }
+    else = { activate_law = law_type:law_proportional_taxation }
+}
+
+tbcp_tax_activate_graduated = {
+    if = {
+        limit = { te_tax_code_in_force = yes has_law = law_type:law_te_tax_code }
+        if = {
+            limit = { tax_level = very_low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 4 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 4 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 3 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 4 }
+set_variable = { name = te_tax_en_div value = 4 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 3 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = low }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 5 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 6 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 4 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 5 }
+set_variable = { name = te_tax_en_div value = 6 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 4 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = medium }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 6 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 8 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 5 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 6 }
+set_variable = { name = te_tax_en_div value = 8 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 5 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 7 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 10 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 6 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 7 }
+set_variable = { name = te_tax_en_div value = 10 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 6 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+else_if = {
+            limit = { tax_level = very_high }
+            if = {
+                limit = { NAND = { has_variable = te_tax_en_wage var:te_tax_en_wage = 8 has_variable = te_tax_en_wage_exp var:te_tax_en_wage_exp = -1 has_variable = te_tax_en_wage_succ var:te_tax_en_wage_succ = -1 has_variable = te_tax_en_div var:te_tax_en_div = 12 has_variable = te_tax_en_div_exp var:te_tax_en_div_exp = -1 has_variable = te_tax_en_div_succ var:te_tax_en_div_succ = -1 has_variable = te_tax_en_land var:te_tax_en_land = 0 has_variable = te_tax_en_land_exp var:te_tax_en_land_exp = -1 has_variable = te_tax_en_land_succ var:te_tax_en_land_succ = -1 has_variable = te_tax_en_head var:te_tax_en_head = 0 has_variable = te_tax_en_head_exp var:te_tax_en_head_exp = -1 has_variable = te_tax_en_head_succ var:te_tax_en_head_succ = -1 has_variable = te_tax_en_cons var:te_tax_en_cons = 7 has_variable = te_tax_en_cons_exp var:te_tax_en_cons_exp = -1 has_variable = te_tax_en_cons_succ var:te_tax_en_cons_succ = -1 } }
+                set_variable = { name = te_tax_en_wage value = 8 }
+set_variable = { name = te_tax_en_div value = 12 }
+set_variable = { name = te_tax_en_land value = 0 }
+set_variable = { name = te_tax_en_head value = 0 }
+set_variable = { name = te_tax_en_cons value = 7 }
+                # External reform: invalidate stale fiscal baselines without
+                # touching goods, relief, customs, bills or obligations.
+                te_tax_gen_migrate_provisions = yes
+                change_variable = { name = te_tax_code_version add = 1 }
+                tbcp_tax_queue_sync = yes
+            }
+        }
+    }
+    else = { activate_law = law_type:law_graduated_taxation }
+}
+
+# One deferred collection event per country per day. No new pulse.
+tbcp_tax_queue_sync = {
+    if = {
+        limit = {
+            OR = {
+                NOT = { has_variable = tbcp_tax_reform_sync_day }
+                NOT = { var:tbcp_tax_reform_sync_day = te_tax_today }
+            }
+        }
+        set_variable = { name = tbcp_tax_reform_sync_day value = te_tax_today }
+        trigger_event = { id = te_tax.4 days = 1 }
+    }
+}

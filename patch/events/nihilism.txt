@@ -1,0 +1,35 @@
+﻿namespace = nihilism
+
+# TBCP: nihilism.1 supplied by events/_nihilism.txt.
+
+#Success Event - the nihilist movement is successfully repressed.
+
+# TBCP: nihilism.2 supplied by events/_nihilism.txt.
+
+# Timeout Event - the nihilist movement transforms into a socialist movement after splitting into oblivion, socialists emboldened.
+
+# TBCP: nihilism.3 supplied by events/_nihilism.txt.
+
+### Random Events ###
+
+# TBCP: nihilism.4 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.5 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.6 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.7 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.8 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.9 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.10 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.11 supplied by events/_nihilism.txt.
+
+# TBCP: nihilism.12 supplied by events/_nihilism.txt.
+
+### Law Auto-Pass Event ###
+
+# TBCP: nihilism.13 supplied by events/_nihilism.txt.

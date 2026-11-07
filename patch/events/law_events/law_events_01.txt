@@ -1,0 +1,49 @@
+﻿namespace = generic_laws
+
+# Advancement event
+#Rousing Speech held - IG leader in favour of current law turns out to be quite the orator. Speech widely distributed, swaying people towards supporting the law
+# TBCP: generic_laws.1 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Kidnapped event for negotiations. 
+# Corrupt Connections uncovered - IG in favour of passing law cought in corruption scandal.
+# TBCP: generic_laws.2 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Debate event
+# Opposition Members table Demands - More pragmatically inclined members of IG opposed to current law offer a compromise solution, where they will support the law in return for certain concessions
+
+# TBCP: generic_laws.3 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Advancement Event
+# Popular Playwright Endorses Reform
+# TBCP: generic_laws.4 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Stall Event
+# Bureaucratic Imbroglio
+# TBCP: generic_laws.5 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Debate event
+#King/Queen/Emperor intervenes in political process
+# TBCP: generic_laws.6 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Advancement Event
+# Grassroots Support for Law
+# TBCP: generic_laws.7 supplied by events/_law_events/bpm_law_events_01.txt.
+
+
+# Stall event
+#Public Address Goes Awry
+# TBCP: generic_laws.8 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Debate event
+# Law proposal angers minority
+# TBCP: generic_laws.9 supplied by events/_law_events/bpm_law_events_01.txt.
+
+# Advancement event
+# Members of Neutral IG leave in frustration over neutral stance on law
+# TBCP: generic_laws.10 supplied by events/_law_events/bpm_law_events_01.txt.
+# Stall Event
+# Dissenters break ranks
+# TBCP: generic_laws.11 supplied by events/_law_events/bpm_law_events_01.txt.
+# debate event
+# underhanded tactics
+# TBCP: generic_laws.12 supplied by events/_law_events/bpm_law_events_01.txt.

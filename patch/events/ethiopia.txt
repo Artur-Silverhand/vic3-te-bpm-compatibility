@@ -1,0 +1,4 @@
+﻿namespace = ethiopia
+
+# The Outlaw Prince
+# TBCP: ethiopia.1 supplied by events/_ethiopia.txt.

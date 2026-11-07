@@ -1,0 +1,21 @@
+﻿namespace = tax
+
+# Taxation is theft
+# Stall event for any tax law
+# TBCP: tax.1 supplied by events/_law_events/bpm_tax_laws.txt.
+
+# Advance event - Supporting the War Effort
+# TBCP: tax.2 supplied by events/_law_events/bpm_tax_laws.txt.
+
+# Debate event - Death and Taxes
+# TBCP: tax.3 supplied by events/_law_events/bpm_tax_laws.txt.
+
+# Stall - Popular social bandit
+# TBCP: tax.4 supplied by events/_law_events/bpm_tax_laws.txt.
+
+# Advance - Philanthropy
+# Rich pops are giving to charity and supporting the law
+# TBCP: tax.5 supplied by events/_law_events/bpm_tax_laws.txt.
+
+# Debate - Temporarily embarrassed millionaires
+# TBCP: tax.6 supplied by events/_law_events/bpm_tax_laws.txt.

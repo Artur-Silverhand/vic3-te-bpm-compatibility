@@ -1,0 +1,12 @@
+﻿namespace = anti_state_religion
+
+# Religious corruption exposed
+# TBCP: anti_state_religion.1 supplied by events/_law_events/bpm_anti_state_religion_law_events.txt.
+
+# Anti-Clericalism
+# Debate
+# TBCP: anti_state_religion.2 supplied by events/_law_events/bpm_anti_state_religion_law_events.txt.
+
+# The Martyr
+# Stall
+# TBCP: anti_state_religion.3 supplied by events/_law_events/bpm_anti_state_religion_law_events.txt.

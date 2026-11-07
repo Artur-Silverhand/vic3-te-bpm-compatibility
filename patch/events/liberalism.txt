@@ -1,0 +1,13 @@
+﻿namespace = liberalism
+
+# Path to Liberalism: Completion
+# TBCP: liberalism.1 supplied by events/_liberalism.txt.
+
+# Freedom of Trade: Completion
+# TBCP: liberalism.2 supplied by events/_liberalism.txt.
+
+# Freedom of Thought: Completion
+# TBCP: liberalism.3 supplied by events/_liberalism.txt.
+
+# The New Colossus: Completion
+# TBCP: liberalism.4 supplied by events/_liberalism.txt.

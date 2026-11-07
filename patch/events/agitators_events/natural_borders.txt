@@ -1,0 +1,19 @@
+﻿namespace = natural_borders
+
+# start event
+# TBCP: natural_borders.1 supplied by events/_natural_borders.txt.
+
+# reward event
+# TBCP: natural_borders.2 supplied by events/_natural_borders.txt.
+
+# France annexes Savoy
+# TBCP: natural_borders.3 supplied by events/_natural_borders.txt.
+
+# Notification event
+# TBCP: natural_borders.4 supplied by events/_natural_borders.txt.
+
+# TBCP: natural_borders.5 supplied by events/_natural_borders.txt.
+
+namespace = rhine_confederation
+
+# TBCP: rhine_confederation.1 supplied by events/_natural_borders.txt.

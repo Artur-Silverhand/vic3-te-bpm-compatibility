@@ -1,0 +1,71 @@
+﻿namespace = lobby_core
+
+# TBCP: lobby_core.1 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+namespace = lobby_proposal
+
+# TBCP: lobby_proposal.1 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_proposal.2 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_proposal.3 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_proposal.4 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+### Lobbies Random Events ###
+
+namespace = lobby_events
+
+# TBCP: lobby_events.1 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.2 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.3 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.4 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.5 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.6 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.7 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.8 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.9 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.10 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.11 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.12 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.13 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.14 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.15 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.16 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.17 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.18 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.19 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: lobby_events.20 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# Fund Lobbies Events
+
+namespace = fund_lobbies_events
+
+# TBCP: fund_lobbies_events.1 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: fund_lobbies_events.2 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: fund_lobbies_events.3 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: fund_lobbies_events.4 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.
+
+# TBCP: fund_lobbies_events.5 supplied by events/_soi_events/_bpm_lobbies_events_04.txt.

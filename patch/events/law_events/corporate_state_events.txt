@@ -1,0 +1,20 @@
+﻿
+namespace = corporate_state
+
+# Advance: Certain Trade Unions align themselves with the regime.
+# TBCP: corporate_state.1 supplied by events/_law_events/bpm_corporate_state_events.txt.
+
+# Debate: Socialization, a la Mussolini in 1944.
+# TBCP: corporate_state.2 supplied by events/_law_events/bpm_corporate_state_events.txt.
+
+# Stall: News of labour exploitation gets out and embarrasses the government.
+# TBCP: corporate_state.3 supplied by events/_law_events/bpm_corporate_state_events.txt.
+
+# Advance: Approaching the "productive classes", scapegoating others as parasites.
+# TBCP: corporate_state.4 supplied by events/_law_events/bpm_corporate_state_events.txt.
+
+# Debate: Organisation of nominating bodies - who may select representatives?
+# TBCP: corporate_state.5 supplied by events/_law_events/bpm_corporate_state_events.txt.
+
+# Stall: Disputes over management - private organizations reject corporatist principles.
+# TBCP: corporate_state.6 supplied by events/_law_events/bpm_corporate_state_events.txt.

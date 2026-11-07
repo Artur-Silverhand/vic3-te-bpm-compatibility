@@ -1,0 +1,689 @@
+﻿namespace = anarchism_events
+
+# Propaganda of the Deed - Shooting
+anarchism_events.1 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	dlc = dlc016
+
+	title = anarchism_events.1.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = anarchism_events.1.d_1
+				trigger = {
+					scope:propaganda_of_the_deed_victim ?= {
+						OR = {
+							is_ruler_of_own_country = yes
+							is_heir_of_own_country = yes
+						}
+					}
+				}
+			}
+			triggered_desc = {
+				desc = anarchism_events.1.d_2
+				trigger = {
+					scope:propaganda_of_the_deed_victim ?= {
+						NOR = {
+							is_ruler_of_own_country = yes
+							is_heir_of_own_country = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	flavor = anarchism_events.1.f
+
+    event_image = {
+		video = "southamerica_public_figure_assassination"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	cooldown = { days = long_modifier_time }
+
+	trigger = {
+		# triggered by journal entry - je_spanish_anarchism [on_monthly_pulse]
+		# triggered by on_action - on_half_yearly_events
+		has_dlc_feature = ip4_content
+		has_variable = propaganda_of_the_deed_var
+		has_technology_researched = anarchism
+		NOT = {
+			has_technology_researched = mass_surveillance
+		}
+		any_political_movement = {
+			OR = {
+				is_political_movement_type = movement_anarchist
+				is_political_movement_type = movement_nihilist
+			}
+			political_movement_radicalism >= define:NPolitics|RADICALISM_PROTESTING_THRESHOLD
+		}
+		NOT = { has_variable = anarchist_terror_var }
+	}
+
+	cancellation_trigger = {
+		NOR = {
+			exists = scope:propaganda_of_the_deed_victim
+			exists = scope:anarchist_terror_state_scope
+			exists = scope:anarchist_terror_movement_scope
+		}
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = {
+				is_immortal = no
+				is_busy = no
+				is_adult = yes # Please stop shooting children
+				OR = {
+					is_ruler_of_own_country = yes
+					is_heir_of_own_country = yes
+					has_role_of_type = executive
+					AND = {
+						is_interest_group_leader = yes
+						interest_group ?= {
+							is_in_government = yes
+						}
+					}
+				}
+				NOR = { # No teamkilling
+					has_ideology = ideology:ideology_nihilist
+					has_ideology = ideology:ideology_anarchist
+				}
+			}
+			save_scope_as = propaganda_of_the_deed_victim
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				OR = {
+					any_scope_building = {
+						is_building_type = building_urban_center
+						level >= 20
+					}
+					is_capital = yes
+				}
+			}
+			save_scope_as = anarchist_terror_state_scope
+		}
+		random_political_movement = {
+			limit = {
+				OR = {
+					is_political_movement_type = movement_anarchist
+					is_political_movement_type = movement_nihilist
+				}
+				political_movement_radicalism >= define:NPolitics|RADICALISM_PROTESTING_THRESHOLD
+			}
+			save_scope_as = anarchist_terror_movement_scope
+		}
+		generate_1_common_name = {
+			CULTURE_1 = primary_culture
+		}
+		set_variable = { name = anarchist_terror_var years = 5 }
+	}
+
+	option = {
+		name = anarchism_events.1.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_avoids_radicals = yes
+				}
+				add = 10
+			}
+		}
+		scope:propaganda_of_the_deed_victim = {
+			revoke_temporary_event_immortality = { CHARACTER = scope:propaganda_of_the_deed_victim }
+			kill_character = yes
+		}
+		add_modifier = {
+			name = modifier_anarchist_terror_attack
+			days = short_modifier_time
+		}
+		add_loyalists = {
+			value = medium_radicals
+			interest_group = scope:propaganda_of_the_deed_victim.interest_group
+		}
+	}
+
+	option = {
+		name = anarchism_events.1.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_wants_radicals = yes
+				}
+				add = 10
+			}
+		}
+		scope:propaganda_of_the_deed_victim = {
+			revoke_temporary_event_immortality = { CHARACTER = scope:propaganda_of_the_deed_victim }
+			kill_character = yes
+		}
+		add_modifier = {
+			name = modifier_anarchist_terror_attack
+			days = short_modifier_time
+			multiplier = 0.5
+		}
+		scope:anarchist_terror_movement_scope = {
+			add_modifier = {
+				name = modifier_anarchist_terror_attack_movement
+				days = short_modifier_time
+			}
+		}
+		add_radicals = {
+			value = small_radicals
+		}
+	}
+
+	after = {
+		clear_generated_names = yes
+		revoke_temporary_event_immortality = { CHARACTER = scope:propaganda_of_the_deed_victim }
+	}
+}
+
+# Propaganda of the Deed - Bombing
+anarchism_events.2 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	dlc = dlc016
+
+	title = anarchism_events.2.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = anarchism_events.2.d_1
+				trigger = {
+					scope:propaganda_of_the_deed_victim ?= {
+						OR = {
+							is_ruler_of_own_country = yes
+							is_heir_of_own_country = yes
+						}
+					}
+				}
+			}
+			triggered_desc = {
+				desc = anarchism_events.2.d_2
+				trigger = {
+					scope:propaganda_of_the_deed_victim ?= {
+						NOR = {
+							is_ruler_of_own_country = yes
+							is_heir_of_own_country = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	flavor = anarchism_events.2.f
+
+    event_image = {
+		video = "ip4_bomb_throwing_anarchist"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	cooldown = { days = long_modifier_time }
+
+	trigger = {
+		# triggered by journal entry - je_spanish_anarchism [on_monthly_pulse]
+		# triggered by on_action - on_half_yearly_events
+		has_dlc_feature = ip4_content
+		has_variable = propaganda_of_the_deed_var
+		has_technology_researched = anarchism
+		has_technology_researched = dynamite
+		NOT = {
+			has_technology_researched = mass_surveillance
+		}
+		any_political_movement = {
+			OR = {
+				is_political_movement_type = movement_anarchist
+				is_political_movement_type = movement_nihilist
+			}
+			political_movement_radicalism >= define:NPolitics|RADICALISM_PROTESTING_THRESHOLD
+		}
+		NOT = { has_variable = anarchist_terror_var }
+	}
+
+	cancellation_trigger = {
+		NOR = {
+			exists = scope:propaganda_of_the_deed_victim
+			exists = scope:anarchist_terror_state_scope
+			exists = scope:anarchist_terror_movement_scope
+		}
+	}
+
+	immediate = {
+		set_variable = { name = anarchist_terror_var years = 5 }
+		random_scope_character = {
+			limit = {
+				is_immortal = no
+				is_busy = no
+				OR = {
+					is_ruler_of_own_country = yes
+					is_heir_of_own_country = yes
+					has_role_of_type = executive
+					AND = {
+						is_interest_group_leader = yes
+						interest_group ?= {
+							is_in_government = yes
+						}
+					}
+				}
+				NOR = { # No teamkilling
+					has_ideology = ideology:ideology_nihilist
+					has_ideology = ideology:ideology_anarchist
+				}
+			}
+			save_scope_as = propaganda_of_the_deed_victim
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				OR = {
+					any_scope_building = {
+						is_building_type = building_urban_center
+						level >= 20
+					}
+					is_capital = yes
+				}
+			}
+			save_scope_as = anarchist_terror_state_scope
+		}
+		random_political_movement = {
+			limit = {
+				OR = {
+					is_political_movement_type = movement_anarchist
+					is_political_movement_type = movement_nihilist
+				}
+				political_movement_radicalism >= define:NPolitics|RADICALISM_PROTESTING_THRESHOLD
+			}
+			save_scope_as = anarchist_terror_movement_scope
+		}
+		generate_1_common_female_name = {
+			CULTURE_1 = primary_culture
+		}
+	}
+
+	option = {
+		name = anarchism_events.2.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_avoids_radicals = yes
+				}
+				add = 10
+			}
+		}
+		scope:propaganda_of_the_deed_victim = {
+			revoke_temporary_event_immortality = { CHARACTER = scope:propaganda_of_the_deed_victim }
+			kill_character = yes
+		}
+		add_modifier = {
+			name = modifier_anarchist_terror_attack
+			days = short_modifier_time
+		}
+		add_loyalists = {
+			value = medium_radicals
+			interest_group = scope:propaganda_of_the_deed_victim.interest_group
+		}
+	}
+
+	option = {
+		name = anarchism_events.2.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_wants_radicals = yes
+				}
+				add = 10
+			}
+		}
+		scope:propaganda_of_the_deed_victim = {
+			revoke_temporary_event_immortality = { CHARACTER = scope:propaganda_of_the_deed_victim }
+			kill_character = yes
+		}
+		add_modifier = {
+			name = modifier_anarchist_terror_attack
+			days = short_modifier_time
+			multiplier = 0.5
+		}
+		scope:anarchist_terror_movement_scope = {
+			add_modifier = {
+				name = modifier_anarchist_terror_attack_movement
+				days = short_modifier_time
+			}
+		}
+		add_radicals = {
+			value = small_radicals
+		}
+	}
+
+	after = {
+		clear_generated_names = yes
+		revoke_temporary_event_immortality = { CHARACTER = scope:propaganda_of_the_deed_victim }
+	}
+}
+
+# Propaganda of the Deed - Theatre bombing
+anarchism_events.3 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	dlc = dlc016
+
+	title = anarchism_events.3.t
+	desc = anarchism_events.3.d
+	flavor = anarchism_events.3.f
+
+    event_image = {
+		video = "ip4_bomb_throwing_anarchist"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	cooldown = { days = long_modifier_time }
+
+	trigger = {
+		# triggered by journal entry - je_spanish_anarchism [on_monthly_pulse]
+		# triggered by on_action - on_half_yearly_events
+		has_dlc_feature = ip4_content
+		has_variable = propaganda_of_the_deed_var
+		has_technology_researched = anarchism
+		has_technology_researched = dynamite
+		NOT = {
+			has_technology_researched = mass_surveillance
+		}
+		any_political_movement = {
+			OR = {
+				is_political_movement_type = movement_anarchist
+				is_political_movement_type = movement_nihilist
+			}
+			political_movement_radicalism >= define:NPolitics|RADICALISM_PROTESTING_THRESHOLD
+		}
+		any_scope_state = {
+			is_incorporated = yes
+			has_building = building_art_academy
+			any_scope_building = {
+				is_building_type = building_urban_center
+				level >= 20
+			}
+		}
+		NOT = { has_variable = anarchist_terror_var }
+	}
+
+	cancellation_trigger = {
+		NOR = {
+			exists = scope:anarchist_terror_state_scope
+			exists = scope:anarchist_terror_movement_scope
+		}
+	}
+
+	immediate = {
+		set_variable = { name = anarchist_terror_var years = 5 }
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				any_scope_building = {
+					is_building_type = building_urban_center
+					level >= 20
+				}
+			}
+			save_scope_as = anarchist_terror_state_scope
+		}
+		random_political_movement = {
+			limit = {
+				OR = {
+					is_political_movement_type = movement_anarchist
+					is_political_movement_type = movement_nihilist
+				}
+				political_movement_radicalism >= define:NPolitics|RADICALISM_PROTESTING_THRESHOLD
+			}
+			save_scope_as = anarchist_terror_movement_scope
+		}
+		generate_1_common_name = {
+			CULTURE_1 = primary_culture
+		}
+	}
+
+	option = {
+		name = anarchism_events.3.a
+		default_option = yes
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_avoids_radicals = yes
+				}
+				add = 10
+			}
+		}
+		scope:anarchist_terror_state_scope.state_region ?= {
+			add_devastation = 10
+		}
+		scope:anarchist_terror_state_scope ?= {
+			kill_population_in_state = {
+				value = 30
+			}
+		}
+		add_modifier = {
+			name = modifier_anarchist_terror_attack
+			days = short_modifier_time
+		}
+	}
+
+	option = {
+		name = anarchism_events.3.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					ai_wants_radicals = yes
+				}
+				add = 10
+			}
+		}
+		scope:anarchist_terror_state_scope.state_region ?= {
+			add_devastation = 10
+		}
+		scope:anarchist_terror_state_scope ?= {
+			kill_population_in_state = {
+				value = 30
+			}
+		}
+		add_modifier = {
+			name = modifier_anarchist_terror_attack
+			days = short_modifier_time
+			multiplier = 0.5
+		}
+		scope:anarchist_terror_movement_scope = {
+			add_modifier = {
+				name = modifier_anarchist_terror_attack_movement
+				days = short_modifier_time
+			}
+		}
+		add_radicals = {
+			value = small_radicals
+		}
+	}
+
+	after = {
+		clear_generated_names = yes
+	}
+}
+
+# Propaganda of the Deed - start
+# TBCP: anarchism_events.4 supplied by events/iberia_events/_ip4_anarchism_events.txt.
+
+# Anarchist revolution event
+
+anarchism_events.5 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	dlc = dlc016
+
+	title = anarchism_events.5.t
+	desc = anarchism_events.5.d
+	flavor = anarchism_events.5.f
+
+    event_image = {
+		video = "ip4_bomb_throwing_anarchist"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	cooldown = { days = long_modifier_time }
+
+	# Triggered by JE
+
+	cancellation_trigger = {
+		NOT = {
+			exists = scope:revolutionary_country_scope
+		}
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = ruler_scope
+			set_temporary_event_immortality = { DURATION = 3 }
+		}
+		random_political_movement = {
+			limit = {
+				is_political_movement_type = movement_anarchist
+			}
+			save_scope_as = anarchist_movement_scope
+		}
+		random_country = {
+			limit = {
+				civil_war_origin_country ?= ROOT
+				has_law_or_variant = law_type:law_anarchy
+			}
+			save_scope_as = revolutionary_country_scope
+			capital = {
+				save_scope_as = revolutionary_country_capital_scope
+			}
+		}
+	}
+
+	option = {
+		name = anarchism_events.5.a
+		default_option = yes
+		custom_tooltip = side_with_national_government_tt
+	}
+
+	option = {
+		name = anarchism_events.5.b
+		set_global_variable = achievement_revolutionary
+		custom_tooltip = {
+			text = side_with_anarchists_tt
+			play_as = scope:revolutionary_country_scope
+		}
+	}
+
+	after = {
+		revoke_temporary_event_immortality = { CHARACTER = scope:ruler_scope }
+		je_spanish_anarchism_cleanup = yes
+	}
+}
+
+# Government victory
+anarchism_events.6 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	dlc = dlc016
+
+	title = anarchism_events.6.t
+	desc = anarchism_events.6.d
+	flavor = anarchism_events.6.f
+
+    event_image = {
+		video = "rp1_brazilian_city"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	cooldown = { days = long_modifier_time }
+
+	# Triggered by JE
+
+	cancellation_trigger = {
+
+	}
+
+	immediate = {
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				any_scope_building = {
+					OR = {
+						is_building_group = bg_agriculture
+						is_building_group = bg_ranching
+						is_building_group = bg_plantations
+					}
+				}
+			}
+			save_scope_as = agricultural_state_scope
+		}
+	}
+
+	option = {
+		name = anarchism_events.6.a
+		default_option = yes
+		add_loyalists = {
+			culture = cu:spanish
+			value = medium_radicals
+		}
+	}
+
+	option = {
+		name = anarchism_events.6.b
+		add_loyalists = {
+			culture = cu:spanish
+			value = small_radicals
+		}
+		add_modifier = {
+			name = modifier_anarchism_depoliticisation
+			days = normal_modifier_time
+		}
+	}
+
+	after = {
+		je_spanish_anarchism_cleanup = yes
+	}
+}
+
+# The Internacionalistas
+# TBCP: anarchism_events.7 supplied by events/iberia_events/_ip4_anarchism_events.txt.

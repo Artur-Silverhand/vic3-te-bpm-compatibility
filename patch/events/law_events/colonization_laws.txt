@@ -1,0 +1,15 @@
+﻿namespace = colonization
+
+# ALL Event - decolonization
+# TBCP: colonization.1 supplied by events/_law_events/bpm_colonization_laws.txt.
+
+# Stall event - Outsourcing - movement to preserve, people concerned about jobs being outsourced to colonies
+# TBCP: colonization.2 supplied by events/_law_events/bpm_colonization_laws.txt.
+
+# Advance event - country wants to join the world stage
+# prestige or advancement
+# TBCP: colonization.3 supplied by events/_law_events/bpm_colonization_laws.txt.
+
+
+# Debate event - the ethics of exploitation
+# TBCP: colonization.4 supplied by events/_law_events/bpm_colonization_laws.txt.

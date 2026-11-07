@@ -1,0 +1,202 @@
+[
+  {
+    "file": "patch/common/amendments/zzzzzz_tbcp_elections.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/customizable_localization/te_tax_generated_custom_loc.txt",
+    "definitions": 30
+  },
+  {
+    "file": "patch/common/defines/zzzzzz_tbcp_defines.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/history/countries/brz - brazil.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/history/countries/chl - chile.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/history/countries/usa - usa.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/ideologies/zzzzzz_tbcp_axes.txt",
+    "definitions": 95
+  },
+  {
+    "file": "patch/common/ideologies/zzzzzz_tbcp_ideologies.txt",
+    "definitions": 103
+  },
+  {
+    "file": "patch/common/ideologies/zzzzzz_tbcp_tax_ideologies.txt",
+    "definitions": 2
+  },
+  {
+    "file": "patch/common/interest_groups/zzzzzz_tbcp_characters.txt",
+    "definitions": 21
+  },
+  {
+    "file": "patch/common/journal_entries/BPM_je_america.txt",
+    "definitions": 8
+  },
+  {
+    "file": "patch/common/journal_entries/zzzzzz_tbcp_tax_journals.txt",
+    "definitions": 2
+  },
+  {
+    "file": "patch/common/laws/zzzzzz_tbcp_laws.txt",
+    "definitions": 70
+  },
+  {
+    "file": "patch/common/modifier_type_definitions/zzzzzz_tbcp_modifier_types.txt",
+    "definitions": 3
+  },
+  {
+    "file": "patch/common/on_actions/00_code_on_actions.txt",
+    "definitions": 223
+  },
+  {
+    "file": "patch/common/on_actions/BPM_code_on_actions.txt",
+    "definitions": 56
+  },
+  {
+    "file": "patch/common/parties/zzzzzz_tbcp_future_parties.txt",
+    "definitions": 3
+  },
+  {
+    "file": "patch/common/parties/zzzzzz_tbcp_parties.txt",
+    "definitions": 12
+  },
+  {
+    "file": "patch/common/power_bloc_principles/zzzzzz_tbcp_principles.txt",
+    "definitions": 2
+  },
+  {
+    "file": "patch/common/production_methods/zzzzzz_tbcp_production.txt",
+    "definitions": 6
+  },
+  {
+    "file": "patch/common/script_values/00000_bpm_journal_values.txt",
+    "definitions": 14
+  },
+  {
+    "file": "patch/common/script_values/00_diplomacy_values.txt",
+    "definitions": 37
+  },
+  {
+    "file": "patch/common/script_values/01_power_bloc_values.txt",
+    "definitions": 8
+  },
+  {
+    "file": "patch/common/script_values/ip5_je_values.txt",
+    "definitions": 124
+  },
+  {
+    "file": "patch/common/script_values/te_fptp_values.txt",
+    "definitions": 14
+  },
+  {
+    "file": "patch/common/script_values/te_tax_generated_support_values.txt",
+    "definitions": 983
+  },
+  {
+    "file": "patch/common/script_values/te_tax_generated_values.txt",
+    "definitions": 1304
+  },
+  {
+    "file": "patch/common/script_values/te_tax_light_generated_values.txt",
+    "definitions": 301
+  },
+  {
+    "file": "patch/common/script_values/zzzzzz_tbcp_construction_values.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/scripted_effects/BPM_CAB_effects.txt",
+    "definitions": 39
+  },
+  {
+    "file": "patch/common/scripted_effects/BPM_CAB_SYNERGY_effects.txt",
+    "definitions": 7
+  },
+  {
+    "file": "patch/common/scripted_effects/te_construction_market_update_effects.txt",
+    "definitions": 10
+  },
+  {
+    "file": "patch/common/scripted_effects/te_fptp_effects.txt",
+    "definitions": 10
+  },
+  {
+    "file": "patch/common/scripted_effects/te_tax_generated_bill_effects.txt",
+    "definitions": 19
+  },
+  {
+    "file": "patch/common/scripted_effects/te_tax_generated_effects.txt",
+    "definitions": 71
+  },
+  {
+    "file": "patch/common/scripted_effects/te_tax_light_generated_effects.txt",
+    "definitions": 14
+  },
+  {
+    "file": "patch/common/scripted_effects/zzzzzz_tbcp_cabinet_helpers.txt",
+    "definitions": 2
+  },
+  {
+    "file": "patch/common/scripted_effects/zzzzzz_tbcp_tax_legacy_effects.txt",
+    "definitions": 6
+  },
+  {
+    "file": "patch/common/scripted_guis/bpm_law_sway_guis.txt",
+    "definitions": 18
+  },
+  {
+    "file": "patch/common/scripted_guis/te_tax_sguis.txt",
+    "definitions": 39
+  },
+  {
+    "file": "patch/common/scripted_rules/00_scripted_rules.txt",
+    "definitions": 18
+  },
+  {
+    "file": "patch/common/scripted_rules/zzz_bpm_scripted_rules.txt",
+    "definitions": 0
+  },
+  {
+    "file": "patch/common/scripted_triggers/bpm_ig_extremist_triggers.txt",
+    "definitions": 17
+  },
+  {
+    "file": "patch/common/scripted_triggers/te_fptp_triggers.txt",
+    "definitions": 6
+  },
+  {
+    "file": "patch/common/scripted_triggers/te_tax_generated_triggers.txt",
+    "definitions": 56
+  },
+  {
+    "file": "patch/common/scripted_triggers/zzzzzz_tbcp_future_party_bans.txt",
+    "definitions": 3
+  },
+  {
+    "file": "patch/common/scripted_triggers/zzzzzz_tbcp_tax_legacy_triggers.txt",
+    "definitions": 10
+  },
+  {
+    "file": "patch/common/static_modifiers/te_tax_generated_modifiers.txt",
+    "definitions": 84
+  },
+  {
+    "file": "patch/common/static_modifiers/te_tax_light_generated_modifiers.txt",
+    "definitions": 47
+  },
+  {
+    "file": "patch/common/technology/technologies/zzzzzz_tbcp_technologies.txt",
+    "definitions": 3
+  }
+]

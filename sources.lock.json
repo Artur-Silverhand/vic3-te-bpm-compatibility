@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "specification": "SPEC-002",
+  "specification_version": "0.2",
+  "recorded_utc": "2026-11-07T08:56:03.079948+00:00",
+  "purpose": "pinned research inputs; not proof of runtime compatibility",
+  "primary_distribution": "GitHub commits; Workshop is a separate candidate profile",
+  "mods": {
+    "timeline": {
+      "repository": "https://github.com/jakeOmega/Vic3TimelineExtended",
+      "commit": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
+      "tree": "b06ca9357558ea4b87a9fc2d0265d6e49896e1b0",
+      "commit_time": "2026-11-06T22:20:42-07:00",
+      "checkout": "D:\\dev\\Victoria 3\\sources\\upstream\\Vic3TimelineExtended",
+      "mod_subdirectory": ".",
+      "mod_root": "D:\\dev\\Victoria 3\\sources\\upstream\\Vic3TimelineExtended",
+      "sparse_checkout": false,
+      "metadata": {
+        "name": "Vic3TimelineExtended",
+        "id": "",
+        "version": "1.3.0",
+        "supported_game_version": "1.15.0",
+        "short_description": "Extends the Victoria 3 timeline with new eras, systems, and content including banking cycles, global warming, nuclear weapons, cultural hegemony, covert warfare, and more.",
+        "tags": [
+          "Diplomacy",
+          "Expansion",
+          "Economy and Buildings",
+          "Gameplay",
+          "Journal Entries",
+          "Technologies"
+        ],
+        "relationships": [],
+        "game_custom_data": {
+          "multiplayer_synchronized": true
+        }
+      },
+      "metadata_sha256": "e499a936527e4aeae7c892fefe1ec24760b05162fb07c838bc3378f04efa39d7",
+      "workshop_id": "3721261891",
+      "workshop_root": "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\3721261891",
+      "workshop_metadata": {
+        "name": "Vic3TimelineExtended",
+        "id": "",
+        "version": "1.3.0",
+        "supported_game_version": "1.15.0",
+        "short_description": "Extends the Victoria 3 timeline with new eras, systems, and content including banking cycles, global warming, nuclear weapons, cultural hegemony, covert warfare, and more.",
+        "tags": [
+          "Diplomacy",
+          "Expansion",
+          "Economy and Buildings",
+          "Gameplay",
+          "Journal Entries",
+          "Technologies"
+        ],
+        "relationships": [],
+        "game_custom_data": {
+          "multiplayer_synchronized": true
+        }
+      },
+      "workshop_changed_script_files_after_lf_normalization": 12
+    },
+    "bpm": {
+      "repository": "https://github.com/Better-Politics-Mod/Better-Politics-Mod-Vic-3",
+      "commit": "d785d399001ceaa87a1153ca7e0fb4ba512d8425",
+      "tree": "e6190002ca79b4d610abc438c822b0d537507838",
+      "commit_time": "2026-11-06T12:32:55-05:00",
+      "checkout": "D:\\dev\\Victoria 3\\sources\\upstream\\Better-Politics-Mod-Vic-3",
+      "mod_subdirectory": "better-politics-mod",
+      "mod_root": "D:\\dev\\Victoria 3\\sources\\upstream\\Better-Politics-Mod-Vic-3\\better-politics-mod",
+      "sparse_checkout": false,
+      "metadata": {
+        "name": "Better Politics Mod",
+        "id": "2932134122",
+        "version": "2.5",
+        "supported_game_version": "1.15.*",
+        "short_description": "New IGs and dynamic politics.",
+        "thumbnail": "thumbnail.png",
+        "tags": [
+          "1.15"
+        ],
+        "relationships": [],
+        "game_custom_data": {
+          "multiplayer_synchronized": true
+        }
+      },
+      "metadata_sha256": "93b979547b6f962bcb3f45f66e040378d4ed395a142fddc3898df3044c5d4c93",
+      "workshop_id": "2932134122",
+      "workshop_root": "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2932134122",
+      "workshop_metadata": {
+        "name": "Better Politics Mod",
+        "id": "2932134122",
+        "version": "2.5",
+        "supported_game_version": "1.15.*",
+        "short_description": "New IGs and dynamic politics.",
+        "thumbnail": "thumbnail.png",
+        "tags": [
+          "1.15"
+        ],
+        "relationships": [],
+        "game_custom_data": {
+          "multiplayer_synchronized": true
+        }
+      },
+      "workshop_changed_script_files_after_lf_normalization": 0
+    }
+  },
+  "research_reports": {
+    "github": {
+      "path": "D:\\dev\\Victoria 3\\docs\\research\\2026-11-07-github-overlap.json",
+      "sha256": "cac0024f250457857f80297db367f510b247e05fe6fe177efaeb17d54019f9a8",
+      "generated_utc": "2026-11-07T08:34:53.245142+00:00",
+      "shared_categories": {
+        "common/amendments": 1,
+        "common/defines": 2,
+        "common/history": 1,
+        "common/ideologies": 103,
+        "common/interest_groups": 8,
+        "common/journal_entries": 2,
+        "common/laws": 70,
+        "common/modifier_type_definitions": 3,
+        "common/on_actions": 22,
+        "common/parties": 11,
+        "common/power_bloc_principles": 2,
+        "common/production_methods": 36,
+        "common/scripted_rules": 1,
+        "common/static_modifiers": 1,
+        "common/technology/technologies": 3
+      },
+      "timeline_additional_lawgroups": 39
+    },
+    "workshop": {
+      "path": "D:\\dev\\Victoria 3\\docs\\research\\2026-11-07-workshop-overlap.json",
+      "sha256": "98e49b871c6ca5a6b299e28e1719a8caca3793536655704cc78322dd805e72fd",
+      "generated_utc": "2026-11-07T08:34:53.245142+00:00",
+      "shared_categories": {
+        "common/amendments": 1,
+        "common/defines": 2,
+        "common/history": 1,
+        "common/ideologies": 103,
+        "common/interest_groups": 8,
+        "common/journal_entries": 2,
+        "common/laws": 70,
+        "common/modifier_type_definitions": 3,
+        "common/on_actions": 22,
+        "common/parties": 11,
+        "common/power_bloc_principles": 2,
+        "common/production_methods": 36,
+        "common/scripted_rules": 1,
+        "common/static_modifiers": 1,
+        "common/technology/technologies": 3
+      },
+      "timeline_additional_lawgroups": 39
+    }
+  },
+  "game": {
+    "root": "D:\\SteamLibrary\\steamapps\\common\\Victoria 3",
+    "version": "1.15.0",
+    "display_version": "1.15.0 (Ivan-Chai)",
+    "steam_build_id": "26453692",
+    "launcher_settings_sha256": "4b7032eeb5fc7f0f64b60690d5d2b1bbc4b7ca5119b44bb76eb2f7788a9fd91c"
+  },
+  "default_game_rules": {
+    "custom_religions_allowed_rule": "custom_religions_not_allowed",
+    "banking_system_rule": "banking_system_enabled",
+    "global_warming_rule": "global_warming_enabled",
+    "world_war_rule": "world_war_disabled",
+    "cultural_hegemony_rule": "cultural_hegemony_enabled",
+    "covert_warfare_rule": "covert_warfare_enabled",
+    "heir_education_rule": "heir_education_disabled",
+    "united_nations_rule": "united_nations_enabled",
+    "nuclear_weapons_rule": "nuclear_weapons_enabled",
+    "decolonization_rule": "decolonization_enabled",
+    "space_race_rule": "space_race_colonies_full",
+    "social_movements_rule": "social_movements_enabled",
+    "universal_aptitude_traits_rule": "universal_aptitude_traits_disabled",
+    "free_market_construction_rule": "free_market_construction_enabled",
+    "internal_resettlement_rule": "internal_resettlement_enabled",
+    "grand_monuments_rule": "grand_monuments_enabled",
+    "demographics_rule": "demographics_full",
+    "te_tax_code_rule": "te_tax_code_disabled",
+    "te_principle_slots_rule": "te_principle_slots_eight",
+    "global_commons_rule": "global_commons_enabled"
+  },
+  "validation_status": {
+    "full_deployable_packages_prepared": true,
+    "dlc_profile_verified": false,
+    "game_runs_performed": false,
+    "patch_implemented": true,
+    "latest_status": "STATUS.md"
+  },
+  "coverage_limitations": [
+    "Git commits identify complete upstream trees; checkout materialization is recorded per source.",
+    "Alignment covers metadata/common/events/gui, not graphics, localization or map_data.",
+    "Research hashes cover metadata and selected runtime script categories; they are not full installation hashes.",
+    "Lexical overlaps and author load-order models do not establish engine behavior."
+  ],
+  "alignment_report": {
+    "path": "D:\\dev\\Victoria 3\\docs\\research\\2026-11-07-source-alignment.json",
+    "sha256": "6d26004d031da39ffa3af9f62f2f4befc71ed1414d3bada5b6dc0027e5476e9f"
+  }
+}
