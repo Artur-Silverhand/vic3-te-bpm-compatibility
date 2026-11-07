@@ -7,31 +7,17 @@
 Патч связывает расширенные законы и системы Timeline Extended с политической
 моделью полного Better Politics Mod. Исходные моды устанавливаются отдельно.
 
-## Порядок в лаунчере
+## Установка через Steam Workshop
 
-Сверху вниз, патч последним:
+Подпишись на три мода и включи их в одном игровом наборе. Порядок сверху вниз:
 
-1. Timeline Extended.
-2. Better Politics Mod — полный, не Lite.
-3. Timeline Extended + BPM — Compatibility.
+1. [Timeline Extended](https://steamcommunity.com/sharedfiles/filedetails/?id=3721261891).
+2. [Better Politics Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2932134122) — полная версия.
+3. Timeline Extended + BPM — Compatibility — этот патч, последним.
 
-Для локального профиля проекта это TBCP 1 → TBCP 2 → TBCP 3.
-Workshop-дубликаты локальных исходных модов должны быть выключены.
-Нужна новая одиночная кампания; перенос старых сейвов между составами не проверен.
-
-## Поддерживаемая база
-
-| Источник | Закреплённая версия |
-|---|---|
-| [Timeline Extended](https://github.com/jakeOmega/Vic3TimelineExtended) | 48a28e73ad06c25d4de02edead2ec976a9e8dd35, 1.3.0 |
-| [Better Politics Mod](https://github.com/Better-Politics-Mod/Better-Politics-Mod-Vic-3) | d785d399001ceaa87a1153ca7e0fb4ba512d8425, 2.5 |
-| Victoria 3 | 1.15.0, Steam build 26453692 |
-
-Workshop-ссылки: [TE](https://steamcommunity.com/sharedfiles/filedetails/?id=3721261891),
-[BPM](https://steamcommunity.com/sharedfiles/filedetails/?id=2932134122).
-При зафиксированном сравнении Workshop TE отличался от GitHub-базы в 12 файлах;
-Workshop BPM совпадал по проверенным скриптам после нормализации переводов строк.
-Прохождение на закреплённой базе не является подтверждением любых обновлений Workshop.
+Начни новую одиночную кампанию. Старые сохранения и мультиплеер пока не проверены.
+Патч экспериментальный; игровые проверки ещё идут. Ссылку на страницу самого патча
+добавим после подтверждения первой публикации в Workshop.
 
 ## Что интегрировано
 
@@ -43,14 +29,15 @@ Workshop BPM совпадал по проверенным скриптам по�
   проходом по министрам на закон с сохранением прежней формулы.
 
 Состояние и ограничения: [STATUS.md](STATUS.md).
-Установка и игровые сценарии: [patch/README.md](patch/README.md),
-[patch/TESTING.md](patch/TESTING.md).
+Сценарии проверки в игре: [patch/TESTING.md](patch/TESTING.md).
 
 ## Разработка и проверки
 
 Спецификация: [SPEC.md](SPEC.md). Решения: [docs/decisions](docs/decisions).
 Инструменты и тесты: [tools](tools). Игровые файлы патча: [patch](patch).
 Полные исходники модов, игра, логи, сейвы и резервные копии не включены в Git.
+Закреплённые исходники и отличие Workshop: [docs/development/sources.md](docs/development/sources.md).
+Локальный профиль разработчика: [patch/README.md](patch/README.md).
 
 ```powershell
 python .\tools\verify_patch.py
