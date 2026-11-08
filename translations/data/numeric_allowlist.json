@@ -1,0 +1,40 @@
+{
+  "bpm": {
+    "bpm_acw_events.302.d": {
+      "en_sha256": "585066c579fb7746b9dc4081fedf75ef8feda8120c270a2710e035adaf87dfb4",
+      "ru_sha256": "113b01264756c544f5c5e0d624711be82627617b5906aece1e477a7bd23f7171",
+      "reason": "English “in the 11th hour” is an idiom meaning “в последний момент”, not a literal time or threshold; Russian preserves that meaning."
+    },
+    "bpm_acw_events.314.f": {
+      "en_sha256": "51de78568c5a18a44d55abf9592af5c88c18442155ab695724eefa48b28256c5",
+      "ru_sha256": "d8bc7aa232d92dada81cb9cd3075660be96f968f01ce02e97077fc2f01e3573c",
+      "reason": "The ordinal 15th is written as “Пятнадцатая” in the title of the constitutional amendment; the separate year 1870 is preserved."
+    },
+    "je_bpm_group_young_right_tooltip_p3": {
+      "en_sha256": "e42eb774204ad68511b29880d18deb007ee4d6576e471240b59e41cff75c9400",
+      "ru_sha256": "e176a082b57e9de71935767dd27e3aa6f48574a0dca2e5289da9f3903f11df44",
+      "reason": "English “2 members” is Russian “с двумя членами”; all years and the ordinal of the congress are preserved."
+    },
+    "je_bpm_general_strike_ongoing_reason": {
+      "en_sha256": "c6cfa0062beb9f7481f149ed83b31e60fd8ab82150d7d0c609944387a4612f68",
+      "ru_sha256": "439559c804b6bc1dbb3181a61489dc5da5cb2e9abf1a70b288219f5808762421",
+      "reason": "The date “the 4th of this month” is translated as “четвёртого числа этого месяца” within the historical quotation; gameplay values and script formats are unchanged."
+    },
+    "bpm_missouri_compromise": {
+      "en_sha256": "2481a2fa84b346a7671b03788a42cd3d4c81b7da5dca28ac0dfcde953fcd2d09",
+      "ru_sha256": "9789ace06c9156caed574927afc1f2dacd1813192bd2bfd70e517c32fc49bd52",
+      "reason": "The ordinal “1st Party System” is correctly written “первой партийной системы”; it is a historical period name, not a numeric condition."
+    },
+    "JEFFERSONIANISM_DISGRACED": {
+      "en_sha256": "9a62596f15a03da3c7361ef64d9fbe3591bb205bb56d645efff546ba51cb6914",
+      "ru_sha256": "f91772ca84e471ed856a0ec9b1d51c99c398f769c112ced99acff656a26dc70f",
+      "reason": "The ordinal “1st Party System” is correctly written “первой партийной системой”; it is a historical period name, not a numeric condition."
+    },
+    "bpm_frankfurt_parliament_events.33.f": {
+      "en_sha256": "2ed9d70af3f18a87ead8f0d15ea452ab189ac492ea0c38b045bdf81bb0edaffd",
+      "ru_sha256": "7e8d6f7887d5b3081cab2f2fba6e283be73ca0688ee16926165deab5f335e533",
+      "reason": "English “15th Century” is the equivalent Russian Roman-numeral form “XV века”; no date or condition is omitted."
+    }
+  },
+  "te": {}
+}

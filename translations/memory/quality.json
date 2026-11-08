@@ -1,0 +1,33 @@
+{
+  "status": "STRUCTURAL_PASS",
+  "source_keys": {
+    "bpm": 7159,
+    "te": 37298
+  },
+  "built_keys": {
+    "bpm": 7161,
+    "te": 37298
+  },
+  "bridge_keys": 628,
+  "structural_issues": 0,
+  "remaining": 0,
+  "latin_only_for_review": 0,
+  "quality": {
+    "bpm": {
+      "Dictator_life": 6734,
+      "human": 425,
+      "Dictator_life interface repair": 2
+    },
+    "te": {
+      "human": 16156,
+      "offline draft": 14695,
+      "curated glossary": 17,
+      "offline segmented_draft": 5217,
+      "nonlinguistic": 1184,
+      "curated UI": 26,
+      "vanilla same key/source": 3
+    }
+  },
+  "engine_verified": false,
+  "all_prose_human_reviewed": false
+}

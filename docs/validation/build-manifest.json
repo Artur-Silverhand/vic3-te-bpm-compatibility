@@ -1,5 +1,5 @@
 {
-  "version": "0.7.0-dev",
+  "version": "0.7.1-dev",
   "status": "development_candidate_runtime_unverified",
   "source_commits": {
     "timeline": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
@@ -1391,6 +1391,13 @@
     "world_scans_added": 0,
     "new_campaign_required_for_full_timeout_accounting": true,
     "engine_verified": false
+  },
+  "russian_localization": {
+    "source_keys": 628,
+    "native_keys": 3,
+    "translated_keys": 625,
+    "source_bound": true,
+    "standalone_translation_packs_required": false
   },
   "safety_integration": {
     "shadow_definitions_resolved": 506,

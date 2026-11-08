@@ -1,0 +1,34 @@
+{
+  "te": {
+    "party_five_star_movement": {
+      "en_sha256": "3d068dcc7f23d5a025567e58acf116a6d727ae0043cc3122574e7f48f0c20945",
+      "ru_sha256": "afb6be76771cfa42dfc67293b3aae660ba2e33bb1821bd9dc74644278e507e13",
+      "reason": "Цифра 5 передана словом «пяти» в названии партии."
+    },
+    "pm_3d_printed_buildings": {
+      "en_sha256": "ca602af63ee5afeee1278b1f4420f616e4f1a550102444ba7116c82a74d75dd1",
+      "ru_sha256": "6453bb026743f8eb8eeac5ea7bb7f4b5810a73c3514877980d1c1396b99ba6d8",
+      "reason": "3D точно передано русским словом «трёхмерная»."
+    },
+    "pm_3d_printed_porcelain": {
+      "en_sha256": "3cb92514a5b6c551da657f521c1ec43189e046da10507c8189142abf8cb12669",
+      "ru_sha256": "b01b85b49489d8721f0bc5e703ef7564e56d8663525dd0350382b8b64be202bf",
+      "reason": "3D точно передано русским словом «трёхмерная»."
+    },
+    "additive_manufacturing_desc": {
+      "en_sha256": "e60627ca8a1de223537e829f9fd397a3a903fd30297c89db57be92529c732bae",
+      "ru_sha256": "ab7951b1fcbdedadc91530efa43789932bf0ae903f2cc4f285eb2e5e0586094b",
+      "reason": "3D printing точно передано как «трёхмерная печать»."
+    },
+    "rocketry_desc": {
+      "en_sha256": "9ffca749534f3e9795fba01f81d4ae04030f2c0496cc2ea2e3fb017459f446bb",
+      "ru_sha256": "9836c6be5faeeaeffe425748b79e1b79bba6143398dee44099269dd1742b8c41",
+      "reason": "20-й век передан равнозначной римской записью XX."
+    },
+    "je_un_terms_arms_embargo": {
+      "en_sha256": "0f505fe8f789437f780735fc9a678f99149fe1fc0da38d8982faa99d535964cc",
+      "ru_sha256": "b50884f7ac202c4965c63a7a661dea075709a29d005713f7310c084e45f21d64",
+      "reason": "Исходное relations −10 передано равнозначным снижением отношений на 10; направление эффекта сохранено словом «снижение»."
+    }
+  }
+}

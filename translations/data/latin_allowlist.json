@@ -1,0 +1,190 @@
+{
+  "te": {
+    "company_airbus": {
+      "value_sha256": "b69e9d459c61ce1ad812103d9c104f00f96fbdac76fdffc1c54d7cb357553cf2",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Airbus»."
+    },
+    "company_alibaba": {
+      "value_sha256": "3d5dc27895abcb4ab117318f3db93aef4ab143c6df8e18dc8be1b5ceb9af8ca1",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Alibaba»."
+    },
+    "company_amazon": {
+      "value_sha256": "49d2dc07acd9eff540ded01867adfbcbc4139f5fd7cb0eed6c717edb10ffa8fd",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Amazon»."
+    },
+    "company_apple": {
+      "value_sha256": "f223faa96f22916294922b171a2696d868fd1f9129302eb41a45b2a2ea2ebbfd",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Apple»."
+    },
+    "company_blackberry": {
+      "value_sha256": "bb55fa939f3949a87c141ef73f97f7ef8f56d62a6528e1d5cc28b21636bd7eab",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «BlackBerry»."
+    },
+    "company_bp": {
+      "value_sha256": "36b717811ee15f49e576b94cd39a1b7991c728163cf195f01ecab54d1111196d",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «BP»."
+    },
+    "company_bytedance": {
+      "value_sha256": "08c9a13c70fe40803bb3d465cd5e2170a50cc419aa46ac43131f77ca8444a9f4",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «ByteDance»."
+    },
+    "company_dassault_aviation": {
+      "value_sha256": "e408431e238ce41362e778f301fe3fdb70304b1e49272d7cebc02c4328b69317",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Dassault Aviation»."
+    },
+    "company_google": {
+      "value_sha256": "ce770667e5f9b0d8f55367bb79419689d90c48451bb33f079f3a9a72ae132de8",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Google»."
+    },
+    "company_hp": {
+      "value_sha256": "17a8cd2ec532d8440225a403505a5a6f5c6b213419ac03bb9e2a941d6cee4381",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Hewlett-Packard»."
+    },
+    "company_huawei": {
+      "value_sha256": "df853f864c74fa85acd3a25cd0afed68f1f1d0ab249e17cdb25e77569ac595a2",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Huawei»."
+    },
+    "company_hyundai": {
+      "value_sha256": "ed4e86a9d4dd5233965b46d1a619ebf4a30205c2a82ec199887b4c3ad9b52b58",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Hyundai»."
+    },
+    "company_intel": {
+      "value_sha256": "9dbe1a97a6b445eaf33dad0eaefd2f5fcf997b64feda47d28f6b7352fd028171",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Intel»."
+    },
+    "company_jsw_steel": {
+      "value_sha256": "37a2a9a58e7892006714094b795e36e00e0f64ee0752425c79e69b6e11d5229c",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «JSW Steel»."
+    },
+    "company_lockheed_martin": {
+      "value_sha256": "8dcc1fc59b5faa6b35c07717543ff5d3b599de5aca621923dd9cc9a84b8777f0",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Lockheed Martin»."
+    },
+    "company_microsoft": {
+      "value_sha256": "c7bac46904be785cd0c965bf5659610044f0cdb4cbb02d2ec398dc56648988fd",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Microsoft»."
+    },
+    "company_netflix": {
+      "value_sha256": "f09f149fa26808f8702a6de3f1df63cc9e4651987f3109ee81002207f1477b6d",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Netflix»."
+    },
+    "company_nintendo": {
+      "value_sha256": "0bee31ac676c1c2cfc04193f0e3859b88342603188bcadb417e31c3f090255b2",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Nintendo»."
+    },
+    "company_nvidia": {
+      "value_sha256": "f96dcd14273d3eb067b188a7536c7ce8cde51374525d0d2822aa8d7a534248b4",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Nvidia»."
+    },
+    "company_openai": {
+      "value_sha256": "8b7d1a3187ab355dc31bc683aaa71ab5ed217940c12196a9cd5f4ca984babfa4",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «OpenAI»."
+    },
+    "company_pfizer": {
+      "value_sha256": "977ad75fc9acd67a07bd5f002ae330a11501e11b4fcbeb0836f7a8ae099fc810",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Pfizer»."
+    },
+    "company_rekal": {
+      "value_sha256": "7c26d152559b3b3e247284915f3d90eb079cb948aef866ea436497f5040193c0",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Rekal Incorporated»."
+    },
+    "company_reliance": {
+      "value_sha256": "1f5a915e8b32c5836fb14a3d92256fbf8918bd20245cac4e18682e3d6c4b50da",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Reliance Industries»."
+    },
+    "company_samsung": {
+      "value_sha256": "285075a02b2679248a6b4636c3328bd3097626607c3e43c0c5498258fbfa9f29",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Samsung»."
+    },
+    "company_saudi_aramco": {
+      "value_sha256": "06e94283fa724fd9e2ecff28ad6362d29294ae870a0e22a37f96c26a4d2037ff",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Saudi Aramco»."
+    },
+    "company_shell": {
+      "value_sha256": "b131a4411a91e610d0c3c871b264701fda8b9f2c78f8aa2a79c1843f5a4fdd58",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Royal Dutch Shell»."
+    },
+    "company_softbank": {
+      "value_sha256": "8fbc9ed38900a8cfdb88ed2c518bc44311bd59dfc83bdbc07ac9a61c95b1556a",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «SoftBank»."
+    },
+    "company_sony": {
+      "value_sha256": "32b661b351e7a66d43e327fac6b396797ce0e6a5fbf56e65eef95ba2a96348b7",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Sony»."
+    },
+    "company_spacex": {
+      "value_sha256": "afd623b148154a550bb1f644012892cc725dcb383cd68fdf05f1665b09e355bc",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «SpaceX»."
+    },
+    "company_toyota": {
+      "value_sha256": "abf215e6042d9fee59096ad7cc3fc3226949b557d20f45e32e6a0f8235435525",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Toyota»."
+    },
+    "company_tsmc": {
+      "value_sha256": "00fb5022b75a76dd81bc588263dc8395b0a5ac7aa050138900d31c355baf12ea",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «TSMC»."
+    },
+    "company_tycho_manufacturing": {
+      "value_sha256": "2f1cff44cf203ba85224d93264ec2b0a00a7d6015947e95a71c26c7d68f5e73a",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Tycho Manufacturing & Engineering»."
+    },
+    "company_verizon": {
+      "value_sha256": "bd3cba85ce4cde434529773c4b52623a2f5f6bbc336c84d8edfe92a7c74be257",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Verizon»."
+    },
+    "company_volkswagen": {
+      "value_sha256": "9a901104923753a0de98c1c07c75a7e7fc7c3b88129b6d1b5e8336e6c51758d6",
+      "reason": "Собственное коммерческое название компании/бренда; сохранена исходная латинская форма «Volkswagen»."
+    },
+    "je_space_race_widget_modules_col_b": {
+      "value_sha256": "2e561ff2355c06484efc416619b5b7f7fc055acdb4e5b6db7a4bc0a5016b19e3",
+      "reason": "Римская цифра II: номер столбца модулей, а не английский текст."
+    },
+    "te_law_tax_delta_effects": {
+      "value_sha256": "39a7e427b9f6d12a971e134a2306200bb1ea68aa7e7bbe4c6023128d2c66ed6b",
+      "reason": "Идентификатор цели всплывающей подсказки #tooltip, а не видимая английская фраза; сохранение требуется синтаксисом интерфейса."
+    },
+    "te_law_tax_effects": {
+      "value_sha256": "6ac5ee7a1f40ffe99221b71096535e87d5953536608bfb0147a1da17fa56591a",
+      "reason": "Идентификатор цели всплывающей подсказки #tooltip, а не видимая английская фраза; сохранение требуется синтаксисом интерфейса."
+    },
+    "te_law_tax_effects_country": {
+      "value_sha256": "7e26b33cbdca9c8d2681e6b5bfabd78ef49b43a5455ab021ba51bcda3503bf7e",
+      "reason": "Идентификатор цели всплывающей подсказки #tooltip, а не видимая английская фраза; сохранение требуется синтаксисом интерфейса."
+    },
+    "te_systems_window_launcher_label": {
+      "value_sha256": "7586ec14290ce4ea6eb5889fcf39c294c565fb237f3ba5a67e463c06f5e80e2b",
+      "reason": "Собственное название мода Timeline Extended, сохранённое как бренд."
+    },
+    "te_systems_window_title": {
+      "value_sha256": "7586ec14290ce4ea6eb5889fcf39c294c565fb237f3ba5a67e463c06f5e80e2b",
+      "reason": "Собственное название мода Timeline Extended, сохранённое как бренд."
+    }
+  },
+  "bpm": {
+    "bpm_acw_events.311.a": {
+      "value_sha256": "b3d385f79d0a9a7b63073c758490287427c63313731eb06e3dc38a29796bd012",
+      "reason": "Historical Latin DOJ motto"
+    },
+    "bpm_papal_encyclicals.1.t": {
+      "value_sha256": "38a85364633ff1d42bedc6960d26e547061810527caa77956ec3ea1dad6129b3",
+      "reason": "Latin title of papal encyclical"
+    },
+    "bpm_papal_encyclicals.2.t": {
+      "value_sha256": "dbb4c461676d66b7f87386063aec8296a558d8ee0bf0c00ebec043f7ccb7d849",
+      "reason": "Latin title of papal encyclical"
+    },
+    "bpm_papal_encyclicals.3.t": {
+      "value_sha256": "1983c1773178eca5f3d7c40ce0a72b4b25a611f06144c1f2d5409f1803406eb3",
+      "reason": "Latin title of papal encyclical"
+    },
+    "bpm_papal_encyclicals.4.t": {
+      "value_sha256": "2589e86da1ccb5776b93d3473caaa55fcabf80e4ae6ab69d3b5d8fd02b0f9b1c",
+      "reason": "Latin title of papal encyclical"
+    },
+    "dlc_bpm": {
+      "value_sha256": "483b28998ff8e5d4d34e298217f0bba38e7d757d9fbd794191049beca2d1339e",
+      "reason": "Original mod name"
+    }
+  }
+}

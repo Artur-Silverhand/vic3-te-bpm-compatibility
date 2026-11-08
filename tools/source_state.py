@@ -101,6 +101,8 @@ def source_state(root=ROOT):
     pending_update_review(root)
     if (root/'backports').exists():
         result['backports']={p.relative_to(root).as_posix():sha(p) for p in sorted((root/'backports').rglob('*')) if p.is_file()}
+    from translation_bridge import INPUTS as translation_inputs
+    result['translation_bridge']={relative:sha(root/relative) for relative in translation_inputs}
     if (root/'docs/decisions/iteration-reviews.json').exists():
         result['iteration_reviews_sha256']=sha(root/'docs/decisions/iteration-reviews.json')
     for label in ('timeline','bpm','game'):

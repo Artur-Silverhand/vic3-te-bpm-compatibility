@@ -25,6 +25,7 @@ from cabinet_adapters import integrate as integrate_cabinet
 from source_state import load_lock,load_research,research_path,project
 from te_backports import load as load_backports
 from cultural_adapters import integrate as integrate_culture
+from translation_bridge import integrate as integrate_translation
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "patch"
@@ -225,6 +226,7 @@ def generate() -> dict:
     generated,cultural_report=integrate_culture(research,source_text,blocks,generated)
     generated,safety_report=integrate_safety(research,source_text,blocks,generated)
     generated,cabinet_report=integrate_cabinet(research,source_text,blocks,generated)
+    generated,translation_report=integrate_translation(ROOT,generated)
     owned_roots={'common','events','gui','localization','map_data','gfx'}
     existing={p.relative_to(OUTPUT).as_posix() for p in OUTPUT.rglob('*') if p.is_file()
               and p.relative_to(OUTPUT).parts[0] in owned_roots}
@@ -253,6 +255,7 @@ def generate() -> dict:
               'cabinet_optimization':cabinet_report,
               'te_backports':backport_report,
               'cultural_integration':cultural_report,
+              'russian_localization':translation_report,
               'safety_integration':{'shadow_definitions_resolved':len(safety_report['shadow_definitions_resolved']),
                                     'files_masked':safety_report['files_masked'],'checkpoint_success':safety_report['checkpoint_success']},
               'engine_load_order_verified': False, 'game_runs_performed': False,

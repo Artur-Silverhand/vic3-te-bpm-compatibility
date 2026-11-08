@@ -1,0 +1,3 @@
+{
+  "BPM_VALUE_FROM_LOW_SOL": "от среднего [Concept('concept_sol', 'уровня жизни')] среди [Concept('concept_pop', 'населения')] [Concept('concept_country', 'страны')] (ниже @middling! #b 15.0#! — [Concept('concept_sol', 'среднего уровня')])"
+}

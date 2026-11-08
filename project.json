@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "patch_version": "0.7.0-dev",
+  "patch_version": "0.7.1-dev",
   "supported_game_version": "1.15.0",
   "workshop_id": null
 }

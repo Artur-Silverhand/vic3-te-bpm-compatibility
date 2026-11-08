@@ -1,13 +1,13 @@
 {
-  "version": "0.7.0-dev",
+  "version": "0.7.1-dev",
   "status": "PASS",
-  "tests_run": 94,
+  "tests_run": 100,
   "tests_passed": true,
   "graph_failures": [],
   "graph_nodes": 40287,
   "graph_edges": 161002,
   "patch_sha256": {
-    ".metadata/metadata.json": "8cc83bd797c3abcac9df08c55342351772e41d641cdb8fc641fedbeaa60222e4",
+    ".metadata/metadata.json": "e1dece55771c34c87192831a39b15fb9f71d48b32c59928389ea191f27fb88c1",
     "common/amendments/zzzzzz_tbcp_elections.txt": "34e3dcb7400a8fda00125001fd6b3a692c168ecc5362c4c202431c427c622f0f",
     "common/customizable_localization/te_tax_generated_custom_loc.txt": "6535fc367872d95299adf3bb8bf2de45185135c5af16d2e02e1cb7b6dba9c224",
     "common/defines/zzzzzz_tbcp_defines.txt": "18e6bca86e1afa217b3bab23e49724ebc4436c7a95a732441d86143c0b7bb6d1",
@@ -198,16 +198,17 @@
     "gui/pops_overview.gui": "ae9ef779bd2b466c3e70f002a9057141164819e767fff31b98caf7b0e61a5368",
     "localization/english/te_tax_generated_l_english.yml": "5505ca52bebc4f94521495c7c51d4e84a13df06101420dafd162fb482b4d7f35",
     "localization/english/zz_tbcp_culture_l_english.yml": "e1f0d992e94da3e97ae470c8e51b2cfef3a42ea31b58b074ecde4a10bf0830b8",
+    "localization/russian/zz_tbcp_bridge_l_russian.yml": "7d5d71f16fe6854f35bd00f70818d772c24d65bec585067cacd97c84e45c1cae",
     "localization/russian/zz_tbcp_culture_l_russian.yml": "65f392bab79799f8737631c827de1d8f9d31c78d2302890f188774d12e6f536f",
-    "README.md": "a980a573ae669f47e99190f9fcefac6577ce4d604f6dd1f1b62486fb8905cc41",
-    "TESTING.md": "726c019e6b2e61c7da4d6b44a406ad7b7cc9d8b7bf595bfb99577c6fadcd65c1"
+    "README.md": "f463a16db41d7d58a6bc45ddd3eab13f88cfa5d7ab7eec077aafdf25a63777a8",
+    "TESTING.md": "4dfff5e0a9c05d43b92c355f7580682a84fc753af9f93e7e910174ad0e83d6ed"
   },
   "tools_sha256": {
     "tools/audit_event_availability.py": "01be1b8ba8be5cfa85c3a32a6380f20ca1f6a6ca067b58f351aa406f3f9ce763",
     "tools/audit_patch.py": "8de9102730da25a3d2509f233849cbcacc03428f1de78706efd56e8cb97c37bd",
     "tools/audit_runtime_graph.py": "53e3e7c7341aaf2a1d1ce656d1fd08670fca13fe30ba5a11aefddd26e68809e6",
     "tools/audit_te_standalone.py": "9439c9daa3980486bbd33a38018fabf001f227281fb6fdc9ffe07d3486b2ff0e",
-    "tools/build_patch.py": "8de50859366555dedcd5b1b33a7be8b6d3b5bf14bc10edaad0c897699fb73047",
+    "tools/build_patch.py": "e9bb9a6ebb90ed24399e0f539e747136fa51babd2aa0e894276a20dfca116db1",
     "tools/cabinet_adapters.py": "d59ff43cfd416c8ca0e85d6663f4939350d8b25b7ed6a5efeffd9dec9a1e424d",
     "tools/character_merge.py": "46351ca6d9f5e12a56763c552ea92427db48a6f21efec82e0eef37b551f54125",
     "tools/collect_test_logs.ps1": "cb3c27c25136f59df9572a3e04da07755b859fa4dbc8b9d4a772c77a1471cf15",
@@ -225,7 +226,7 @@
     "tools/remaining_merge.py": "44617dc08bb7c4fd6f969194e0ebdc227694d3efebf5451d5cc6834c0272b106",
     "tools/safety_merge.py": "5e8b9cd25f698b9cf702e78d70719d3ba3067e1ac936ee2921aea5e234c49b99",
     "tools/script_syntax.py": "2432aad9d5730c2c711959a3074f2f736a7ce070cf8302817fabdf5075a52c0b",
-    "tools/source_state.py": "fa3ce8488efe7684385e7156eba05b48cdf6599291a60cf672fd6e917ecbf615",
+    "tools/source_state.py": "fdd25e9d2c0a7fd3cc8ce457900519ba385771f70bad533c00cf37e13f26d0f7",
     "tools/synthetic_cabinet.py": "e60fd1d12fd6b449bdd4aea03c9ca991b7d92f19841ea17c07f613e6548eb6d4",
     "tools/synthetic_tax.py": "c1843ddb5d21274f73957ca9b32a6c3b6a41c482c14773125092984b1f340c02",
     "tools/tax_ai.py": "6b8e6fb391cf9d37a94258644475595463147de2bf2ee417b33e39f834630017",
@@ -237,9 +238,11 @@
     "tools/test_release_update.py": "34405d57d4c82cb43cb380027bcd1ecded1b35bcfb28342256076d2d1032f45b",
     "tools/test_support.py": "568d83cbb5755d9b582a680c4647477acf6b098b3762a79504d9e0bedc4a8c52",
     "tools/test_synthetic.py": "ccb46a6d48f8cb242aa98e5e9a2704d8253468213e78059b495cab54977eef88",
-    "tools/test_updates.py": "fe1065830e7c7b0f6c6919ef5e47a8a9b5c6936b4be1ebeb0e54d26952dd697b",
+    "tools/test_translation_bridge.py": "5289d3944a8a265c41c104dd8027fa1a4afcc54ee883a4a001be6f9805ee3307",
+    "tools/test_updates.py": "541390691fcc7df3d48f5e3e479694f66e45b81af3e674631ec7adfe024beaf9",
+    "tools/translation_bridge.py": "360773a2ee1b2e7a9c7886fd1b7617521f0bfbab89b6496f76dcbf41f5158a84",
     "tools/update_installed_patch.py": "8bdfbd01ff22ce60488c916409a8b39d8fc5956592dd35783baf56e9b5f3347d",
-    "tools/update_patch.py": "1bfa4343e71411a73bd8378ced5a944ea423d824a16de3b87ad123eaa815bfaf",
+    "tools/update_patch.py": "4d51ac0d4426020cbcfa61c7cc0546fe3189bb3da9fce0d0ae44277a45b34ba0",
     "tools/verify_patch.py": "f35ab6d48878e325b1b32eb9bb3e9805a24c6bce23d341a0a3c40577130b7121"
   },
   "source_state": {
@@ -254,7 +257,7 @@
     ],
     "lock_sha256": "d7feed1ca7d3e2eb3daafa8e15df684a0879a2e678c31ce7c6f8d62845d72cad",
     "research_sha256": "cac0024f250457857f80297db367f510b247e05fe6fe177efaeb17d54019f9a8",
-    "project_sha256": "e49f42240f532c371743066df7ee2f087b06584f3d2e40e6c6634ffcb8f4cfec",
+    "project_sha256": "903eec04cb20c5ad27070d4b7ec851825dda27e2b4c40896b74ae6cdfd1c8cff",
     "update_review_sha256": null,
     "game": {
       "version": "1.15.0",
@@ -328,6 +331,10 @@
       "backports/te-2026-11-08/files/events/nuclear_custody_events.txt": "109811f163769fe07f409436cce414179741fde7f8426609a07bb0cc10692024",
       "backports/te-2026-11-08/files/events/nuclear_incident_events.txt": "ae93d3d23ac30ddbe9274eb5e2e758da30b6e569f10c052725c54e840ad92798",
       "backports/te-2026-11-08/manifest.json": "824272607c4aa2c3384c4055722c7542dff75e1136eea76afa4adb4e5f19165d"
+    },
+    "translation_bridge": {
+      "translations/loclib.py": "c77df22cb043bf1045decd5c8e928ab1fa7ed650a2f0c9d971722ff1fba281cc",
+      "translations/memory/bridge.json": "7c8658c9bf941c0cb39c2d7d457e0683bafdc88fcfc550a62b5dfd78a07e6b80"
     },
     "iteration_reviews_sha256": "c69b9a7979b8d4649878520081f53dd4d35c7ea78a3b53811fc6430ce14678b4"
   },

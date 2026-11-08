@@ -1221,7 +1221,7 @@
   "engine_verified": false,
   "render_verified": false,
   "patch_sha256": {
-    ".metadata/metadata.json": "8cc83bd797c3abcac9df08c55342351772e41d641cdb8fc641fedbeaa60222e4",
+    ".metadata/metadata.json": "e1dece55771c34c87192831a39b15fb9f71d48b32c59928389ea191f27fb88c1",
     "common/amendments/zzzzzz_tbcp_elections.txt": "34e3dcb7400a8fda00125001fd6b3a692c168ecc5362c4c202431c427c622f0f",
     "common/customizable_localization/te_tax_generated_custom_loc.txt": "6535fc367872d95299adf3bb8bf2de45185135c5af16d2e02e1cb7b6dba9c224",
     "common/defines/zzzzzz_tbcp_defines.txt": "18e6bca86e1afa217b3bab23e49724ebc4436c7a95a732441d86143c0b7bb6d1",
@@ -1412,8 +1412,9 @@
     "gui/pops_overview.gui": "ae9ef779bd2b466c3e70f002a9057141164819e767fff31b98caf7b0e61a5368",
     "localization/english/te_tax_generated_l_english.yml": "5505ca52bebc4f94521495c7c51d4e84a13df06101420dafd162fb482b4d7f35",
     "localization/english/zz_tbcp_culture_l_english.yml": "e1f0d992e94da3e97ae470c8e51b2cfef3a42ea31b58b074ecde4a10bf0830b8",
+    "localization/russian/zz_tbcp_bridge_l_russian.yml": "7d5d71f16fe6854f35bd00f70818d772c24d65bec585067cacd97c84e45c1cae",
     "localization/russian/zz_tbcp_culture_l_russian.yml": "65f392bab79799f8737631c827de1d8f9d31c78d2302890f188774d12e6f536f",
-    "README.md": "a980a573ae669f47e99190f9fcefac6577ce4d604f6dd1f1b62486fb8905cc41",
-    "TESTING.md": "726c019e6b2e61c7da4d6b44a406ad7b7cc9d8b7bf595bfb99577c6fadcd65c1"
+    "README.md": "f463a16db41d7d58a6bc45ddd3eab13f88cfa5d7ab7eec077aafdf25a63777a8",
+    "TESTING.md": "4dfff5e0a9c05d43b92c355f7580682a84fc753af9f93e7e910174ad0e83d6ed"
   }
 }

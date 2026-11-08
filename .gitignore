@@ -19,4 +19,6 @@ __pycache__/
 .agents/
 /paths.local.json
 /update-candidate.json
+/translations/output/
+/translations/repos/
 

@@ -43,6 +43,10 @@ class UpdateContracts(unittest.TestCase):
                            'launcher_settings_sha256':sha(self.game/'launcher/launcher-settings.json')},
                    'research_reports':{'github':{'path':'docs/research/base.json','sha256':sha(self.root/'docs/research/base.json')}}}
         self.write('sources.lock.json',self.lock)
+        from translation_bridge import INPUTS as translation_inputs
+        for relative in translation_inputs:
+            path=self.root/relative;path.parent.mkdir(parents=True,exist_ok=True)
+            path.write_bytes((ROOT/relative).read_bytes())
         def fake_git(command,**kwargs):
             if 'show' in command:return b'helper\n'
             if 'status' in command:return ''
@@ -108,6 +112,11 @@ class UpdateContracts(unittest.TestCase):
         (self.te/'common/.DS_Store').write_bytes(b'ignored')
         self.assertEqual(source_state(self.root),before)
         self.assertEqual(check(self.root,profile='pinned')['status'],'UNCHANGED')
+
+    def test_bridge_translation_change_invalidates_gate(self):
+        gate={'source_state':source_state(self.root)}
+        self.write('translations/memory/bridge.json',{'changed':{'ru':'Другой перевод'}})
+        with self.assertRaisesRegex(ValueError,'since PASS'):require_fresh_inputs(gate,self.root)
 
     def test_triage_identifies_changed_symbol_and_override(self):
         path=self.bpm/'common/scripted_effects/base.txt'

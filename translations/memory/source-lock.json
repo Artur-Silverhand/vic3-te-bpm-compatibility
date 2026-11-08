@@ -1,0 +1,28 @@
+{
+  "game": {
+    "version": "1.15.0",
+    "launcher_settings_sha256": "4b7032eeb5fc7f0f64b60690d5d2b1bbc4b7ca5119b44bb76eb2f7788a9fd91c",
+    "steam_build_id": "26453692"
+  },
+  "mods": {
+    "timeline": {
+      "commit": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
+      "version": "1.3.0"
+    },
+    "bpm": {
+      "commit": "d785d399001ceaa87a1153ca7e0fb4ba512d8425",
+      "version": "2.5"
+    }
+  },
+  "translation_sources": {
+    "bpm_workshop": "https://steamcommunity.com/sharedfiles/filedetails/?id=3487720283",
+    "bpm_original_author": "Dictator_life"
+  },
+  "model": {
+    "name": "Argos English-Russian 1.9 / CTranslate2",
+    "local_only": true,
+    "archive_sha256": "591d743ae103752b88ffc38785c50421320f4eff93c8967e0d3d2e14d4e27811"
+  },
+  "engine_verified": false,
+  "all_prose_human_reviewed": false
+}
