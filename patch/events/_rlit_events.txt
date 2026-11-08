@@ -1,0 +1,2 @@
+﻿namespace = rlit
+# TBCP: full literature events restored at their vanilla paths.

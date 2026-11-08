@@ -1,0 +1,326 @@
+{
+  "summary": {
+    "source_event_ids": {
+      "game": 2400,
+      "timeline": 1275,
+      "bpm": 874,
+      "patch": 445
+    },
+    "vanilla_inert_hidden_overrides": {
+      "timeline": 0,
+      "bpm": 2
+    },
+    "same_path_omissions": {
+      "timeline": 0,
+      "bpm": 1
+    },
+    "rlit_vanilla_events": 32,
+    "explicit_false_gates": {
+      "timeline": {
+        "events": 0,
+        "journals": 0
+      },
+      "bpm": {
+        "events": 33,
+        "journals": 7
+      }
+    },
+    "rlit_starters": {
+      "rlit.001": [
+        {
+          "owner": "bpm",
+          "path": "events/_rlit_events.txt",
+          "inert_hidden_stub": true
+        }
+      ],
+      "rlit.052": [
+        {
+          "owner": "bpm",
+          "path": "events/_rlit_events.txt",
+          "inert_hidden_stub": true
+        }
+      ]
+    },
+    "interpretation": "Inventory only: deliberate disabling is distinct from a missing reference or engine failure.",
+    "game_launched": false
+  },
+  "inert_hidden_overrides": {
+    "timeline": [],
+    "bpm": [
+      {
+        "event": "rlit.1",
+        "mod_path": "events/_rlit_events.txt",
+        "game_paths": [
+          "events/rlit_cluster1_golden_age.txt"
+        ]
+      },
+      {
+        "event": "rlit.52",
+        "mod_path": "events/_rlit_events.txt",
+        "game_paths": [
+          "events/rlit_cluster2_crossroads.txt"
+        ]
+      }
+    ]
+  },
+  "same_path_omissions": {
+    "timeline": [],
+    "bpm": [
+      {
+        "event": "ip4_coup.11",
+        "masked_game_path": "events/iberia_events/ip4_coup_events.txt",
+        "defined_elsewhere_in_mod": false
+      }
+    ]
+  },
+  "rlit_events": [
+    "rlit.1",
+    "rlit.10",
+    "rlit.11",
+    "rlit.12",
+    "rlit.13",
+    "rlit.14",
+    "rlit.15",
+    "rlit.16",
+    "rlit.17",
+    "rlit.18",
+    "rlit.19",
+    "rlit.2",
+    "rlit.20",
+    "rlit.21",
+    "rlit.22",
+    "rlit.23",
+    "rlit.24",
+    "rlit.25",
+    "rlit.26",
+    "rlit.27",
+    "rlit.29",
+    "rlit.3",
+    "rlit.33",
+    "rlit.35",
+    "rlit.36",
+    "rlit.4",
+    "rlit.5",
+    "rlit.52",
+    "rlit.6",
+    "rlit.7",
+    "rlit.8",
+    "rlit.9"
+  ],
+  "explicit_false_gates": {
+    "timeline": {
+      "events": [],
+      "journals": []
+    },
+    "bpm": {
+      "events": [
+        {
+          "key": "historical_agitators.8",
+          "path": "events/_agitators_events/historic_agitator_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "historical_agitators.9",
+          "path": "events/_agitators_events/historic_agitator_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "japan_religion.7",
+          "path": "events/_japan_events/bpm_japan_religion_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "children_rights_events.4",
+          "path": "events/_law_events/bpm_children_rights_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "council_republic_law_events.1",
+          "path": "events/_law_events/bpm_council_republic_law_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "economy_laws.1",
+          "path": "events/_law_events/bpm_economy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "economy_laws.2",
+          "path": "events/_law_events/bpm_economy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "economy_laws.3",
+          "path": "events/_law_events/bpm_economy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "economy_laws.4",
+          "path": "events/_law_events/bpm_economy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "economy_laws.5",
+          "path": "events/_law_events/bpm_economy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "economy_laws.6",
+          "path": "events/_law_events/bpm_economy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "healthcare_laws.3",
+          "path": "events/_law_events/bpm_healthcare_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "labor_rights.1",
+          "path": "events/_law_events/bpm_labor_rights_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "labor_rights.2",
+          "path": "events/_law_events/bpm_labor_rights_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "monarchy_law_events.4",
+          "path": "events/_law_events/bpm_monarchy_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "rights_of_women_laws.7",
+          "path": "events/_law_events/bpm_rights_of_women_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "single_party_state.2",
+          "path": "events/_law_events/bpm_single_party_state_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "single_party_state.3",
+          "path": "events/_law_events/bpm_single_party_state_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "single_party_state.4",
+          "path": "events/_law_events/bpm_single_party_state_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "single_party_state.5",
+          "path": "events/_law_events/bpm_single_party_state_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "single_party_state.6",
+          "path": "events/_law_events/bpm_single_party_state_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "single_party_state.7",
+          "path": "events/_law_events/bpm_single_party_state_laws.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "unable_to_enact.1",
+          "path": "events/_law_events/bpm_unable_to_enact_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "welfare_laws.9",
+          "path": "events/_law_events/bpm_welfare_laws_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "bpm_christdem_split.6",
+          "path": "events/bpm_christdem_split.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "bpm_marlib_split.1",
+          "path": "events/bpm_marlib_split.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "bpm_misc.1",
+          "path": "events/bpm_misc.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "bpm_natlib_split.1",
+          "path": "events/bpm_natlib_split.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "anarchism_events.4",
+          "path": "events/iberia_events/_ip4_anarchism_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "ip4_coup.1",
+          "path": "events/iberia_events/ip4_coup_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "ip4_coup.2",
+          "path": "events/iberia_events/ip4_coup_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "ip4_coup.3",
+          "path": "events/iberia_events/ip4_coup_events.txt",
+          "blocked_gate": "trigger"
+        },
+        {
+          "key": "ip4_coup.4",
+          "path": "events/iberia_events/ip4_coup_events.txt",
+          "blocked_gate": "trigger"
+        }
+      ],
+      "journals": [
+        {
+          "key": "REPLACE:je_strike",
+          "path": "common/journal_entries/BPM_je_general_strike.txt",
+          "blocked_gate": "is_shown_when_inactive"
+        },
+        {
+          "key": "je_bpm_zapadniks_and_slavophiles",
+          "path": "common/journal_entries/BPM_je_russia.txt",
+          "blocked_gate": "is_shown_when_inactive"
+        },
+        {
+          "key": "je_bpm_agrarian_socialism",
+          "path": "common/journal_entries/BPM_je_socialists.txt",
+          "blocked_gate": "is_shown_when_inactive"
+        },
+        {
+          "key": "REPLACE:je_fascism_1",
+          "path": "common/journal_entries/zz_00_fascism.txt",
+          "blocked_gate": "is_shown_when_inactive"
+        },
+        {
+          "key": "REPLACE:je_fascism_1",
+          "path": "common/journal_entries/zz_00_fascism.txt",
+          "blocked_gate": "possible"
+        },
+        {
+          "key": "REPLACE:je_ethno_nationalist",
+          "path": "common/journal_entries/zz_00_fascism.txt",
+          "blocked_gate": "is_shown_when_inactive"
+        },
+        {
+          "key": "REPLACE:je_ethno_nationalist",
+          "path": "common/journal_entries/zz_00_fascism.txt",
+          "blocked_gate": "possible"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "False inactive/possible gates can be bypassed by explicit add_journal_entry.",
+    "This does not evaluate dynamic scopes, DLC ownership, dates, random chances or engine execution."
+  ]
+}

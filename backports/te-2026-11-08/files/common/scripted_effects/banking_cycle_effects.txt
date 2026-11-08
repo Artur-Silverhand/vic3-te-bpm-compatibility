@@ -1,0 +1,2828 @@
+# Banking cycle random event selection
+# Called from je_banking_cycle monthly pulse.
+# Handles cooldown countdown and weighted random event selection.
+
+banking_cycle_random_event_effect = {
+	# Cooldown countdown
+	if = {
+		limit = { has_variable = banking_event_cooldown }
+		change_variable = { name = banking_event_cooldown add = -1 }
+		if = {
+			limit = { var:banking_event_cooldown <= 0 }
+			remove_variable = banking_event_cooldown
+		}
+	}
+	if = {
+		limit = {
+			NOT = { has_variable = banking_event_cooldown }
+			var:crash <= 0  # don't fire events in the same month as a crash
+		}
+		random_list = {
+			260 = { } # no event this month
+
+			# ---- EARLY ERA (no extra tech gate beyond stock_exchange) ----
+
+			# Event 1: Speculative Mania (expansion+, bubble building)
+			0 = {
+				modifier = {
+					if = { limit = { var:bubble_pressure >= 15 banking_cycle_is_expansion = yes } add = 5 }
+					if = { limit = { var:bubble_pressure >= 15 banking_cycle_is_boom = yes } add = 5 }
+					if = { limit = { var:bubble_pressure >= 15 banking_cycle_is_frenzy = yes } add = 5 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 3 }
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.101 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.151 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.1 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 2: Foreign Capital Inflow (stable+, not at war)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							is_at_war = no
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 5
+					}
+				}
+				trigger_event = { id = banking_cycle_events.2 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 3: Credit Crunch Fears (stagnation/downturn)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = { limit = { banking_cycle_is_stagnation = yes } add = 6 }
+					if = { limit = { banking_cycle_is_downturn = yes } add = 9 }
+				}
+				trigger_event = { id = banking_cycle_events.3 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 4: Country Bank Run (RARE, HIGH IMPACT - downturn/panic)
+			# The bubble bonus sits inside the recession: "depositors queuing in
+			# the streets" cannot fire while the banner reads Boom or Frenzy.
+			0 = {
+				modifier = {
+					if = { limit = { banking_cycle_is_downturn = yes } add = 1 }
+					if = { limit = { banking_cycle_is_panic = yes } add = 2 }
+					if = {
+						limit = {
+							banking_cycle_is_recession = yes
+							var:bubble_pressure >= 50
+						}
+						add = 1
+					}
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.104 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.154 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.4 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 5: Railway Bond Fever (expansion+, railroads tech)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = railways
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 5
+					}
+				}
+				trigger_event = { id = banking_cycle_events.5 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 6: Harvest Failure & Credit (any phase)
+			0 = {
+				modifier = {
+					add = 4
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.106 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.156 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.6 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- MID ERA (central_banking / investment_banks / mutual_funds) ----
+
+			# Event 7: Bank Consolidation Wave (boom/frenzy, central_banking)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.7 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 8: Novel Financial Instrument (expansion+, investment_banks)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = investment_banks
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 5
+					}
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 2 }
+				}
+				trigger_event = { id = banking_cycle_events.8 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 9: Asset Price Uncertainty (expansion/boom, bubble>=30, central_banking)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							var:bubble_pressure >= 30
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 5
+					}
+				}
+				trigger_event = { id = banking_cycle_events.9 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 10: Sovereign Debt Scare (stagnation/downturn/panic, central_banking)
+			# Only with a debt the markets price (scaled_debt > 0.25, where the
+			# debt-load premium starts) and not already in default — it used to
+			# reach debt-free countries (#428). All three variants: each ends in
+			# the same partial-default option.
+			0 = {
+				trigger = { banking_sovereign_debt_is_priced = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = {
+								banking_cycle_is_stagnation = yes
+								banking_cycle_is_downturn = yes
+								banking_cycle_is_panic = yes
+							}
+						}
+						add = 4
+					}
+					if = { limit = { banking_cycle_is_panic = yes } add = 3 }
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.110 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.160 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.10 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 11: Insurance Sector Wobble (expansion+, mutual_funds)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = mutual_funds
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.11 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 12 (Gold Standard Pressure) is GONE — absorbed by the
+			# convertibility crisis te_peg.1, which the monetary update fires off
+			# peg confidence rather than off a random draw
+			# (monetary_policy_design.md §12.3).
+			# Event 13: Industrial Overinvestment (boom/frenzy, corporate_management)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = corporate_management
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+						}
+						add = 4
+					}
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 2 }
+				}
+				trigger_event = { id = banking_cycle_events.13 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- LATE ERA (keynesian_economics / modern_financial_instruments / consumer_credit) ----
+
+			# Event 14: Housing Price Spiral (HIGH IMPACT, boom/frenzy, consumer_credit)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = consumer_credit
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+						}
+						add = 4
+					}
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 2 }
+				}
+				trigger_event = { id = banking_cycle_events.14 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 15: Currency Crisis (downturn/panic, modern_financial_instruments,
+			# SIMPLIFIED banking rule only). Under the full monetary system the
+			# currency crisis is owned by the monetary layer: te_peg.1 (gold) and
+			# te_peg.2 (treaty peg) fire off real peg confidence, and a floating
+			# currency has no rate to "sustain" or "let float". A random draw
+			# beside them narrated reserves and capital controls the system never
+			# saw — the same double-dip that gated event 58 below (PR #416).
+			0 = {
+				trigger = {
+					te_mon_full_system = no
+				}
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = modern_financial_instruments
+							OR = {
+								banking_cycle_is_downturn = yes
+								banking_cycle_is_panic = yes
+							}
+						}
+						add = 5
+					}
+					if = { limit = { banking_cycle_is_panic = yes } add = 3 }
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.115 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.165 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.15 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 16: CB Independence Debate (stable+, keynesian_economics, not unregulated banking)
+			# The market event (.16) has a governor push back on the government,
+			# so it needs a central bank whose rate the government has handed
+			# over (banking_cbi_debate_has_governor: under the full system a
+			# delegated or independent dial, under the simplified rule a national
+			# bank). The planned (.116) and cooperative (.166) variants are a
+			# bureau-vs-secretariat and a council dispute, not a governor's, and
+			# keep their old reach (#428).
+			0 = {
+				trigger = {
+					OR = {
+						banking_is_command_economy = yes
+						banking_is_cooperative_economy = yes
+						banking_cbi_debate_has_governor = yes
+					}
+				}
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = keynesian_economics
+							NOT = { has_law = law_type:law_unregulated_banking }
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 4
+					}
+					if = {
+						limit = { has_law = law_type:law_central_bank_independence }
+						add = 2
+					}
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.116 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.166 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.16 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 17: Consumer Credit Boom (expansion+, consumer_credit)
+			0 = {
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = consumer_credit
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.117 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.167 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.17 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 18: Derivatives Scandal (RARE, boom/frenzy, modern_financial_instruments)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = modern_financial_instruments
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+							var:bubble_pressure >= 40
+						}
+						add = 2
+					}
+				}
+				trigger_event = { id = banking_cycle_events.18 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 19: Sovereign Wealth Fund Proposal (expansion+, keynesian_economics, NOT laissez_faire)
+			0 = {
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = keynesian_economics
+							NOT = { has_law = law_type:law_laissez_faire }
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 3
+					}
+				}
+				trigger_event = { id = banking_cycle_events.19 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 20: Shadow Banking Discovery (RARE, HIGH IMPACT, boom/frenzy, modern_financial_instruments, favors weak regulation)
+			0 = {
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = modern_financial_instruments
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+							var:bubble_pressure >= 50
+						}
+						add = 2
+					}
+					if = {
+						limit = {
+							OR = {
+								has_law = law_type:law_unregulated_banking
+								has_law = law_type:law_universal_banking_light_prudence
+							}
+						}
+						add = 1
+					}
+				}
+				if = {
+					limit = { has_law = law_type:law_command_economy }
+					trigger_event = { id = banking_cycle_events.120 }
+				}
+				else_if = {
+					limit = { has_law = law_type:law_cooperative_ownership }
+					trigger_event = { id = banking_cycle_events.170 }
+				}
+				else = {
+					trigger_event = { id = banking_cycle_events.20 }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- NEW EVENTS 21-45 ----
+
+			# Event 21: Merchant Bank Prosperity (stable/expansion, no extra tech)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+							}
+						}
+						add = 5
+					}
+				}
+				trigger_event = { id = banking_cycle_events.21 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 22: New Provincial Exchange (expansion+, no extra tech)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.22 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 23: Banking Scandal (any phase, no extra tech)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					add = 4
+				}
+				trigger_event = { id = banking_cycle_events.23 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 24: Warehouse Receipts Fraud (expansion+, bubble >= 20)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							var:bubble_pressure >= 20
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.24 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 25: Trade Bill Innovation (stable+, not at war)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							is_at_war = no
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.25 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- MID ERA NEW EVENTS ----
+
+			# Event 26: Pension Fund Growth (expansion+, mutual_funds)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = mutual_funds
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.26 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 27: Telegraph Banking Revolution (expansion+, central_banking)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.27 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 28: Interbank Lending Freeze (stagnation/downturn, central_banking)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = {
+								banking_cycle_is_stagnation = yes
+								banking_cycle_is_downturn = yes
+							}
+						}
+						add = 5
+					}
+					if = { limit = { banking_cycle_is_downturn = yes } add = 3 }
+				}
+				trigger_event = { id = banking_cycle_events.28 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 29: Agricultural Cooperative Banking (stable+, central_banking, favors mutual banking law)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 4
+					}
+					if = {
+						limit = { has_law = law_type:law_free_mutual_banking }
+						add = 3
+					}
+				}
+				trigger_event = { id = banking_cycle_events.29 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 30: Foreign Debt Arbitrage (expansion+, investment_banks)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = investment_banks
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 2 }
+				}
+				trigger_event = { id = banking_cycle_events.30 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 31: Bank Holiday Proposal (downturn/panic, central_banking)
+			# The prompt for the dashboard's cb_bank_holiday, which option A
+			# enacts: offered only while that button could be pressed (not
+			# running, not on its five-year cooldown, a downturn or panic, the
+			# two points it holds). It used to grant a bespoke modifier beside
+			# a running or cooling-down holiday (#428).
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					banking_can_enact_cb_bank_holiday = yes
+				}
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = {
+								banking_cycle_is_downturn = yes
+								banking_cycle_is_panic = yes
+							}
+						}
+						add = 4
+					}
+					if = { limit = { banking_cycle_is_panic = yes } add = 3 }
+				}
+				trigger_event = { id = banking_cycle_events.31 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 32: Trust Company Failure (RARE, boom/frenzy, mutual_funds, bubble >= 30)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = mutual_funds
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+							var:bubble_pressure >= 30
+						}
+						add = 2
+					}
+				}
+				trigger_event = { id = banking_cycle_events.32 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 33: Commercial Paper Market (stable/expansion, investment_banks)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = investment_banks
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.33 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 34: Deposit Insurance Debate (stagnation+, central_banking)
+			# Not while a deposit guarantee is already in force — the dashboard's
+			# Expanded Deposit Guarantee, a bloc banking union's, or the scheme a
+			# previous debate set up (#428).
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					NOT = { banking_deposit_guarantee_in_force = yes }
+				}
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = central_banking
+							OR = {
+								banking_cycle_is_stagnation = yes
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+							}
+						}
+						add = 3
+					}
+				}
+				trigger_event = { id = banking_cycle_events.34 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 35: Joint-Stock Company Boom (expansion+, corporate_management)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = corporate_management
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.35 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- LATE ERA NEW EVENTS ----
+
+			# Event 36: Fintech Disruption (expansion+, modern_financial_instruments)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = modern_financial_instruments
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.36 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 37: Mortgage-Backed Securities (boom/frenzy, consumer_credit, favors weak regulation)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = consumer_credit
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+						}
+						add = 3
+					}
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 2 }
+					if = {
+						limit = {
+							OR = {
+								has_law = law_type:law_unregulated_banking
+								has_law = law_type:law_universal_banking_light_prudence
+							}
+						}
+						add = 2
+					}
+				}
+				trigger_event = { id = banking_cycle_events.37 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 38: Microfinance Initiative (stable+, keynesian_economics)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = keynesian_economics
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.38 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 39: Quantitative Easing Debate (downturn/panic, keynesian_economics, requires fiat/digital currency + regulated banking)
+			# Never while open-market operations already run. Under the full
+			# monetary system QE IS that tool — option A enacts it — so the
+			# debate needs its whole gate: a dial at its floor, fiat or digital
+			# money, the points (banking_qe_debate_possible). It used to fire at
+			# any rate and without a national bank (#428).
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					banking_qe_debate_possible = yes
+				}
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = keynesian_economics
+							OR = {
+								has_law = law_type:law_fiat_currency
+								has_law = law_type:law_digital_currency
+							}
+							NOT = { has_law = law_type:law_unregulated_banking }
+							OR = {
+								banking_cycle_is_downturn = yes
+								banking_cycle_is_panic = yes
+							}
+						}
+						add = 5
+					}
+					if = { limit = { banking_cycle_is_panic = yes } add = 3 }
+				}
+				trigger_event = { id = banking_cycle_events.39 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 40: Credit Rating Agency Failure (boom/frenzy, modern_financial_instruments)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = modern_financial_instruments
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+						}
+						add = 3
+					}
+				}
+				trigger_event = { id = banking_cycle_events.40 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 41: Student Loan Burden (expansion+, consumer_credit)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = consumer_credit
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+								banking_cycle_is_frenzy = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.41 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 42: Green Bond Initiative (stable+, keynesian_economics)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = keynesian_economics
+							has_technology_researched = environmental_movement
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 3
+					}
+				}
+				trigger_event = { id = banking_cycle_events.42 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 43: Venture Capital Boom (expansion/boom, modern_financial_instruments)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = modern_financial_instruments
+							OR = {
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 4
+					}
+				}
+				trigger_event = { id = banking_cycle_events.43 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 44: Predatory Lending Scandal (boom/frenzy, consumer_credit, blocked by prudential banking, favors weak regulation)
+			0 = {
+				trigger = { banking_is_market_economy = yes }
+				modifier = {
+					if = {
+						limit = {
+							has_technology_researched = consumer_credit
+							NOT = { has_law = law_type:law_prudential_narrow_banking }
+							OR = { banking_cycle_is_boom = yes banking_cycle_is_frenzy = yes }
+						}
+						add = 3
+					}
+					if = {
+						limit = {
+							OR = {
+								has_law = law_type:law_unregulated_banking
+								has_law = law_type:law_universal_banking_light_prudence
+							}
+						}
+						add = 2
+					}
+				}
+				trigger_event = { id = banking_cycle_events.44 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 45: A distressed trading partner requests aid from a solvent donor.
+			# The partner decides whether to ask (banking_cycle_events.68); .45
+			# reaches us, the donor, only if it does. Weight 4 (was 3, when .45
+			# fired here directly) keeps .45's rate near where it was, given the
+			# partner's ~75% appeal odds.
+			0 = {
+				modifier = {
+					if = {
+						limit = {
+							banking_can_offer_bailout = yes
+							any_country = {
+								banking_is_bailout_recipient = yes
+								te_ea_bailout_can_be_asked = yes
+							}
+						}
+						add = 4
+					}
+				}
+				save_scope_as = bailout_donor
+				random_country = {
+					limit = {
+						banking_is_bailout_recipient = yes
+						te_ea_bailout_can_be_asked = yes
+					}
+					save_scope_as = bailout_country
+				}
+				if = {
+					limit = { exists = scope:bailout_country }
+					scope:bailout_country = { trigger_event = { id = banking_cycle_events.68 } }
+				}
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- COMMAND ECONOMY EXCLUSIVE EVENTS ----
+
+			# Event 50: Five-Year Plan Shortfall (stagnation/downturn)
+			0 = {
+				trigger = { has_law = law_type:law_command_economy }
+				modifier = {
+					if = { limit = { banking_cycle_is_stagnation = yes } add = 6 }
+					if = { limit = { banking_cycle_is_downturn = yes } add = 9 }
+				}
+				trigger_event = { id = banking_cycle_events.50 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 51: Factory Director Corruption (expansion+)
+			0 = {
+				trigger = { has_law = law_type:law_command_economy }
+				modifier = {
+					if = { limit = { banking_cycle_is_expansion = yes } add = 5 }
+					if = { limit = { banking_cycle_is_boom = yes } add = 5 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 5 }
+				}
+				trigger_event = { id = banking_cycle_events.51 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 52: Resource Hoarding Crisis (boom/frenzy)
+			0 = {
+				trigger = { has_law = law_type:law_command_economy }
+				modifier = {
+					if = { limit = { banking_cycle_is_boom = yes } add = 5 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 8 }
+				}
+				trigger_event = { id = banking_cycle_events.52 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 53: Black Market Emergence (downturn/panic)
+			0 = {
+				trigger = { has_law = law_type:law_command_economy }
+				modifier = {
+					if = { limit = { banking_cycle_is_downturn = yes } add = 6 }
+					if = { limit = { banking_cycle_is_panic = yes } add = 9 }
+				}
+				trigger_event = { id = banking_cycle_events.53 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 54: Worker Motivation Campaign (stable+)
+			0 = {
+				trigger = { has_law = law_type:law_command_economy }
+				modifier = {
+					if = {
+						limit = {
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 5
+					}
+				}
+				trigger_event = { id = banking_cycle_events.54 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 55: Socialist Fraternal Aid (downturn/panic, keynesian)
+			# Needs the ally it names: another planned economy on good terms
+			# (banking_is_fraternal_aid_donor, which the event's immediate picks
+			# from). It used to cite an "ideological ally" that need not exist (#428).
+			0 = {
+				trigger = {
+					has_law = law_type:law_command_economy
+					has_technology_researched = keynesian_economics
+					any_country = { banking_is_fraternal_aid_donor = yes }
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_downturn = yes } add = 4 }
+					if = { limit = { banking_cycle_is_panic = yes } add = 6 }
+				}
+				trigger_event = { id = banking_cycle_events.55 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 56: Industrial Sabotage Investigation (expansion+, central_banking)
+			0 = {
+				trigger = {
+					has_law = law_type:law_command_economy
+					has_technology_researched = central_banking
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_expansion = yes } add = 4 }
+					if = { limit = { banking_cycle_is_boom = yes } add = 4 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 4 }
+				}
+				trigger_event = { id = banking_cycle_events.56 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 57: Collectivization Efficiency Drive (boom/frenzy, corporate_management)
+			0 = {
+				trigger = {
+					has_law = law_type:law_command_economy
+					has_technology_researched = corporate_management
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_boom = yes } add = 4 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 6 }
+				}
+				trigger_event = { id = banking_cycle_events.57 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# ---- COOPERATIVE OWNERSHIP EXCLUSIVE EVENTS ----
+
+			# Event 60: Federation Governance Dispute (stagnation/downturn)
+			0 = {
+				trigger = { has_law = law_type:law_cooperative_ownership }
+				modifier = {
+					if = { limit = { banking_cycle_is_stagnation = yes } add = 6 }
+					if = { limit = { banking_cycle_is_downturn = yes } add = 9 }
+				}
+				trigger_event = { id = banking_cycle_events.60 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 61: Free Rider Problem (expansion+)
+			0 = {
+				trigger = { has_law = law_type:law_cooperative_ownership }
+				modifier = {
+					if = { limit = { banking_cycle_is_expansion = yes } add = 5 }
+					if = { limit = { banking_cycle_is_boom = yes } add = 5 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 5 }
+				}
+				trigger_event = { id = banking_cycle_events.61 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 62: Democratic Investment Gridlock (boom/frenzy)
+			0 = {
+				trigger = { has_law = law_type:law_cooperative_ownership }
+				modifier = {
+					if = { limit = { banking_cycle_is_boom = yes } add = 5 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 8 }
+				}
+				trigger_event = { id = banking_cycle_events.62 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 63: Worker-Owner Burnout (downturn/panic)
+			0 = {
+				trigger = { has_law = law_type:law_cooperative_ownership }
+				modifier = {
+					if = { limit = { banking_cycle_is_downturn = yes } add = 6 }
+					if = { limit = { banking_cycle_is_panic = yes } add = 9 }
+				}
+				trigger_event = { id = banking_cycle_events.63 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 64: Cooperative Export Success (stable+)
+			0 = {
+				trigger = { has_law = law_type:law_cooperative_ownership }
+				modifier = {
+					if = {
+						limit = {
+							OR = {
+								banking_cycle_is_stable = yes
+								banking_cycle_is_expansion = yes
+								banking_cycle_is_boom = yes
+							}
+						}
+						add = 5
+					}
+				}
+				trigger_event = { id = banking_cycle_events.64 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 65: Mutual Insurance Fund Strain (downturn/panic, keynesian)
+			0 = {
+				trigger = {
+					has_law = law_type:law_cooperative_ownership
+					has_technology_researched = keynesian_economics
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_downturn = yes } add = 4 }
+					if = { limit = { banking_cycle_is_panic = yes } add = 6 }
+				}
+				trigger_event = { id = banking_cycle_events.65 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 66: Innovation Through Collaboration (expansion+, central_banking)
+			0 = {
+				trigger = {
+					has_law = law_type:law_cooperative_ownership
+					has_technology_researched = central_banking
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_expansion = yes } add = 4 }
+					if = { limit = { banking_cycle_is_boom = yes } add = 4 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 4 }
+				}
+				trigger_event = { id = banking_cycle_events.66 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+			# Event 67: Generational Leadership Transition (boom/frenzy, corporate_management)
+			0 = {
+				trigger = {
+					has_law = law_type:law_cooperative_ownership
+					has_technology_researched = corporate_management
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_boom = yes } add = 4 }
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 6 }
+				}
+				trigger_event = { id = banking_cycle_events.67 }
+				set_variable = { name = banking_event_cooldown value = 18 }
+			}
+
+			# Event 46: Northern Pacific Corner (expansion+, bubble building, market econ)
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					OR = {
+						banking_cycle_is_expansion = yes
+						banking_cycle_is_boom = yes
+						banking_cycle_is_frenzy = yes
+					}
+					var:bubble_pressure >= 15
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 3 }
+					if = { limit = { var:bubble_pressure >= 25 } add = 4 }
+				}
+				trigger_event = { id = banking_cycle_events.46 }
+				set_variable = { name = banking_event_cooldown value = 20 }
+			}
+			# Event 47: Trust Company Failure (downturn/panic, market econ, RARE)
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					OR = {
+						banking_cycle_is_downturn = yes
+						banking_cycle_is_panic = yes
+					}
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_panic = yes } add = 5 }
+					if = { limit = { var:bubble_pressure >= 25 } add = 3 }
+				}
+				trigger_event = { id = banking_cycle_events.47 }
+				set_variable = { name = banking_event_cooldown value = 24 }
+			}
+			# Event 48: New Era Delusion (boom/frenzy, central_banking, market econ)
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					has_technology_researched = central_banking
+					OR = {
+						banking_cycle_is_boom = yes
+						banking_cycle_is_frenzy = yes
+					}
+					var:bubble_pressure >= 20
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 5 }
+				}
+				trigger_event = { id = banking_cycle_events.48 }
+				set_variable = { name = banking_event_cooldown value = 24 }
+			}
+			# Event 58: End the Gold Standard (downturn/panic, modern instruments,
+			# convertible gold, SIMPLIFIED banking rule only). Its whole premise is
+			# a run on gold convertibility, so it needs te_mon_is_on_gold (the law,
+			# not suspended) — it used to reach fiat, digital and crypto countries.
+			# Under the full monetary system that crisis is te_peg.1, fired off
+			# real peg confidence; a random draw beside it is the double-dip that
+			# retired event 12 above, with a "suspend" option that suspended
+			# nothing. So it runs only where te_peg.1 cannot.
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					te_mon_full_system = no
+					te_mon_is_on_gold = yes
+					has_technology_researched = modern_financial_instruments
+					OR = {
+						banking_cycle_is_downturn = yes
+						banking_cycle_is_panic = yes
+					}
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_panic = yes } add = 4 }
+				}
+				trigger_event = { id = banking_cycle_events.58 }
+				set_variable = { name = banking_event_cooldown value = 30 }
+			}
+			# Event 59: Rogue Trader (boom/frenzy, modern instruments, RARE)
+			0 = {
+				trigger = {
+					banking_is_market_economy = yes
+					has_technology_researched = modern_financial_instruments
+					OR = {
+						banking_cycle_is_boom = yes
+						banking_cycle_is_frenzy = yes
+					}
+				}
+				modifier = {
+					if = { limit = { banking_cycle_is_frenzy = yes } add = 3 }
+					if = { limit = { var:bubble_pressure >= 25 } add = 3 }
+				}
+				trigger_event = { id = banking_cycle_events.59 }
+				set_variable = { name = banking_event_cooldown value = 30 }
+			}
+		}
+	}
+}
+
+# A crash only ever lowers the cycle. The tier figures below are ceilings, not
+# resets: a country already under one keeps what it has. A plain set_variable
+# to the tier figure lifted a country in a Downturn (cycle 12, momentum -3.5)
+# up to 40 and -1 when a "Market Correction" reached it, and the contagion roll
+# reaches countries at any cycle value, so this was not rare.
+# $VALUE$ — the tier's ceiling.
+banking_crash_lower_cycle_to = {
+	if = {
+		limit = { var:finance_cycle_value > $VALUE$ }
+		set_variable = { name = finance_cycle_value value = $VALUE$ }
+	}
+}
+banking_crash_lower_momentum_to = {
+	if = {
+		limit = { var:finance_cycle_momentum > $VALUE$ }
+		set_variable = { name = finance_cycle_momentum value = $VALUE$ }
+	}
+}
+
+# Bracket for any crash option that ADDS to cycle value or momentum after the
+# tier ceilings (the softening responses) or clamps them (the contagion scare).
+# `note` runs first and records where the country stands; `hold` runs last and
+# puts either figure back to that level if the option left it higher, so no
+# response can turn a crash into a net gain. Both are hidden: the tooltip line
+# CRASH_NO_RAISE_DESC (in apply_banking_crash_origin_effects) tells the player,
+# and set_variable prints nothing anyway. `hold` checks has_variable, because
+# an unrecorded var: reads as 0 and would otherwise drag the cycle to 0.
+banking_crash_note_prior_state = {
+	hidden_effect = {
+		set_variable = { name = banking_crash_prior_value value = var:finance_cycle_value }
+		set_variable = { name = banking_crash_prior_momentum value = var:finance_cycle_momentum }
+	}
+}
+banking_crash_hold_to_prior_state = {
+	hidden_effect = {
+		if = {
+			limit = {
+				has_variable = banking_crash_prior_value
+				var:finance_cycle_value > var:banking_crash_prior_value
+			}
+			set_variable = { name = finance_cycle_value value = var:banking_crash_prior_value }
+		}
+		if = {
+			limit = {
+				has_variable = banking_crash_prior_momentum
+				var:finance_cycle_momentum > var:banking_crash_prior_momentum
+			}
+			set_variable = { name = finance_cycle_momentum value = var:banking_crash_prior_momentum }
+		}
+		if = { limit = { has_variable = banking_crash_prior_value }    remove_variable = banking_crash_prior_value }
+		if = { limit = { has_variable = banking_crash_prior_momentum } remove_variable = banking_crash_prior_momentum }
+	}
+}
+
+# Apply crash effects to the origin country (event .6).
+# Tiered by crash_severity: correction (<20), downturn (20-39), crash (40-59), panic (60-79), systemic (≥80).
+# Cycle value and momentum fall to the tier's figure at most (see
+# banking_crash_lower_cycle_to); a country already below it is not moved.
+# Uses custom_tooltip so effects are visible in event option tooltips.
+apply_banking_crash_origin_effects = {
+	if = {
+		limit = { var:crash_severity >= 80 }
+		custom_tooltip = {
+			text = CRASH_CYCLE_VALUE_5_DESC
+			banking_crash_lower_cycle_to = { VALUE = 5 }
+		}
+		custom_tooltip = {
+			text = CRASH_MOMENTUM_MINUS_5_DESC
+			banking_crash_lower_momentum_to = { VALUE = -5 }
+		}
+	}
+	else_if = {
+		limit = { var:crash_severity >= 60 }
+		custom_tooltip = {
+			text = CRASH_CYCLE_VALUE_10_DESC
+			banking_crash_lower_cycle_to = { VALUE = 10 }
+		}
+		custom_tooltip = {
+			text = CRASH_MOMENTUM_MINUS_4_DESC
+			banking_crash_lower_momentum_to = { VALUE = -4 }
+		}
+	}
+	else_if = {
+		limit = { var:crash_severity >= 40 }
+		custom_tooltip = {
+			text = CRASH_CYCLE_VALUE_20_DESC
+			banking_crash_lower_cycle_to = { VALUE = 20 }
+		}
+		custom_tooltip = {
+			text = CRASH_MOMENTUM_MINUS_3_DESC
+			banking_crash_lower_momentum_to = { VALUE = -3 }
+		}
+	}
+	else_if = {
+		limit = { var:crash_severity >= 20 }
+		custom_tooltip = {
+			text = CRASH_CYCLE_VALUE_30_DESC
+			banking_crash_lower_cycle_to = { VALUE = 30 }
+		}
+		custom_tooltip = {
+			text = CRASH_MOMENTUM_MINUS_2_DESC
+			banking_crash_lower_momentum_to = { VALUE = -2 }
+		}
+	}
+	else = {
+		custom_tooltip = {
+			text = CRASH_CYCLE_VALUE_40_DESC
+			banking_crash_lower_cycle_to = { VALUE = 40 }
+		}
+		custom_tooltip = {
+			text = CRASH_MOMENTUM_MINUS_1_DESC
+			banking_crash_lower_momentum_to = { VALUE = -1 }
+		}
+	}
+	custom_tooltip = {
+		text = CRASH_BUBBLE_CLEAR_DESC
+		set_variable = { name = bubble_pressure value = 0 }
+	}
+	custom_tooltip = { text = CRASH_NO_RAISE_DESC }
+}
+
+# Composite helper for the conforming softening options of
+# minor_events_timelineextended.6 (event 6). Posts the origin tier first to set
+# baseline cycle/momentum/bubble (must run before per-option additions because
+# origin uses set_variable, then per-option change_variable adds on top), then
+# applies the per-option softening tooltip, GDP-scaled treasury cost (6 months,
+# decaying), year-long intervention modifier, and upper-strata radicals.
+#
+# Country scope. Trigger and ai_chance stay in each option block — they vary
+# unrelatedly per option (law/tech gating + AI weighting heuristics).
+#
+# 10 of 12 options of event 6 use this helper. Two outliers stay inline:
+#   - Option A (.6.a "weather the storm"): no softening, no intervention modifier,
+#     different radicals shape (medium upper + small middle).
+#   - Option .6.capital_controls: no momentum softening (only finance_cycle_value
+#     changes), so a $MOMENTUM_ADD$=0 call would emit an ugly "+0" tooltip line.
+#
+# Parameters:
+#   $TT_KEY$       — custom_tooltip text loc key (CRASH_SOFTEN_<X>_DESC)
+#   $CYCLE_ADD$    — finance_cycle_value softening add (3..12)
+#   $MOMENTUM_ADD$ — finance_cycle_momentum softening add (1..3)
+#   $COST_SCALE$   — banking_event_expense_<small|medium|large|huge>
+#   $INTERVENTION$ — banking_crash_intervention_<X> modifier name
+#   $RADICALS$     — radicals size (very_small|small|medium); resolves to
+#                    <RADICALS>_radicals script value at the call site.
+apply_banking_crash_softening_option_effect = {
+	# A response softens the crash; it cannot lift the country above where it
+	# stood before it, so the bracket holds both figures at that level.
+	banking_crash_note_prior_state = yes
+	apply_banking_crash_origin_effects = yes
+	custom_tooltip = {
+		text = $TT_KEY$
+		change_variable = { name = finance_cycle_value    add = $CYCLE_ADD$    }
+		change_variable = { name = finance_cycle_momentum add = $MOMENTUM_ADD$ }
+	}
+	banking_crash_hold_to_prior_state = yes
+	add_modifier = {
+		name = banking_crash_response_cost
+		multiplier = $COST_SCALE$
+		days = 180
+		is_decaying = yes
+	}
+	add_modifier = {
+		name = $INTERVENTION$
+		days = 365
+	}
+	add_radicals = {
+		value = $RADICALS$_radicals
+		strata = upper
+	}
+}
+
+# Auto-disable crash interventions when total intervention points have gone negative
+# (e.g. because the player stacked emergency response modifiers from a crash event on top
+# of ongoing JE intervention buttons, or because their financial-regulation law was downgraded).
+#
+# Removes ONE crash-tagged modifier per monthly pulse, walking a fixed priority cascade:
+# tech-family interventions first (these are layered on top of the per-law base, so removing
+# them preserves the player's "core" emergency response), then per-law base options from
+# cheapest IP cost to most expensive (so the strongest emergency tool is shed last).
+#
+# Only one removal per pulse: the engine doesn't refresh modifier:X reads inside the same
+# effect block (CLAUDE.md "modifier-after-effect read ordering"), so a tight loop would
+# fire on stale data. Spacing removals by month also gives the player visible feedback.
+banking_crash_check_overdrawn_interventions = {
+	if = {
+		limit = { modifier:country_banking_intervention_max_add < 0 }
+		# --- Family interventions (shed first) ---
+		if = {
+			limit = { has_modifier = banking_crash_intervention_capital_controls }
+			remove_modifier = banking_crash_intervention_capital_controls
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_swap_lines }
+			remove_modifier = banking_crash_intervention_swap_lines
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_discount_window }
+			remove_modifier = banking_crash_intervention_discount_window
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_keynesian_stimulus }
+			remove_modifier = banking_crash_intervention_keynesian_stimulus
+		}
+		# --- Per-law base options (one of these may be active; cheapest IP cost first) ---
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_suspend_convertibility }
+			remove_modifier = banking_crash_intervention_suspend_convertibility
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_mutual_clearing }
+			remove_modifier = banking_crash_intervention_mutual_clearing
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_correspondent_liquidity }
+			remove_modifier = banking_crash_intervention_correspondent_liquidity
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_dev_bank_lending }
+			remove_modifier = banking_crash_intervention_dev_bank_lending
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_open_market }
+			remove_modifier = banking_crash_intervention_open_market
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_deposit_guarantee }
+			remove_modifier = banking_crash_intervention_deposit_guarantee
+		}
+		else_if = {
+			limit = { has_modifier = banking_crash_intervention_nationalize }
+			remove_modifier = banking_crash_intervention_nationalize
+		}
+		else_if = {
+			limit = { banking_tool_emergency_import_financing_active = yes }
+			banking_effect_cb_disable_emergency_import_financing = yes
+		}
+		else_if = {
+			limit = { banking_tool_sterilize_inflows_active = yes }
+			banking_effect_cb_disable_sterilize_inflows = yes
+		}
+		else_if = {
+			limit = { banking_tool_fx_surrender_active = yes }
+			banking_effect_cb_disable_fx_surrender = yes
+		}
+		else_if = {
+			limit = { banking_tool_restrict_inflows_active = yes }
+			banking_effect_cb_disable_restrict_inflows = yes
+		}
+		else_if = {
+			limit = { banking_tool_foreign_borrowing_limits_active = yes }
+			banking_effect_cb_disable_foreign_borrowing_limits = yes
+		}
+	}
+}
+
+# A banking crash is decided here: the next year's contagion rolls are scares
+# (banking_contagion_scare_only). Called where each crash is decided, beside
+# banking_recent_crash: the origin roll in banking_cycle_check_and_execute_crash
+# (the monthly pulse) and the contagion roll below (banking_contagion_decide, event .9). Not in
+# apply_banking_crash_origin_effects, which zeroes the bubble: it runs in the
+# crash events' options, up to their three-month duration later, so a contagion
+# event could still roll a second crash in between, and option effects are also
+# walked for the tooltips.
+banking_mark_crashed_last_year = {
+	set_variable = { name = banking_crashed_last_year value = 1 days = 365 }
+}
+
+# Run the contagion crash check: banking_contagion_decide runs it (hidden event .9) six days after a spread
+# reaches a country, and event .7's immediate runs it for a copy an older build sent, which has not rolled.
+# Probability based on TARGET's own bubble pressure, elevated by origin crash severity.
+# Countries with low bubble pressure are mostly immune; high bubble = very vulnerable.
+# Sets contagion_crash = 1 (crash) or 0 (scare).
+# If crash: calculates crash_severity from target's bubble + origin boost + random multiplier.
+# A country that crashed in the last year only takes a scare (banking_contagion_scare_only): no roll, so
+# contagion_crash = 0 and the event plays its scare text and options, marked banking_crisis_wave_scared.
+banking_contagion_crash_check = {
+	if = {
+		limit = { banking_contagion_scare_only = yes }
+		set_variable = { name = contagion_crash value = 0 }
+	}
+	else = {
+		random_list = {
+			0 = {
+				modifier = {
+					# Target's own bubble pressure is the primary crash factor
+					add = var:bubble_pressure
+					# Boost from origin crash severity — even responsible countries
+					# face elevated risk from a severe foreign collapse
+					if = {
+						limit = { scope:banking_crash_origin_country = { var:crash_severity >= 80 } }
+						add = 30
+					}
+					else_if = {
+						limit = { scope:banking_crash_origin_country = { var:crash_severity >= 60 } }
+						add = 20
+					}
+					else_if = {
+						limit = { scope:banking_crash_origin_country = { var:crash_severity >= 40 } }
+						add = 10
+					}
+					else = {
+						add = 5
+					}
+					multiply = banking_contagion_chance_economy_mult
+					multiply = banking_crash_chance_multiplier_value
+					min = 0
+				}
+				set_variable = { name = contagion_crash value = 1 }
+			}
+			100 = {
+				set_variable = { name = contagion_crash value = 0 }
+			}
+		}
+	}
+
+	if = {
+		limit = { var:contagion_crash > 0 }
+		# History-chart marker on this month's bar (te_history_effects.txt)
+		te_history_record_banking_marker = { MARK = crash_contagion }
+		# This is where a contagion crash is decided, so this is where the
+		# country joins the wave's casualties — every country the wave reaches
+		# carries banking_crisis_wave_hit, only these carry _crashed. The Great
+		# Depression event (minor_events_timelineextended.8) reads it (#428).
+		set_variable = { name = banking_crisis_wave_crashed value = 1 }
+		# Bond fortunes vanish in a crash: every state's Wealth Concentration
+		# falls 5 (demographics spec §4.2). ROOT is the country (event .9).
+		te_demog_wc_shock = { AMOUNT = -5 }
+		# Five years of "recent banking failures" (banking_had_recent_crash).
+		set_variable = { name = banking_recent_crash value = 1 days = 1825 }
+		# And a year in which contagion can only scare it.
+		banking_mark_crashed_last_year = yes
+		# Crash severity = target's own bubble pressure (scaled as for an origin
+		# crash — banking_crash_severity_scale_value) + boost from origin severity
+		set_variable = {
+			name = crash_severity
+			value = {
+				value = var:bubble_pressure
+				multiply = banking_crash_severity_scale_value
+			}
+		}
+		if = {
+			limit = { scope:banking_crash_origin_country = { var:crash_severity >= 80 } }
+			change_variable = { name = crash_severity add = 20 }
+		}
+		else_if = {
+			limit = { scope:banking_crash_origin_country = { var:crash_severity >= 60 } }
+			change_variable = { name = crash_severity add = 15 }
+		}
+		else_if = {
+			limit = { scope:banking_crash_origin_country = { var:crash_severity >= 40 } }
+			change_variable = { name = crash_severity add = 10 }
+		}
+		else = {
+			change_variable = { name = crash_severity add = 5 }
+		}
+		# Random severity multiplier (same distribution as origin crashes)
+		random_list = {
+			10 = { change_variable = { name = crash_severity multiply = 0.5 } }
+			20 = { change_variable = { name = crash_severity multiply = 0.75 } }
+			40 = { }
+			20 = { change_variable = { name = crash_severity multiply = 1.5 } }
+			10 = { change_variable = { name = crash_severity multiply = 2 } }
+		}
+		change_variable = { name = crash_severity multiply = banking_contagion_severity_economy_mult }
+		# [Monetary policy 5a, §15A.2] A lender of last resort whose word is still
+		# good: an imported panic starts a fifth less deep, because depositors know
+		# who stands behind the banks. Off while the guarantor's renege clock runs.
+		if = {
+			limit = { te_mon_has_effective_backstop = yes }
+			change_variable = { name = crash_severity multiply = 0.8 }
+		}
+		# Clamp severity to 100
+		if = {
+			limit = { var:crash_severity > 100 }
+			set_variable = { name = crash_severity value = 100 }
+		}
+	}
+	else = {
+		# A scare, decided here too. Marked separately from _hit, which the
+		# country has carried since banking_cycle_spread_contagion reached it:
+		# until this roll, it is neither a casualty nor a survivor (#428).
+		set_variable = { name = banking_crisis_wave_scared value = 1 }
+	}
+}
+
+# ONE CONTAGION EVENT AT A TIME (owner, 2026-10-17: "Ideally, only one"). A country holds at most one
+# contagion event (minor_events_timelineextended.7), from when banking_cycle_spread_contagion sends it to its
+# `after`. Before, a second origin crashing in the same pulse re-ran banking_crisis_wave_init, which clears
+# every reached mark, so its spread could reach the country again: two copies, two rolls, two popups, and the
+# first copy's options read the second's crash_severity. The mark, banking_contagion_pending, goes on when the
+# spread SENDS the event, not when it opens: both copies of that case are sent in the same pulse, a week
+# before either fires, so a mark set in `immediate` cannot stop the second being sent. An event `trigger`
+# checked when the copy fires would rest on the engine's order within one day (does the second copy's trigger
+# see the first copy's immediate? unverified), and a copy its trigger stops runs no script, so its reach could
+# not be squared with the wave's marks. banking_crisis_wave_init leaves the mark alone. The event's
+# `immediate` sets it again (which may restart its clock; if not, it runs on from the send, and either way it
+# outlasts the event) and so marks a copy an older build sent; its `after` removes it.
+#
+# BACKSTOP. The mark is timed, 120 days, so a copy nothing ever answers frees the country then. An event
+# waits 7 days to fire and stays open at most its `duration`, 3 months (scripting_best_practices.md: "An
+# event's duration is in months"), so a live copy never outlasts its mark, while a wave's tiers land a week
+# apart (the 7th, 14th, 21st and 28th of the pulse's month): a lost copy shields its country through about
+# four monthly pulses. A revolution's winner inherits the loser's variables but not its events, so
+# je_banking_cycle's `immediate`, which runs again on the inherited copy, removes the mark there.
+banking_contagion_mark_pending = {
+	set_variable = { name = banking_contagion_pending value = 1 days = 120 }
+}
+
+# One target of banking_cycle_spread_contagion whose roll has reached it. Without the mark, the country is
+# reached and gets the event a week later. With it, the reach is turned away, and the country's event, on its
+# way or open, answers for this wave too. The country is marked reached, so the wave's later tiers pass it
+# by, and never reached-but-undecided with no roll to come (#428's window, banking_crisis_wave_init): an open
+# event has already rolled, and with one copy at a time contagion_crash is that roll, so its outcome goes on
+# this wave's books now; an event still on its way decides it when it fires, as for any target. The turned-
+# away reach adds nothing to the Great Depression count: only the event's own crash does, once, in its
+# `after` (banking_crisis_wave_increment, behind banking_crisis_wave_counted).
+banking_contagion_reach = {
+	if = {
+		limit = { has_variable = banking_contagion_pending }
+		set_variable = { name = banking_crisis_wave_hit value = 1 }
+		if = {
+			limit = { has_variable = contagion_crash }
+			if = {
+				limit = { var:contagion_crash > 0 }
+				set_variable = { name = banking_crisis_wave_crashed value = 1 }
+			}
+			else = {
+				set_variable = { name = banking_crisis_wave_scared value = 1 }
+			}
+		}
+		banking_contagion_selfcheck_turned_away = yes
+	}
+	else = {
+		banking_contagion_clear_stale = yes
+		# Reached, not crashed: whether it crashes is decided six days on (banking_contagion_decide,
+		# run by the hidden event .9, which sets _crashed or _scared), and the popup, event .7,
+		# follows a day later if the roll or the scare cooldown calls for one: a week after the
+		# reach, as it always has.
+		set_variable = { name = banking_crisis_wave_hit value = 1 }
+		banking_contagion_mark_pending = yes
+		trigger_event = { id = minor_events_timelineextended.9 days = 6 }
+	}
+}
+
+# THE ROLL AND THE SCARE COOLDOWN (owner, 2026-10-22: "if a spread happens and it does not trigger a crash,
+# do not fire the relevant event unless it has been at least 2 years since the last time it fired").
+# The hidden event minor_events_timelineextended.9 runs this six days after the spread reaches a country.
+# The crash roll used to be event .7's own `immediate`, which is too late to hold the popup back: once an
+# event is open, the player is looking at it. So the roll moves here, ahead of it, and .7 is sent on only
+# when something is to be shown:
+#   - a crash: always. The country's saved scope contagion_crashed is set before .7 is queued, so the text
+#     the engine reads at queue time is already the crash's.
+#   - a scare, when the country has not been shown one for two years (banking_contagion_scare_cooling):
+#     the popup is sent and starts the cooldown (730 days, from the send, not the answer).
+#   - a scare inside the cooldown: nothing is shown and nothing applies (no cycle drop, no radicals). The
+#     roll still marked the country banking_crisis_wave_scared, so the Great Depression event counts it a
+#     survivor. It is freed for the next spread here too: with no .7 to answer, nothing else would remove
+#     banking_contagion_pending or the roll's leftovers.
+# Both sends wait a day, which is why the spread sends .9 six days out and not seven: a trigger_event with
+# no delay would run .7's immediate inside this effect, and the popup still lands a week after the reach.
+banking_contagion_decide = {
+	banking_contagion_crash_check = yes
+	if = {
+		limit = { var:contagion_crash > 0 }
+		save_scope_as = contagion_crashed
+		trigger_event = { id = minor_events_timelineextended.7 popup = yes days = 1 }
+	}
+	else_if = {
+		limit = { NOT = { banking_contagion_scare_cooling = yes } }
+		set_variable = { name = banking_contagion_scare_cooldown value = 1 days = 730 }
+		trigger_event = { id = minor_events_timelineextended.7 popup = yes days = 1 }
+	}
+	else = {
+		banking_contagion_clear_stale = yes
+		if = {
+			limit = { has_variable = banking_contagion_pending }
+			remove_variable = banking_contagion_pending
+		}
+	}
+}
+
+# A contagion event is about to be sent and the country holds none (no mark): clear what a copy whose `after`
+# never ran left behind once its mark ran out. A stale contagion_crash would read as an open event's roll in
+# banking_contagion_reach, and a stale count as a second copy open in the self-check below.
+banking_contagion_clear_stale = {
+	if = {
+		limit = { has_variable = contagion_crash }
+		remove_variable = contagion_crash
+	}
+	if = {
+		limit = { has_variable = banking_contagion_open }
+		remove_variable = banking_contagion_open
+	}
+	if = {
+		limit = { has_variable = banking_contagion_roll_inherited }
+		remove_variable = banking_contagion_roll_inherited
+	}
+	if = {
+		limit = { has_variable = banking_contagion_turned_away }
+		remove_variable = banking_contagion_turned_away
+	}
+}
+
+# TWO SELF-CHECKS, both run from event .7 (docs/testing/banking-playtest.md).
+#
+# TE_SELF_CHECK contagion_one_open: the block above holds. banking_contagion_open counts the copies open (up
+# in `immediate`, down in `after`) and should never pass 1. BROKEN, once a game, when a copy opens while
+# another is open. OK, once a game, when a copy closes alone after the spread turned a reach away for it
+# (banking_contagion_turned_away): only then was there a second copy to stop, so a game with no turned-away
+# reach logs no OK. A save from before the block can hold two copies sent already; a BROKEN in the week
+# after loading one is that.
+#
+# TE_SELF_CHECK contagion_roll_scope: event .7 keeps its roll twice: in its own saved scope
+# (scope:contagion_crashed, the country, saved on a crash), which its text, options and cascade read, and in
+# the country variable contagion_crash, which this check compares it with. Before the block, a second copy
+# open at once overwrote the variable with its own roll, and every BROKEN line of the 2026-10-17 observer run
+# (five, both directions) was that. A copy is still judged only when it was alone: the count is 1 at its
+# `after` and contagion_crash is still set (every `after` removes it, so a copy that opened and closed in the
+# meantime leaves it unset). A copy whose `after` never runs (its country annexed first) leaves the count
+# high until banking_contagion_clear_stale: a verdict skipped, never a false one. The event removes
+# contagion_crash at the end of its `after`, and nothing between this verdict and that removal may write it
+# or run another copy's `immediate` (a trigger_event with no delay there would run one inside the `after`).
+
+# banking_contagion_reach turned a reach away: this country's event answers for it.
+banking_contagion_selfcheck_turned_away = {
+	if = {
+		limit = { has_variable = banking_contagion_turned_away }
+		change_variable = { name = banking_contagion_turned_away add = 1 }
+	}
+	else = {
+		set_variable = { name = banking_contagion_turned_away value = 1 }
+	}
+}
+
+# Event .7's immediate, before its roll: one more copy open, and whether a roll came in with the event (a
+# saved scope rides into the events an `after` triggers, so a cascade's target arrives holding the upstream
+# country as contagion_crashed).
+banking_contagion_selfcheck_open = {
+	if = {
+		limit = { has_variable = banking_contagion_open }
+		change_variable = { name = banking_contagion_open add = 1 }
+	}
+	else = {
+		set_variable = { name = banking_contagion_open value = 1 }
+	}
+	if = {
+		limit = { exists = scope:contagion_crashed }
+		set_variable = { name = banking_contagion_roll_inherited value = 1 }
+	}
+	if = {
+		limit = {
+			var:banking_contagion_open > 1
+			NOT = { has_global_variable = te_selfcheck_contagion_one_open_broken }
+		}
+		set_global_variable = { name = te_selfcheck_contagion_one_open_broken value = yes }
+		# Two lines, so the accessor never reads a variable that is not there.
+		if = {
+			limit = { has_variable = banking_contagion_turned_away }
+			debug_log = "TE_SELF_CHECK BROKEN contagion_one_open country=[THIS.GetCountry.GetTagName] date=[TimeKeeper.GetCurrentDate.GetString] open=[THIS.Var('banking_contagion_open').GetValue|0] turned_away=[THIS.Var('banking_contagion_turned_away').GetValue|0] (a second contagion event opened while one was open: two rolls and two popups for one country again; take the fallback in docs/testing/banking-playtest.md)"
+		}
+		else = {
+			debug_log = "TE_SELF_CHECK BROKEN contagion_one_open country=[THIS.GetCountry.GetTagName] date=[TimeKeeper.GetCurrentDate.GetString] open=[THIS.Var('banking_contagion_open').GetValue|0] turned_away=0 (a second contagion event opened while one was open: two rolls and two popups for one country again; take the fallback in docs/testing/banking-playtest.md)"
+		}
+	}
+}
+
+# Event .7's after, before the cascade: the verdicts, then one copy fewer. contagion_roll_scope's OK is once
+# a game, from the first cascade target whose own roll crashed: only there does the event's save have to
+# replace the upstream country's scope. Its flag is new since 2026-10-17, because the check before then also
+# judged copies that were not alone, so an older save's OK proves nothing.
+banking_contagion_selfcheck_close = {
+	if = {
+		limit = {
+			has_variable = contagion_crash
+			has_variable = banking_contagion_open
+			var:banking_contagion_open < 2
+		}
+		if = {
+			limit = {
+				var:contagion_crash > 0
+				NOT = { banking_contagion_own_roll_crashed = yes }
+			}
+			debug_log = "TE_SELF_CHECK BROKEN contagion_roll_scope country=[THIS.GetCountry.GetTagName] roll=crash read=scare open=1 (the event was alone, so the variable is its own roll: its save did not replace an inherited scope, and a cascade target's crash plays as a scare and spreads nothing; take the fallback in docs/testing/banking-playtest.md)"
+		}
+		else_if = {
+			limit = {
+				var:contagion_crash < 1
+				banking_contagion_own_roll_crashed = yes
+			}
+			debug_log = "TE_SELF_CHECK BROKEN contagion_roll_scope country=[THIS.GetCountry.GetTagName] roll=scare read=crash open=1 (the event was alone, so the variable is its own roll: a scare took the crash options and cascade, the 2026-10-16 bug; take the fallback in docs/testing/banking-playtest.md)"
+		}
+		else_if = {
+			limit = {
+				var:contagion_crash > 0
+				has_variable = banking_contagion_roll_inherited
+				NOT = { has_global_variable = te_selfcheck_contagion_roll_alone_ok }
+			}
+			set_global_variable = { name = te_selfcheck_contagion_roll_alone_ok value = yes }
+			debug_log = "TE_SELF_CHECK OK contagion_roll_scope country=[THIS.GetCountry.GetTagName] open=1 (the event was alone, and a cascade target's own crash replaced the inherited scope)"
+		}
+	}
+	if = {
+		limit = {
+			has_variable = banking_contagion_turned_away
+			has_variable = banking_contagion_open
+			var:banking_contagion_open < 2
+			NOT = { has_global_variable = te_selfcheck_contagion_one_open_ok }
+		}
+		set_global_variable = { name = te_selfcheck_contagion_one_open_ok value = yes }
+		debug_log = "TE_SELF_CHECK OK contagion_one_open country=[THIS.GetCountry.GetTagName] turned_away=[THIS.Var('banking_contagion_turned_away').GetValue|0] (a wave reached this country while its contagion event was on its way or open, was turned away, and the event closed alone)"
+	}
+	if = {
+		limit = {
+			has_variable = banking_contagion_open
+			var:banking_contagion_open > 1
+		}
+		change_variable = { name = banking_contagion_open add = -1 }
+	}
+	else_if = {
+		limit = { has_variable = banking_contagion_open }
+		remove_variable = banking_contagion_open
+	}
+	if = {
+		limit = { has_variable = banking_contagion_roll_inherited }
+		remove_variable = banking_contagion_roll_inherited
+	}
+	if = {
+		limit = { has_variable = banking_contagion_turned_away }
+		remove_variable = banking_contagion_turned_away
+	}
+}
+
+# Apply contagion effects to a country hit by financial contagion (event .7).
+# Checks banking_contagion_own_roll_crashed: event .7's own roll (banking_contagion_crash_check, saved in its
+# immediate as scope:contagion_crashed), not one the event inherited from an upstream crash.
+# If crash: applies full crash effects (same as origin crash).
+# If scare: applies minor cycle/momentum reduction (markets wobble but hold).
+apply_banking_contagion_effects = {
+	# The scare's floor clamps below pull a figure UP when the country is already
+	# under them (cycle 2 -> 5, momentum -7 -> -5), so the whole effect is
+	# bracketed: neither figure may end above where it stood.
+	banking_crash_note_prior_state = yes
+	if = {
+		limit = { banking_contagion_own_roll_crashed = yes }	# event .7's own roll, saved in its immediate
+		# Full crash — reuse origin crash effects (cycle ceiling, bubble clear)
+		apply_banking_crash_origin_effects = yes
+	}
+	else = {
+		# Scare — spillovers are muted in more state-directed systems.
+		if = {
+			limit = { has_law = law_type:law_command_economy }
+			custom_tooltip = {
+				text = CONTAGION_SCARE_CYCLE_CMD_DESC
+				change_variable = { name = finance_cycle_value add = -1 }
+			}
+			custom_tooltip = {
+				text = CONTAGION_SCARE_MOMENTUM_CMD_DESC
+				change_variable = { name = finance_cycle_momentum add = -0.5 }
+			}
+		}
+		else_if = {
+			limit = { has_law = law_type:law_cooperative_ownership }
+			custom_tooltip = {
+				text = CONTAGION_SCARE_CYCLE_COOP_DESC
+				change_variable = { name = finance_cycle_value add = -2 }
+			}
+			custom_tooltip = {
+				text = CONTAGION_SCARE_MOMENTUM_COOP_DESC
+				change_variable = { name = finance_cycle_momentum add = -0.5 }
+			}
+		}
+		else = {
+			custom_tooltip = {
+				text = CONTAGION_SCARE_CYCLE_DESC
+				change_variable = { name = finance_cycle_value add = -3 }
+			}
+			custom_tooltip = {
+				text = CONTAGION_SCARE_MOMENTUM_DESC
+				change_variable = { name = finance_cycle_momentum add = -1 }
+			}
+		}
+		# Clamp. Bookkeeping, not news: the tooltipped changes above are what
+		# the player is told, so the bounds go in a hidden_effect, which changes
+		# nothing (set_variable prints no line) but says so to
+		# silent_variable_audit, which sees momentum once the banking overview
+		# reads it for its icon (banking_disp_momentum_band_code).
+		hidden_effect = {
+			if = {
+				limit = { var:finance_cycle_value < 5 }
+				set_variable = { name = finance_cycle_value value = 5 }
+			}
+			if = {
+				limit = { var:finance_cycle_momentum < -5 }
+				set_variable = { name = finance_cycle_momentum value = -5 }
+			}
+		}
+	}
+	banking_crash_hold_to_prior_state = yes
+}
+
+# ============================================================================
+# MONTHLY PULSE SUB-EFFECTS
+# These are called from je_banking_cycle on_monthly_pulse and from banking
+# event `after` blocks.  Each handles one logical phase of the monthly cycle.
+# ============================================================================
+
+# ---- Crisis Wave Tracking (Great Depression mechanic) ----
+
+# Initialize a new crisis wave when an origin crash fires.
+# Clears any previous wave tracking and starts fresh.
+#
+# THREE MARKS (#428). banking_crisis_wave_hit: the wave reached this country —
+# its origin, or a target banking_cycle_spread_contagion sent the contagion event
+# (minor_events_timelineextended.7) to. It is the "already hit" dedupe for
+# cascades, and what the UN docket's emergency loan asks
+# (un_docket_loan_candidate, through banking_crisis_wave_reached).
+# banking_crisis_wave_crashed / banking_crisis_wave_scared: the outcome — the
+# origin crashed here; a target learns which in banking_contagion_crash_check,
+# when its contagion event fires, seven days after it was reached. Between the
+# two a target is hit and UNDECIDED, and the Great Depression event (fired three
+# days after the wave crosses its threshold) can reach it then, so .8 keys its
+# casualty text on _crashed and its survivor text on _scared, and an undecided
+# country reads the general text. Until #428 _crashed was set on every target
+# before the contagion event decided anything, so a scare read as a crash.
+# It leaves banking_contagion_pending alone: a second origin crashing in the
+# same pulse clears the first wave's marks, and that mark is what keeps its
+# spread from sending a country a second contagion event (banking_contagion_reach).
+banking_crisis_wave_init = {
+	# Clear previous wave flags from all countries
+	every_country = {
+		limit = {
+			OR = {
+				has_variable = banking_crisis_wave_hit
+				has_variable = banking_crisis_wave_crashed
+				has_variable = banking_crisis_wave_scared
+				has_variable = banking_crisis_wave_counted
+			}
+		}
+		if = { limit = { has_variable = banking_crisis_wave_hit } remove_variable = banking_crisis_wave_hit }
+		if = { limit = { has_variable = banking_crisis_wave_crashed } remove_variable = banking_crisis_wave_crashed }
+		if = { limit = { has_variable = banking_crisis_wave_scared } remove_variable = banking_crisis_wave_scared }
+		if = { limit = { has_variable = banking_crisis_wave_counted } remove_variable = banking_crisis_wave_counted }
+	}
+	# Initialize global wave counter
+	set_global_variable = { name = great_depression_wave_count value = 1 }
+	set_global_variable = { name = great_depression_wave_gdp value = this_country_gdp_value }
+	# Mark this country as part of the wave: reached, and crashed.
+	set_variable = { name = banking_crisis_wave_hit value = 1 }
+	set_variable = { name = banking_crisis_wave_crashed value = 1 }
+	# And counted: the 1 above is this country. Without the mark, a contagion
+	# event it still held from an earlier wave, whose own roll had crashed,
+	# counted it a second time in its `after` (banking_crisis_wave_increment).
+	set_variable = { name = banking_crisis_wave_counted value = 1 }
+	# Bond fortunes vanish in a crash: every state's Wealth Concentration falls
+	# 5 (demographics spec §4.2). ROOT is the country (je_banking_cycle's pulse).
+	te_demog_wc_shock = { AMOUNT = -5 }
+}
+
+# Increment wave tracking when a contagion crash triggers in a target country.
+# Called from event .7 after block when its own roll crashed (banking_contagion_own_roll_crashed).
+banking_crisis_wave_increment = {
+	if = {
+		limit = { NOT = { has_variable = banking_crisis_wave_counted } }
+		set_variable = { name = banking_crisis_wave_counted value = 1 }
+		if = {
+			limit = { has_global_variable = great_depression_wave_count }
+			change_global_variable = { name = great_depression_wave_count add = 1 }
+			change_global_variable = { name = great_depression_wave_gdp add = this_country_gdp_value }
+		}
+	}
+}
+
+# Check if the crisis wave has reached Great Depression thresholds.
+# Requirements:
+#   - No Great Depression yet this game (great_depression_occurred)
+#   - 10+ countries crashed in the wave
+#   - Wave GDP >= 50% of global GDP (great_depression_gdp_threshold)
+# If triggered, fires the Great Depression event for all countries with banking systems.
+#
+# ONCE PER GAME. The flag is set when the event is queued, not when it fires:
+# the event waits three days, and every further crash in the wave runs this
+# check again, so without it a crash landing in those three days queued a
+# second Great Depression. The only guard before was the modifier check below,
+# which let a new one start once the last country's modifier ran out (ten
+# years, long_modifier_time).
+banking_crisis_wave_check_great_depression = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = great_depression_occurred }
+			has_global_variable = great_depression_wave_count
+			global_var:great_depression_wave_count >= 10
+			global_var:great_depression_wave_gdp >= great_depression_gdp_threshold
+			# A save from before great_depression_occurred existed: no new
+			# Great Depression while one it already had is still running.
+			NOT = {
+				any_country = {
+					OR = {
+						has_modifier = great_depression_modifier
+						has_modifier = great_depression_bystander_modifier
+						has_modifier = great_depression_isolated_modifier
+					}
+				}
+			}
+		}
+		set_global_variable = { name = great_depression_occurred value = yes }
+		# Fire Great Depression event for every country whose cycle runs
+		every_country = {
+			limit = {
+				te_banking_cycle_running = yes
+			}
+			trigger_event = { id = minor_events_timelineextended.8 days = 3 }
+		}
+	}
+}
+
+# ---- End of crisis wave tracking ----
+
+# ---- Event options that move the cycle (#428) ----
+# Every event option that moves one of the cycle's three variables does it
+# through one of these, with the line's loc key:
+#
+#   banking_change_bubble_pressure = { ADD = -3 TEXT = BUBBLE_PRESSURE_MINUS_3_DESC }
+#   banking_change_momentum        = { ADD = 1  TEXT = MOMENTUM_1_DESC }
+#   banking_change_cycle_value     = { ADD = 5  TEXT = CYCLE_VALUE_5_DESC }
+#
+# The tooltip line shows, and the variable moves, only for a country whose
+# cycle has started (te_banking_cycle_running). For any other country both are
+# skipped: it has no cycle, and must not be handed the start of one. The
+# variables are the latch (te_banking_cycle_running asks finance_cycle_value),
+# and banking_cycle_start seeds each only when it is absent (so a revolution's
+# winner keeps the cycle it inherits), so a write here would start the cycle
+# early, or survive into the one the country starts with, instead of
+# 50 / 0 / 0. Every country holds the entry, dormant until its cycle starts, so
+# has_journal_entry is not the test. Almost every caller can only reach a
+# running cycle already (the events fire from the entry's own pulse);
+# society_technology_events.30 fires from a technology on-action and reaches
+# every country.
+#
+# Pass the whole loc key as TEXT, never a key assembled from a parameter, or
+# organize_loc.py cannot see it and moves it to te_unused_l_english.yml.
+# Scope: country
+banking_change_bubble_pressure = {
+	if = {
+		limit = { te_banking_cycle_running = yes }
+		custom_tooltip = {
+			text = $TEXT$
+			change_variable = { name = bubble_pressure add = $ADD$ }
+		}
+	}
+}
+
+banking_change_momentum = {
+	if = {
+		limit = { te_banking_cycle_running = yes }
+		custom_tooltip = {
+			text = $TEXT$
+			change_variable = { name = finance_cycle_momentum add = $ADD$ }
+		}
+	}
+}
+
+banking_change_cycle_value = {
+	if = {
+		limit = { te_banking_cycle_running = yes }
+		custom_tooltip = {
+			text = $TEXT$
+			change_variable = { name = finance_cycle_value add = $ADD$ }
+		}
+	}
+}
+
+# The Sovereign Debt Scare's partial default: option C of
+# banking_cycle_events.10, .110 and .160 (#448). A quarter of the debt is
+# written off (banking_partial_default_haircut). The tooltip is ours: the
+# engine's own clear_scaled_debt line reads "cleared by a factor of 0.19 of
+# GDP", which is neither the share written off nor a share of GDP. The event
+# is drawn only while the debt is priced (scaled_debt > 0.25), so there is
+# always debt to write off; the option is clicked days later, by when it may
+# have shrunk, and a quarter of what is left is still a quarter.
+# Scope: country
+banking_partial_default_write_off = {
+	custom_tooltip = {
+		text = banking_partial_default_write_off_tt
+		clear_scaled_debt = banking_partial_default_haircut
+	}
+}
+
+# 0. Start the financial cycle (docs/superpowers/archive/specs/2026-10-17-banking-always-on-design.md
+#    § 1). Every country under the rule holds je_banking_cycle; its cycle starts
+#    here, at Stable with no momentum and no bubble, once te_banking_cycle_unlocked
+#    holds: from the entry's `immediate` (a new game's founders, a released country,
+#    a revolution's winner whose loser ran none) or from its monthly pulse, which
+#    also posts banking_cycle_started_notice to a human player. Seeding
+#    finance_cycle_value is what makes te_banking_cycle_running true. Each variable
+#    is seeded only when absent, as `immediate` always did (#465). Needs
+#    scope:journal_entry, which both callers have.
+banking_cycle_start = {
+	if = {
+		limit = { NOT = { has_variable = finance_cycle_value } }
+		set_variable = { name = finance_cycle_value value = 50 } # 0..100
+	}
+	if = {
+		limit = { NOT = { has_variable = finance_cycle_momentum } }
+		set_variable = { name = finance_cycle_momentum value = 0 }
+	}
+	if = {
+		limit = { NOT = { has_variable = bubble_pressure } }
+		set_variable = { name = bubble_pressure value = 0 }
+	}
+	banking_cycle_update_progress_bars = yes
+}
+
+# 0. The investment pool's weekly add: a share of its weekly gross income
+#    (country_weekly_investment_pool_mult) plus a flat amount
+#    (country_weekly_investment_pool_add), investment_pool_banking_cycle_add in
+#    extra_script_values.txt. The two keys are the mod's own (script-only), so
+#    nothing but this effect moves them into the pool. Called from
+#    je_banking_cycle's weekly pulse for every holder of the entry, its cycle
+#    running or not (owner, 2026-11-07): Neocolonial Dependency and the UN
+#    Development Fund's grant carry them too, and a country without the entry
+#    gets neither (un_dev_fund_pays_into_pool sends that one's grant to the
+#    treasury). Until then it ran only once the cycle had started.
+banking_weekly_investment_pool_add = {
+	add_investment_pool = investment_pool_banking_cycle_add
+}
+
+# 0. The cycle's weekly effects, only while it runs (je_banking_cycle's weekly pulse)
+banking_cycle_weekly_effects = {
+	# A bank holiday's days left, for its Active Policies row (set by
+	# banking_effect_cb_bank_holiday). A week's resolution is enough for a
+	# ninety-day term. Gone once the modifier is: expired, disabled, removed
+	# with a change of economic system, or not inherited by a revolution.
+	if = {
+		limit = { has_variable = banking_bank_holiday_days_left }
+		if = {
+			limit = { banking_tool_bank_holiday_active = yes }
+			change_variable = { name = banking_bank_holiday_days_left subtract = 7 }
+			clamp_variable = { name = banking_bank_holiday_days_left min = 0 max = 90 }
+		}
+		else = {
+			remove_variable = banking_bank_holiday_days_left
+		}
+	}
+}
+
+# 2. Advance all cycle variables for the month.
+#    - Momentum decays towards zero (×0.9)
+#    - Modifier-driven changes to momentum, bubble, and value
+#    - Investment pool contribution
+#    - Random mean-reversion nudge (biased towards equilibrium)
+#    - Apply momentum to value
+#    - Clamp all variables to valid ranges
+banking_cycle_advance_variables = {
+	# Momentum decays towards zero
+	change_variable = { name = finance_cycle_momentum multiply = 0.9 }
+
+	# Modifier-driven monthly changes
+	change_variable = {
+		name = finance_cycle_momentum
+		add = "modifier:country_finance_momentum_monthly_add"
+	}
+	change_variable = {
+		name = bubble_pressure
+		add = "modifier:country_bubble_pressure_monthly_add"
+	}
+	change_variable = {
+		name = finance_cycle_value
+		add = "modifier:country_finance_value_monthly_add"
+	}
+
+	# Monetary stance (monetary_policy_design.md §8, §16.3).
+	#
+	# A tight policy rate leans against the cycle and lets air out of the
+	# bubble; a loose one does the opposite. This is deliberately NOT a
+	# modifier: a stance modifier scaled by the gap would print
+	# -0.125 x (policy rate - r*) in its tooltip, and the hidden neutral rate
+	# could then be read off it to two decimals. The push therefore lands
+	# straight in the variables, and the player is told the stance BAND
+	# (banking_dash_momentum_tt, and the banded journal-entry modifier,
+	# banking_stance_band_1..5, which je_banking_cycle declares from
+	# te_mon_stance_band) but never the number.
+	#
+	# Both script values are guarded and clamp the gap to -2..+4, so a country
+	# whose monetary update has not run yet — or which has no policy dial at
+	# all — is pushed by exactly 0, and a gap one month old is tolerated by
+	# design (§16.3). Placed with the other monthly pushes and ahead of the
+	# clamps below, so the bubble term cannot leave the 0-100 range behind.
+	change_variable = {
+		name = finance_cycle_momentum
+		add = te_mon_stance_momentum_add
+	}
+	change_variable = {
+		name = bubble_pressure
+		add = te_mon_stance_bubble_add
+	}
+
+	# Random mean-reversion nudge: biased towards equilibrium
+	# Magnitude scales with country_banking_random_momentum_mult modifier
+	random_list = {
+		25 = {
+			modifier = {
+				value = var:finance_cycle_value
+				subtract = 50
+				divide = 5
+			}
+			change_variable = { name = finance_cycle_momentum add = banking_random_nudge_down_value }
+		}
+		50 = { }
+		25 = {
+			modifier = {
+				value = 50
+				subtract = var:finance_cycle_value
+				divide = 5
+			}
+			change_variable = { name = finance_cycle_momentum add = banking_random_nudge_up_value }
+		}
+	}
+
+	# A bank holiday stops the run: while the banks are shut, momentum cannot
+	# fall below 0 (banking_effect_cb_bank_holiday). After every other push, so
+	# nothing this month takes it back under.
+	if = {
+		limit = {
+			banking_tool_bank_holiday_active = yes
+			var:finance_cycle_momentum < 0
+		}
+		set_variable = { name = finance_cycle_momentum value = 0 }
+	}
+
+	# Apply momentum to cycle value
+	change_variable = {
+		name = finance_cycle_value
+		add = var:finance_cycle_momentum
+	}
+
+	# Clamp cycle value 0–100
+	if = { limit = { var:finance_cycle_value < 0 }   set_variable = { name = finance_cycle_value value = 0 } }
+	if = { limit = { var:finance_cycle_value > 100 } set_variable = { name = finance_cycle_value value = 100 } }
+
+	# Clamp bubble pressure 0–100
+	if = { limit = { var:bubble_pressure < 0 }   set_variable = { name = bubble_pressure value = 0 } }
+	if = { limit = { var:bubble_pressure > 100 } set_variable = { name = bubble_pressure value = 100 } }
+}
+
+# 2b. The banks reopen after a bank holiday that ran its full ninety days: the
+#     timed modifier has expired, and banking_bank_holiday_reopening is still
+#     set because nothing ended the holiday early (each early ending clears it;
+#     see banking_effect_cb_bank_holiday). Depositors come back to banks that
+#     were examined while the doors were shut. Run from the monthly pulse
+#     before banking_cycle_advance_variables, which then decays and applies the
+#     bounce like any other momentum.
+banking_cycle_bank_holiday_reopen = {
+	if = {
+		limit = {
+			has_variable = banking_bank_holiday_reopening
+			banking_tool_bank_holiday_active = no
+		}
+		remove_variable = banking_bank_holiday_reopening
+		change_variable = {
+			name = finance_cycle_momentum
+			add = banking_bank_holiday_reopen_momentum
+		}
+	}
+}
+
+# 3. Check for a sudden crash (asymmetric probability).
+#    If crash triggers, fire the origin event and spread contagion to
+#    trade-linked countries weighted by GDP.
+banking_cycle_check_and_execute_crash = {
+	set_variable = { name = crash value = 0 }
+	random_list = {
+		0 = {
+			modifier = {
+				add = var:bubble_pressure
+				if = {
+					limit = { var:finance_cycle_value >= 88 } # frenzy
+					subtract = 15
+					multiply = 0.35
+				}
+				else_if = {
+					limit = { var:finance_cycle_value >= 75 } # boom
+					subtract = 25
+					multiply = 0.15
+				}
+				else_if = {
+					limit = { var:finance_cycle_value >= 60 } # expansion
+					subtract = 50
+					multiply = 0.05
+				}
+				else_if = {
+					limit = { var:finance_cycle_value >= 40 } # stable
+					subtract = 75
+					multiply = 0.02
+				}
+				else = {
+					# stagnation and below. Without this branch the weight fell
+					# through as RAW bubble pressure, so a country dropping out of
+					# a boom through 40 with its bubble intact crashed at
+					# bubble / (bubble + 100) a month — a third at bubble 50 —
+					# while two points higher it was zero
+					# (docs/audits/banking_cycle_simulation.md F4).
+					subtract = 90
+					multiply = 0.01
+				}
+				multiply = banking_crash_chance_economy_mult
+				min = 0
+				# Scale crash probability by the crash chance modifier
+				multiply = banking_crash_chance_multiplier_value
+			}
+			set_variable = { name = crash value = 1 }
+		}
+		100 = { }
+	}
+
+	if = {
+		limit = { var:crash > 0 }
+		save_scope_as = banking_crash_origin_country
+
+		# History-chart marker on this month's bar (te_history_effects.txt)
+		te_history_record_banking_marker = { MARK = crash }
+		# Five years of "recent banking failures" (banking_had_recent_crash).
+		set_variable = { name = banking_recent_crash value = 1 days = 1825 }
+		# And a year in which contagion can only scare it.
+		banking_mark_crashed_last_year = yes
+
+		# Severity scales with bubble pressure (random multiplier 0.5–2.0).
+		# Seeded from banking_crash_severity_scale_value x bubble, not bubble
+		# itself: the crash PROBABILITY is already proportional to bubble, so a
+		# crash only ever fires off a big bubble, and seeding severity from the
+		# same number made two thirds of all crashes panic-tier resets
+		# (docs/audits/banking_cycle_simulation.md F2).
+		set_variable = {
+			name = crash_severity
+			value = {
+				value = var:bubble_pressure
+				multiply = banking_crash_severity_scale_value
+			}
+		}
+		random_list = {
+			10 = { change_variable = { name = crash_severity multiply = 0.5 } }
+			20 = { change_variable = { name = crash_severity multiply = 0.75 } }
+			40 = { }
+			20 = { change_variable = { name = crash_severity multiply = 1.5 } }
+			10 = { change_variable = { name = crash_severity multiply = 2 } }
+		}
+		change_variable = { name = crash_severity multiply = banking_crash_severity_economy_mult }
+		if = {
+			limit = { var:crash_severity > 100 }
+			set_variable = { name = crash_severity value = 100 }
+		}
+
+		# Initialize crisis wave tracking for Great Depression mechanic
+		banking_crisis_wave_init = yes
+
+		trigger_event = { id = minor_events_timelineextended.6 popup = yes }
+
+		# Spread contagion to trade-linked countries
+		banking_cycle_spread_contagion = yes
+	}
+}
+
+# 3b. Spread financial contagion to eligible countries.
+#     Probability depends on trade linkage, severity, AND relative GDP.
+#     Countries where the source is less than 5% of target GDP (a target more
+#     than 20 times its size) are immune.
+banking_cycle_spread_contagion = {
+	custom_tooltip = {
+		text = BANKING_CONTAGION_SPREAD_TT
+		every_country = {
+			limit = {
+				NOT = { THIS = scope:banking_crash_origin_country }
+				# Already hit by this crisis wave? Skip (prevents double-hits during cascades)
+				NOT = { banking_crisis_wave_reached = yes }
+				te_banking_cycle_running = yes
+				# Trade-reachable
+				OR = {
+					this.market = scope:banking_crash_origin_country.market
+					is_market_reachable_for_trade = scope:banking_crash_origin_country.market
+				}
+				# At least one trade channel
+				OR = {
+					this.market = scope:banking_crash_origin_country.market
+					is_in_customs_union_with = scope:banking_crash_origin_country
+					# [Monetary policy 5b, §15A.3] A shared currency is a channel too.
+					te_mon_shares_currency_with = { OTHER = scope:banking_crash_origin_country }
+					is_adjacent_to_country = scope:banking_crash_origin_country
+					economic_dependence = {
+						target = scope:banking_crash_origin_country
+						value > 0.05
+					}
+					market = {
+						market_trade_reliance = {
+							target = scope:banking_crash_origin_country.market
+							value > 0.01
+						}
+					}
+					market = {
+						market_production_share = {
+							target = scope:banking_crash_origin_country
+							value > 0.01
+						}
+					}
+					market = {
+						market_consumption_share = {
+							target = scope:banking_crash_origin_country
+							value > 0.01
+						}
+					}
+				}
+				# GDP filter: source must have at least 5% of target's GDP
+				# Tiny economies cannot destabilise giants
+				scope:banking_crash_origin_country.gdp >= banking_contagion_min_source_gdp
+			}
+
+			random = {
+				chance = 25
+				# GDP weight tiers: larger source -> higher contagion chance (approximates [0,50] range)
+				# origin GDP >= affected GDP (same size or bigger)
+				modifier = {
+					trigger = { scope:banking_crash_origin_country.gdp >= gdp }
+					add = 5
+				}
+				# origin GDP >= 2x affected
+				modifier = {
+					trigger = { scope:banking_crash_origin_country.gdp >= banking_contagion_gdp_threshold_2x }
+					add = 10
+				}
+				# origin GDP >= 5x affected
+				modifier = {
+					trigger = { scope:banking_crash_origin_country.gdp >= banking_contagion_gdp_threshold_5x }
+					add = 15
+				}
+				# origin GDP >= 10x affected
+				modifier = {
+					trigger = { scope:banking_crash_origin_country.gdp >= banking_contagion_gdp_threshold_10x }
+					add = 20
+				}
+				# Same market = strongest contagion channel
+				modifier = {
+					trigger = { this.market = scope:banking_crash_origin_country.market }
+					add = 10
+				}
+				# Hard crash spreads more easily
+				modifier = {
+					trigger = { scope:banking_crash_origin_country = { var:crash_severity >= 60 } }
+					add = 10
+				}
+				modifier = {
+					trigger = { scope:banking_crash_origin_country = { var:crash_severity >= 30 var:crash_severity < 60 } }
+					add = 5
+				}
+				modifier = {
+					trigger = { is_in_customs_union_with = scope:banking_crash_origin_country }
+					add = 10
+				}
+				# [Monetary policy 5b, §15A.3] One currency, one banking system's worth
+				# of exposure.
+				modifier = {
+					trigger = { te_mon_shares_currency_with = { OTHER = scope:banking_crash_origin_country } }
+					add = 10
+				}
+				# [Monetary policy 5b tier 4] ...unless the currency area has one
+				# supervisor and one deposit guarantee over all of it, which is most
+				# of what the shared currency was carrying. Not all of it: a common
+				# supervisor is not a wall, and 2008 and 2011 both crossed one.
+				# -6 of the channel's +10 leaves +4. A literal, as in every other
+				# `random` modifier in the mod: a script-value name here is a
+				# malformed token and the line is dropped (scripting_best_practices.md
+				# § Named Script Values in Weight/Random Modifier `add =`).
+				modifier = {
+					trigger = {
+						te_mon_shares_currency_with = { OTHER = scope:banking_crash_origin_country }
+						te_mon_bloc_union_tier_4_plus = yes
+					}
+					add = -6
+				}
+				modifier = {
+					trigger = { is_adjacent_to_country = scope:banking_crash_origin_country }
+					add = 5
+				}
+				modifier = {
+					trigger = { economic_dependence = { target = scope:banking_crash_origin_country value > 0.10 } }
+					add = 5
+				}
+				modifier = {
+					trigger = { economic_dependence = { target = scope:banking_crash_origin_country value > 0.25 } }
+					add = 10
+				}
+				modifier = {
+					trigger = { market = { market_trade_reliance = { target = scope:banking_crash_origin_country.market value > 0.05 } } }
+					add = 5
+				}
+				modifier = {
+					trigger = { market = { market_trade_reliance = { target = scope:banking_crash_origin_country.market value > 0.1 } } }
+					add = 10
+				}
+				modifier = {
+					trigger = { scope:banking_crash_origin_country.relations:THIS >= relations_threshold:cordial }
+					add = 1.5
+				}
+				modifier = {
+					trigger = { has_law_or_variant = law_type:law_free_trade }
+					add = 1.5
+				}
+
+				scope:banking_crash_origin_country = {
+					save_scope_as = banking_crash_origin_country
+				}
+
+				# Mark the target reached at once, so cascading spreads from other
+				# countries in this wave cannot hit it twice, and send it the
+				# contagion event, unless it holds one already, on its way or
+				# open: one at a time, across waves too (banking_contagion_reach).
+				banking_contagion_reach = yes
+			}
+		}
+	}
+}
+
+# 3c. The Emergency Liquidity Program winds down once the crisis is over: when
+#     the cycle has held at stable or above (value 40+) for
+#     banking_eliq_wind_down_months in a row, an open program closes itself
+#     through the Disable action's own effect (history marker, 1%-of-GDP
+#     refund), and its once-per-crisis announcement can land again
+#     (banking_effect_cb_emergency_liquidity_program). Any month below 40
+#     restarts the count, so a shaky recovery keeps the backstop. The count
+#     runs while either the program or the announcement is outstanding, so a
+#     program closed early still clears the announcement, and a save from
+#     before 2026-10-07 with the program open (and no announcement) is wound
+#     down too. Run from the monthly pulse after
+#     banking_cycle_check_and_execute_crash, on the month's settled value.
+banking_cycle_eliq_wind_down = {
+	if = {
+		limit = {
+			OR = {
+				has_variable = banking_eliq_announced
+				banking_tool_eliq_active = yes
+			}
+		}
+		if = {
+			limit = { var:finance_cycle_value >= 40 }
+			if = {
+				limit = { NOT = { has_variable = banking_eliq_recovery_months } }
+				set_variable = { name = banking_eliq_recovery_months value = 0 }
+			}
+			change_variable = { name = banking_eliq_recovery_months add = 1 }
+		}
+		else = {
+			set_variable = { name = banking_eliq_recovery_months value = 0 }
+		}
+		if = {
+			limit = { var:banking_eliq_recovery_months >= banking_eliq_wind_down_months }
+			if = {
+				limit = { banking_tool_eliq_active = yes }
+				banking_effect_cb_disable_emergency_liquidity_program = yes
+				if = {
+					limit = { is_ai = no }
+					post_notification = banking_eliq_wound_down_notice
+				}
+			}
+			if = {
+				limit = { has_variable = banking_eliq_announced }
+				remove_variable = banking_eliq_announced
+			}
+			remove_variable = banking_eliq_recovery_months
+		}
+	}
+}
+
+# 5. Update the four JE progress bars (the fourth, the policy-stance band,
+#    is the monetary system's — see banking_policy_stance_bar).
+#    Called from the monthly pulse and from je_banking_cycle's `immediate`:
+#    both have scope:journal_entry, and ROOT is the country.
+banking_cycle_update_progress_bars = {
+	scope:journal_entry = {
+		set_bar_progress = { name = banking_cycle_value_bar value = ROOT.var:finance_cycle_value }
+		set_bar_progress = { name = banking_bubble_pressure_bar value = ROOT.var:bubble_pressure }
+		if = {
+			limit = { ROOT = { has_variable = te_mon_stance_bar_pos } }
+			set_bar_progress = { name = banking_policy_stance_bar value = ROOT.var:te_mon_stance_bar_pos }
+		}
+		if = {
+			limit = { ROOT.var:finance_cycle_momentum < -5 }
+			set_bar_progress = { name = banking_cycle_momentum_bar value = -5 }
+		}
+		else_if = {
+			limit = { ROOT.var:finance_cycle_momentum > 5 }
+			set_bar_progress = { name = banking_cycle_momentum_bar value = 5 }
+		}
+		else = {
+			set_bar_progress = { name = banking_cycle_momentum_bar value = ROOT.var:finance_cycle_momentum }
+		}
+	}
+}
+
+# 6. Clamp the cycle and redraw the progress bars after a banking event option.
+#    Called from banking event `after` blocks where scope:journal_entry
+#    is NOT available, so we scope via the je: accessor instead.
+#    The entry can be missing for a moment: a revolution's winner takes it
+#    over from the loser, but an event queued before the war ended can
+#    resolve first (Bunyoro, 2026-10-16: a contagion event two seconds after
+#    its revolution, every je: read unset). The clamps still run; the bars
+#    live on the entry, and its monthly pulse redraws them.
+#    Until 1.15 this also re-applied the phase and bubble-inertia modifiers.
+#    The entry declares them now (scaling_modifiers_while_active in
+#    je_banking.txt), from the variables these clamps settle, and they follow
+#    an option's change on the entry's next update, about four days on.
+banking_cycle_post_event_refresh = {
+	hidden_effect = {
+		# Clamp before bar update — events may push vars below 0 / above 100
+		# and set_bar_progress with out-of-range values spams "clamping to min".
+		if = { limit = { ROOT.var:finance_cycle_value < 0 }   ROOT = { set_variable = { name = finance_cycle_value value = 0 } } }
+		if = { limit = { ROOT.var:finance_cycle_value > 100 } ROOT = { set_variable = { name = finance_cycle_value value = 100 } } }
+		if = { limit = { ROOT.var:bubble_pressure < 0 }       ROOT = { set_variable = { name = bubble_pressure value = 0 } } }
+		if = { limit = { ROOT.var:bubble_pressure > 100 }     ROOT = { set_variable = { name = bubble_pressure value = 100 } } }
+		if = {
+			limit = { ROOT = { te_banking_cycle_running = yes } }
+			je:je_banking_cycle = {
+				set_bar_progress = { name = banking_cycle_value_bar value = ROOT.var:finance_cycle_value }
+				set_bar_progress = { name = banking_bubble_pressure_bar value = ROOT.var:bubble_pressure }
+				if = {
+					limit = { ROOT = { has_variable = te_mon_stance_bar_pos } }
+					set_bar_progress = { name = banking_policy_stance_bar value = ROOT.var:te_mon_stance_bar_pos }
+				}
+				if = {
+					limit = { ROOT.var:finance_cycle_momentum < -5 }
+					set_bar_progress = { name = banking_cycle_momentum_bar value = -5 }
+				}
+				else_if = {
+					limit = { ROOT.var:finance_cycle_momentum > 5 }
+					set_bar_progress = { name = banking_cycle_momentum_bar value = 5 }
+				}
+				else = {
+					set_bar_progress = { name = banking_cycle_momentum_bar value = ROOT.var:finance_cycle_momentum }
+				}
+			}
+		}
+	}
+}
+
+# 7. Remove capital controls modifier if law/war conditions no longer apply.
+banking_cycle_cleanup_capital_controls = {
+	if = {
+		limit = {
+			je:je_banking_cycle = { has_modifier = banking_capital_controls_out }
+			NOT = {
+				OR = {
+					has_law = law_type:law_prudential_narrow_banking
+					has_law = law_type:law_directed_credit_development_banks
+					is_at_war = yes
+				}
+			}
+		}
+		je:je_banking_cycle = { remove_modifier = banking_capital_controls_out }
+	}
+}
+
+# 7b. Directed credit: shed sectors beyond the cap. A law change can leave two
+#     sectors running under a cap of one (leaving Directed Credit & Development
+#     Banks). Lifted in reverse roster order, newest sector first, so the
+#     long-standing Infrastructure tool is the last to go. Monthly rather than
+#     on_law_enactment_pass: no same-tick modifier read, and it also catches a
+#     law swapped by anything other than enactment.
+#
+#     banking_directed_credit_slots_free is read ONCE into a local: a
+#     remove_modifier is not visible to the modifier reads it is built from
+#     until the block ends, so each shed counts itself up by hand.
+banking_directed_credit_enforce_cap = {
+	if = {
+		limit = { banking_directed_credit_slots_free < 0 }
+		set_local_variable = { name = dc_slots value = banking_directed_credit_slots_free }
+		if = {
+			limit = { local_var:dc_slots < 0 banking_tool_directed_credit_electrification_active = yes }
+			te_history_record_banking_marker = { MARK = off_cb_directed_credit_electrification }
+			je:je_banking_cycle = { remove_modifier = banking_directed_credit_electrification }
+			change_local_variable = { name = dc_slots add = 1 }
+		}
+		if = {
+			limit = { local_var:dc_slots < 0 banking_tool_directed_credit_armaments_active = yes }
+			te_history_record_banking_marker = { MARK = off_cb_directed_credit_armaments }
+			je:je_banking_cycle = { remove_modifier = banking_directed_credit_armaments }
+			change_local_variable = { name = dc_slots add = 1 }
+		}
+		if = {
+			limit = { local_var:dc_slots < 0 banking_tool_directed_credit_agriculture_active = yes }
+			te_history_record_banking_marker = { MARK = off_cb_directed_credit_agriculture }
+			je:je_banking_cycle = { remove_modifier = banking_directed_credit_agriculture }
+			change_local_variable = { name = dc_slots add = 1 }
+		}
+		if = {
+			limit = { local_var:dc_slots < 0 banking_tool_directed_credit_heavy_industry_active = yes }
+			te_history_record_banking_marker = { MARK = off_cb_directed_credit_heavy_industry }
+			je:je_banking_cycle = { remove_modifier = banking_directed_credit_heavy_industry }
+			change_local_variable = { name = dc_slots add = 1 }
+		}
+		if = {
+			limit = { local_var:dc_slots < 0 banking_tool_directed_active = yes }
+			te_history_record_banking_marker = { MARK = off_cb_directed_credit_infrastructure }
+			je:je_banking_cycle = { remove_modifier = banking_directed_credit_infrastructure }
+		}
+	}
+}
+
+# 8. Command economy: keep investment pool net income at zero.
+#    Under law_command_economy the state should be funding all planned investment
+#    directly from the treasury. je_banking_cycle declares the
+#    planning_treasury_pool_balance modifier (scaling_modifiers_while_active) at
+#    ce_pool_balance_cached, which this effect sets to the value that makes
+#    investment_pool_net_income + value = 0 next tick, and to 0 under any other
+#    economic law once it exists (the declaration asks for the law too; a
+#    country that never ran a command economy gets no variable, and one that
+#    returns to it carries no stale balance before its first pulse). Until 1.15
+#    it removed and re-added the modifier with that multiplier; the cache keeps
+#    the monthly cadence the multiplier was read at.
+#
+#    Note: no prior-value subtraction is needed because
+#    country_weekly_investment_pool_add is a mod-created modifier key that the
+#    engine does not include in investment_pool_net_income, so our contribution
+#    is never double-counted in the read.
+#
+#    Called from:
+#      - je_banking_cycle on_monthly_pulse (monthly recalibration)
+#      - ce_invest_pool_inject / ce_invest_pool_withdraw button effects
+#        (refresh after one-shot treasury<->pool transfers)
+banking_cycle_update_ce_pool_balance = {
+	if = {
+		limit = { banking_is_command_economy = yes }
+		set_variable = { name = ce_pool_balance_cached value = ce_treasury_pool_balance_multiplier }
+	}
+	else_if = {
+		limit = { has_variable = ce_pool_balance_cached }
+		set_variable = { name = ce_pool_balance_cached value = 0 }
+	}
+}

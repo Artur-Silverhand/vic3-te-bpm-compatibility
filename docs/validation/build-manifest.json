@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0-dev",
+  "version": "0.7.0-dev",
   "status": "development_candidate_runtime_unverified",
   "source_commits": {
     "timeline": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
@@ -1347,8 +1347,53 @@
     "persistent_cache_added": false,
     "new_pulses": 0
   },
+  "te_backports": {
+    "commits": [
+      {
+        "sha": "524201e8f499d88485f23f2daa9580340491c748",
+        "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/524201e8f499d88485f23f2daa9580340491c748",
+        "subject": "Map Room fitted to the world, Power Grids map, slower repaint; nuclear runaway guard and logging (#1502)"
+      },
+      {
+        "sha": "9ccf06c4b0c8becf35daf8a8819185bc14b7609b",
+        "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/9ccf06c4b0c8becf35daf8a8819185bc14b7609b",
+        "subject": "Log triage 2026-11-07 (observer): decolonization dead overlord, double custody roll, accident host, Breakdown observer gate, 1.15 anchors (#1501)"
+      },
+      {
+        "sha": "fb9ff0017c8c90024546fa0e94520924c108b7b6",
+        "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/fb9ff0017c8c90024546fa0e94520924c108b7b6",
+        "subject": "Fix transportation input slip in production methods (#1503)"
+      },
+      {
+        "sha": "ad7f8e2076798f2642a0871d999ea4afae1d44e8",
+        "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/ad7f8e2076798f2642a0871d999ea4afae1d44e8",
+        "subject": "Run the investment pool's weekly add before the banking cycle starts (#1504)"
+      }
+    ],
+    "files": 18,
+    "scope": "transport recipes; investment pool weekly add; nuclear production bounds, custody and accident safety; dead former-overlord guards"
+  },
+  "cultural_integration": {
+    "literature_starters_restored": [
+      "rlit.001",
+      "rlit.052"
+    ],
+    "political_finales": [
+      "rlit.015",
+      "rlit.036"
+    ],
+    "renaissances": [
+      "ukraine",
+      "belarus"
+    ],
+    "timeout_active_days": 7300,
+    "clock_resolution": "monthly, delta capped at 31 days",
+    "world_scans_added": 0,
+    "new_campaign_required_for_full_timeout_accounting": true,
+    "engine_verified": false
+  },
   "safety_integration": {
-    "shadow_definitions_resolved": 508,
+    "shadow_definitions_resolved": 506,
     "files_masked": [
       "common/script_values/00_diplomacy_values.txt",
       "common/script_values/01_power_bloc_values.txt",
@@ -1439,8 +1484,6 @@
       "events/misc_unifications.txt",
       "events/neighbor_events.txt",
       "events/nihilism.txt",
-      "events/rlit_cluster1_golden_age.txt",
-      "events/rlit_cluster2_crossroads.txt",
       "events/russia_events.txt",
       "events/secession_situations.txt",
       "events/slave_revolts.txt",

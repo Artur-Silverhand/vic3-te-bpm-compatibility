@@ -202,6 +202,7 @@ def stage(name,version,timeline_ref='HEAD',bpm_ref='HEAD',game=None,fetch=False,
         worker.mkdir()
         for directory in ('tools','patch','release'):
             shutil.copytree(root/directory,worker/directory,ignore=shutil.ignore_patterns('__pycache__','workshop-content','*.vdf','workshop-upload-result.json'))
+        if (root/'backports').exists():shutil.copytree(root/'backports',worker/'backports')
         shutil.copytree(root/'docs/decisions',worker/'docs/decisions')
         for relative in ('docs/validation','docs/conflicts','docs/research'):(worker/relative).mkdir(parents=True,exist_ok=True)
         for name in ('SPEC.md','STATUS.md','README.md','THIRD_PARTY_NOTICES.md'):

@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "parent_commit": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
+  "commits": [
+    {
+      "sha": "524201e8f499d88485f23f2daa9580340491c748",
+      "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/524201e8f499d88485f23f2daa9580340491c748",
+      "subject": "Map Room fitted to the world, Power Grids map, slower repaint; nuclear runaway guard and logging (#1502)"
+    },
+    {
+      "sha": "9ccf06c4b0c8becf35daf8a8819185bc14b7609b",
+      "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/9ccf06c4b0c8becf35daf8a8819185bc14b7609b",
+      "subject": "Log triage 2026-11-07 (observer): decolonization dead overlord, double custody roll, accident host, Breakdown observer gate, 1.15 anchors (#1501)"
+    },
+    {
+      "sha": "fb9ff0017c8c90024546fa0e94520924c108b7b6",
+      "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/fb9ff0017c8c90024546fa0e94520924c108b7b6",
+      "subject": "Fix transportation input slip in production methods (#1503)"
+    },
+    {
+      "sha": "ad7f8e2076798f2642a0871d999ea4afae1d44e8",
+      "url": "https://github.com/jakeOmega/Vic3TimelineExtended/commit/ad7f8e2076798f2642a0871d999ea4afae1d44e8",
+      "subject": "Run the investment pool's weekly add before the banking cycle starts (#1504)"
+    }
+  ],
+  "scope": "transport recipes; investment pool weekly add; nuclear production bounds, custody and accident safety; dead former-overlord guards",
+  "excluded": "Map Room/Power Grids feature changes, culture merges, Seize Strait and unrelated later main changes; parent gameplay baseline stays pinned.",
+  "files": {
+    "common/journal_entries/je_banking.txt": {
+      "base_sha256": "3ac997d370605fe94fc007cbe08c522675a5d076fd7c228bf453867d3797d5e3",
+      "commits": [
+        "ad7f8e2076798f2642a0871d999ea4afae1d44e8"
+      ],
+      "sha256": "bddd4fc572a83ad7e2424dc83a79b590edf1f7f2fdbb0ac04ef996d2a30306bd"
+    },
+    "common/journal_entries/je_nuclear_program.txt": {
+      "base_sha256": "61c5310c51665be1651bd614bc9807fe8a8d0b289512d1e3be1689dad89c53e4",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748"
+      ],
+      "sha256": "cfb3b145c0ce6053f5b4f3d94874ba9a644ad444ce06bbaada74be2152107792"
+    },
+    "common/on_actions/extra_on_actions.txt": {
+      "base_sha256": "093bd15b4a12cf717bf2756e065a63e08056693948a27ba99bcbe57ee3d42e54",
+      "commits": [
+        "9ccf06c4b0c8becf35daf8a8819185bc14b7609b"
+      ],
+      "sha256": "f8f6a8c71dec3bb016060d70873a73e0809cb34cc2f355cb20b3b40aefcb109b"
+    },
+    "common/production_methods/extra_pms.txt": {
+      "base_sha256": "981ce2a645e9919fb089d8370dd468a8faeef20dec59f497b9a3a300ba5a6591",
+      "commits": [
+        "fb9ff0017c8c90024546fa0e94520924c108b7b6"
+      ],
+      "sha256": "4d8221c555d5515159ce2f6456b6247f9c654d1ef72661b2ea09b63e96d88211"
+    },
+    "common/production_methods/te_construction_market_pms.txt": {
+      "base_sha256": "798ffa2a49afff1f77bc494aecdf9d1212a071e98fcbc66ba71804b27f3bd427",
+      "commits": [
+        "fb9ff0017c8c90024546fa0e94520924c108b7b6"
+      ],
+      "sha256": "3901d4bca8b93941b9017564bebe4742ffb6a8d8310b45876e0e970939df4522"
+    },
+    "common/script_values/extra_script_values.txt": {
+      "base_sha256": "48fe9c92ac1625d204c6bc0448e2d4047296873d2a462547ae42136cb2b87715",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748",
+        "ad7f8e2076798f2642a0871d999ea4afae1d44e8"
+      ],
+      "sha256": "7323c904c3beabd100c7d48fe45f570755f732d300c6bd8ba77c3c83ee7bfd90"
+    },
+    "common/script_values/nuclear_exchange_values.txt": {
+      "base_sha256": "d2daefe299cf0355a84c151038c1991248d6e44b723f41e26a22f31eddb9b119",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748"
+      ],
+      "sha256": "e0afcbf13b8f9950c38c5a275d55215e0651780285c74e78f825d7a28311819d"
+    },
+    "common/scripted_buttons/nuclear_program_buttons.txt": {
+      "base_sha256": "b137d40ea8f60e0a28dd7a03214ce75f6c9f1d135f5eccd1492d44262079ec99",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748"
+      ],
+      "sha256": "8060f5e97b17ea4001b7546cbcc33b8bd6c5b99b36117185a005d5e379cd53e8"
+    },
+    "common/scripted_effects/banking_cycle_effects.txt": {
+      "base_sha256": "49fdcdc9bba87920c846e7adde59e855130b91425c881d21cd9e3d1211088c45",
+      "commits": [
+        "ad7f8e2076798f2642a0871d999ea4afae1d44e8"
+      ],
+      "sha256": "dd11fac36c5ca6ceec68acb99236932b601e9be1bb0c77171ab3846a657c2474"
+    },
+    "common/scripted_effects/nuclear_custody_effects.txt": {
+      "base_sha256": "0274f9c2372456976d166d30ab04481ea65a7e48617d36756c4a07e9916659eb",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748",
+        "9ccf06c4b0c8becf35daf8a8819185bc14b7609b"
+      ],
+      "sha256": "3c84ada1ac0c169eb87f75fa955356ff2e7905bef2eb3a977f63d77d3e349587"
+    },
+    "common/scripted_effects/nuclear_deterrence_effects.txt": {
+      "base_sha256": "9748732cab489f637d07f4f7d0dd7a053acd8283aa5185f1f70bac927b792ea9",
+      "commits": [
+        "9ccf06c4b0c8becf35daf8a8819185bc14b7609b"
+      ],
+      "sha256": "81001072481cc0d11eb3daa4207804a05e0ec8e67eb14bcc1c4b60bd8f903910"
+    },
+    "common/scripted_effects/nuclear_weapon_effects.txt": {
+      "base_sha256": "d133fa1dac5125ca55f60e4e741277526a11241503d5b1dfa8db8e33ba845355",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748"
+      ],
+      "sha256": "21f369e7b98ae95a8e90d85b2cc384ef7524219b645f3cfa93375441c7fc04a9"
+    },
+    "common/scripted_triggers/nuke_triggers.txt": {
+      "base_sha256": "948bf8a4177cd4ea312f32a0fcf4d8fefd9a05b24b7d85afeb04f85d255c35b9",
+      "commits": [
+        "524201e8f499d88485f23f2daa9580340491c748"
+      ],
+      "sha256": "45f39c4e5f9b9637167d5c1491d3b3c38518c1981b701b60a10fedb48638e648"
+    },
+    "common/scripted_triggers/un_economy_triggers.txt": {
+      "base_sha256": "b7e39687f137c9ead8de1c8c667b7f806a55f8ffb8181e1da2e974b1f1645df2",
+      "commits": [
+        "ad7f8e2076798f2642a0871d999ea4afae1d44e8"
+      ],
+      "sha256": "73dcd923c4562ac5f3f5ae1b5b3f95290ac4609a2e35c0b419ad382e1d0f71a4"
+    },
+    "common/static_modifiers/un_economy_modifiers.txt": {
+      "base_sha256": "6ec857d20c13a4418fbc7e73f59c54d53b95f526a50a2e6fa73b2f7543a674ff",
+      "commits": [
+        "ad7f8e2076798f2642a0871d999ea4afae1d44e8"
+      ],
+      "sha256": "1e6b73c252c8fc1957c64754b49768cba90dc32c90d02cd1c89304e1dd63233e"
+    },
+    "events/decolonization_events.txt": {
+      "base_sha256": "ef08ef97da63c01d18dd6ca6cb588e5dde41fce46d1a42edf380a201756a4b24",
+      "commits": [
+        "9ccf06c4b0c8becf35daf8a8819185bc14b7609b"
+      ],
+      "sha256": "8372708a9c812c5d0a0cad3010c5f453a0a023d4b027b2fa7199b5e9d1ba247a"
+    },
+    "events/nuclear_custody_events.txt": {
+      "base_sha256": "50ac2fbee684e0b2fb1978727231ac8ad9c536710bb24e3a5b9194e58ebcdb04",
+      "commits": [
+        "9ccf06c4b0c8becf35daf8a8819185bc14b7609b"
+      ],
+      "sha256": "109811f163769fe07f409436cce414179741fde7f8426609a07bb0cc10692024"
+    },
+    "events/nuclear_incident_events.txt": {
+      "base_sha256": "63c9363d09d77810eabde06635718b9675234678a5cc44054739cfd3286bbe84",
+      "commits": [
+        "9ccf06c4b0c8becf35daf8a8819185bc14b7609b"
+      ],
+      "sha256": "ae93d3d23ac30ddbe9274eb5e2e758da30b6e569f10c052725c54e840ad92798"
+    }
+  }
+}

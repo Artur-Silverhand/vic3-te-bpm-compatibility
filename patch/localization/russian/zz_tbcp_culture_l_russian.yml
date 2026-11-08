@@ -1,0 +1,4 @@
+﻿l_russian:
+ tbcp_cr_paused:0 "Приостановлено: у культуры не осталось родных земель. Прогресс и отсчёт срока возобновятся после их возвращения."
+ tbcp_cr_ukraine_clock:0 "Активное время: [SCOPE.ScriptValue('tbcp_cr_ukraine_active_days_display')|0] / 7300 дней. Время без родных земель не учитывается."
+ tbcp_cr_belarus_clock:0 "Активное время: [SCOPE.ScriptValue('tbcp_cr_belarus_active_days_display')|0] / 7300 дней. Время без родных земель не учитывается."

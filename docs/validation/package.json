@@ -1,9 +1,9 @@
 {
-  "archive": "dist/te-bpm-compatibility-0.6.0-dev.zip",
-  "version": "0.6.0-dev",
-  "sha256": "4e816b169b6579830848b52eb4b19c099cb93a0953436bdbd4a9f8c68a85b537",
-  "bytes": 627916,
-  "members": 168,
+  "archive": "dist/te-bpm-compatibility-0.7.0-dev.zip",
+  "version": "0.7.0-dev",
+  "sha256": "bdc502356ef66ca02f9daf442cef545da2836c488d63bbc4151ca401e7162c2d",
+  "bytes": 918503,
+  "members": 195,
   "source_commits": {
     "timeline": "48a28e73ad06c25d4de02edead2ec976a9e8dd35",
     "bpm": "d785d399001ceaa87a1153ca7e0fb4ba512d8425"

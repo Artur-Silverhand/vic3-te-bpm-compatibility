@@ -3728,24 +3728,6 @@
     },
     {
       "category": "events",
-      "key": "rlit.001",
-      "winner_owner": "bpm",
-      "winner_path": "events/_rlit_events.txt",
-      "suppressed_paths": [
-        "events/rlit_cluster1_golden_age.txt"
-      ]
-    },
-    {
-      "category": "events",
-      "key": "rlit.052",
-      "winner_owner": "bpm",
-      "winner_path": "events/_rlit_events.txt",
-      "suppressed_paths": [
-        "events/rlit_cluster2_crossroads.txt"
-      ]
-    },
-    {
-      "category": "events",
       "key": "russia_monarchy.1",
       "winner_owner": "bpm",
       "winner_path": "events/_russia_events.txt",
@@ -4413,7 +4395,7 @@
     {
       "category": "script_values",
       "key": "country_gdp_per_capita",
-      "winner_owner": "timeline",
+      "winner_owner": "patch",
       "winner_path": "common/script_values/extra_script_values.txt",
       "suppressed_paths": [
         "common/script_values/ip5_je_values.txt"
@@ -4422,7 +4404,7 @@
     {
       "category": "script_values",
       "key": "leverage_threshold_to_invite",
-      "winner_owner": "timeline",
+      "winner_owner": "patch",
       "winner_path": "common/script_values/extra_script_values.txt",
       "suppressed_paths": [
         "common/script_values/00_diplomacy_values.txt"
@@ -4663,8 +4645,6 @@
     "events/misc_unifications.txt",
     "events/neighbor_events.txt",
     "events/nihilism.txt",
-    "events/rlit_cluster1_golden_age.txt",
-    "events/rlit_cluster2_crossroads.txt",
     "events/russia_events.txt",
     "events/secession_situations.txt",
     "events/slave_revolts.txt",

@@ -1,0 +1,4 @@
+﻿tbcp_cr_ukraine_elapsed = { value = game_date subtract = global_var:tbcp_cr_ukraine_last_day min = 0 max = 31 }
+tbcp_cr_ukraine_active_days_display = { value = 0 if = { limit = { has_global_variable = tbcp_cr_ukraine_active_days } add = global_var:tbcp_cr_ukraine_active_days } }
+tbcp_cr_belarus_elapsed = { value = game_date subtract = global_var:tbcp_cr_belarus_last_day min = 0 max = 31 }
+tbcp_cr_belarus_active_days_display = { value = 0 if = { limit = { has_global_variable = tbcp_cr_belarus_active_days } add = global_var:tbcp_cr_belarus_active_days } }

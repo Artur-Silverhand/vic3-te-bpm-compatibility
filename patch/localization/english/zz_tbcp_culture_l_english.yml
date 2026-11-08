@@ -1,0 +1,4 @@
+﻿l_english:
+ tbcp_cr_paused:0 "Paused: this culture has no homeland states. Progress and the active-time limit resume when homelands return."
+ tbcp_cr_ukraine_clock:0 "Active time: [SCOPE.ScriptValue('tbcp_cr_ukraine_active_days_display')|0] / 7300 days. Time without homelands does not count."
+ tbcp_cr_belarus_clock:0 "Active time: [SCOPE.ScriptValue('tbcp_cr_belarus_active_days_display')|0] / 7300 days. Time without homelands does not count."

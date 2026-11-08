@@ -1,0 +1,366 @@
+# ============================================================================
+# NUCLEAR DIPLOMACY SCRIPTED TRIGGERS
+# Reusable triggers for nuclear weapon diplomatic actions AI logic
+# ============================================================================
+
+# ============================================================================
+# NUCLEAR PROGRAMME GATES
+# ============================================================================
+# Single-source of the three conditions the nuclear-programme surfaces ask.
+# Each body is the verbatim text that used to sit inline on the journal entry
+# or on one of its two scripted buttons; the button and the widget's scripted
+# GUI both call the helper, so the two surfaces cannot drift apart.
+# See docs/systems/journal_entry_systems.md, "Nuclear Programme Widget".
+
+# Country scope: does this country have the standing to sustain a nuclear
+# weapons programme? Rank, or a patron's aid, and no disarmament. Read through
+# nuclear_program_has_programme, which adds the science and the game rule. The
+# rank half is nd_taboo_has_programme_standing (nuclear_taboo_triggers.txt),
+# shared with Resume the Nuclear Programme's standing check (I2, final-review.md).
+nuclear_program_can_run_programme = {
+	OR = {
+		nd_taboo_has_programme_standing = yes
+		modifier:country_receiving_nuclear_program_aid_bool = yes
+	}
+	NOT = {
+		modifier:country_nuclear_disarmament_bool = yes
+	}
+}
+
+# Country scope: does this country have a nuclear weapons programme — the
+# half of je_nuclear_program that builds warheads? The entry also carries
+# posture and crises, so it is active for an armed power that has lost the
+# standing to build more and for a non-nuclear party to a crisis; neither
+# `has_journal_entry = je_nuclear_program` nor the existence of the
+# programme's variables (the entry's immediate creates them for everyone it
+# activates for) answers this any more. Ask this instead. Also gates the
+# programme half of the entry's weekly pulse, and the programme panel.
+nuclear_program_has_programme = {
+	has_game_rule = nuclear_weapons_enabled
+	has_technology_researched = nuclear_weapons
+	nuclear_program_can_run_programme = yes
+}
+
+# Country scope: the body of je_nuclear_program's `possible` — everyone the
+# entry applies to: a country with a programme, one that holds warheads, one
+# party to a nuclear crisis, and — once the nuclear taboo exists — every
+# country.
+nuclear_program_entry_applies = {
+	has_game_rule = nuclear_weapons_enabled
+	OR = {
+		# A last-warhead launch must still reach the exchange's settlement.
+		has_variable = nd_exchange_id
+		nuclear_program_has_programme = yes
+		nd_is_armed = yes
+		nd_in_crisis = yes
+		# Once the nuclear taboo exists (nuclear_taboo_effects.txt) the entry
+		# is every country's: its panel and status line speak to the countries
+		# without the bomb as much as to those with it. Every pulse effect is a
+		# cheap no-op for a country that is neither armed, building nor in a
+		# crisis (nuclear_deterrence_effects.txt's header).
+		AND = {
+			has_global_variable = nd_taboo
+			NOT = { is_country_type = decentralized }
+		}
+	}
+}
+
+# Country scope: nuclear_program_entry_applies (the entry's `possible`) as one
+# tooltip line: the checklist in the Military panel's greyed Nuclear tab
+# (te_military_nuclear_tab_unlock_sgui's is_valid, te_system_tab_sguis.txt).
+# One line because the test is an OR, and a bare OR prints there as an empty
+# "All of these:" (gui_modding_guide.md gotcha #31, the UN tab). It calls the
+# entry's own trigger, so the checklist cannot drift from the entry.
+nuclear_program_entry_unlocked = {
+	custom_tooltip = {
+		text = nuclear_program_unlock_tt
+		nuclear_program_entry_applies = yes
+	}
+}
+
+# Country scope: may funding be stepped up? Body of
+# increase_funding_nuclear_program's `possible`. The engine renders the last
+# three clauses with a tick or a cross each, which is both more informative
+# than a hand-written line and impossible to let drift away from the real
+# condition. The first is wrapped because it would otherwise expand into five
+# lines; it matters since the entry stays active for an armed power without
+# the standing to build (the panel is hidden then, but the AI's button is not).
+nuclear_program_possible_increase_funding = {
+	custom_tooltip = {
+		text = nuclear_program_tt_has_programme
+		nuclear_program_has_programme = yes
+	}
+	country_innovation > nuclear_weapon_program_funding_step
+	NOT = {
+		modifier:country_nuclear_disarmament_bool = yes
+	}
+	NOT = {
+		modifier:country_nuclear_program_pause_bool = yes
+	}
+}
+
+# Country scope: may funding be stepped down? Body of
+# decrease_funding_nuclear_program's `possible`. Reads the variable unguarded,
+# exactly as the button did: every caller is gated on the entry being active,
+# which is the only state in which the variable exists (the entry's `immediate`
+# creates it). Worded as a requirement, since a greyed button's tooltip prints
+# it (button_reason_audit).
+nuclear_program_possible_decrease_funding = {
+	custom_tooltip = {
+		text = nuclear_program_tt_funding_above_zero
+		var:nuclear_weapons_program_funding > 0
+	}
+}
+
+# Country scope: is this an AI country whose arsenal has reached the most the
+# AI builds to (nuclear_ai_stockpile_cap, twice its desired stockpile)? Its
+# programme then finishes no warhead and is unfunded each week
+# (nuclear_program_weekly_progress), and its increase button is worth nothing
+# to it. A player is never held. Guarded: the stockpile exists only once the
+# entry has activated.
+nuclear_program_ai_at_stockpile_cap = {
+	is_ai = yes
+	has_variable = nuclear_weapon_stockpile
+	var:nuclear_weapon_stockpile >= nuclear_ai_stockpile_cap
+}
+
+# Country scope: is this country's nuclear weapons programme funded and
+# running? A nuclear power building its stockpile qualifies too. The gate on
+# covert_nuclear_sabotage_action (covert slice 6), whose modifier slows exactly
+# this progress. Same test the programme's own display values use
+# (nuclear_program_display_months_to_next, extra_script_values.txt).
+nuclear_program_is_proliferating = {
+	has_variable = nuclear_weapon_program_progress
+	has_variable = nuclear_weapons_program_funding
+	var:nuclear_weapons_program_funding >= 1
+	NOT = { modifier:country_nuclear_program_pause_bool = yes }
+	NOT = { modifier:country_nuclear_disarmament_bool = yes }
+}
+
+# Country scope: does this country still have a nuclear weapons programme,
+# funded or not? covert_nuclear_sabotage_action's maintain condition. Funding
+# is deliberately not read: stepping it to 0 for a week costs the target
+# nothing, and would otherwise end a year-old sabotage operation for free. A
+# pause treaty, disarmament or the loss of the standing to run a programme
+# does end it — that programme has really stopped. So, still, does an arsenal
+# ceiling the target set itself and can lift at will; the nuclear crisis reads
+# nuclear_program_has_stopped below, which does not count that hold.
+nuclear_program_is_standing = {
+	nuclear_program_has_programme = yes
+	has_variable = nuclear_weapon_program_progress
+	NOT = { modifier:country_nuclear_program_pause_bool = yes }
+	NOT = { modifier:country_nuclear_disarmament_bool = yes }
+}
+
+# Country scope: has this country's programme stopped in a way it cannot undo by
+# itself? A nuclear crisis over its programme (dispute 4) ends as a native
+# back-down only then (nd_crisis_revalidate_dispute); short of it, the target
+# has to concede the ten-year freeze. nuclear_program_is_standing's four tests,
+# less the two holds a country takes off again at will and at no cost: its
+# funding (not read at all) and its own arsenal ceiling
+# (nd_taboo_held_by_own_ceiling_only). A freeze or disarmament treaty, the loss
+# of the standing to run a programme, a dismantling, and a treaty's or the UN
+# ban's ceiling all count. Read nuclear_program_is_proliferating here instead
+# and a target that stepped its funding to 0 for one week ended the crisis as a
+# win for the issuer, then funded the programme as before (UNL, 2026-10-05).
+nuclear_program_has_stopped = {
+	OR = {
+		nuclear_program_has_programme = no
+		NOT = { has_variable = nuclear_weapon_program_progress }
+		modifier:country_nuclear_disarmament_bool = yes
+		AND = {
+			modifier:country_nuclear_program_pause_bool = yes
+			nd_taboo_held_by_own_ceiling_only = no
+		}
+	}
+}
+
+# Country scope: can this country be the one a nuclear_disarmament treaty
+# article disarms? That is the article's SOURCE, the conceding side, so the
+# article asks this of ROOT in `possible` and again of scope:source_country in
+# `can_ratify` (113_imposed_currency_peg.txt tests its pretext twice the same
+# way). A country receiving nuclear_program_aid is excluded: nobody can be aided
+# and disarmed at once, and nuclear_program_aid runs the mirror check.
+nuclear_program_can_be_disarmed = {
+	has_technology_researched = nuclear_weapons
+	NOT = { modifier:country_nuclear_disarmament_bool = yes }
+	NOT = { modifier:country_receiving_nuclear_program_aid_bool = yes }
+}
+
+# Country scope: the same for nuclear_program_pause, whose SOURCE is the
+# country that freezes its programme. It also cannot already be frozen.
+nuclear_program_can_be_paused = {
+	nuclear_program_can_be_disarmed = yes
+	NOT = { modifier:country_nuclear_program_pause_bool = yes }
+}
+
+# Country scope: would a nuclear_program_pause on this country stop anything?
+# The freeze only holds programme funding at zero, so it binds a country with a
+# programme, or a major power that gains one on researching ICBMs while the
+# treaty lasts (nd_taboo_has_programme_standing). Any smaller country has the
+# nuclear_weapons tech without the standing to build, and freezing it stops
+# nothing. The AI asks this before it values a freeze, as requester in the
+# article's acceptance and through nuclear_program_pause_ai_demand_weight.
+# Players are not bound: `possible` still lists the article.
+nuclear_program_freeze_matters = {
+	has_technology_researched = nuclear_weapons
+	OR = {
+		nuclear_program_has_programme = yes
+		country_rank >= rank_value:major_power
+	}
+}
+
+# Country scope: the same for nuclear_disarmament, which also takes away the
+# warheads and the progress. An arsenal the world knows of (nd_believed_armed)
+# is worth taking at any rank, even with no programme to rebuild it.
+nuclear_disarmament_matters = {
+	OR = {
+		nd_believed_armed = yes
+		nuclear_program_freeze_matters = yes
+	}
+}
+
+# Country scope: True if scope:country has existential war goals against ROOT
+# (any subjugation war goal, or outright annexation incl. the mod's te_reunify_country)
+# Requires scope:country to be set (the enemy)
+enemy_has_existential_war_goal = {
+	scope:country = {
+		OR = {
+			war_side_has_war_goal_of_type_against = { type = make_protectorate target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_dominion target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_tributary target = ROOT }
+			# 1.14 subjugation goals
+			war_side_has_war_goal_of_type_against = { type = make_personal_union target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_crown_land target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_chartered_company target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = annex_country target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = te_reunify_country target = ROOT }
+		}
+	}
+}
+
+# Country scope: True if scope:country wants to annex or subjugate ROOT
+# (excludes tributary and personal union - only the most threatening goals)
+enemy_has_subjugation_war_goal = {
+	scope:country = {
+		OR = {
+			war_side_has_war_goal_of_type_against = { type = annex_country target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = te_reunify_country target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_protectorate target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_dominion target = ROOT }
+			# 1.14 subjugation goals
+			war_side_has_war_goal_of_type_against = { type = make_crown_land target = ROOT }
+			war_side_has_war_goal_of_type_against = { type = make_chartered_company target = ROOT }
+		}
+	}
+}
+
+# Country scope: True if the country's ruler has aggressive/reckless personality traits
+ruler_is_aggressive = {
+	exists = ruler
+	ruler = {
+		OR = {
+			has_trait = reckless
+			has_trait = wrathful
+			has_trait = war_criminal
+		}
+	}
+}
+
+# Country scope: True if the country's ruler has cautious/honorable personality traits
+ruler_is_cautious = {
+	exists = ruler
+	ruler = {
+		OR = {
+			has_trait = cautious
+			has_trait = honorable
+		}
+	}
+}
+
+# Country scope: True if this specific enemy (scope:country) previously nuked us
+was_nuked_by_enemy = {
+	exists = scope:country
+	has_variable = nuked_by_country
+	var:nuked_by_country = scope:country
+}
+
+# Country scope, ENEMY = the enemy country (scope:country in nuke.txt,
+# scope:target_country in covert_operations.txt). True if ROOT is losing the
+# war it shares with $ENEMY$: most size-weighted battles in that war lost
+# (gated on enough significant battles -- with none fought the fraction reads
+# 0, i.e. "losing"), a quarter of ROOT's own territory under enemy occupation,
+# or (1.15, #1447) a quarter of ROOT's GDP in blockaded states, or its enemies
+# in that war pressing it at 0.5 or more on the engine's 0-1 pressure scale
+# (occupation, blockade and recent significant battles together). Before
+# 1.15 a blockaded country never counted as losing. The two 1.15 thresholds
+# are a first guess, on the play-test list (vanilla-1-15-playtest.md).
+# Replaces the 1.14 war-support proxy, which also fires for a merely
+# unpopular war. nd_is_losing_war_to is the same rule for any scope.
+# NOTE: enemy_side_occupation is how much of the ENEMY's land we hold (high =
+# winning); enemy_occupation is our own occupied share.
+is_losing_war_against = {
+	OR = {
+		enemy_occupation >= 0.25
+		any_scope_war = {
+			is_war_participant = $ENEMY$
+			OR = {
+				AND = {
+					num_significant_battles >= 5
+					ROOT = {
+						size_weighted_won_battles_fraction = { target = PREV value < 0.35 }
+					}
+				}
+				blockaded_gdp_share = { target = ROOT value >= 0.25 }
+				enemy_pressure = { target = ROOT value >= 0.5 }
+			}
+		}
+	}
+}
+
+# Country scope: can this country take nuclear_weapon_events.18's option d
+# ("lobby for an international non-proliferation regime") to the United
+# Nations — table the Non-Proliferation Treaty now, through the Assembly's own
+# proposer event, un_events.14 (#430)? That event's trigger (a member, the
+# science, no treaty ratified or refused, no vote in session) plus the docket's
+# own gates for raising the topic (not on cooldown, no IAEA yet, authority 40
+# or more; a member free to table). Once the treaty is in force there is
+# nothing left to table: option d refers the programme to the Assembly instead
+# (nuclear_program_can_refer_npt). Outside the UN there is no Assembly, and
+# option d lobbies bilaterally, as it always did.
+nuclear_program_can_table_npt = {
+	je:je_united_nations ?= { has_modifier = un_member_modifier }
+	un_docket_topic_open_npt = yes
+	un_docket_may_propose_npt = yes
+	NOT = { has_global_variable = un_vote_active }
+}
+
+# Country scope: can this country answer nuclear_weapon_events.18's option d
+# through the United Nations — with the Non-Proliferation Treaty in force, refer
+# scope:proliferating_country's programme to the General Assembly (#448)?
+# nuclear_weapon_events.18 option d's road once there is no treaty left to
+# table: a member, the treaty in force. The referral is a record in the
+# proliferator's UN dossier (un_dossier_effects.txt), the grounds sanctions
+# are tabled on; the first referral of a programme writes it, and the option
+# says so when another member got there first.
+nuclear_program_can_refer_npt = {
+	je:je_united_nations ?= { has_modifier = un_member_modifier }
+	un_propose_npt_in_force = yes
+	exists = scope:proliferating_country
+}
+
+# Country scope: does this country oppose $PROLIFERATOR$'s bomb? It is the
+# proliferator's rival or antagonist, the countries a proliferation dispute
+# could set against it (nd_dispute_proliferation_by, without its funding test:
+# a programme the alert has announced is known to be running), or its
+# opponent in a nuclear crisis. These are who an accommodation of the
+# proliferator offends (nuclear_weapon_events.18 option e, #804).
+nuclear_program_opposes = {
+	OR = {
+		has_diplomatic_pact = { who = $PROLIFERATOR$ type = rivalry }
+		has_attitude = { who = $PROLIFERATOR$ attitude = antagonistic }
+		has_attitude = { who = $PROLIFERATOR$ attitude = belligerent }
+		has_attitude = { who = $PROLIFERATOR$ attitude = domineering }
+		var:nd_crisis_opponent ?= $PROLIFERATOR$
+	}
+}

@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from bisect import bisect_left
 import json
 from pathlib import Path
+import hashlib
 import re
 import sys
 
@@ -74,6 +75,15 @@ def reviewed_iteration_optimization(row):
             and row['before']['loops']=={'every_law':1,'ordered_in_list':2}
             and row['after']['loops']=={'every_law':1,'every_in_list':1}
             and row['before']['max_loop_depth']==row['after']['max_loop_depth']==2)
+
+
+def reviewed_bounded_iteration(row,node,reviews):
+    review=reviews.get(row['id'])
+    if not review:return False
+    actual=hashlib.sha256(repr(node['body']).encode('utf-8')).hexdigest()
+    return (actual==review['body_sha256'] and row['before']['loops']=={}
+            and row['after']['loops']==review['loops']
+            and row['after']['max_loop_depth']==review['max_loop_depth'])
 
 
 def load_vfs(research,cache):
@@ -245,6 +255,9 @@ def audit():
     for key,value in patched['metrics'].items():
         old=baseline['metrics'].get(key,{'fields':0,'loops':{},'max_loop_depth':0})
         if value!=old:changed_metrics.append({'id':key,'before':old,'after':value})
+    review_path=ROOT/'docs/decisions/iteration-reviews.json'
+    reviews=json.loads(review_path.read_text(encoding='utf-8')) if review_path.exists() else {}
+    bounded=[row for row in changed_metrics if reviewed_bounded_iteration(row,patched['nodes'][row['id']],reviews)]
     result={'method':'conservative composed-VFS graph; no engine execution or runtime timing',
             'baseline_nodes':len(baseline['nodes']),'patched_nodes':len(patched['nodes']),
             'baseline_edges':len(baseline['edges']),'patched_edges':len(patched['edges']),
@@ -274,8 +287,9 @@ def audit():
             'new_iteration_costs':[row for row in changed_metrics
                                    if (row['after']['max_loop_depth']>row['before']['max_loop_depth']
                                    or any(v>row['before']['loops'].get(k,0) for k,v in row['after']['loops'].items()))
-                                   and not reviewed_iteration_optimization(row)],
+                                   and not reviewed_iteration_optimization(row) and row not in bounded],
             'reviewed_iteration_optimizations':[row for row in changed_metrics if reviewed_iteration_optimization(row)],
+            'reviewed_bounded_iterations':bounded,
             'limitations':['conditional feasibility and engine callbacks are not executed',
                            'parameterized targets conservatively include every matching declared literal target',
                            'unknown event delay is not certified positive',

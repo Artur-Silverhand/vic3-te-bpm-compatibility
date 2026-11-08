@@ -1,0 +1,967 @@
+﻿je_banking_cycle = {
+	icon    = "gfx/interface/icons/event_icons/je_banking_cycle.dds"
+	group = je_group_internal_affairs
+
+	# 1.15 asks every entry for this ("missing an activation_description trigger" otherwise);
+	# always = yes is vanilla's own default, in 369 of its 449 entries.
+	activation_description = {
+		always = yes
+	}
+
+	# 1.15: with the rule off, drop the inactive record for good (a rule never changes mid-game).
+	disable_evaluation = {
+		NOT = { te_banking_system_on = yes }
+	}
+
+	# EVERY COUNTRY HOLDS THIS ENTRY, from the first days of the game
+	# (docs/superpowers/archive/specs/2026-10-17-banking-always-on-design.md). What
+	# starts later is the financial cycle, once te_banking_cycle_unlocked holds
+	# (banking_cycle_start, from `immediate` or the monthly pulse). Until then
+	# the entry is dormant: no cycle readings, no tools, and the Monetary Policy
+	# section read-only. Ask te_banking_cycle_running, never has_journal_entry,
+	# for "has a banking cycle".
+	#
+	# te_banking_system_on, not `has_game_rule = banking_system_enabled`: the
+	# entry is shown under the simplified setting too, which keeps the cycle and
+	# drops only the monetary layer on top of it
+	# (common/scripted_triggers/banking_policy_triggers.txt).
+	#
+	# te_banking_entry_expected (banking_policy_triggers.txt) is the rule, not a
+	# decentralized nation, and not the rebels of a running revolution. Without
+	# an entry of their own the rebels inherit the loser's when they win, and its
+	# `immediate` finds the nation's cycle running (#465). With one they could
+	# start a fresh 50 / 0 / 0 cycle of their own, and a winner's own values take
+	# precedence over the loser's (scripting_best_practices.md, "What a Civil
+	# War's Winner Inherits").
+	is_shown_when_inactive = {
+		te_banking_entry_expected = yes
+	}
+
+	scripted_progress_bar = banking_cycle_value_bar
+	scripted_progress_bar = banking_cycle_momentum_bar
+	scripted_progress_bar = banking_policy_stance_bar
+	scripted_progress_bar = banking_bubble_pressure_bar
+
+	# Policy dashboard: the overview (the bars and Current Conditions), the live
+	# sections (Active Policies, Monetary Policy, Available Interventions) and the
+	# record (the history charts, once the cycle runs), under the "?" to Banking's
+	# Help page, in the order gui/journal_entry_widgets/banking_layout_widget.gui
+	# sets for this entry and the Budget panel's Banking tab alike. All of it is
+	# presentation only: every action runs through
+	# common/scripted_guis/banking_dashboard_scripted_gui.txt, which calls the same
+	# shared triggers and effects as the scripted buttons below, so the two
+	# surfaces cannot diverge. The history charts only read the samples
+	# te_history_effects.txt records from the monthly pulse below.
+	widget = {
+		gui = "gui/journal_entry_widgets/banking_layout_widget.gui"
+		name = "widget_je_banking_overview"
+		container = "custom_widget_container_1"
+	}
+	widget = {
+		gui = "gui/journal_entry_widgets/banking_layout_widget.gui"
+		name = "widget_je_banking_status"
+		container = "custom_widget_container_2"
+	}
+	widget = {
+		gui = "gui/journal_entry_widgets/banking_layout_widget.gui"
+		name = "widget_je_banking_reference"
+		container = "custom_widget_container_3"
+	}
+
+	# MARKER, not content. gui/journal_entry.gui (the mod's override of the
+	# vanilla panel) hides its own scripted-progress-bar block for any journal
+	# entry that puts a widget in custom_widget_container_7, because the
+	# dashboard widget above draws the same bars at the TOP of the panel. The
+	# widget itself is zero-sized. Remove this and the bars come back at the
+	# bottom as well.
+	widget = {
+		gui = "gui/journal_entry_widgets/te_je_bars_on_top_marker.gui"
+		name = "widget_te_je_bars_on_top_marker"
+		container = "custom_widget_container_7"
+	}
+
+	# Buttons
+	# These stay declared here: their `ai_chance` blocks are the AI's only path to
+	# banking policy. Each `visible` starts with `is_ai = yes`, so the player
+	# never sees them; the dashboard above carries the same actions.
+	scripted_button = cb_open_market_ops
+	scripted_button = cb_disable_open_market_ops
+	scripted_button = cb_countercyclical_buffer
+	scripted_button = cb_disable_countercyclical_buffer
+	scripted_button = cb_expand_deposit_guarantee
+	scripted_button = cb_disable_expand_deposit_guarantee
+	scripted_button = cb_directed_credit_infrastructure
+	scripted_button = cb_disable_directed_credit_infrastructure
+	scripted_button = cb_emergency_liquidity_program
+	scripted_button = cb_disable_emergency_liquidity_program
+	scripted_button = cb_moral_suasion
+	scripted_button = cb_disable_moral_suasion
+	scripted_button = cb_raise_margin_requirements
+	scripted_button = cb_disable_raise_margin_requirements
+	scripted_button = cb_capital_controls_outflow
+	scripted_button = cb_disable_capital_controls_outflow
+	scripted_button = cb_export_credit_facility
+	scripted_button = cb_disable_export_credit_facility
+	scripted_button = cb_asset_relief_program
+	scripted_button = cb_disable_asset_relief_program
+	# 2026-09-23 expansion (docs/superpowers/archive/specs/2026-09-23-banking-tools-expansion-design.md)
+	scripted_button = cb_directed_credit_heavy_industry
+	scripted_button = cb_disable_directed_credit_heavy_industry
+	scripted_button = cb_directed_credit_agriculture
+	scripted_button = cb_disable_directed_credit_agriculture
+	scripted_button = cb_directed_credit_armaments
+	scripted_button = cb_disable_directed_credit_armaments
+	scripted_button = cb_directed_credit_electrification
+	scripted_button = cb_disable_directed_credit_electrification
+	scripted_button = cb_reserve_requirements
+	scripted_button = cb_disable_reserve_requirements
+	scripted_button = cb_bank_holiday
+	scripted_button = cb_disable_bank_holiday
+	scripted_button = cb_bail_in_regime
+	scripted_button = cb_disable_bail_in_regime
+
+	scripted_button = cb_restrict_inflows
+	scripted_button = cb_disable_restrict_inflows
+
+	scripted_button = cb_sterilize_inflows
+	scripted_button = cb_disable_sterilize_inflows
+
+	scripted_button = cb_foreign_borrowing_limits
+	scripted_button = cb_disable_foreign_borrowing_limits
+
+	scripted_button = cb_fx_surrender
+	scripted_button = cb_disable_fx_surrender
+
+	scripted_button = cb_emergency_import_financing
+	scripted_button = cb_disable_emergency_import_financing
+
+	# Command Economy planning tools (visible only under law_command_economy)
+	scripted_button = ce_plan_revision
+	scripted_button = ce_disable_plan_revision
+	scripted_button = ce_emergency_allocation
+	scripted_button = ce_disable_emergency_allocation
+	scripted_button = ce_target_reduction
+	scripted_button = ce_disable_target_reduction
+	scripted_button = ce_strategic_stockpile
+	scripted_button = ce_disable_strategic_stockpile
+	scripted_button = ce_distribution_upgrade
+	scripted_button = ce_disable_distribution_upgrade
+	scripted_button = ce_admin_campaign
+	scripted_button = ce_disable_admin_campaign
+	scripted_button = ce_coordination_protocol
+	scripted_button = ce_disable_coordination_protocol
+	scripted_button = ce_consolidation_order
+	scripted_button = ce_disable_consolidation_order
+	scripted_button = ce_invest_pool_inject
+	scripted_button = ce_invest_pool_withdraw
+
+	# Cooperative Ownership council tools (visible only under law_cooperative_ownership)
+	scripted_button = cw_dividend_restraint
+	scripted_button = cw_disable_dividend_restraint
+	scripted_button = cw_mutual_aid_fund
+	scripted_button = cw_disable_mutual_aid_fund
+	scripted_button = cw_capital_plan
+	scripted_button = cw_disable_capital_plan
+	scripted_button = cw_solidarity_campaign
+	scripted_button = cw_disable_solidarity_campaign
+	scripted_button = cw_credit_expansion
+	scripted_button = cw_disable_credit_expansion
+	scripted_button = cw_consumption_ceiling
+	scripted_button = cw_disable_consumption_ceiling
+	scripted_button = cw_council_directive
+	scripted_button = cw_disable_council_directive
+	scripted_button = cw_worker_buyout
+	scripted_button = cw_disable_worker_buyout
+
+
+	possible = { always = yes }
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
+	can_revolution_inherit      = yes
+	should_update_on_player_command = yes
+
+	# THE CYCLE'S MODIFIERS ARE DECLARED (vanilla 1.15, #1404; design
+	# docs/superpowers/specs/2026-11-06-scaling-modifiers-design.md § 4.7). The
+	# engine re-reads each value from the owning country on the entry's update,
+	# about every four days, and applies the modifier at that strength (0 = off).
+	# Until 1.15 the monthly pulse and every banking event's `after` removed and
+	# re-added them. Each value restates the gate that refresh had: the cycle
+	# runs (has_variable = finance_cycle_value, the latch te_banking_cycle_running
+	# reads, so a dormant entry declares none of the cycle's), then the economic
+	# law, then the band. has_modifier cannot see a declared modifier: ask the
+	# variables (banking_cycle_is_*, market_triggers.txt). The sums they feed
+	# (modifier:country_finance_*) follow a change a few days late. The monetary
+	# layer's modifiers stay added (te_mon_mod_add): they also serve countries
+	# that hold no entry (design § 7, call 1).
+
+	# Fiscal policy: the deficit's push on the cycle value, 0.1 a month per 1%
+	# of GDP, clamped to +-1 (extra_script_values.txt). Read live: cheap country
+	# reads.
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_government_fiscal_policy_effect
+		value = {
+			value = 0
+			if = {
+				limit = { has_variable = finance_cycle_value }
+				add = financial_cycle_government_fiscal_policy_effect_size
+			}
+		}
+	}
+
+	# Bubble inertia: high speculation sustains expansion. Three tiers that carry
+	# the same momentum (the names, and the extreme tier's red flag, are for the
+	# modifier list), each at the inertia curve (bubble_inertia_curve,
+	# none up to 15 bubble pressure) in its band: moderate above 0.5 and under 35,
+	# high from 35, extreme from 65. A cooperative economy feels a fifth of it (the
+	# _coop variants carry 0.2 momentum, not 1.0): without any, it almost never left
+	# Stable (banking_cycle_simulation.md §21). A command economy feels none.
+	scaling_modifiers_while_active = {
+		modifier = bubble_inertia_moderate
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					has_variable = bubble_pressure
+					var:bubble_pressure > 0.5
+					var:bubble_pressure < 35
+				}
+				add = bubble_inertia_curve
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = bubble_inertia_high
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					has_variable = bubble_pressure
+					var:bubble_pressure >= 35
+					var:bubble_pressure < 65
+				}
+				add = bubble_inertia_curve
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = bubble_inertia_extreme
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					has_variable = bubble_pressure
+					var:bubble_pressure >= 65
+				}
+				add = bubble_inertia_curve
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = bubble_inertia_moderate_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					has_variable = bubble_pressure
+					var:bubble_pressure > 0.5
+					var:bubble_pressure < 35
+				}
+				add = bubble_inertia_curve
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = bubble_inertia_high_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					has_variable = bubble_pressure
+					var:bubble_pressure >= 35
+					var:bubble_pressure < 65
+				}
+				add = bubble_inertia_curve
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = bubble_inertia_extreme_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					has_variable = bubble_pressure
+					var:bubble_pressure >= 65
+				}
+				add = bubble_inertia_curve
+			}
+		}
+	}
+
+	# The phase: one modifier for each phase but Stable, in each economy's own
+	# variant, at 1 while the cycle value is in its band (banking_cycle_is_*: under
+	# 10 panic, 25 downturn, 40 stagnation, 60 stable, 75 expansion, 88 boom, then
+	# frenzy), the edges the panel and the map read too.
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_panic
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					banking_cycle_is_panic = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_downturn
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					banking_cycle_is_downturn = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_stagnation
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					banking_cycle_is_stagnation = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_expansion
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					banking_cycle_is_expansion = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_boom
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					banking_cycle_is_boom = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_frenzy
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_market_economy = yes
+					banking_cycle_is_frenzy = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_panic_cmd
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					banking_cycle_is_panic = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_downturn_cmd
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					banking_cycle_is_downturn = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_stagnation_cmd
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					banking_cycle_is_stagnation = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_expansion_cmd
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					banking_cycle_is_expansion = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_boom_cmd
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					banking_cycle_is_boom = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_frenzy_cmd
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					banking_cycle_is_frenzy = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_panic_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					banking_cycle_is_panic = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_downturn_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					banking_cycle_is_downturn = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_stagnation_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					banking_cycle_is_stagnation = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_expansion_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					banking_cycle_is_expansion = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_boom_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					banking_cycle_is_boom = yes
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = financial_cycle_phase_frenzy_coop
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_cooperative_economy = yes
+					banking_cycle_is_frenzy = yes
+				}
+				add = 1
+			}
+		}
+	}
+
+	# The policy stance's investment-pool side (monetary_policy_design.md §8):
+	# exactly one band at 1, the displayed te_mon_stance_band (te_monetary_effects.txt),
+	# once the cycle runs. Band 3 carries no field and is declared all the same, as
+	# the neutral band of vanilla's own banded families is applied, so the entry
+	# names the stance. Until 1.15 a tracker (te_mon_stance_band_applied) swapped
+	# them, and a revolution's inherited copy needed it reset (civil-war audit F7);
+	# a declaration has no tracker to go stale.
+	scaling_modifiers_while_active = {
+		modifier = banking_stance_band_1
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					has_variable = te_mon_stance_band
+					var:te_mon_stance_band = 1
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = banking_stance_band_2
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					has_variable = te_mon_stance_band
+					var:te_mon_stance_band = 2
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = banking_stance_band_3
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					has_variable = te_mon_stance_band
+					var:te_mon_stance_band = 3
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = banking_stance_band_4
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					has_variable = te_mon_stance_band
+					var:te_mon_stance_band = 4
+				}
+				add = 1
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = banking_stance_band_5
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					has_variable = te_mon_stance_band
+					var:te_mon_stance_band = 5
+				}
+				add = 1
+			}
+		}
+	}
+
+	# Command economy: the treasury funds planned investment, so the pool's net
+	# income is held at zero, at the value banking_cycle_update_ce_pool_balance
+	# caches each month and after an inject or withdraw (banking_cycle_effects.txt).
+	scaling_modifiers_while_active = {
+		modifier = planning_treasury_pool_balance
+		value = {
+			value = 0
+			if = {
+				limit = {
+					has_variable = finance_cycle_value
+					banking_is_command_economy = yes
+					has_variable = ce_pool_balance_cached
+				}
+				add = var:ce_pool_balance_cached
+			}
+		}
+	}
+
+	# The two external tools' weekly bills, a month's cost / 4, from the caches
+	# banking_external_charge_* writes while the tool runs funded
+	# (banking_external_effects.txt has the rules). The tool test keeps a
+	# revolution's winner, which inherits the cache but not the tool, from paying.
+	scaling_modifiers_while_active = {
+		modifier = banking_external_sterilization_charge
+		value = {
+			value = 0
+			if = {
+				limit = {
+					banking_tool_sterilize_inflows_active = yes
+					has_variable = banking_external_sterilization_charge_cached
+				}
+				add = var:banking_external_sterilization_charge_cached
+			}
+		}
+	}
+	scaling_modifiers_while_active = {
+		modifier = banking_external_import_charge
+		value = {
+			value = 0
+			if = {
+				limit = {
+					banking_tool_emergency_import_financing_active = yes
+					has_variable = banking_external_import_charge_cached
+				}
+				add = var:banking_external_import_charge_cached
+			}
+		}
+	}
+
+	# `immediate` runs on the entry's first activation and again on every copy
+	# of it that a revolution's winner inherits. That second run comes after the
+	# loser's variables have been merged into the winner, and the inherited copy
+	# arrives with NO modifiers (scripting_best_practices.md § "What a Civil
+	# War's Winner Inherits"; docs/audits/civil_war_inheritance_audit.md E1,
+	# E3). The entry cannot deactivate, so nothing else re-runs it.
+	immediate = {
+		# Cycle state. A country that meets the start test now starts its cycle
+		# here (a new game's founders, a released country, a revolution's winner
+		# whose loser had none running); the rest stay dormant until the
+		# monthly pulse finds them unlocked. A winner that inherits a running
+		# cycle already holds finance_cycle_value, so this is skipped and the
+		# cycle carries on (#465, audit F6: these sets were once unguarded and
+		# turned a panic into a stable 50). banking_cycle_start guards each of
+		# the three variables itself.
+		if = {
+			limit = {
+				NOT = { has_variable = finance_cycle_value }
+				te_banking_cycle_unlocked = yes
+			}
+			banking_cycle_start = yes
+		}
+
+		# An inherited copy can carry banking_bank_holiday_reopening without the
+		# holiday it belongs to, which did not survive the revolution. The
+		# holiday ended early, so there is no reopening bounce to pay
+		# (banking_effect_cb_bank_holiday).
+		if = {
+			limit = {
+				has_variable = banking_bank_holiday_reopening
+				banking_tool_bank_holiday_active = no
+			}
+			remove_variable = banking_bank_holiday_reopening # REVIEWED 2026-10-05: cleared on purpose; the holiday this marker belongs to did not survive the revolution, so no reopening bounce is owed
+		}
+
+		# Likewise banking_contagion_pending, the mark that gives a country one
+		# contagion event at a time (banking_contagion_mark_pending): the event
+		# it stands for belonged to the loser, and went with it. The mark is
+		# timed, but whether the merge keeps a timer is unverified, and a mark
+		# kept for good would shut the country out of contagion for the game.
+		# On a first activation there is none: the spread reaches only countries
+		# whose cycle runs (te_banking_cycle_running).
+		if = {
+			limit = { has_variable = banking_contagion_pending }
+			remove_variable = banking_contagion_pending # REVIEWED 2026-10-17: cleared on purpose; the contagion event this mark stands for did not survive the revolution, so the winner may be reached again
+		}
+
+		# The four bars, drawn from the variables above by the monthly pulse's
+		# own effect (its momentum clamp, and its has_variable test on the
+		# monetary system's te_mon_stance_bar_pos). On an inherited copy the
+		# saves showed the loser's bar values surviving whatever this block
+		# wrote (audit E3); either way the bars now agree with the variables.
+		# A dormant entry has no readings, and draws no bars.
+		if = {
+			limit = { te_banking_cycle_running = yes }
+			banking_cycle_update_progress_bars = yes
+		}
+	}
+
+	# No progress line either (GUI audit BNK-7, 2026-10-27). It read "Free
+	# Intervention Points: X/Y", the overview's Budget cell again, out of a
+	# total that left out the banking union's point, and it showed while the
+	# entry was dormant, when the overview hides the budget on purpose. Its one
+	# unique part, the breakdown of the free points by grant and tool, is now
+	# in the Budget cell's "free" hover (banking_dash_budget_free_tt).
+	progressbar      = no
+
+	# No status text: the overview shows everything it said (the owner's rule:
+	# status text that repeats the overview is removed). The phase, momentum and
+	# bubble pressure are its icons since play-test round 2, and the three
+	# monthly modifier totals, each with the engine's breakdown on hover, moved
+	# into the tooltips of the ranges under them (banking_dash_*_change_tt),
+	# which the Budget tab shows too. A dormant entry's overview says the cycle
+	# has not started, with what it needs on hover, so it needs no line either.
+
+	# A dormant entry's pulses do two things: the monthly one starts the cycle
+	# once te_banking_cycle_unlocked holds (the technology is its first test, so
+	# most dormant countries never reach the building scan), and posts the start
+	# to a human player; the weekly one moves the investment pool's weekly add
+	# (banking_weekly_investment_pool_add), which every holder of the entry gets.
+	# Everything else runs only while the cycle does.
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = { te_banking_cycle_running = no }
+				if = {
+					limit = { te_banking_cycle_unlocked = yes }
+					banking_cycle_start = yes
+					if = {
+						limit = { is_ai = no }
+						post_notification = banking_cycle_started_notice
+					}
+				}
+			}
+			else = {
+				# SAVE MIGRATION — added 2026-09-19, remove after one release.
+				# The "Raise Policy Rate" tool was deleted (monetary_policy_design.md
+				# §18) and with it the button that switched it off. A save carrying
+				# the modifier would otherwise reserve 2 intervention points forever,
+				# so strip it here.
+				#
+				# The points do not come back until next month: add_modifier and
+				# remove_modifier results are not visible inside the effect block that
+				# issues them, so every `modifier:country_banking_intervention_max_add`
+				# read later in THIS pulse still sees the stale -2. The one such read is
+				# banking_crash_check_overdrawn_interventions at the end of the block,
+				# and the stale -2 makes it MORE likely to shed a tool this month, not
+				# less — a one-off cost on the single migrating month, on a save that
+				# was already two points down. Nothing else in the pulse reads the
+				# modifier, so the position of this block within it is cosmetic.
+				#
+				# The eventual removal of the static modifier itself is tracked in
+				# common/scripted_effects/legacy_modifier_cleanup.txt.
+				if = {
+					limit = { je:je_banking_cycle ?= { has_modifier = banking_policy_rate_hike } }
+					je:je_banking_cycle = { remove_modifier = banking_policy_rate_hike }
+				}
+
+				banking_cycle_bank_holiday_reopen = yes
+				banking_cycle_advance_variables = yes
+				banking_cycle_check_and_execute_crash = yes
+				banking_cycle_eliq_wind_down = yes
+				# A conditional rescue's reviews (#800, banking_debt_effects.txt).
+				banking_rescue_programme_monthly = yes
+
+				# Sample the month's settled cycle state for the history charts.
+				# Runs after the crash check so a crash month's bar shows the
+				# post-crash values next to its crash marker.
+				te_history_record_banking_samples = yes
+
+				set_variable = { name = banking_points_max_from_law value = banking_law_base_points_value }
+
+				banking_cycle_random_event_effect = yes
+				banking_cycle_update_progress_bars = yes
+				banking_cycle_cleanup_capital_controls = yes
+				banking_directed_credit_enforce_cap = yes
+				banking_cycle_update_ce_pool_balance = yes
+				banking_crash_check_overdrawn_interventions = yes
+			}
+		}
+	}
+
+	on_weekly_pulse = {
+		effect = {
+			legacy_scaling_strip_banking_cycle = yes		# PENDING REMOVAL after 2026-12-31 (#1404): an older save's added copies, legacy_modifier_cleanup.txt
+			# The pool's weekly add, country_weekly_investment_pool_mult and _add,
+			# runs whether or not the cycle has started (owner, 2026-11-07): the
+			# modifiers that carry it are not all the cycle's (Neocolonial
+			# Dependency, the UN Development Fund's grant), and a dormant cycle
+			# declares none of its own, so before the start only those move it.
+			banking_weekly_investment_pool_add = yes
+			if = {
+				limit = { te_banking_cycle_running = yes }
+				banking_cycle_weekly_effects = yes
+			}
+		}
+	}
+
+	# The map (vanilla 1.15 journal entry map mode; docs/systems/mod_systems/journal_map_modes.md). Root: the state
+	# being painted, so `owner` is that state's country, not the player: every country holds this entry, and the map is
+	# the world's cycle, each country in its phase's color (the panel's own bands, market_triggers.txt), with yellow
+	# stripes where a crash is likely (banking_cycle_bubble_risk_high, the overview's red badge). A country whose
+	# cycle has not started is grey; one with no entry (the rule off, a decentralized nation) is left unpainted.
+	map_color = {
+		if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_panic = yes
+				}
+			}
+			value = "te_jmap_bank_panic"
+		}
+		else_if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_downturn = yes
+				}
+			}
+			value = "te_jmap_bank_downturn"
+		}
+		else_if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_stagnation = yes
+				}
+			}
+			value = "te_jmap_bank_stagnation"
+		}
+		else_if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_stable = yes
+				}
+			}
+			value = "te_jmap_bank_stable"
+		}
+		else_if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_expansion = yes
+				}
+			}
+			value = "te_jmap_bank_expansion"
+		}
+		else_if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_boom = yes
+				}
+			}
+			value = "te_jmap_bank_boom"
+		}
+		else_if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_is_frenzy = yes
+				}
+			}
+			value = "te_jmap_bank_frenzy"
+		}
+		else_if = {
+			limit = {
+				owner ?= { has_journal_entry = je_banking_cycle }
+			}
+			value = "te_jmap_no_data"
+		}
+	}
+
+	map_color_second = {
+		if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_bubble_risk_high = yes
+				}
+			}
+			value = "te_jmap_bank_risk_stripe"
+		}
+	}
+
+	map_tooltip = {
+		if = {
+			limit = {
+				owner ?= {
+					te_banking_cycle_running = yes
+					banking_cycle_bubble_risk_high = yes
+				}
+			}
+			custom_tooltip_no_bullet = te_jmap_tt_banking_risk
+		}
+		else_if = {
+			limit = {
+				owner ?= { te_banking_cycle_running = yes }
+			}
+			custom_tooltip_no_bullet = te_jmap_tt_banking
+		}
+		else_if = {
+			limit = {
+				owner ?= { has_journal_entry = je_banking_cycle }
+			}
+			custom_tooltip_no_bullet = te_jmap_tt_banking_dormant
+		}
+	}
+}

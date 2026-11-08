@@ -1,0 +1,28 @@
+﻿tbcp_cr_ukraine_has_homelands = {
+	cu:ukrainian = {
+		any_scope_homeland_state = {
+			always = yes
+		}
+	}
+}
+tbcp_cr_ukraine_country_has_homeland = {
+	any_scope_state = {
+		state_region = {
+			is_homeland = cu:ukrainian
+		}
+	}
+}
+tbcp_cr_belarus_has_homelands = {
+	cu:byelorussian = {
+		any_scope_homeland_state = {
+			always = yes
+		}
+	}
+}
+tbcp_cr_belarus_country_has_homeland = {
+	any_scope_state = {
+		state_region = {
+			is_homeland = cu:byelorussian
+		}
+	}
+}

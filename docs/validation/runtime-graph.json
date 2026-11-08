@@ -1,9 +1,9 @@
 {
   "method": "conservative composed-VFS graph; no engine execution or runtime timing",
   "baseline_nodes": 39908,
-  "patched_nodes": 40258,
+  "patched_nodes": 40287,
   "baseline_edges": 160623,
-  "patched_edges": 160881,
+  "patched_edges": 161002,
   "new_unguarded_cycles": [],
   "cycles_with_new_same_tick_edges": [],
   "new_duplicate_registrations": [],
@@ -20613,6 +20613,68 @@
       }
     },
     {
+      "id": "journal:je_ukraine_cultural_renaissance",
+      "before": {
+        "loops": {
+          "every_scope_je_involved": 1,
+          "every_scope_state": 2
+        },
+        "fields": 389,
+        "max_loop_depth": 2
+      },
+      "after": {
+        "loops": {
+          "every_scope_je_involved": 1,
+          "every_scope_state": 2
+        },
+        "fields": 383,
+        "max_loop_depth": 2
+      }
+    },
+    {
+      "id": "journal:je_belarus_cultural_renaissance",
+      "before": {
+        "loops": {
+          "every_scope_je_involved": 1
+        },
+        "fields": 260,
+        "max_loop_depth": 1
+      },
+      "after": {
+        "loops": {
+          "every_scope_je_involved": 1
+        },
+        "fields": 270,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "journal:je_banking_cycle",
+      "before": {
+        "loops": {},
+        "fields": 583,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 584,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "journal:je_nuclear_program",
+      "before": {
+        "loops": {},
+        "fields": 253,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 254,
+        "max_loop_depth": 0
+      }
+    },
+    {
       "id": "law:law_elected_bureaucrats",
       "before": {
         "loops": {},
@@ -21585,6 +21647,32 @@
       }
     },
     {
+      "id": "value:nuclear_weapon_program_max_per_week",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 1,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nuclear_ai_stockpile_cap",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 2,
+        "max_loop_depth": 0
+      }
+    },
+    {
       "id": "value:country_gdp_per_capita",
       "before": {
         "loops": {},
@@ -21625,6 +21713,110 @@
         },
         "fields": 6,
         "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "value:nd_log_is_ai",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 5,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_at_war",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 5,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_progress_mult",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 1,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_innovation",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 29,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_rival_bigger",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 9,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_custody_total_value",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 5,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_milestone_reset_line",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 2,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:nd_log_custody_moving",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 5,
+        "max_loop_depth": 0
       }
     },
     {
@@ -26411,6 +26603,58 @@
       }
     },
     {
+      "id": "value:tbcp_cr_ukraine_elapsed",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 4,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:tbcp_cr_ukraine_active_days_display",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 5,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:tbcp_cr_belarus_elapsed",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 4,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "value:tbcp_cr_belarus_active_days_display",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 5,
+        "max_loop_depth": 0
+      }
+    },
+    {
       "id": "effect:bpm_calculate_synergy",
       "before": {
         "loops": {
@@ -26496,6 +26740,137 @@
           "while": 1
         },
         "fields": 32,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "effect:banking_weekly_investment_pool_add",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 1,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:banking_cycle_weekly_effects",
+      "before": {
+        "loops": {},
+        "fields": 16,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 15,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:nd_custody_settle_record",
+      "before": {
+        "loops": {
+          "ordered_scope_state": 1,
+          "every_country": 2
+        },
+        "fields": 119,
+        "max_loop_depth": 1
+      },
+      "after": {
+        "loops": {
+          "ordered_scope_state": 1,
+          "every_country": 2
+        },
+        "fields": 133,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "effect:nd_cw_roll_split",
+      "before": {
+        "loops": {},
+        "fields": 10,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 13,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:nd_cw_apply_split",
+      "before": {
+        "loops": {},
+        "fields": 70,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 93,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:nd_cw_clear_roll",
+      "before": {
+        "loops": {},
+        "fields": 14,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 18,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:nd_accident_site_abroad",
+      "before": {
+        "loops": {},
+        "fields": 12,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 28,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:nuclear_program_weekly_progress",
+      "before": {
+        "loops": {
+          "while": 1,
+          "every_country": 2
+        },
+        "fields": 109,
+        "max_loop_depth": 2
+      },
+      "after": {
+        "loops": {
+          "while": 1,
+          "every_country": 2
+        },
+        "fields": 155,
+        "max_loop_depth": 2
+      }
+    },
+    {
+      "id": "effect:nd_log_arsenal_watch",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {
+          "while": 1
+        },
+        "fields": 27,
         "max_loop_depth": 1
       }
     },
@@ -26884,6 +27259,116 @@
       }
     },
     {
+      "id": "effect:tbcp_rlit_official_effect",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 29,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:tbcp_rlit_republican_effect",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 17,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:tbcp_rlit_spiritual_effect",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 4,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:tbcp_rlit_universal_effect",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 3,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:tbcp_cr_ukraine_join",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 51,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:tbcp_cr_ukraine_reconcile",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {
+          "every_scope_je_involved": 1,
+          "every_scope_homeland_state": 1
+        },
+        "fields": 36,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "effect:tbcp_cr_belarus_join",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 39,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "effect:tbcp_cr_belarus_reconcile",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {
+          "every_scope_je_involved": 1,
+          "every_scope_homeland_state": 1
+        },
+        "fields": 36,
+        "max_loop_depth": 1
+      }
+    },
+    {
       "id": "effect:tbcp_tax_activate_consumption_based",
       "before": {
         "fields": 0,
@@ -26975,6 +27460,19 @@
       }
     },
     {
+      "id": "trigger:nuclear_program_ai_at_stockpile_cap",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 3,
+        "max_loop_depth": 0
+      }
+    },
+    {
       "id": "trigger:te_fptp_party_is_major",
       "before": {
         "loops": {},
@@ -26997,6 +27495,58 @@
       "after": {
         "loops": {},
         "fields": 64,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "trigger:tbcp_cr_ukraine_has_homelands",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 3,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 3,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "trigger:tbcp_cr_belarus_has_homelands",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 3,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 3,
         "max_loop_depth": 0
       }
     },
@@ -32727,32 +33277,6 @@
       }
     },
     {
-      "id": "event:rlit.1",
-      "before": {
-        "loops": {},
-        "fields": 139,
-        "max_loop_depth": 0
-      },
-      "after": {
-        "loops": {},
-        "fields": 3,
-        "max_loop_depth": 0
-      }
-    },
-    {
-      "id": "event:rlit.52",
-      "before": {
-        "loops": {},
-        "fields": 139,
-        "max_loop_depth": 0
-      },
-      "after": {
-        "loops": {},
-        "fields": 3,
-        "max_loop_depth": 0
-      }
-    },
-    {
       "id": "event:russia_monarchy.1",
       "before": {
         "loops": {},
@@ -34002,6 +34526,228 @@
       }
     },
     {
+      "id": "event:nuclear_custody.1",
+      "before": {
+        "loops": {},
+        "fields": 63,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 65,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:nuclear_incident.30",
+      "before": {
+        "loops": {
+          "every_interest_group": 1
+        },
+        "fields": 256,
+        "max_loop_depth": 1
+      },
+      "after": {
+        "loops": {
+          "every_interest_group": 1
+        },
+        "fields": 261,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "event:rlit.1",
+      "before": {
+        "loops": {},
+        "fields": 139,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 143,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:rlit.15",
+      "before": {
+        "loops": {},
+        "fields": 89,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 101,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:rlit.36",
+      "before": {
+        "loops": {},
+        "fields": 93,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 101,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:rlit.52",
+      "before": {
+        "loops": {},
+        "fields": 139,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 137,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.1",
+      "before": {
+        "loops": {},
+        "fields": 80,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 96,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.2",
+      "before": {
+        "loops": {},
+        "fields": 122,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 138,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.3",
+      "before": {
+        "loops": {},
+        "fields": 91,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 101,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.4",
+      "before": {
+        "loops": {},
+        "fields": 76,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 89,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.5",
+      "before": {
+        "loops": {},
+        "fields": 46,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 53,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.6",
+      "before": {
+        "loops": {},
+        "fields": 82,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 98,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.7",
+      "before": {
+        "loops": {
+          "ordered_country_in_europe": 2,
+          "ordered_country": 1
+        },
+        "fields": 96,
+        "max_loop_depth": 1
+      },
+      "after": {
+        "loops": {
+          "ordered_country_in_europe": 2,
+          "ordered_country": 1
+        },
+        "fields": 106,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.8",
+      "before": {
+        "loops": {
+          "every_scope_state": 1
+        },
+        "fields": 61,
+        "max_loop_depth": 1
+      },
+      "after": {
+        "loops": {
+          "every_scope_state": 1
+        },
+        "fields": 68,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.9",
+      "before": {
+        "loops": {},
+        "fields": 84,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 94,
+        "max_loop_depth": 0
+      }
+    },
+    {
+      "id": "event:cultural_renaissances_events.10",
+      "before": {
+        "loops": {},
+        "fields": 88,
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {},
+        "fields": 101,
+        "max_loop_depth": 0
+      }
+    },
+    {
       "id": "event:ip4_coup.11",
       "before": {
         "fields": 0,
@@ -34098,6 +34844,258 @@
       "mechanism": "call"
     },
     {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "effect:tbcp_cr_ukraine_join",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "effect:tbcp_cr_ukraine_reconcile",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [
+        "every_scope_je_involved"
+      ],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "effect:tbcp_cr_ukraine_join",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_ukraine_cultural_renaissance",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "effect:tbcp_cr_belarus_join",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "effect:tbcp_cr_belarus_reconcile",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [
+        "every_scope_je_involved"
+      ],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "effect:tbcp_cr_belarus_join",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_belarus_cultural_renaissance",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_banking_cycle",
+      "to": "effect:banking_weekly_investment_pool_add",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "journal:je_nuclear_program",
+      "to": "effect:nd_log_arsenal_watch",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
       "from": "hook:on_bpm_law_activated",
       "to": "trigger:tbcp_tax_has_land_based",
       "guarded": true,
@@ -34160,6 +35158,14 @@
       "loops": [],
       "delay": 0,
       "mechanism": "call"
+    },
+    {
+      "from": "value:nuclear_ai_stockpile_cap",
+      "to": "value:nuclear_ai_desired_stockpile",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
     },
     {
       "from": "value:te_tax_mat_agrarian_populists",
@@ -44682,6 +45688,66 @@
       "mechanism": "value"
     },
     {
+      "from": "effect:nd_cw_apply_split",
+      "to": "effect:nd_cw_roll_split",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:nd_accident_site_abroad",
+      "to": "effect:nd_accident_site_home",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:nuclear_program_weekly_progress",
+      "to": "trigger:nuclear_program_ai_at_stockpile_cap",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:nuclear_program_weekly_progress",
+      "to": "value:nuclear_weapon_program_max_per_week",
+      "guarded": true,
+      "loops": [
+        "while"
+      ],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:nuclear_program_weekly_progress",
+      "to": "trigger:nuclear_program_ai_at_stockpile_cap",
+      "guarded": true,
+      "loops": [
+        "while"
+      ],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:nuclear_program_weekly_progress",
+      "to": "value:nuclear_weapon_program_max_per_week",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:nd_log_arsenal_watch",
+      "to": "value:nd_log_milestone_reset_line",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
       "from": "effect:te_construction_market_country_update_private_share",
       "to": "value:tbcp_construction_private_share",
       "guarded": false,
@@ -54618,6 +55684,202 @@
       "mechanism": "value"
     },
     {
+      "from": "effect:tbcp_rlit_official_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_official_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_official_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_official_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_republican_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_republican_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_spiritual_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_rlit_universal_effect",
+      "to": "effect:bpm_set_ideology",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_join",
+      "to": "effect:cultural_renaissance_ai_approach_roll",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_join",
+      "to": "event:cultural_renaissances_events.1",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "trigger_event"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_join",
+      "to": "event:cultural_renaissances_events.2",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "trigger_event"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_join",
+      "to": "value:very_long_modifier_time",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_join",
+      "to": "value:very_long_modifier_time",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_join",
+      "to": "value:very_long_modifier_time",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_reconcile",
+      "to": "trigger:tbcp_cr_ukraine_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_reconcile",
+      "to": "value:tbcp_cr_ukraine_elapsed",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_ukraine_reconcile",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [
+        "every_scope_je_involved"
+      ],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_join",
+      "to": "effect:cultural_renaissance_ai_approach_roll",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_join",
+      "to": "value:very_long_modifier_time",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_join",
+      "to": "value:very_long_modifier_time",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_join",
+      "to": "value:very_long_modifier_time",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_reconcile",
+      "to": "trigger:tbcp_cr_belarus_has_homelands",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_reconcile",
+      "to": "value:tbcp_cr_belarus_elapsed",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
+      "from": "effect:tbcp_cr_belarus_reconcile",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [
+        "every_scope_je_involved"
+      ],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
       "from": "effect:tbcp_tax_activate_consumption_based",
       "to": "trigger:te_tax_code_in_force",
       "guarded": true,
@@ -55162,6 +56424,14 @@
       "mechanism": "call"
     },
     {
+      "from": "trigger:nuclear_program_ai_at_stockpile_cap",
+      "to": "value:nuclear_ai_stockpile_cap",
+      "guarded": false,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "value"
+    },
+    {
       "from": "trigger:bpm_is_green_party_banned",
       "to": "trigger:bpm_is_radical_party_banned",
       "guarded": false,
@@ -55458,6 +56728,374 @@
       "mechanism": "call"
     },
     {
+      "from": "event:rlit.15",
+      "to": "effect:tbcp_rlit_official_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.15",
+      "to": "effect:tbcp_rlit_republican_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.15",
+      "to": "effect:tbcp_rlit_spiritual_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.15",
+      "to": "effect:tbcp_rlit_universal_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.36",
+      "to": "effect:tbcp_rlit_official_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.36",
+      "to": "effect:tbcp_rlit_republican_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.36",
+      "to": "effect:tbcp_rlit_spiritual_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:rlit.36",
+      "to": "effect:tbcp_rlit_universal_effect",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.1",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.1",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.1",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.1",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.2",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.2",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.2",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.2",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.2",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.3",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.3",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.3",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.3",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.4",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.4",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.4",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.4",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.5",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.5",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.5",
+      "to": "trigger:tbcp_cr_ukraine_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.6",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.6",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.6",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.6",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.7",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.7",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.7",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.7",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.8",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.8",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.8",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.9",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.9",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.9",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.10",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.10",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.10",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
+      "from": "event:cultural_renaissances_events.10",
+      "to": "trigger:tbcp_cr_belarus_country_has_homeland",
+      "guarded": true,
+      "loops": [],
+      "delay": 0,
+      "mechanism": "call"
+    },
+    {
       "from": "event:ip4_coup.11",
       "to": "effect:generate_2_common_name",
       "guarded": false,
@@ -55528,6 +57166,55 @@
       }
     }
   ],
+  "reviewed_bounded_iterations": [
+    {
+      "id": "effect:nd_log_arsenal_watch",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {
+          "while": 1
+        },
+        "fields": 27,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "effect:tbcp_cr_ukraine_reconcile",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {
+          "every_scope_je_involved": 1,
+          "every_scope_homeland_state": 1
+        },
+        "fields": 36,
+        "max_loop_depth": 1
+      }
+    },
+    {
+      "id": "effect:tbcp_cr_belarus_reconcile",
+      "before": {
+        "fields": 0,
+        "loops": {},
+        "max_loop_depth": 0
+      },
+      "after": {
+        "loops": {
+          "every_scope_je_involved": 1,
+          "every_scope_homeland_state": 1
+        },
+        "fields": 36,
+        "max_loop_depth": 1
+      }
+    }
+  ],
   "limitations": [
     "conditional feasibility and engine callbacks are not executed",
     "parameterized targets conservatively include every matching declared literal target",
@@ -55537,7 +57224,7 @@
   "gate_failures": [],
   "status": "PASS",
   "patch_sha256": {
-    ".metadata/metadata.json": "f472b53644acf9d97df1b28d62c121f6bcdc7d7a8d849ea3eb45de4304889f03",
+    ".metadata/metadata.json": "8cc83bd797c3abcac9df08c55342351772e41d641cdb8fc641fedbeaa60222e4",
     "common/amendments/zzzzzz_tbcp_elections.txt": "34e3dcb7400a8fda00125001fd6b3a692c168ecc5362c4c202431c427c622f0f",
     "common/customizable_localization/te_tax_generated_custom_loc.txt": "6535fc367872d95299adf3bb8bf2de45185135c5af16d2e02e1cb7b6dba9c224",
     "common/defines/zzzzzz_tbcp_defines.txt": "18e6bca86e1afa217b3bab23e49724ebc4436c7a95a732441d86143c0b7bb6d1",
@@ -55548,49 +57235,70 @@
     "common/ideologies/zzzzzz_tbcp_ideologies.txt": "b70e7028544155503320e281e891b5b090702b0815f71cd301abbede99c0a354",
     "common/ideologies/zzzzzz_tbcp_tax_ideologies.txt": "0874d5729b55c294d8c4efe8636033145bc2537f0ed069fcccc812a3f89870a4",
     "common/interest_groups/zzzzzz_tbcp_characters.txt": "b8a803276bb8ec22556d704ba7b4e47c74075bc756cbcb8c4237a386fa95daab",
+    "common/journal_entries/08_cultural_renaissances.txt": "25f1a84fa33d78b16e8afdcdad79f223c7ac1e8926cc267ea86a27119214a554",
     "common/journal_entries/BPM_je_america.txt": "372631fb824a1b3d88dec9fbf1f569b5837fd29dcb2f7b072f1169186d522eec",
+    "common/journal_entries/je_banking.txt": "23b1cfae1eb913c18a3d65b53dab27348a109d14e45e9d9013a6a3a19bbba5ef",
+    "common/journal_entries/je_nuclear_program.txt": "b81da6ff77f8f480abb1cf085e3290640c6fb71fc67998536a906cdb7ca087a5",
     "common/journal_entries/zzzzzz_tbcp_tax_journals.txt": "62a570ee2813e2c7cab3a2511562b981910a01828185848e99c9a45da54e12cf",
     "common/laws/zzzzzz_tbcp_laws.txt": "6bc25ad3d5794ba7d775b7f16e487f61bde7baca6062436486717749425bc4ca",
     "common/modifier_type_definitions/zzzzzz_tbcp_modifier_types.txt": "1f861982cc9793046fdf88006d8587cfb76dbf028f2a80d4f12dd1fab65e5b14",
     "common/on_actions/00_code_on_actions.txt": "a8fb35b4f5d6b3fbb47a6da30b1706d2e1f29bc81acbdb78c4151db869d9ac46",
     "common/on_actions/BPM_code_on_actions.txt": "7c465795ebc091f0bc9cd19bb1881c1a3da4e2e569d8632841c8425686347fab",
+    "common/on_actions/extra_on_actions.txt": "1e40b5e3d3af39c1db3b117679df232d6ae7801e759ad90fdd7b930890589310",
     "common/parties/zzzzzz_tbcp_future_parties.txt": "08594dd2f28dcbacb932bcaafbf03cec1eb2893e6ac1f5b01fc9b5765e9c10fd",
     "common/parties/zzzzzz_tbcp_parties.txt": "4b642b68345ccd095ae38dfd2e5cc282673438768e2a37b7845e13bb86ce26b4",
     "common/power_bloc_principles/zzzzzz_tbcp_principles.txt": "9e0227625207bc404d8468fa48f2c885f3e885c3f5612667234f5cabb6b0422e",
+    "common/production_methods/extra_pms.txt": "11e12589e10fb985e58e59f15a44d79fc54527eb6c5a0f71079650117ae8cc19",
+    "common/production_methods/te_construction_market_pms.txt": "6770dafab79697fdd3ea2b88f331c493ea729241a2361972bfbd70a742bf3df0",
     "common/production_methods/zzzzzz_tbcp_production.txt": "e37ba6893a8b892954d1ec01fbbc3b43517ba97b474e3e1156e631f4eaaab8d1",
     "common/script_values/00000_bpm_journal_values.txt": "d5585e7aa5d32aeab76bc3bb4849eee34f8800b7f344d6fb80035e498151a5b2",
     "common/script_values/00_diplomacy_values.txt": "1729286e9ddfeb2d6b329e8c64172acfaf471f9883b25ad9f27cdabfc8350e21",
     "common/script_values/01_power_bloc_values.txt": "88862b066cb350a0f9949f81ef83ce0784149126e1f3f34842c3b6a61a763e73",
+    "common/script_values/extra_script_values.txt": "58be940e34ff0f498909691cab8b6077b27e847c829014153f6d89a4f6554cb3",
     "common/script_values/ip5_je_values.txt": "440ef21061dc15e7336b5c33a8c2c9b16ce7b773e5867e1639a0bb56f391fb96",
+    "common/script_values/nuclear_exchange_values.txt": "82ab9e281457a91374984f311128d28bda3ea79d09911f7b97a2fd120cdffde8",
     "common/script_values/te_fptp_values.txt": "1a430afdbe7d363b95deaf2072021a66f82866f09c7a9f37ec299d03f22cf3d3",
     "common/script_values/te_tax_generated_support_values.txt": "3e2b4bb36d5687801f1014a746c88db5c24aa76a87fb9e115d400adf1ddb8091",
     "common/script_values/te_tax_generated_values.txt": "7ab41799908f03f1c8ea5f84c003d8273aaa0dee49cd649d7c49bfbcc8e52606",
     "common/script_values/te_tax_light_generated_values.txt": "bc4bd08c502e2b3bc7e513c209694613e2741ee6e797fc81ab13e9e8def812e1",
     "common/script_values/zzzzzz_tbcp_construction_values.txt": "e56ac0db09a21ba86b226c13aa55f736ba77af4fb3927a1a1f9189c25f224c69",
+    "common/script_values/zzzzzz_tbcp_culture.txt": "da87d7e1fd7e7613649454bcc3a5b3978b1e798e2f7c2395e00aaf37abf8e2d1",
+    "common/scripted_buttons/nuclear_program_buttons.txt": "c521cdacff89c53586d911cbe5c8dde07a8d30cd1ebabe2725aed8de4f3ef8eb",
+    "common/scripted_effects/banking_cycle_effects.txt": "3c882586f20928744a7a2dfb30d45e0b89d91651965e1356d2e506214a0bd264",
     "common/scripted_effects/BPM_CAB_effects.txt": "bf376e48d8758754b7ae4aea446bc392fe9a6480ad2d7abbc7e04b07f8bf2a88",
     "common/scripted_effects/BPM_CAB_SYNERGY_effects.txt": "1ffe25a3e4d1e2d1bf36d0d94eb7e7a9f88274990a90a57fa43ee70f95aacc6c",
+    "common/scripted_effects/nuclear_custody_effects.txt": "2aa61c92f010d1d8a935d3a2a3d2aa6f2acb97507abf2edfbd15d2b629e5873f",
+    "common/scripted_effects/nuclear_deterrence_effects.txt": "a251fcb8feb543cef1743101599295a2aa1d5ee3b49951affd49a76f0eabe195",
+    "common/scripted_effects/nuclear_weapon_effects.txt": "91f9916014eeb6780da858bcecc13dd090ee0af72f9a6a10ef41eee113eb33b0",
     "common/scripted_effects/te_construction_market_update_effects.txt": "46b46f3f69a1e3fe7f3512750fd016ded0652211c5dd63d4d110b3f804264a09",
     "common/scripted_effects/te_fptp_effects.txt": "63a2c491f757457918cb846d1bbae9be138582a957aa62c3f6a141ab034cf0e3",
     "common/scripted_effects/te_tax_generated_bill_effects.txt": "e697f69c27fadcad29b4af937c97326b4e1265963676b760ce6ad97320eea256",
     "common/scripted_effects/te_tax_generated_effects.txt": "4d23bc536b9e60204e13d810317d508956e8076ad6d771cba263cdab881e574c",
     "common/scripted_effects/te_tax_light_generated_effects.txt": "f13d129401467ef8a66905a3aa4aa08d8ee57c372a7cc5090fd777b5cdd43e62",
     "common/scripted_effects/zzzzzz_tbcp_cabinet_helpers.txt": "79d8902beb0bbb298a87bbd7324145cbd056c087b1c8446a343fee401436ba85",
+    "common/scripted_effects/zzzzzz_tbcp_culture.txt": "5bb10918d81a6e792d98e91dce19906760a0eef2696470cf437e93f3277f8ba0",
     "common/scripted_effects/zzzzzz_tbcp_tax_legacy_effects.txt": "1d7b54417c0933d0c2c6e82ea7e6ebc5a018231dcc0192c92752ff6756ac3e02",
     "common/scripted_guis/bpm_law_sway_guis.txt": "9906b2e5e4a2c1d87bc07a8c691b01f1da6b93ab789e4acfde8f19980e783beb",
     "common/scripted_guis/te_tax_sguis.txt": "5e87a683ddcfc33b593d303dd01f57dfd205910937565fcf8a13b02b3a90fd64",
+    "common/scripted_progress_bars/00_ip5_cultural_renaissance_bars.txt": "f6ac1b4bbca3f82bd900bcbbbfbc85deb01457e2804132d1d0ba3884b81f9b20",
     "common/scripted_rules/00_scripted_rules.txt": "d69f99365b2aa1187379e7c80fafc3f3f1eaa9a2d5ecc1835d4b5b5a14573bc4",
     "common/scripted_rules/zzz_bpm_scripted_rules.txt": "8620743b36fa582c69799ca6678764a1afde6f090b9ff3a09006dedbe66be61f",
     "common/scripted_triggers/bpm_ig_extremist_triggers.txt": "59047282d14080a4f8e1397221edb8303879f73114f15d418247fef095bbf536",
+    "common/scripted_triggers/nuke_triggers.txt": "61cd43bdf454d7607787c2e7802bcd94bb1c66c494f0410aff3943df73bf8da7",
     "common/scripted_triggers/te_fptp_triggers.txt": "cb4b59c7a3145e8817a04e558d6e8404b9516cef97c4de46434e60aca65efc80",
     "common/scripted_triggers/te_tax_generated_triggers.txt": "995601ddb7cb69d7b952329136a130532185e3f0a0b4ec506d503ad7401b997d",
+    "common/scripted_triggers/un_economy_triggers.txt": "318aae0f40fbf27ef6c79ad65e416f1670e4b7c28bf10101a02c6701f48745d4",
+    "common/scripted_triggers/zzzzzz_tbcp_culture.txt": "f82f61c86064bc71124a92e3ead1f96e78603c386054ddd5cb801e702f4ca16c",
     "common/scripted_triggers/zzzzzz_tbcp_future_party_bans.txt": "0b5cfcc6848b3dba25cee451702bb878f7da509e5f8b630db22d66cc9f4cf29c",
     "common/scripted_triggers/zzzzzz_tbcp_tax_legacy_triggers.txt": "de23367eb9bfabf01472597a45f2ffa074b076809e69312825952e55e092fdcc",
     "common/static_modifiers/te_tax_generated_modifiers.txt": "ec50bff3607ff7f66dda1e84dbfce32ea49a1cf87d3e863ae9f8e93662bde285",
     "common/static_modifiers/te_tax_light_generated_modifiers.txt": "3bfd6fc87af86c93b0d1fe2074400af06e371c682a4e42517a14d02c1482cc1b",
+    "common/static_modifiers/un_economy_modifiers.txt": "600f2b17454035ac5c30f27eb7c968ec7f5d84c0fa504305e50a3666ccb0c275",
     "common/technology/technologies/zzzzzz_tbcp_technologies.txt": "5b30e55928b63ddf4b408b86d1d76a5d728cd80cbbbccc85d4ba4bed004a3801",
     "CREDITS.md": "9380d98f1f58230b7433fe3d5ef4702cd559902a31985e501f518cea939d26ca",
     "events/_india_events/zz_bpm_utilitarian.txt": "ea43a0c2f16a37548623210c2579fb929eeb1be321e824f39c7d2eeb7fc3b5a6",
     "events/_law_events/bpm_tax_laws.txt": "c23a999495e67122f29d24bafa89f749c0c8a6dcac11f396abd8e6d0770447ba",
+    "events/_rlit_events.txt": "9c0e85f48b2daf18836b251e8806eb75fd1252358da0959c09c0133541279c09",
     "events/_soi_events/_bpm_lobbies_events_03.txt": "9c987d3625c2404faadfe564cda1b5a31129def4b253e73cc8d26c9470db2412",
     "events/agitators_events/agitators_law_events.txt": "1cf6b5dfed8ae20b49948fd6143a6bb055198bbc2488f24a31eff4ab368c20a6",
     "events/agitators_events/coup_events.txt": "c973a89068a0a9824827a0aac12f6b9c2e0a7e7682c1a584d2f7f156fca344db",
@@ -55617,6 +57325,7 @@
     "events/colonial_administration_events.txt": "d1b8787752f69e70d0a42b1c5218c768fe6a4bee61974497efa163e0bfa7a592",
     "events/communism.txt": "53b28412c89fd31ef244ff826a33abcd091bd3eae38921a5f7c423d86a6e95e7",
     "events/congo_free_state_events.txt": "be06fc85ad32dbbf0f69c597cb8dd1b60394f61312970c55816aa858e1f4dc16",
+    "events/decolonization_events.txt": "9ceab4c700cae0712cc032173243fc2c0945d4c49e6ae8c9c97e45a872e4ccb7",
     "events/election_events/communist_fascist_election_events.txt": "7b63f0d8df947cdf45a88ef870a08a5055a10df9113fbff38b36ce706060e3b6",
     "events/election_events/election_contextual_events.txt": "0be7016eaecf1144dca652d00b4b353c7e0e57f90ceefd160f541ce63d3606e9",
     "events/election_events/election_liberal_events.txt": "507d8c425c2c4dca2f57dc70662a019d47b40bd59465307b8fb5c5954fd3b9fd",
@@ -55679,8 +57388,11 @@
     "events/misc_unifications.txt": "6413a42b45ad2243583caea71ce7ce80ac579cc7d553e37815f4812cfaaa6e4e",
     "events/neighbor_events.txt": "0e6b138c8debd0820c98cd9d6fe32065cb1d532282172e69a8f60d0ad58ed2c1",
     "events/nihilism.txt": "a6aa0a0512fb2b11ea5f4edd61518d2a479e98422e42e3e0b2a234761f41cc93",
-    "events/rlit_cluster1_golden_age.txt": "0712b1d03902980570846911a92f736cfb225fe1109385cc0ad0afd43f6608e2",
-    "events/rlit_cluster2_crossroads.txt": "9fdb6445f3ca885852914238d6abd8bf817c4384d02dc1d10a1a223a60f836c7",
+    "events/nuclear_custody_events.txt": "b540416359a9d080828a2e8dbdba6f1d7de0c1069fe7cf72a121671706db4ae9",
+    "events/nuclear_incident_events.txt": "da41e17285cf3427b1eb7a3187792c8a0006c7323447fa5e23988a5ce4af6849",
+    "events/rlit_cluster1_golden_age.txt": "fa099a16b6350476ccf9d85354a983263f39c53e46baf2f1aa7c32c02660fcaa",
+    "events/rlit_cluster2_crossroads.txt": "8d16df2c20fc2ef5b7022b5780c5117feb595374b1aaee5859103c2846924dac",
+    "events/russia_events/cultural_renaissances_events.txt": "097346b414a6cef2012c54d5f615b13fc699d2f7685d4518839a705cb50da81c",
     "events/russia_events.txt": "d024cc26b4fa254c13f649322bb3d07b48d2a3a5aaea854ea298ad595df42d25",
     "events/secession_situations.txt": "90b37019b9b89107e31a8ab79566d3108ee5d473481b6bf0319dbbc5327b47b6",
     "events/slave_revolts.txt": "30954fed077e2ce4a6d7ead067ab5ba140af1a090398f760f5ddf3e8f78fc5e2",
@@ -55702,7 +57414,9 @@
     "gui/politics_panel_overview.gui": "b8c99aabcf78b0688483e67cea6828d955707da08d6fa5790f729db00b4bd478",
     "gui/pops_overview.gui": "ae9ef779bd2b466c3e70f002a9057141164819e767fff31b98caf7b0e61a5368",
     "localization/english/te_tax_generated_l_english.yml": "5505ca52bebc4f94521495c7c51d4e84a13df06101420dafd162fb482b4d7f35",
-    "README.md": "f9d6d9058efb2a5f1323fdbc3116fa1ead26fc5b188bc37fc1965e693a39399e",
-    "TESTING.md": "1e7230e82f36a843610bebf26fd64e32b82f6e44a039fb37e875bee824267af6"
+    "localization/english/zz_tbcp_culture_l_english.yml": "e1f0d992e94da3e97ae470c8e51b2cfef3a42ea31b58b074ecde4a10bf0830b8",
+    "localization/russian/zz_tbcp_culture_l_russian.yml": "65f392bab79799f8737631c827de1d8f9d31c78d2302890f188774d12e6f536f",
+    "README.md": "a980a573ae669f47e99190f9fcefac6577ce4d604f6dd1f1b62486fb8905cc41",
+    "TESTING.md": "726c019e6b2e61c7da4d6b44a406ad7b7cc9d8b7bf595bfb99577c6fadcd65c1"
   }
 }

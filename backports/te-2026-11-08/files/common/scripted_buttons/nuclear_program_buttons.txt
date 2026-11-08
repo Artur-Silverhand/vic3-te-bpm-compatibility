@@ -1,0 +1,187 @@
+# Nuclear weapons — journal-entry funding buttons
+#
+# THESE TWO BUTTONS ARE THE AI'S ONLY PATH INTO THE NUCLEAR PROGRAMME.
+# The AI funds and defunds its weapons programme solely by evaluating the
+# `ai_chance` blocks below; scripted GUIs have a separate AI hook, which the
+# widget's handlers switch off (`ai_is_valid = { always = no }`). So never delete
+# a `scripted_button = …` line from je_nuclear_program and never gate one on
+# `is_ai = no` — either silently removes the programme from every AI country,
+# with no log line and no offline test that catches it. See
+# docs/guides/scripting_best_practices.md, "Journal-Entry Buttons Are the AI's
+# Only Path", and the same header on
+# common/scripted_buttons/banking_alt_economy_buttons.txt.
+#
+# `is_ai = yes` was added to each `visible` block — keeping its existing
+# condition — when the programme panel replaced the grid: the AI still sees and
+# picks these buttons, a human sees nothing and uses
+# gui/journal_entry_widgets/nuclear_program_widget.gui instead. Because the grid
+# is hidden, every action a human could previously take must exist in the panel;
+# both do, as nuclear_program_funding_sgui ops 1 (up) and 0 (down).
+#
+# `possible` and `effect` are single-sourced: the bodies live in
+# nuclear_program_possible_* (common/scripted_triggers/nuke_triggers.txt) and
+# nuclear_program_effect_* (common/scripted_effects/nuclear_weapon_effects.txt),
+# and the widget's scripted GUI calls the very same helpers. Retune the helper,
+# never the button.
+increase_funding_nuclear_program = {
+	name = "INCREASE_NUCLEAR_WEAPON_PROGRAM_FUNDING"
+	desc = "INCREASE_NUCLEAR_WEAPON_PROGRAM_FUNDING_DESC"
+
+	visible = {
+		always = yes
+		is_ai = yes
+	}
+
+	#Country scope
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { country_innovation > nuclear_weapon_program_funding_step }
+			add = 15
+		}
+		if = {
+			limit = { country_innovation >= 200 }
+			add = 10
+		}
+		if = {
+			limit = { country_innovation >= 300 }
+			add = 10
+		}
+		if = {
+			limit = { var:nuclear_weapons_program_first_nuke_done = 0 }
+			add = 30
+		}
+		if = {
+			limit = { var:nuclear_weapon_stockpile < nuclear_ai_desired_stockpile }
+			add = 35
+		}
+		if = {
+			limit = {
+				var:nuclear_weapons_program_first_nuke_done = 0
+				var:nuclear_weapon_program_progress >= 75
+			}
+			add = 20
+		}
+		if = {
+			limit = {
+				has_variable = nuclear_weapon_stockpile
+				any_rival_country = {
+					has_modifier = nuclear_power
+					# The rival's arsenal as the world estimates it, not its secret
+					# (docs/systems/nuclear_crisis_design.md §0.6).
+					has_variable = nd_public_estimate
+					var:nd_public_estimate > ROOT.var:nuclear_weapon_stockpile
+				}
+			}
+			add = 20
+		}
+		if = {
+			limit = { is_at_war = yes }
+			add = 10
+		}
+		if = {
+			limit = { country_innovation < 150 }
+			add = -15
+		}
+		if = {
+			limit = { country_innovation < nuclear_weapons_program_current_cost }
+			add = -20
+		}
+		if = {
+			limit = { var:nuclear_weapon_stockpile >= nuclear_ai_desired_stockpile }
+			add = -45
+		}
+		# The nuclear taboo: a norm-bound world does not start or grow a
+		# programme lightly (nuclear_taboo_triggers.txt).
+		if = {
+			limit = { nd_taboo_ai_restrains_programme = yes }
+			multiply = nd_taboo_ai_programme_restraint_factor
+		}
+		# The AI's arsenal cap (nuclear_ai_stockpile_cap, twice what it wants):
+		# the race terms above carry it past its wish, never past this
+		# (2026-11-07). nuclear_program_weekly_progress unfunds it there too.
+		if = {
+			limit = { nuclear_program_ai_at_stockpile_cap = yes }
+			multiply = 0
+		}
+	}
+
+	possible = {
+		nuclear_program_possible_increase_funding = yes
+	}
+
+	effect = {
+		nuclear_program_effect_increase_funding = yes
+	}
+}
+
+decrease_funding_nuclear_program = {
+	name = "DECREASE_NUCLEAR_WEAPON_PROGRAM_FUNDING"
+	desc = "DECREASE_NUCLEAR_WEAPON_PROGRAM_FUNDING_DESC"
+
+	visible = {
+		always = yes
+		is_ai = yes
+	}
+
+	#Country scope
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { country_innovation < 150 }
+			add = 20
+		}
+		if = {
+			limit = { country_innovation < nuclear_weapons_program_current_cost }
+			add = 25
+		}
+		if = {
+			limit = { var:nuclear_weapon_stockpile >= nuclear_ai_desired_stockpile }
+			add = 35
+		}
+		if = {
+			limit = { var:nuclear_weapon_stockpile > nuclear_ai_desired_stockpile }
+			add = 15
+		}
+		if = {
+			limit = {
+				var:nuclear_weapons_program_first_nuke_done > 0
+				country_innovation < 250
+			}
+			add = 10
+		}
+		if = {
+			limit = { var:nuclear_weapons_program_first_nuke_done = 0 }
+			add = -40
+		}
+		if = {
+			limit = { var:nuclear_weapon_stockpile < nuclear_ai_desired_stockpile }
+			add = -35
+		}
+		if = {
+			limit = {
+				has_variable = nuclear_weapon_stockpile
+				any_rival_country = {
+					has_modifier = nuclear_power
+					# The rival's arsenal as the world estimates it, not its secret
+					# (docs/systems/nuclear_crisis_design.md §0.6).
+					has_variable = nd_public_estimate
+					var:nd_public_estimate > ROOT.var:nuclear_weapon_stockpile
+				}
+			}
+			add = -20
+		}
+		if = {
+			limit = { is_at_war = yes }
+			add = -15
+		}
+	}
+
+	possible = {
+		nuclear_program_possible_decrease_funding = yes
+	}
+
+	effect = {
+		nuclear_program_effect_decrease_funding = yes
+	}
+}

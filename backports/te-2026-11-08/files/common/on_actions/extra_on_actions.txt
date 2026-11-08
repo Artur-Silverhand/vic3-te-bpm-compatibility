@@ -1,0 +1,3761 @@
+# ============================================================================
+# LAW ENACTMENT PASS: banking and monetary cleanup
+# When a law change takes a banking or monetary control away, switch it off
+# the moment the law lands. The economy-type modifier cleanup (planning,
+# cooperative, market CB tools) is not here: it runs from on_law_activated
+# (te_banking_economy_law_cleanup, below), where has_law already reads the
+# new law.
+# Root = country that enacted the law. Scope is country.
+# ============================================================================
+on_law_enactment_pass = {
+	on_actions = {
+		te_banking_law_change_cleanup
+	}
+}
+
+# Initialize globals before any journal-entry `possible` clause reads them.
+# je_global_warming.possible reads global_var:greenhouse_gas_emissions, which
+# would otherwise return 'none' until on_yearly_pulse_state first fires.
+on_game_started = {
+	on_actions = {
+		te_init_global_state
+	}
+}
+
+te_init_global_state = {
+	effect = {
+		if = {
+			limit = { NOT = { has_global_variable = greenhouse_gas_emissions } }
+			set_global_variable = {
+				name = greenhouse_gas_emissions
+				value = 0
+			}
+		}
+	}
+}
+
+te_banking_law_change_cleanup = {
+	effect = {
+		# Only run if the banking cycle JE is active
+		if = {
+			limit = { has_journal_entry = je_banking_cycle }
+			# Left fiat or digital currency with open-market operations still running.
+			# OMO is fiat/digital only (monetary_policy_design.md §5.1 and the §0.1
+			# ruling of 2026-09-20), enforced in banking_possible_cb_open_market_ops,
+			# but `possible` only gates the click — a country that enacts commodity
+			# money, the gold standard or crypto afterwards kept the tool, and its four
+			# intervention points, until it switched it off by hand.
+			#
+			# WHY THE TWO-PART TEST. This on-action fires while the new law is still
+			# "considered being enacted" (vanilla 00_code_on_actions.txt:4835-4841), so
+			# the country still holds the OLD law here and
+			# modifier:country_can_create_unbacked_money_bool still reads the OLD
+			# regime's value on the very enactment that takes it away. is_enacting_law
+			# names the law that is about to land, which is exactly how vanilla's own
+			# block at this hook clears Brazil's slave-trade modifiers (old law via
+			# has_law_or_variant + new law via is_enacting_law). The bool read then
+			# covers every other route out of fiat/digital — a save from before this
+			# rule, a law set directly by script, any later enactment. ADD A LAW HERE
+			# if a new lawgroup_monetary_policy law that does NOT grant
+			# country_can_create_unbacked_money_bool is ever introduced.
+			#
+			# It runs through banking_effect_cb_disable_open_market_ops, the same effect
+			# cb_disable_open_market_ops and the dashboard call, not a bare
+			# remove_modifier: the points come back either way (they are the modifier's
+			# own country_banking_intervention_max_add = -4), but only the shared effect
+			# also records the off_cb_open_market_ops history marker, so an automatic
+			# switch-off draws on the chart exactly like a manual one.
+			#
+			# A country entering a command or cooperative economy loses every market
+			# CB tool, OMO included, in te_banking_economy_law_cleanup. That runs
+			# later, from on_law_activated, and marks only a tool still on, so an
+			# OMO this branch already switched off is not marked again. (Were the
+			# removal somehow not yet visible there, the chart would get the same
+			# marker flag twice in one month, which draws the same.)
+			#
+			# te_mon_full_system: the regime rule this branch enforces is the monetary
+			# layer's, and banking_possible_cb_open_market_ops drops it under the
+			# simplified game rule. Switching the tool off here anyway would take it
+			# away from a country the `possible` gate still lets click it.
+			if = {
+				limit = {
+					te_mon_full_system = yes
+					banking_tool_omo_active = yes
+					OR = {
+						modifier:country_can_create_unbacked_money_bool = no
+						is_enacting_law = law_type:law_commodity_money
+						is_enacting_law = law_type:law_gold_standard
+						is_enacting_law = law_type:law_decentralized_cryptocurrency
+					}
+				}
+				banking_effect_cb_disable_open_market_ops = yes
+			}
+		}
+
+		# Monetary policy (§14). A command economy has no dial and no delegation
+		# — the rate is administered — so entering one clears the delegation
+		# toggle. This sits OUTSIDE the journal-entry check above on purpose:
+		# the monetary plumbing runs for every country, with or without
+		# je_banking_cycle and with or without banking_system_enabled.
+		#
+		# Only the toggle is cleared. No monetary variable is ever removed here:
+		# te_rate_paid_applied backs a live add_modifier multiplier, and the
+		# rest are re-derived by the next monthly update anyway.
+		#
+		# THE TWO-PART TEST is the OMO branch's above and the monetisation
+		# branch's below, for the same timing reason: this on-action fires while
+		# the new law is still "considered being enacted", so te_mon_is_command
+		# reads the OLD law and on the very enactment that brings the plan in it
+		# answers "no". is_enacting_law names the law about to land, which is the
+		# case the comment above describes — "entering one clears the delegation
+		# toggle" — and without it the toggle only cleared for a country that was
+		# already a command economy and happened to enact some other law later.
+		if = {
+			limit = {
+				OR = {
+					te_mon_is_command = yes
+					is_enacting_law = law_type:law_command_economy
+				}
+				has_variable = te_mon_delegated
+			}
+			set_variable = { name = te_mon_delegated value = 0 }
+		}
+
+		# Monetisation (§11, §14). Printing money to pay the government needs a
+		# currency the state can create, a bank to create it through and a
+		# government still able to give that bank the order, so a law that takes
+		# any of the three away takes the stepper with it — and it should do so
+		# the moment the law lands, not at the next monthly pulse, because the
+		# level is charged in inflation pressure and in the risk premium every
+		# month it stands.
+		#
+		# THE TWO-PART TEST is the OMO branch's, for the same timing reason: this
+		# on-action fires while the new law is still "considered being enacted",
+		# so te_mon_can_monetise still reads the OLD laws on the very enactment
+		# that disqualifies the country. is_enacting_law names the law about to
+		# land, and the list is the exact inverse of te_mon_can_monetise's four
+		# conditions — the currency (three ways out of fiat/digital), the bank,
+		# independence, and the planned economy. ADD A LAW HERE if a new one that
+		# blocks monetisation is ever introduced; te_mon_can_monetise in
+		# common/scripted_triggers/te_monetary_triggers.txt is the other half.
+		#
+		# The bare trigger read covers every other route — a save from before
+		# phase 2, a law set directly by script, dollarisation (ruling P9, which
+		# is a variable and no law at all).
+		#
+		# ONLY THE LEVEL IS WRITTEN. No variable is removed (§16.2), and the
+		# te_monetisation_minting modifier is left to step 1b of the next pulse,
+		# which owns it: that is the same "write the input and let the pulse pick
+		# it up" rule every other control in this system follows, and the cost is
+		# at most one month of minting the country has already been charged the
+		# premium for.
+		if = {
+			limit = {
+				has_variable = te_monetisation_level
+				NOT = { var:te_monetisation_level = 0 }
+				OR = {
+					te_mon_can_monetise = no
+					is_enacting_law = law_type:law_commodity_money
+					is_enacting_law = law_type:law_gold_standard
+					is_enacting_law = law_type:law_decentralized_cryptocurrency
+					is_enacting_law = law_type:law_no_national_bank
+					is_enacting_law = law_type:law_central_bank_independence
+					is_enacting_law = law_type:law_command_economy
+				}
+			}
+			set_variable = { name = te_monetisation_level value = 0 }
+			# The bank's bond purchases (#800) end with the level they ran on.
+			set_variable = { name = te_mon_bond_support_months value = 0 }
+		}
+
+		# Dollarisation (§9.2, ruling P9). A country that abandoned its own money
+		# in a hyperinflation would carry te_mon_dollarised for ever otherwise:
+		# the spec names no exit. THERE ARE TWO, and they are one if/else_if pair
+		# because the flag can only be cleared once and the price for clearing it
+		# is not the same:
+		#
+		#   * ENTERING A COMMAND ECONOMY — free (final-review finding M8);
+		#   * ENACTING A MONETARY-POLICY LAW — pays te_mon_effect_new_currency.
+		#
+		# NO MODIFIER IS REMOVED IN EITHER. te_mon_dollarised_modifier is the
+		# seventh member of the te_inflation_band_* family and belongs to step 6c
+		# of the monthly update (te_monetary_apply_inflation_band), which takes it
+		# off and puts the country's current band on in the same swap. A
+		# remove_modifier here would be a second owner of that modifier, and would
+		# leave te_inflation_band_applied still claiming it was applied. Clearing
+		# the flag IS what releases it, on the next pulse — which is the whole of
+		# finding M8: law_command_economy lives in lawgroup_economic_system, not
+		# the monetary group, so the five-law list below never saw it and a
+		# dollarised country that went over to a planned economy carried
+		# te_inflation_band_applied = 7 and its -75% minting for the rest of the
+		# campaign.
+		#
+		# THE COMMAND EXIT IS FREE, AND TESTED FIRST. An administered currency is
+		# not a market re-founding: the plan decrees what money is and what it
+		# buys, so there is nobody to persuade to hold it, no ten-year premium to
+		# charge, and no reset to 5 to write (step 6's command branch holds the
+		# inflation figures at 0 anyway, §14). Testing it first is also what makes
+		# the overlap deterministic — a command economy enacting a monetary law is
+		# still administering its currency, so it takes this exit rather than the
+		# priced one. The te_mon_is_command half of the OR is the same two-part
+		# test the delegation and monetisation blocks above use, and here it
+		# catches only the leftovers (a save made before this rule, or a
+		# dollarised planned economy enacting some other law); is_enacting_law is
+		# the live case.
+		if = {
+			limit = {
+				has_variable = te_mon_dollarised
+				var:te_mon_dollarised = 1
+				OR = {
+					te_mon_is_command = yes
+					is_enacting_law = law_type:law_command_economy
+				}
+			}
+			set_variable = { name = te_mon_dollarised value = 0 }
+		}
+		# THE MONETARY-LAW EXIT PAYS THE NEW-CURRENCY PRICE. Enacting a
+		# monetary-policy law is the smallest exit the spec leaves room for — it
+		# is the act of declaring what the country's currency now is, which is
+		# precisely the thing dollarisation gave up. All five laws of
+		# lawgroup_monetary_policy count, because a law cannot be enacted by a
+		# country that already holds it: any of them IS a different one. ADD A LAW
+		# HERE if lawgroup_monetary_policy ever gains a sixth.
+		#
+		# Leaving dollarisation this way is not putting a currency back in a
+		# drawer, it is issuing one: the state has to persuade people to hold
+		# paper it prints again, having already failed to once. Without the price
+		# the sequence dollarise -> wait out one law enactment -> re-enact fiat
+		# would be a currency reform with no pool wipe, no radicals and no premium
+		# — strictly the cheapest way out of a hyperinflation, and free, because
+		# the dollarise option already reset expectations to the anchor for
+		# nothing. te_mon_effect_new_currency is the same effect te_inflation.1's
+		# reform option calls: inflation and expectations start at
+		# te_mon_currency_reform_reset and lenders charge the ten-year premium.
+		# NOT the pool wipe and NOT the radicals — the months of -75% minting
+		# under dollarisation were that half of the price, and te_inflation.1.b.tt
+		# tells the player so before they choose.
+		#
+		# It is the only write of inflation state outside the monthly update and
+		# the crisis event; the variable contract in the header of
+		# common/script_values/te_monetary_script_values.txt lists it.
+		else_if = {
+			limit = {
+				has_variable = te_mon_dollarised
+				var:te_mon_dollarised = 1
+				OR = {
+					is_enacting_law = law_type:law_commodity_money
+					is_enacting_law = law_type:law_gold_standard
+					is_enacting_law = law_type:law_fiat_currency
+					is_enacting_law = law_type:law_digital_currency
+					is_enacting_law = law_type:law_decentralized_cryptocurrency
+				}
+			}
+			set_variable = { name = te_mon_dollarised value = 0 }
+			te_mon_effect_new_currency = yes
+		}
+	}
+}
+
+# ============================================================================
+# COMPANY DISBANDED - immediately remove company-unique buildings
+# Root = Country (in which the company was disbanded)
+# scope:company = The company that was disbanded
+# ============================================================================
+on_company_disbanded = {
+	on_actions = {
+		te_on_company_disbanded
+	}
+}
+te_on_company_disbanded = {
+	effect = {
+		every_scope_state = {
+			remove_disbanded_company_buildings_effect = yes
+		}
+	}
+}
+
+# ============================================================================
+# BECOME INDEPENDENT - fires for newly independent countries
+# Root = newly independent country
+# ============================================================================
+on_become_independent = {
+	on_actions = {
+		decol_collapse_grace_on_action
+	}
+	events = {
+		decolonization_events.15
+	}
+}
+
+# Twenty years' grace from colonial collapse for a country that has just become
+# independent (owner ruling, 2026-09-26). Collapse only: the post-independence
+# events key on recently_decolonized, which only the mod's own releases and
+# vanilla's release as independent set. colonial_collapse_effects.txt.
+decol_collapse_grace_on_action = {
+	effect = {
+		set_variable = { name = decol_collapse_grace days = 7300 }
+	}
+}
+
+on_monthly_pulse_state = {
+	on_actions = {
+		te_homeland_monthly
+		space_elevator_on_action
+		solar_collector_on_action
+		orbital_battlestation_on_action
+		mind_upload_nexus_on_action
+		antimatter_facility_on_action
+		nanofabrication_center_on_action
+		consciousness_network_on_action
+		pollution_on_action
+		war_propaganda_on_action
+		state_yearly_cultural_acceptance_add_on_action
+		tourism_on_action
+		ministry_of_thought_control_on_action
+		te_state_treaty_article_sync_on_action
+		te_reserve_cadre_state_pulse
+	}
+}
+
+on_monthly_pulse = {
+	on_actions = {
+		city_rank_on_action
+		global_warming_events_on_action
+		decol_gp_prestige_on_action
+	}
+}
+
+on_monthly_pulse_country = {
+	on_actions = {
+		remove_invalid_buildings
+		cheaty_on_action
+		combined_arms_update_on_action
+		investment_pool_setup_on_action
+		international_relations_events_on_action
+		decolonization_events_on_action
+		irredentism_events_on_action
+		irredentism_bloc_approval_on_action
+		movement_events_te_on_action
+		society_technology_events_on_action
+		world_war_events_on_action
+		overbuild_protection_on_action
+		te_pm_retooling_weekly_schedule
+		st_dp_escalation_weekly_schedule
+		te_fix_inconsistent_laws_country_pulse
+		te_collective_governance_country_pulse
+		te_free_elections_country_pulse
+		operation_polo_on_action
+		aptitude_traits_cleanup_on_action
+		tech_marker_grants_on_action
+		te_barracks_doctrine_country_pulse
+		te_nation_source_flags_on_action
+	}
+}
+
+# NATION TAB'S LIST GROUPS - every country, every month, no rule gate
+# (National Info shows an AI country's Nation tab too): how many of each
+# group's modifiers the country holds, 0 included (te_nation_src_<group>). The
+# tab's Where These Come From lists compare a modifier's name only with the
+# groups whose flag is on, and their counts read the same flags (owner,
+# 2026-11-03). Generated effect:
+# common/scripted_effects/te_nation_generated_effects.txt (gen_nation_tab.py).
+te_nation_source_flags_on_action = {
+	effect = {
+		te_nation_refresh_source_flags = yes
+	}
+}
+
+# The same for every country once, two days after the lobby, so a new game's
+# lists don't wait for each country's first 30-day pulse (#1372 review). Two
+# days, not the first: te_tax.3's migration adds the Tax Code's interest-group
+# views a day later (te_tax.4, days = 1). The event is events/te_nation_events.txt.
+on_game_started_after_lobby = {
+	on_actions = {
+		te_nation_source_flags_seed_on_action
+	}
+}
+
+te_nation_source_flags_seed_on_action = {
+	effect = {
+		every_country = {
+			trigger_event = { id = te_nation.1 days = 2 }
+		}
+	}
+}
+
+# Country-scope wrapper for the generated law-consistency cleanup. Re-evaluates
+# every active law's unlocking_laws / disallowing_laws against the current world
+# and replaces violators with the closest-progressiveness valid alternative.
+# Generated effects live in common/scripted_effects/extra_law_consistency_generated.txt
+# (see gen_law_consistency.py). Also fired from on_law_activated so most cleanups
+# happen at the moment of regime change; the monthly pulse migrates existing
+# saves and catches drift.
+te_fix_inconsistent_laws_country_pulse = {
+	effect = {
+		te_fix_inconsistent_laws = yes
+	}
+}
+
+# PM RETOOLING - schedule country events at day 0/7/14/21 from the monthly
+# country pulse. Each event iterates all states and removes pm_retooling where
+# it is waived: level-0 building sites, every building in games whose
+# free_market_construction_rule setting waives retooling globally, AI-owned
+# buildings under no_ai_retooling, and a railway just
+# through the Transport principle swap (te_remove_waived_pm_retooling). It
+# first records each state's railway train method
+# (te_state_note_railway_train_method), which catches a swap the
+# production-method hook missed. The on_start_expanding_building and
+# on_production_method_changed hooks in te_construction_market_on_actions.txt
+# handle single-building cleanup immediately; this sweep catches the rest,
+# except a railway whose hook fired but whose pm_retooling arrived more than a
+# day later (the record is current by then).
+te_pm_retooling_weekly_schedule = {
+	effect = {
+		trigger_event = { id = minor_events_timelineextended.100 }
+		trigger_event = { id = minor_events_timelineextended.100 days = 7 }
+		trigger_event = { id = minor_events_timelineextended.100 days = 14 }
+		trigger_event = { id = minor_events_timelineextended.100 days = 21 }
+	}
+}
+
+# DIPLOMATIC PLAY ESCALATION - weekly tick distributed across the month at
+# days 0/7/14/21. Day 0 runs inline; days 7/14/21 fire dp_escalation_events.1
+# in country scope. The apply effect short-circuits via three is_diplomatic_play_*
+# guards, so countries not in any play do ~zero work.
+st_dp_escalation_weekly_schedule = {
+	effect = {
+		st_dp_country_apply_weekly_escalation = yes
+		trigger_event = { id = dp_escalation_events.1 days = 7 }
+		trigger_event = { id = dp_escalation_events.1 days = 14 }
+		trigger_event = { id = dp_escalation_events.1 days = 21 }
+	}
+}
+
+on_yearly_pulse_state = {
+	on_actions = {
+		global_warming_update_on_action
+		violent_hostility_on_action
+		migration_crowding_on_action
+		religious_mission_conversion_on_action
+		free_port_tariff_update_on_action
+	}
+}
+
+# RELIGIOUS MISSION CONVERSION - converts population in states with
+# active religious mission rights treaties toward the missionary
+# power's religion. State scope from on_yearly_pulse_state.
+religious_mission_conversion_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_variable = religious_mission_country
+				exists = var:religious_mission_country
+			}
+			var:religious_mission_country = {
+				save_scope_as = mission_country
+			}
+			convert_population = {
+				target = scope:mission_country.religion
+				value = 0.05
+			}
+		}
+	}
+}
+
+on_yearly_pulse_country = {
+	on_actions = {
+		tech_spread_on_action
+		excess_private_construction_on_action
+		fix_incompatible_laws
+		construction_cost_scaling_on_action
+		colonial_collapse_on_action
+		decol_permanent_modifier_sync_on_action
+		add_arable_land_effect_on_action
+		assign_aptitude_traits_on_action
+		te_ai_decentralized_absorption_on_action
+		te_ai_seed_trade_center_on_action
+	}
+}
+
+# AI DECENTRALIZED ABSORPTION - the engine never offers decentralized countries
+# as autonomous AI diplomatic-action targets, so the player's voluntary_union_
+# decentralized action has no AI counterpart on its own. This drives the AI path,
+# reusing the action's eligibility gates. Absorbs at most one reachable
+# decentralized neighbour per AI country per year. See common/scripted_effects/
+# extra_effects.txt (te_ai_decentralized_absorption_effect).
+te_ai_decentralized_absorption_on_action = {
+	effect = {
+		te_ai_decentralized_absorption_effect = yes
+	}
+}
+
+# AI TRADE CENTER SEED - a market with no Trade Center can neither import nor
+# export, and its prices run to the ends of the price range. An AI country
+# that leads such a market gets a level-1 Trade Center. See
+# common/scripted_effects/extra_effects.txt (te_ai_seed_trade_center_effect).
+te_ai_seed_trade_center_on_action = {
+	effect = {
+		te_ai_seed_trade_center_effect = yes
+	}
+}
+
+# COLONIAL COLLAPSE - tiny non-player countries revert to decentralized or get absorbed
+colonial_collapse_on_action = {
+	effect = {
+		colonial_collapse_effect = yes
+	}
+}
+
+# COLONIAL EMPIRE - the permanent ending rewards, the Imperial Federation Act and
+# the Mandate System, kept in step with their records. Its real job is the
+# backfill: a modifier granted before its record existed (an older save) is
+# recorded, so a later revolution can restore it. The civil-war repair
+# (decol_repair_after_civil_war) restores a lost modifier at once, since the
+# records are country variables merged before on_civil_war_won; the restore
+# here only repeats it. decolonization.txt.
+decol_permanent_modifier_sync_on_action = {
+	effect = {
+		decol_sync_permanent_modifiers = yes
+	}
+}
+
+# APTITUDE TRAITS - assign admin/diplo/military traits to characters who lack them
+# (rule-gated inside the effect; see te_aptitude_traits_enabled)
+assign_aptitude_traits_on_action = {
+	effect = {
+		assign_aptitude_traits_effect = yes
+	}
+}
+
+# APTITUDE TRAITS - strip aptitude traits from characters the game rules don't allow them on
+# (everyone with both rules off; non-rulers/heirs with only Heir Education on).
+# Monthly so a loaded save cleans up quickly.
+aptitude_traits_cleanup_on_action = {
+	effect = {
+		aptitude_traits_cleanup_effect = yes
+	}
+}
+
+on_acquired_technology = {
+	on_actions = {
+		add_arable_land_effect_on_action
+		fix_incompatible_laws
+		cultural_hegemony_tech_first_on_action
+		agricultural_diffusion_on_action
+	}
+}
+
+# Dispatcher for the agricultural diffusion system.
+# Fires on every tech acquisition; each guard combines
+# `has_technology_researched = <T>` with `NOT = has_global_variable = world_first_<T>`,
+# so only the first researcher of each diffusion-eligible tech actually
+# triggers the broadcast. See common/scripted_effects/agricultural_diffusion_effects.txt.
+agricultural_diffusion_on_action = {
+	effect = {
+		agdiff_dispatch_if_first = { TECH = nitrogen_fixation }
+		agdiff_dispatch_if_first = { TECH = modern_chemical_processes }
+		agdiff_dispatch_if_first = { TECH = green_revolution }
+		agdiff_dispatch_if_first = { TECH = gene_splicing }
+		agdiff_dispatch_if_first = { TECH = biotechnology }
+	}
+}
+
+on_law_enactment_started = {
+	events = {
+		minor_events_timelineextended.2
+	}
+}
+
+on_law_activated = {
+	on_actions = {
+		fix_incompatible_laws_from_law_scope
+		te_fix_inconsistent_laws_from_law_scope
+		te_collective_governance_from_law_scope
+		te_free_elections_from_law_scope
+		language_reform_law_on_action
+		radical_law_backlash_on_action
+		banking_law_cascade_on_law_activated
+		te_banking_economy_law_cleanup
+	}
+}
+
+# When the economic-system law changes, remove the banking tools that belonged
+# to the old economy type, so stale planning/cooperative/market CB-tool
+# modifiers don't linger. ROOT = law scope; owner = country.
+#
+# on_law_activated, not on_law_enactment_pass: at the pass the country still
+# holds the OLD law (vanilla 00_code_on_actions.txt, the note on the hook), so
+# has_law tests here acted one law change late (#337) — OMO survived entering
+# a command economy until the next enactment. Here the new law is in force,
+# and a law set directly by script (activate_law) is caught too. Each tool
+# still on is switched off with its history-chart marker (banking_strip_tool,
+# extra_effects.txt), so the chart shows it ending. It runs on every
+# activation, and a tool already off is skipped, so nothing is marked then.
+te_banking_economy_law_cleanup = {
+	effect = {
+		owner = {
+			if = {
+				limit = { has_journal_entry = je_banking_cycle }
+				# Not (or no longer) a command economy → remove all planning_* modifiers
+				if = {
+					limit = { NOT = { has_law = law_type:law_command_economy } }
+					remove_banking_planning_modifiers_effect = yes
+				}
+				# Not (or no longer) cooperative ownership → remove all cooperative_* modifiers
+				if = {
+					limit = { NOT = { has_law = law_type:law_cooperative_ownership } }
+					remove_banking_cooperative_modifiers_effect = yes
+				}
+				# Command economy or cooperative → remove all market CB-tool modifiers
+				if = {
+					limit = {
+						OR = {
+							has_law = law_type:law_command_economy
+							has_law = law_type:law_cooperative_ownership
+						}
+					}
+					remove_banking_market_modifiers_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# When command economy activates, force-enact state-owned banking.
+# ROOT = law scope; owner = country.
+banking_law_cascade_on_law_activated = {
+	effect = {
+		if = {
+			limit = {
+				type = law_type:law_command_economy
+				owner = {
+					NOT = { has_law = law_type:law_state_owned_banking }
+				}
+			}
+			owner = {
+				activate_law = law_type:law_state_owned_banking
+			}
+		}
+	}
+}
+
+# NOTE: the building and investment hooks that used to refresh the state
+# modifiers here were removed, and so were the law/technology ones (see the
+# STATE MODIFIER UPDATES ARE PULSE-ONLY block further down).
+# add_modifier = { multiplier = script_value } evaluates the script value
+# through the parent scope chain, and building / institution / law scopes
+# don't support the variables and modifiers those values read, which caused
+# cascading errors. The periodic state pulses are the only refresh sites now:
+# pollution and tourism monthly, migration crowding and free-port tariffs
+# yearly.
+
+# ============================================================================
+# BUILDING BUILT AND EXPANDED (Root = Building)
+# When a barracks is built, a new combat unit type enters a formation.
+# Recalculate combined arms bonuses immediately for the owning country.
+# When an Extraplanetary Base is built or gains a level, refresh the owner's
+# Base Room (sr_ebase_refresh, Space Race UI pass design § 8) at once rather
+# than at the next monthly pulse, which stays the backstop: a hidden country
+# event on the owner, since the refresh's modifiers take a multiplier, which
+# resolves against ROOT (scripting_best_practices.md, "dispatch through a
+# hidden country event").
+# ============================================================================
+on_building_built = {
+	on_actions = {
+		te_on_building_built
+	}
+}
+on_building_expanded = {
+	on_actions = {
+		te_on_building_expanded
+	}
+}
+te_on_building_built = {
+	effect = {
+		if = {
+			limit = {
+				is_building_type = building_barrack
+				exists = owner
+				owner = { modifier:country_combined_arms_bonus_enabled_bool = yes }
+			}
+			owner = {
+				apply_combined_arms_bonuses = yes
+			}
+		}
+		if = {
+			limit = {
+				is_building_type = building_space_mine
+				exists = owner
+			}
+			owner = { sr_ebase_hook_fire = yes }
+		}
+	}
+}
+te_on_building_expanded = {
+	effect = {
+		if = {
+			limit = {
+				is_building_type = building_space_mine
+				exists = owner
+			}
+			owner = { sr_ebase_hook_fire = yes }
+		}
+	}
+}
+
+# ============================================================================
+# CHARACTER RECRUITMENT (Root = Character)
+# When a character is recruited:
+# 1. Apply tech-based traits immediately (immortality, logistics)
+# 2. If a general/admiral, recalculate combined arms (new commander)
+# ============================================================================
+on_character_recruitment = {
+	on_actions = {
+		te_on_character_recruitment
+	}
+}
+te_on_character_recruitment = {
+	effect = {
+		# Combined-arms recompute walks every general; non-general recruits
+		# (politicians, agitators, admirals, executives) don't change the
+		# output, so skip the work. Matches the narrowing already applied
+		# in te_on_building_built (is_building_type = building_barrack) and
+		# te_on_military_formation_created. Pure perf trim, behavior-neutral.
+		if = {
+			limit = { has_role_of_type = general }
+			owner = {
+				if = {
+					limit = { modifier:country_combined_arms_bonus_enabled_bool = yes }
+					apply_combined_arms_bonuses = yes
+				}
+			}
+		}
+	}
+}
+
+# ============================================================================
+# MILITARY FORMATION CREATED (Root = Military Formation)
+# When a new formation is created, recalculate combined arms bonuses.
+# ============================================================================
+on_military_formation_created = {
+	on_actions = {
+		te_on_military_formation_created
+	}
+}
+te_on_military_formation_created = {
+	effect = {
+		if = {
+			limit = {
+				exists = country
+				country = { modifier:country_combined_arms_bonus_enabled_bool = yes }
+			}
+			country = {
+				apply_combined_arms_bonuses = yes
+			}
+		}
+	}
+}
+
+# ============================================================================
+# STATE OWNER CHANGE (Root = state)
+# When a state changes hands (e.g. conquest), remove building_space_program
+# if it exists and this state is not the new owner's capital
+# (sr_space_program_site), and bring the state-input treaty articles' effects in line with
+# the new owner.
+# ============================================================================
+on_state_owner_change = {
+	on_actions = {
+		te_on_state_owner_change
+		te_state_treaty_article_owner_change_on_action
+	}
+}
+te_on_state_owner_change = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_space_program
+				# Only when the owner's capital is known: a market-capital link once
+				# came back invalid (observer run, 2026-10-06), and a broken link
+				# is no reason to demolish the program.
+				exists = owner.capital
+				NOT = { sr_space_program_site = yes }
+			}
+			remove_building = building_space_program
+		}
+		# the late-marriage plan's owner-change probe (te_debug_demog.1 option q): console only, off in play
+		if = {
+			limit = { has_global_variable = te_probe_owner_on }
+			te_debug_demog_probe_owner_hook = yes
+		}
+	}
+}
+
+language_reform_law_on_action = {
+	effect = {
+		owner = {
+			# Fire founding event when language reform is active but has no reform type amendment
+			if = {
+				limit = {
+					has_law = law_type:law_state_led_language_reform
+					NOT = { has_any_langreform_reform_amendment = yes }
+				}
+				trigger_event = { id = extra_law_events.25 }
+			}
+			# Clean up transition cost modifiers and legacy data when law changes away
+			if = {
+				limit = {
+					NOT = { has_law = law_type:law_state_led_language_reform }
+					has_any_langreform_modifier = yes
+				}
+				remove_all_langreform_modifiers = yes
+			}
+		}
+	}
+}
+
+# Fires from on_law_activated (ROOT = law scope).
+# Checks if the activated law is radical and the government is not exempt.
+# Identifies the specific radical law via a variable so the event can
+# react to exactly what was enacted (not what the country already has).
+radical_law_backlash_on_action = {
+	effect = {
+		if = {
+			limit = {
+				is_radical_law_activated = yes
+				owner = {
+					is_exempt_from_radical_backlash = no
+					NOT = { has_variable = ch_hegemonic_law_backlash_immunity }
+				}
+			}
+			# Identify which radical law was activated (ROOT = law scope)
+			if = {
+				limit = { law_type = law_type:law_communal_child_rearing }
+				owner = { set_variable = { name = radical_law_backlash_type value = 1 } }
+			}
+			else_if = {
+				limit = { law_type = law_type:law_state_atheism }
+				owner = { set_variable = { name = radical_law_backlash_type value = 2 } }
+			}
+			else_if = {
+				limit = { law_type = law_type:law_cooperative_ownership }
+				owner = { set_variable = { name = radical_law_backlash_type value = 3 } }
+			}
+			else_if = {
+				limit = { law_type = law_type:law_command_economy }
+				owner = { set_variable = { name = radical_law_backlash_type value = 4 } }
+			}
+			else_if = {
+				limit = { law_type = law_type:law_collectivized_agriculture }
+				owner = { set_variable = { name = radical_law_backlash_type value = 5 } }
+			}
+			owner = {
+				trigger_event = { id = extra_law_events.36 }
+			}
+		}
+	}
+}
+
+on_merge_markets = {
+	on_actions = {
+		gw_market_join_on_action
+	}
+}
+
+# Root = the dissolving (joining) market, scope:market = the absorbing market.
+# owner = the country whose market is dissolving (new market member).
+# scope:market.owner = the country that owns the absorbing market (the market leader).
+# National climate policies remain with the joining country. A former leader's
+# tariff programme ends; its settings must never write into the new market.
+gw_market_join_on_action = {
+	effect = {
+		owner ?= {
+			if = {
+				limit = { has_journal_entry = je_global_warming }
+				gw_drop_fossil_fuel_tariffs_effect = yes
+			}
+		}
+	}
+}
+
+space_elevator_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_space_elevator_construction_site
+			}
+			space_elevator_construction = yes
+			every_scope_building = {
+				limit = {
+					is_building_type = building_space_elevator_construction_site
+				}
+				remove_modifier = space_elevator_progress
+				add_modifier = {
+					name = space_elevator_progress
+					multiplier = root.var:space_elevator_progress_var
+				}
+			}
+		}
+	}
+}
+
+solar_collector_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_solar_collector_construction_site
+			}
+			solar_collector_construction = yes
+			every_scope_building = {
+				limit = {
+					is_building_type = building_solar_collector_construction_site
+				}
+				remove_modifier = solar_collector_progress
+				add_modifier = {
+					name = solar_collector_progress
+					multiplier = root.var:solar_collector_progress_var
+				}
+			}
+		}
+	}
+}
+
+combined_arms_update_on_action = {
+	effect = {
+		if = {
+			limit = { modifier:country_combined_arms_bonus_enabled_bool = yes }
+			apply_combined_arms_bonuses = yes
+		}
+	}
+}
+
+# State scope (on_monthly_pulse_state): state_monthly_loyalists_add is read
+# per state.
+ministry_of_thought_control_on_action = {
+	effect = {
+		thought_control_loyalists_update = yes
+	}
+}
+
+remove_invalid_buildings = {
+	effect = {
+		# Two separate iterations on purpose: an iterator's `limit` filters the
+		# whole iteration no matter where it sits in the block, so a single
+		# every_scope_state with the space-program limit would gate the company
+		# sweep as well (it did, until 2026-09-12).
+		#
+		# The company sweep asks has_building for all 323 company building
+		# types, so it runs only where a company building stands: every one is
+		# in bg_company_buildings (no child groups), and each removal needs
+		# has_building, i.e. a level, so the level gates change nothing. It was
+		# the biggest single cost in the monthly country pulse (2026-10-03
+		# script profile).
+		if = {
+			limit = {
+				country_has_building_group_levels = { type = bg_company_buildings value >= 1 }
+			}
+			every_scope_state = {
+				limit = {
+					state_has_building_group_levels = { type = bg_company_buildings value >= 1 }
+				}
+				remove_invalid_company_buildings_effect = yes
+			}
+		}
+		every_scope_state = {
+			limit = {
+				AND = {
+					has_building = building_space_program
+					# As in te_on_state_owner_change: only a known capital, with
+					# this state not the owner's capital, removes the program
+					# (sr_space_program_site, space_race_triggers.txt).
+					exists = owner.capital
+					NOT = { sr_space_program_site = yes }
+				}
+			}
+			remove_building = building_space_program
+		}
+	}
+}
+
+cheaty_on_action = {
+	effect = {
+		if = {
+			limit = {
+				always = no
+			}
+			if = {
+				limit = { NOT = { has_modifier = cheaty }}
+				add_modifier = {
+					name = cheaty
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = cheaty
+			}
+			remove_modifier = cheaty
+		}
+	}
+}
+
+pollution_on_action = {
+	effect = {
+		te_update_pollution_modifier = yes
+	}
+}
+
+global_warming_update_on_action = {
+	effect = {
+		if = {
+			limit = { NOT = { has_global_variable = greenhouse_gas_emissions } }
+			set_global_variable = { name = greenhouse_gas_emissions value = 0 }
+		}
+		if = {
+			limit = {
+				has_game_rule = global_warming_enabled
+				owner.capital = THIS
+			}
+			owner = {
+				gw_snapshot_country_emissions_effect = yes
+				change_global_variable = {
+					name = greenhouse_gas_emissions
+					add = var:gw_disp_country_emis
+				}
+				gw_accumulate_country_emissions_effect = yes
+			}
+		}
+		if = {
+			limit = {
+				has_game_rule = global_warming_enabled
+				exists = owner.market_capital
+				owner.market_capital = THIS
+			}
+			owner = { gw_snapshot_market_emissions_effect = yes }
+		}
+	}
+}
+
+global_warming_events_on_action = {
+	effect = {
+		# Display snapshots for the journal-entry widget. Both are here because
+		# this on_action is the one global-scope monthly pulse, so each runs
+		# exactly once for the whole world rather than once per country.
+		# gw_refresh_global_counts_effect is a single country sweep that fills
+		# all eleven adoption counters; gw_rebase_annual_emissions_effect is O(1)
+		# and only does work in January. Neither has a gameplay effect of its
+		# own, but the aerosol mask's target is read off the counts.
+		# Tariff maintenance also runs with the rule off to restore prior settings.
+		# Emissions and threshold events remain gated on the climate rule.
+		gw_refresh_tariff_policies_effect = yes
+		if = {
+			limit = { has_game_rule = global_warming_enabled }
+			gw_rebase_annual_emissions_effect = yes
+			gw_refresh_global_counts_effect = yes
+			# The aerosol mask (Geoengineering) reads the counts just taken.
+			gw_aerosol_update_mask_effect = yes
+			# TEMPORARY (#1448): does the World Climate entry's Climate Warming
+			# reach a country? Once a game; TE_SELF_CHECK gw_world_climate.
+			gw_world_climate_selfcheck_effect = yes
+
+			# Fire warming-threshold environmentalism events exactly once globally when
+			# temperature_anomaly_display crosses each threshold upward. Runs in the
+			# global (world) scope of on_monthly_pulse — every_country inside the
+			# helper reaches all countries without per-country duplication.
+			gw_fire_warming_threshold_event = { THRESHOLD = 0.5 FLAG = gw_mild_event_fired         EVENT_ID = environmentalism_events.1 }
+			gw_fire_warming_threshold_event = { THRESHOLD = 1.0 FLAG = gw_moderate_event_fired     EVENT_ID = environmentalism_events.2 }
+			gw_fire_warming_threshold_event = { THRESHOLD = 2.0 FLAG = gw_severe_event_fired       EVENT_ID = environmentalism_events.3 }
+			gw_fire_warming_threshold_event = { THRESHOLD = 3.0 FLAG = gw_catastrophic_event_fired EVENT_ID = environmentalism_events.4 }
+			gw_fire_warming_threshold_event = { THRESHOLD = 4.0 FLAG = gw_apocalyptic_event_fired  EVENT_ID = environmentalism_events.22 }
+
+			# Cooling / reversal threshold events: fire once globally when temperatures
+			# move back below a threshold, gated on the matching warming flag so cooling
+			# only fires if the warming side already fired earlier in the run.
+			gw_fire_cooling_threshold_event = { THRESHOLD = 4.0 PREREQ = gw_apocalyptic_event_fired  FLAG = gw_cooling_below_4_event_fired       EVENT_ID = environmentalism_events.23 }
+			gw_fire_cooling_threshold_event = { THRESHOLD = 3.0 PREREQ = gw_catastrophic_event_fired FLAG = gw_cooling_below_3_event_fired       EVENT_ID = environmentalism_events.17 }
+			gw_fire_cooling_threshold_event = { THRESHOLD = 2.0 PREREQ = gw_severe_event_fired       FLAG = gw_cooling_below_2_event_fired       EVENT_ID = environmentalism_events.18 }
+			gw_fire_cooling_threshold_event = { THRESHOLD = 1.0 PREREQ = gw_moderate_event_fired     FLAG = gw_cooling_below_1_event_fired       EVENT_ID = environmentalism_events.19 }
+			gw_fire_cooling_threshold_event = { THRESHOLD = 0.5 PREREQ = gw_mild_event_fired         FLAG = gw_cooling_below_0_5_event_fired     EVENT_ID = environmentalism_events.20 }
+			gw_fire_cooling_threshold_event = { THRESHOLD = 0.1 PREREQ = gw_mild_event_fired         FLAG = gw_cooling_near_baseline_event_fired EVENT_ID = environmentalism_events.21 }
+		}
+		else = {
+			# Save compatibility: before the rule gated accumulation, a disabled-rule
+			# game still built up emissions. Hold the global at 0 so no reader of
+			# temperature_anomaly_display acts on that phantom warming. The cooling
+			# events cannot fire from the drop, since they are gated above.
+			set_global_variable = {
+				name = greenhouse_gas_emissions
+				value = 0
+			}
+			gw_aerosol_clear_mask_effect = yes
+		}
+
+		# Recurring random events for countries experiencing global warming.
+		# Each country has a small monthly chance of getting one event.
+		# Event triggers are checked inside the event definitions themselves.
+		every_country = {
+			limit = {
+				NOT = { is_country_type = decentralized }
+				has_global_variable = greenhouse_gas_emissions
+			}
+			random_list = {
+				1800 = { } # ~90% chance of nothing happening this month
+				# Crop failures (severe+ warming, farming country). The farm test
+				# is the event's own (gw_state_has_staple_farm).
+				15 = {
+					trigger = {
+						temperature_anomaly_display >= 2.0
+						any_scope_state = {
+							is_incorporated = yes
+							gw_state_has_staple_farm = yes
+						}
+					}
+					trigger_event = { id = environmentalism_events.5 }
+				}
+				# Climate refugees (moderate+ warming)
+				15 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 1.0
+					}
+					trigger_event = { id = environmentalism_events.6 }
+				}
+				# Pollution scandal (has coal/oil industry). Weight 8, below its
+				# neighbours, because it needs no warming: any country with a
+				# level-3 coal mine or oil rig qualifies all game. With the
+				# event's five-year cooldown, 15 brought it back about every 15
+				# years; 8 makes that about 24.
+				8 = {
+					trigger = {
+						any_scope_state = {
+							is_incorporated = yes
+							any_scope_building = {
+								OR = {
+									is_building_type = building_coal_mine
+									is_building_type = building_oil_rig
+								}
+								level >= 3
+							}
+						}
+					}
+					trigger_event = { id = environmentalism_events.7 }
+				}
+				# Environmentalist movement (mild+ warming, has pollution_control)
+				15 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 0.5
+						has_technology_researched = pollution_control
+					}
+					trigger_event = { id = environmentalism_events.8 }
+				}
+				# Coastal flooding (moderate+ warming, coastal ports)
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 1.0
+						any_scope_state = {
+							is_incorporated = yes
+							is_coastal = yes
+							has_building = building_port
+						}
+					}
+					trigger_event = { id = environmentalism_events.9 }
+				}
+				# Water shortage (severe+ warming)
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 2.0
+					}
+					trigger_event = { id = environmentalism_events.10 }
+				}
+				# Green tech boom (environmental_movement tech + renewables)
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						has_technology_researched = environmental_movement
+						any_scope_state = {
+							has_building = building_renewable_energy_plant
+						}
+					}
+					trigger_event = { id = environmentalism_events.11 }
+				}
+				# Fossil fuel lobby (has emission policies + large fossil industry)
+				10 = {
+					trigger = {
+						has_journal_entry = je_global_warming
+						OR = {
+							je:je_global_warming = { has_modifier = carbon_tax_modifier }
+							je:je_global_warming = { has_modifier = emission_standards_modifier }
+							je:je_global_warming = { has_modifier = fossil_fuel_divestment_modifier }
+						}
+						any_scope_state = {
+							any_scope_building = {
+								OR = {
+									is_building_type = building_coal_mine
+									is_building_type = building_oil_rig
+								}
+								level >= 5
+							}
+						}
+					}
+					trigger_event = { id = environmentalism_events.12 }
+				}
+				# Climate summit (major+ power, moderate+ warming). The UN's climate
+				# accord (un_events.17) owns this diplomacy while a UN exists, so the
+				# summit is the fallback for a world without one.
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 1.0
+						country_rank >= rank_value:major_power
+						has_technology_researched = pollution_control
+						OR = {
+							has_game_rule = united_nations_disabled
+							NOT = { has_global_variable = un_founded }
+						}
+					}
+					trigger_event = { id = environmentalism_events.13 }
+				}
+				# Disease outbreak (severe+ warming)
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 2.0
+					}
+					trigger_event = { id = environmentalism_events.14 }
+				}
+				# Political clash (clean_energy_technologies + industrialists in gov + catastrophic warming)
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 3.0
+						has_technology_researched = clean_energy_technologies
+						ig:ig_industrialists ?= { is_in_government = yes }
+					}
+					trigger_event = { id = environmentalism_events.15 }
+				}
+				# Melting ice caps (high warming, coastal)
+				10 = {
+					trigger = {
+						gw_warming_felt = yes
+						temperature_anomaly_display >= 2.5
+						any_scope_state = { is_coastal = yes }
+					}
+					trigger_event = { id = environmentalism_events.16 }
+				}
+			}
+		}
+	}
+}
+
+
+tech_spread_on_action = {
+	effect = {
+		if = {
+			limit = { global_tech_spread_script_value > 0 }
+			# The value applied, for the Nation tab's row (te_nation_tech_spread):
+			# the GUI re-reads every frame, and the script value sweeps 54
+			# technologies across every country.
+			set_variable = { name = te_global_tech_spread_applied value = global_tech_spread_script_value }
+			remove_modifier = global_technological_development
+			add_modifier = {
+				name = global_technological_development
+				multiplier = var:te_global_tech_spread_applied
+			}
+		}
+	}
+}
+
+# One-shot grants keyed on a technology's tooltip-marker modifier, not on the
+# technology: the tech's modifier block shows the bool, and this is the one
+# place that acts on it. Reading the modifier means anything else that grants
+# the bool triggers the same result, and it also catches any path to the tech
+# that skips its on_researched. Monthly, so a grant lands within a month of the
+# research. The bools are defined in era_6.txt (decolonization) and era_7.txt
+# (civil_rights_movement). Decolonization's three: recognition, the
+# anti-colonialist ideology, and dropping claims on decentralized states.
+tech_marker_grants_on_action = {
+	effect = {
+		# decolonization
+		if = {
+			limit = {
+				is_country_type = unrecognized
+				modifier:country_unrecognized_become_recognized_bool = yes
+			}
+			set_country_type = recognized
+		}
+		if = {
+			limit = { modifier:country_add_anticolonial_ideology_to_igs_bool = yes }
+			if = {
+				limit = {
+					ig:ig_trade_unions ?= {
+						NOT = { has_ideology = ideology:ideology_anti_colonialist }
+					}
+				}
+				ig:ig_trade_unions = {
+					add_ideology = ideology_anti_colonialist
+					save_scope_as = interest_group_scope
+				}
+				post_notification = ideology_anti_colonialist_added
+			}
+			if = {
+				limit = {
+					ig:ig_intelligentsia ?= {
+						NOT = { has_ideology = ideology:ideology_anti_colonialist }
+					}
+				}
+				ig:ig_intelligentsia = {
+					add_ideology = ideology_anti_colonialist
+					save_scope_as = interest_group_scope
+				}
+				post_notification = ideology_anti_colonialist_added
+			}
+		}
+		# Renounce our claims on decentralized states. Claims sit on state
+		# regions, so test the claimer's has_claim against each state's region,
+		# not has_claim_by on the decentralized owner's portion of a split state
+		# (e.g. Equateur shared with Sudan). Use the dedicated decentralized
+		# country iterators and walk only those countries' states
+		# (a few hundred) rather than every state in the world. It runs every
+		# month, not once: a claim that reaches us after the first sweep is dropped
+		# within the month too. The stake action itself (da_stake_colonial_claim) is
+		# closed to us by te_stake_colonial_claim.txt, so this is the backstop for
+		# claims that arrive another way. number_of_claims > 0 keeps a country with
+		# none off the scan.
+		if = {
+			limit = {
+				modifier:country_remove_decentralized_claims_bool = yes
+				number_of_claims > 0
+				any_decentralized_country = {
+					any_scope_state = {
+						state_region = { ROOT = { has_claim = PREV } }
+					}
+				}
+			}
+			every_decentralized_country = {
+				every_scope_state = {
+					limit = {
+						state_region = { ROOT = { has_claim = PREV } }
+					}
+					state_region = { remove_claim = ROOT }
+				}
+			}
+			post_notification = decentralized_claims_renounced
+		}
+		# civil_rights_movement
+		if = {
+			limit = {
+				modifier:country_add_multicultural_ideology_to_intelligentsia_bool = yes
+				ig:ig_intelligentsia ?= {
+					NOT = { has_ideology = ideology:ideology_multicultural_ig }
+				}
+			}
+			ig:ig_intelligentsia = {
+				add_ideology = ideology_multicultural_ig
+				save_scope_as = interest_group_scope
+			}
+			post_notification = ideology_multicultural_added
+		}
+	}
+}
+
+add_arable_land_effect_on_action = {
+	effect = {
+		trigger_event = {id = minor_events_timelineextended.1 days = 1}
+	}
+}
+
+investment_pool_setup_on_action = {
+	effect = {
+		if = {
+			limit = {
+				NOT = { has_variable = investment_pool_initialized}
+			}
+			add_investment_pool = starting_investment_pool
+			set_variable = investment_pool_initialized
+		}
+	}
+}
+
+war_propaganda_on_action = {
+	effect = {
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_at_war = yes }
+			}
+			owner = {
+				every_scope_war = {
+					add_war_war_support = {
+						target = ROOT.owner
+						value = war_propaganda_support_script_value
+					}
+				}
+			}
+		}
+	}
+}
+
+# Excess Private Construction (docs/systems/mod_systems/construction.md § Excess Private
+# Construction). too_much_private_construction raises every project's weekly
+# construction cap so an investment pool the private queue can't spend gets
+# spent, and charges a construction-efficiency penalty that scales with it.
+#
+# Checked every year, also while the modifier is in force. It is applied or kept
+# while one of these holds:
+# - Entry (no stored value): investors have more than target_queue_length
+#   levels queued and the pool takes in more than it spends.
+# - Stay (var:too_much_private_construction_cached above 0, which is the
+#   modifier's multiplier, so normally the modifier is in force): the private
+#   queue isn't empty and too_much_private_construction_overflow > 0, i.e.
+#   target_queue_length projects at base speed still couldn't spend the pool's
+#   gross income. Net income can't be the stay test: it turns negative as soon
+#   as the modifier drains the pool, so the modifier would remove itself by
+#   working. Nor can the 500-level bar: the engine's own autonomous investment
+#   fills the queue, and faster projects shorten it while the modifier is
+#   still needed.
+# - Overinvestment is in force (below).
+# While one holds, the value ramps (at most x1.2 or /1.2 a year,
+# too_much_private_construction_script_value). Otherwise the modifier is
+# removed and the variable zeroed. The stay test reads the variable, not the
+# modifier, because a civil war's winner inherits variables but no modifiers
+# (docs/guides/scripting_best_practices.md, "What a Civil War's Winner
+# Inherits"): a winner holding the variable rebuilds the modifier, so it
+# continues the nation. On that first pulse base_construction_per_week
+# subtracts a value the winner's modifiers don't include, so the overflow reads
+# high by that much; the x1.2 ceiling caps the rebuilt value at 1.2x the
+# inherited one, and the next pulse is exact. Outside Overinvestment the stay
+# test fails exactly when the ramp's target reaches 0, so the /1.2 floor can't
+# keep a spent modifier alive. Until 2026-09-26 the gate was skipped once the
+# modifier existed, and it lingered for about a century on that floor.
+#
+# On removal the value is kept in var:too_much_private_construction_last for
+# five years, and a re-entry within them starts at the lesser of it and the
+# overflow instead of at 10 at most (too_much_private_construction_resume). A
+# short dip in pool income can fail the stay test when the need is small (a
+# banking panic cuts capitalist contributions for over a year), and a restart
+# from 10 would take decades to climb back. After five years the variable
+# expires and a new episode ramps from 10 as designed, so a re-entry decades
+# later doesn't jump straight to a large penalty. The stored value is also
+# cleared once the modifier is back.
+#
+# Overinvestment keeps the modifier. It cuts every pop's pool contribution, so
+# gross income, and the overflow with it, falls to about 0. Removing the
+# modifier then would zero the variable and end Overinvestment after one year,
+# since it needs the variable above 1000. Kept, the value is held at last
+# year's while the private queue has levels (too_much_private_construction_script_value,
+# owner's ruling), so Overinvestment is re-added until its own exit holds: the
+# pool at or under GDP. The year after it lifts, the stay test and the normal
+# ramp take over. Limits of the hold:
+# - It freezes growth as well as decay: with gross income cut the overflow
+#   reads -base, so the need can't raise the value during Overinvestment.
+#   When the queue cap limits the drain, the frozen value is the limit (the
+#   PR #514 toy model's 2M/week country runs 13 straight years at 1145).
+# - Episodes can be long, even indefinite, when inflows that aren't pop
+#   contributions outpace a capped drain: government-dividend reinvestment,
+#   or a pool left far above GDP by a GDP collapse. (The cooperative boom and
+#   frenzy phases were one until 2026-10-05; their pool term is now a share
+#   of gross income, which Overinvestment cuts.)
+# - One queued private level is enough to keep it.
+# (Before 2026-09-27 the value fell /1.2 in each Overinvestment
+# year, so while the pool stayed above GDP it hovered around 1000, with
+# Overinvestment every other year.) Meanwhile the private queue keeps spending
+# the pool: under direct construction through the law's allocation, under Free
+# Market Construction through te_construction_market_private_spending_target,
+# a 24th of the pool a week whatever the sign of gross income (until
+# 2026-09-26 it was 0 or less once gross income was, so the market bought
+# nothing during Overinvestment).
+#
+# The variable is written first and the modifier reads it flat, so the
+# modifier always equals var:too_much_private_construction_cached, which
+# base_construction_per_week subtracts. It is set to 0, never removed.
+excess_private_construction_on_action = {
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					AND = {
+						NOT = {
+							AND = {
+								has_variable = too_much_private_construction_cached
+								var:too_much_private_construction_cached > 0
+							}
+						}
+						construction_queue_num_queued_private_levels > target_queue_length
+						investment_pool_net_income > 0
+					}
+					AND = {
+						has_variable = too_much_private_construction_cached
+						var:too_much_private_construction_cached > 0
+						construction_queue_num_queued_private_levels > 0
+						too_much_private_construction_overflow > 0
+					}
+					has_modifier = overinvestment_modifier
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_variable = too_much_private_construction_cached }
+				}
+				set_variable = {
+					name = too_much_private_construction_cached
+					value = 0
+				}
+			}
+			remove_modifier = too_much_private_construction
+			set_variable = {
+				name = too_much_private_construction_cached
+				value = too_much_private_construction_script_value
+			}
+			if = {
+				limit = {
+					var:too_much_private_construction_cached > 0
+				}
+				add_modifier = {
+					name = too_much_private_construction
+					multiplier = var:too_much_private_construction_cached
+				}
+				if = {
+					limit = {
+						has_variable = too_much_private_construction_last
+					}
+					remove_variable = too_much_private_construction_last
+				}
+			}
+		}
+		else = {
+			remove_modifier = too_much_private_construction
+			if = {
+				limit = {
+					has_variable = too_much_private_construction_cached
+					var:too_much_private_construction_cached > 0
+				}
+				set_variable = {
+					name = too_much_private_construction_last
+					value = var:too_much_private_construction_cached
+					years = 5
+				}
+				set_variable = {
+					name = too_much_private_construction_cached
+					value = 0
+				}
+			}
+		}
+		remove_modifier = overinvestment_modifier
+		if = {
+			limit = {
+				has_variable = too_much_private_construction_cached
+				var:too_much_private_construction_cached > 1000
+				investment_pool > gdp
+			}
+			add_modifier = {
+				name = overinvestment_modifier
+			}
+		}
+	}
+}
+
+state_yearly_cultural_acceptance_add_on_action = {
+	effect = {
+		if = {
+			limit = {
+				AND = {
+					OR = {
+						modifier:state_yearly_cultural_acceptance_add > 0
+						modifier:state_min_cultural_acceptance_delta_add > 0
+					}
+					any_scope_culture = {
+						ROOT = {
+							"cultural_acceptance_delta(PREV)" < -1
+						}
+					}
+				}
+			}
+			every_scope_culture = {
+				limit = {
+					ROOT = {
+						"cultural_acceptance_delta(PREV)" < -1
+					}
+				}
+				ROOT = {
+					if = {
+						limit = {
+							"cultural_acceptance_delta(PREV)" < negative_state_min_cultural_acceptance_delta_add
+						}
+						add_acceptance = {
+							target = PREV
+							value = {
+								value = negative_state_min_cultural_acceptance_delta_add
+								subtract = "cultural_acceptance_delta(PREV)"
+							}
+						}
+					}
+					add_acceptance = {
+						target = PREV
+						value = {
+							add = modifier:state_yearly_cultural_acceptance_add
+							divide = 12 # monthly on_action
+							max = {
+								add = "cultural_acceptance_delta(PREV)"
+								multiply = -1
+								subtract = 1 # cannot add more delta than what gets you to -1
+							}
+							min = 0
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+violent_hostility_on_action = {
+	effect = {
+		save_scope_as = curr_state
+		if = {
+			limit = {
+				modifier:state_violence_against_minorities_bool = yes
+				any_scope_culture = {
+					scope:curr_state = {
+						state_cultural_acceptance = {
+							target = PREV
+							value < 60
+						}
+					}
+				}
+			}
+
+			every_scope_culture = {
+				limit = {
+					scope:curr_state = {
+						state_cultural_acceptance = {
+							target = PREV
+							value < 60
+						}
+					}
+				}
+				save_scope_as = curr_culture
+				random_list = {
+					5 = { # real bad
+						modifier = {
+							if = {
+								limit = {
+									scope:curr_state = {
+										state_cultural_acceptance = {
+											target = PREV
+											value < 40
+										}
+									}
+								}
+								add = 10
+							}
+							if = {
+								limit = {
+									scope:curr_state = {
+										state_cultural_acceptance = {
+											target = PREV
+											value < 20
+										}
+									}
+								}
+								add = 20
+							}
+							if = {
+								limit = {
+									scope:curr_state = { has_decree = decree_promote_national_values }
+								}
+								multiply = 1.5
+							}
+							if = {
+								limit = {
+									scope:curr_state = { has_decree = decree_violent_suppression }
+								}
+								multiply = 1.5
+							}
+							if = {
+								limit = {
+									scope:curr_state.owner = {
+										power_bloc ?= {
+											has_principle_group = principle_group:principle_group_cultural_unity
+										}
+									}
+								}
+								multiply = 2.0
+							}
+						}
+						scope:curr_state = {
+							set_local_variable = { name = te_dg_vh value = 0 }
+							every_scope_pop = {
+								limit = { culture = scope:curr_culture }
+								change_local_variable = { name = te_dg_vh add = total_size }
+							}
+							change_local_variable = { name = te_dg_vh multiply = 0.1 }
+							te_demog_note_kills = { VALUE = local_var:te_dg_vh }
+							kill_population_percent_in_state = {
+								culture = PREV
+								percent = 0.1
+							}
+							add_radicals_in_state = {
+								culture = PREV
+								value = 1.0
+							}
+							state_region = { add_devastation = 25 } # percent: the effect takes 0..100, the trigger reads 0..1
+							trigger_mass_migration = {
+								POP_RATIO = 0.8
+							}
+						}
+					}
+					5 = { # bad
+						modifier = {
+							if = {
+								limit = {
+									scope:curr_state = {
+										state_cultural_acceptance = {
+											target = PREV
+											value < 40
+										}
+									}
+								}
+								add = 10
+							}
+							if = {
+								limit = {
+									scope:curr_state = {
+										state_cultural_acceptance = {
+											target = PREV
+											value < 20
+										}
+									}
+								}
+								add = 10
+							}
+							if = {
+								limit = {
+									scope:curr_state = { has_decree = decree_promote_national_values }
+								}
+								multiply = 1.5
+							}
+							if = {
+								limit = {
+									scope:curr_state.owner = {
+										power_bloc ?= {
+											has_principle_group = principle_group:principle_group_cultural_unity
+										}
+									}
+								}
+								multiply = 0.75
+							}
+						}
+						scope:curr_state = {
+							set_local_variable = { name = te_dg_vh value = 0 }
+							every_scope_pop = {
+								limit = { culture = scope:curr_culture }
+								change_local_variable = { name = te_dg_vh add = total_size }
+							}
+							change_local_variable = { name = te_dg_vh multiply = 0.02 }
+							te_demog_note_kills = { VALUE = local_var:te_dg_vh }
+							kill_population_percent_in_state = {
+								culture = PREV
+								percent = 0.02
+							}
+							add_radicals_in_state = {
+								culture = PREV
+								value = 0.25
+							}
+							state_region = { add_devastation = 10 }
+							trigger_mass_migration = {
+								POP_RATIO = 0.5
+							}
+						}
+					}
+					100 = { # nothing
+					}
+				}
+			}
+		}
+		remove_variable = sent_message
+	}
+}
+
+fix_incompatible_laws_from_law_scope = {
+	effect = {
+		owner = {
+			fix_incompatible_laws = yes
+		}
+	}
+}
+
+fix_incompatible_laws = {
+	effect = {
+		fix_incompatible_laws = yes
+	}
+}
+
+# Wrapper for on_law_activated (root = law scope) → owner-scope dispatch into
+# the mod's per-lawgroup consistency helpers. The te_fix_inconsistent_laws
+# scripted_effect lives in common/scripted_effects/extra_law_consistency_generated.txt
+# (auto-generated by gen_law_consistency.py).
+#
+# Not on the start date. History's activate_law lines fire on_law_activated too,
+# and a group history hasn't reached yet still holds its first law (Serfdom in
+# Land Reform). Swept then, both read as barred by Serfdom: 36 countries started
+# with No Schools instead of Religious Schools and 46 with Agrarianism instead of
+# Interventionism, Britain in both; 20 north German states then lost Civic
+# Monolingualism, which bars No Schools (first 1.15 game's 1841 save, 2026-11-05). The monthly pulse (te_fix_inconsistent_laws_country_pulse) sweeps
+# once every history law is set. Vanilla tells the start apart the same way
+# (game_date > 1836.1.1, 01_character_ideologies.txt).
+te_fix_inconsistent_laws_from_law_scope = {
+	effect = {
+		if = {
+			limit = { game_date > 1836.1.1 }
+			owner = {
+				te_fix_inconsistent_laws = yes
+			}
+		}
+	}
+}
+
+# COLLECTIVE GOVERNANCE - keeps law_direct_democracy's amendment matching the
+# Distribution of Power (te_refresh_collective_governance_amendment,
+# collective_governance_effects.txt). Listed after
+# te_fix_inconsistent_laws_from_law_scope in on_law_activated so it sees the
+# laws the consistency cascade leaves. ROOT = law scope; owner = country.
+te_collective_governance_from_law_scope = {
+	effect = {
+		owner = {
+			te_refresh_collective_governance_amendment = yes
+		}
+	}
+}
+
+# Monthly backstop for the above, and the migration for saves that already
+# hold law_direct_democracy. (activate_law does fire on_law_activated -- vanilla's
+# 00_code_on_actions.txt header -- so the consistency cascade is covered there.)
+te_collective_governance_country_pulse = {
+	effect = {
+		te_refresh_collective_governance_amendment = yes
+	}
+}
+
+# Tradition of Free Elections on Anarchy (te_free_elections_effects.txt). The
+# hook re-attaches it when Anarchy arrives, as vanilla's voting laws do in their
+# on_activate. ROOT = law scope.
+te_free_elections_from_law_scope = {
+	effect = {
+		if = {
+			limit = { type = law_type:law_anarchy }
+			owner = {
+				te_free_elections_inherit_under_anarchy = yes
+			}
+		}
+	}
+}
+
+# One pass per country for saves from before Anarchy could hold the tradition:
+# a country already under Anarchy with free_elections_var gets it. Once only,
+# so a tradition repealed later stays repealed until the next law change.
+te_free_elections_country_pulse = {
+	effect = {
+		if = {
+			limit = { NOT = { has_variable = te_free_elections_anarchy_checked } }
+			set_variable = te_free_elections_anarchy_checked
+			te_free_elections_inherit_under_anarchy = yes
+		}
+	}
+}
+
+# TOURISM - refreshes the tourism_output / tourism_throughput modifiers.
+# SOLE owner of that refresh. A duplicate yearly wrapper
+# (tourism_update_on_action on on_yearly_pulse_state) was removed 2026-09-13:
+# it was harmless while both sites called the same idempotent
+# remove-then-re-add effect, but two owners hide which pulse actually sets
+# the value, and any later divergence between them (different multiplier,
+# an added guard) would silently fight. One modifier, one refresh site.
+# Monthly (not yearly) because the multipliers genuinely change month to
+# month: total_tourism_output_bonus_percent reads city_size_rank, i.e.
+# var:state_city_size_rank, which city_rank_on_action recomputes on every
+# on_monthly_pulse, and total_tourism_throughput_bonus_percent reads the
+# state's live infrastructure balance and art-academy / national-park levels
+# that move with construction. A yearly refresh would leave the modifier up
+# to 11 months stale.
+# on_monthly_pulse_state is genuine state scope, so it satisfies the same
+# requirement the old yearly comment cited: the tourism script values use
+# state_region = s:STATE_X comparisons that only resolve in state scope
+# (which is why tourism is refreshed here and never from a law / technology /
+# building hook).
+tourism_on_action = {
+	effect = {
+		te_update_tourism_modifier = yes
+	}
+}
+
+city_rank_on_action = {
+	effect = {
+		set_global_variable = {
+			name = city_size_rank
+			value = 1
+		}
+		ordered_state = {
+			order_by = city_size
+			min = 0
+			max = 500
+			set_variable = {
+				name = state_city_size_rank
+				value = global_var:city_size_rank
+			}
+			change_global_variable = {
+				name = city_size_rank
+				add = 1
+			}
+		}
+	}
+}
+
+# ============================================================================
+# INTERNATIONAL RELATIONS EVENTS - monthly chance for eligible countries
+# ============================================================================
+international_relations_events_on_action = {
+	effect = {
+		if = {
+			limit = {
+				NOT = { is_country_type = decentralized }
+				country_rank >= rank_value:major_power
+			}
+			random_list = {
+				900 = { } # ~90% chance of nothing
+				# Arms Race Escalation: offered to the country that would build up
+				# (.201); its rival hears of it in .1 only if it does. 10 → 13 so
+				# .1 keeps about its old rate at the AI's ~75% act chance.
+				13 = {
+					trigger = {
+						has_technology_researched = radar
+						any_country = { te_ea_ir_arms_race_target = yes }
+					}
+					trigger_event = { id = international_relations_events.201 }
+				}
+				# Proxy Conflict (covert-disabled fallback; with covert warfare on,
+				# the destabilization and regime-change operations are the tool)
+				10 = {
+					trigger = {
+						has_game_rule = covert_warfare_disabled
+						has_technology_researched = intergovernmental_organizations
+						any_rival_country = {
+							country_rank >= rank_value:major_power
+							any_subject_or_below = { always = yes }
+						}
+					}
+					trigger_event = { id = international_relations_events.2 }
+				}
+				# International Summit
+				10 = {
+					trigger = {
+						has_technology_researched = intergovernmental_organizations
+						country_rank >= rank_value:great_power
+					}
+					trigger_event = { id = international_relations_events.3 }
+				}
+				# Propaganda War: offered to the country that would run the
+				# offensive (.202); its rival hears of it in .4 only if it does.
+				# Covert-disabled only, like .6. 15 → 20 for the ~75% act chance.
+				20 = {
+					trigger = {
+						has_game_rule = covert_warfare_disabled
+						has_technology_researched = mass_media
+						any_country = { te_ea_ir_propaganda_target = yes }
+					}
+					trigger_event = { id = international_relations_events.202 }
+				}
+				# Trade Embargo
+				10 = {
+					trigger = {
+						has_technology_researched = keynesian_economics
+						any_rival_country = { country_rank >= rank_value:major_power }
+					}
+					trigger_event = { id = international_relations_events.5 }
+				}
+				# Espionage Scandal: offered to the country that would plant the
+				# agent (.203); its rival catches him in .6 half the time.
+				# Covert-disabled only. 15 → 20: .6 lands at about half its old
+				# rate, which is the capture roll's price.
+				20 = {
+					trigger = {
+						has_game_rule = covert_warfare_disabled
+						has_technology_researched = cryptography
+						any_country = { te_ea_ir_espionage_target = yes }
+					}
+					trigger_event = { id = international_relations_events.203 }
+				}
+				# Space Race Achievement
+				5 = {
+					trigger = {
+						has_game_rule = space_race_disabled
+						has_technology_researched = space_exploration
+						country_rank >= rank_value:great_power
+					}
+					trigger_event = { id = international_relations_events.7 }
+				}
+				# Nuclear Brinkmanship: only across a real diplomatic play with a
+				# nuclear-armed opponent, outside a deterrence crisis
+				5 = {
+					trigger = {
+						nd_is_armed = yes
+						any_enemy_in_diplo_play = { te_ea_ir_brinkmanship_opponent = yes }
+					}
+					trigger_event = { id = international_relations_events.8 }
+				}
+				# Nuclear Close Call (outside the deterrence system — see the event)
+				3 = {
+					trigger = {
+						has_modifier = nuclear_power
+						any_rival_country = { has_modifier = nuclear_power }
+						NOT = { nd_is_armed = yes }
+					}
+					trigger_event = { id = nuclear_weapon_events.21 }
+				}
+				# Anti-Nuclear Movement
+				3 = {
+					trigger = {
+						has_technology_researched = nuclear_weapons
+						has_variable = nuclear_weapons_program_funding
+						var:nuclear_weapons_program_funding >= 1
+					}
+					trigger_event = { id = nuclear_weapon_events.22 }
+				}
+			}
+		}
+	}
+}
+
+# ============================================================================
+# DECOLONIZATION - the great powers' prestige, once a month (global scope)
+# ============================================================================
+# Every great power's prestige, summed for the Colonial Empire tab's share
+# line (decol_stance_disp_gp_share, decolonization_stance_values.txt), so the
+# panel divides by a stored total instead of walking every country each frame.
+decol_gp_prestige_on_action = {
+	effect = {
+		if = {
+			limit = { has_game_rule = decolonization_enabled }
+			set_global_variable = { name = decol_gp_prestige_total value = decol_gp_prestige_sum }
+		}
+	}
+}
+
+# ============================================================================
+# DECOLONIZATION EVENTS - monthly chance for eligible countries
+# ============================================================================
+decolonization_events_on_action = {
+	effect = {
+		# A stance on colonialism (decolonization_stance_effects.txt): the
+		# cooldown's month, the AI's drop of a stance it cannot pay for, and
+		# each stance's modifier while it counts, whatever the era or the
+		# entry, since a stance outlives both.
+		if = {
+			limit = {
+				OR = {
+					has_variable = gp_anti_colonial_stance
+					has_variable = gp_pro_colonial_stance
+					has_variable = decol_stance_months_left
+					has_modifier = gp_anti_colonial_policy_modifier
+					has_modifier = gp_pro_colonial_policy_modifier
+				}
+			}
+			decol_stance_monthly = yes
+		}
+		# The Colonial Empire tab's list of the colonial powers, for every
+		# player, with the entry or without it, and whether or not their own tab
+		# is open: National Info shows another country's tab, The Colonial
+		# Powers among it, to a player who hasn't researched Decolonization.
+		if = {
+			limit = {
+				is_player = yes
+				has_game_rule = decolonization_enabled
+			}
+			decol_world_refresh_display = yes
+		}
+		# Wars of independence (decolonization_war_effects.txt): the monthly
+		# settle, before the pool and whatever the entry's state, since a war can
+		# outlast a failed entry. A colonial subject at war with us for its
+		# independence takes a record here too.
+		if = {
+			limit = {
+				OR = {
+					decol_iw_any_record = yes
+					AND = {
+						is_at_war = yes
+						any_subject_or_below = {
+							is_direct_subject_of = root
+							has_war_with = root
+							is_qualifying_colonial_subject = yes
+						}
+					}
+				}
+			}
+			decol_iw_track_subject_wars = yes
+			decol_iw_monthly = yes
+		}
+		# A great power arming a colony's rebels pays them each month.
+		if = {
+			limit = { has_variable = decol_iw_arming }
+			decol_iw_backer_monthly = yes
+		}
+		# A great power arming a colonial power: a month of its arms gone.
+		if = {
+			limit = { has_variable = decol_iw_allied_arming }
+			decol_iw_allied_backer_monthly = yes
+		}
+		if = {
+			limit = {
+				NOT = { is_country_type = decentralized }
+				# The world's decolonization era, not our own research, so a former
+				# colony without the technology still gets its post-independence
+				# events (owner ruling, 2026-09-26). Every metropole-side event
+				# still needs our own technology through its own trigger (the
+				# entry, .14, the .60 / .61 targets).
+				decol_era_begun = yes
+				# Only a country some entry below can fire for: every event in the
+				# pool needs either our own technology (through the entry, which
+				# cannot activate without it: .1-.3, .8-.13, .19, .50-.54; its own
+				# trigger: .14; the target check: .60 / .61) or recently_decolonized
+				# (.4, .7, .16-.18, .21). So the pool's many state and pop walks
+				# are skipped for everyone else, with the same outcome.
+				OR = {
+					has_technology_researched = decolonization
+					has_variable = recently_decolonized
+				}
+			}
+			# Event firing weights audited (proposal #10):
+			# Total event weight ~265 vs 900 nothing = ~23% chance per month of
+			# any event, with cooldowns gating individual events to 3yr+. Over
+			# a 30yr JE arc that produces roughly 10–14 distinct events visible
+			# per playthrough — within the design target band.
+			random_list = {
+				900 = { } # ~90% chance of nothing
+				# Colonial Independence Movement — generic uprising flavor;
+				# fires often but cooldown-gated so it's not spammy
+				12 = {
+					trigger = {
+						any_subject_or_below = {
+							is_qualifying_colonial_subject = yes
+							liberty_desire >= 50
+						}
+					}
+					trigger_event = { id = decolonization_events.1 }
+				}
+				# International Pressure to Decolonize — marquee event (UN era);
+				# weight 15 reflects the narrative weight of "world is watching".
+				# Needs a great power that has declared against colonialism
+				# (gp_anti_colonial_stance): the event names it as the one
+				# pressing us.
+				15 = {
+					trigger = {
+						has_technology_researched = intergovernmental_organizations
+						any_subject_or_below = { is_qualifying_colonial_subject = yes }
+						any_country = {
+							NOT = { this = root }
+							country_rank >= rank_value:great_power
+							has_variable = gp_anti_colonial_stance
+						}
+					}
+					trigger_event = { id = decolonization_events.2 }
+				}
+				# Violent Independence Struggle
+				10 = {
+					trigger = {
+						has_technology_researched = civil_rights_movement
+						any_subject_or_below = {
+							is_qualifying_colonial_subject = yes
+							liberty_desire >= 75
+						}
+					}
+					trigger_event = { id = decolonization_events.3 }
+				}
+				# Whose Language Do We Dream In? — cultural-identity flavor.
+				# Bumped 10→12: this is one of the strongest narrative beats
+				# but rarely seen because the trigger is exclusive (former colony only)
+				12 = {
+					trigger = {
+						is_subject = no
+						has_variable = recently_decolonized
+						NOT = { any_scope_state = { is_homeland_of_country_cultures = ROOT } }
+						# The event's own guard: its option A needs a homeland
+						# culture in the capital to adopt.
+						capital = {
+							any_scope_culture = { has_homeland = prev }
+						}
+					}
+					trigger_event = { id = decolonization_events.4 }
+				}
+				# Former Colony Seeks Closer Ties. Rolled here, on us, the former
+				# overlord (so the roll frequency is what .5 always had), but the
+				# overture is the former colony's decision: .60 asks one of our
+				# former colonies, and only its "propose" option sends .5 back.
+				10 = {
+					trigger = {
+						decol_ties_overture_target_ok = yes
+						any_country = {
+							decol_can_seek_ties_with_former_overlord = yes
+							var:former_overlord ?= root
+						}
+					}
+					random_country = {
+						limit = {
+							decol_can_seek_ties_with_former_overlord = yes
+							var:former_overlord ?= root
+						}
+						trigger_event = { id = decolonization_events.60 }
+					}
+				}
+				# Colonial Reparations Demanded. Same shape: .61 asks one of our
+				# former colonies whether to press a claim; only its "demand"
+				# option sends .6 back to us.
+				10 = {
+					trigger = {
+						decol_reparations_demand_target_ok = yes
+						any_country = {
+							decol_can_demand_reparations_from_former_overlord = yes
+							var:former_overlord ?= root
+						}
+					}
+					random_country = {
+						limit = {
+							decol_can_demand_reparations_from_former_overlord = yes
+							var:former_overlord ?= root
+						}
+						trigger_event = { id = decolonization_events.61 }
+					}
+				}
+				# Post-Colonial Nation Building (for new countries)
+				10 = {
+					trigger = {
+						country_rank <= rank_value:minor_power
+						has_variable = recently_decolonized
+					}
+					trigger_event = { id = decolonization_events.7 }
+				}
+				# Dark Satanic Mills of Empire — colonial-economy flavor.
+				# Bumped 10→12: thematic anchor for industrial-era colonialism;
+				# trigger is restrictive (anti-colonialist intelligentsia)
+				12 = {
+					trigger = {
+						any_subject_or_below = { is_qualifying_colonial_subject = yes }
+						ig:ig_intelligentsia ?= {
+							leader ?= { has_ideology = ideology:ideology_anti_colonialist_leader }
+						}
+					}
+					trigger_event = { id = decolonization_events.8 }
+				}
+				# Overseas Colonial Unrest — generic; lowered 15→10 because it
+				# fires whenever any pop has acceptance<20, which is most of
+				# the JE's runtime. The cap matters most when reactive events
+				# would otherwise crowd out the marquee narrative beats.
+				10 = {
+					trigger = {
+						any_scope_state = {
+							is_overseas_colonial_state = yes
+							any_scope_pop = {
+								pop_acceptance < acceptance_status_2
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.9 }
+				}
+				# Colonial Integration Milestone
+				10 = {
+					trigger = {
+						any_scope_state = {
+							NOT = { is_homeland_of_country_cultures = ROOT }
+							state_population >= 100000
+							is_separated_from_capital = yes
+							NOT = {
+								any_scope_pop = {
+									pop_acceptance < acceptance_status_4
+								}
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.10 }
+				}
+				# Great Power Condemns Colonial Empire
+				10 = {
+					trigger = {
+						any_scope_state = {
+							is_overseas_colonial_state = yes
+						}
+						any_country = {
+							NOT = { this = root }
+							country_rank >= rank_value:great_power
+							has_variable = gp_anti_colonial_stance
+						}
+					}
+					trigger_event = { id = decolonization_events.11 }
+				}
+				# Great Power Supports Colonial Regime
+				10 = {
+					trigger = {
+						any_scope_state = {
+							is_overseas_colonial_state = yes
+						}
+						any_country = {
+							NOT = { this = root }
+							country_rank >= rank_value:great_power
+							has_variable = gp_pro_colonial_stance
+						}
+					}
+					trigger_event = { id = decolonization_events.12 }
+				}
+				# Declaration of Independence: below bar 40 a colony whose people
+				# are severely unaccepted declares (decolonization_events.70); twice
+				# as likely below 20. Two years between declarations
+				# (decol_iw_next_declaration), ten for a territory that declared or
+				# was reconquered (decol_declared).
+				20 = {
+					trigger = {
+						has_journal_entry = je_colonial_empire
+						decol_iw_bar_below_40 = yes
+						NOT = { has_variable = decol_iw_next_declaration }
+						colonial_empire_no_offer_pending = yes
+						any_scope_state = { decol_iw_can_declare = yes }
+					}
+					modifier = {
+						if = {
+							limit = { decol_iw_bar_crumbling = yes }
+							add = 20
+						}
+					}
+					trigger_event = { id = decolonization_events.70 }
+				}
+				# Colonial Uprising (high unrest)
+				10 = {
+					trigger = {
+						colonial_low_acceptance_count >= 2
+						any_scope_state = {
+							is_overseas_colonial_state = yes
+							any_scope_pop = {
+								pop_acceptance < acceptance_status_2
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.13 }
+				}
+				# Great Power Colonial Policy Review (fires for GPs; a player's
+				# once, decol_stance_question_due)
+				15 = {
+					trigger = {
+						country_rank >= rank_value:great_power
+						NOT = { has_variable = gp_colonial_policy_cooldown }
+						decol_stance_question_due = yes
+						any_country = {
+							NOT = { this = root }
+							any_scope_state = {
+								is_overseas_colonial_state = yes
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.14 }
+				}
+				# Post-Independence: Partition Question (new nations near neighbors)
+				10 = {
+					trigger = {
+						has_variable = recently_decolonized
+						is_subject = no
+						any_scope_state = {
+							any_neighbouring_state = {
+								owner = {
+									NOT = { this = root }
+									is_country_alive = yes
+									NOT = { is_country_type = decentralized }
+									OR = {
+										has_variable = recently_decolonized
+										any_scope_state = {
+											is_overseas_colonial_state = yes
+										}
+									}
+								}
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.16 }
+				}
+				# Post-Independence: Border Disputes (new nations vs new nations)
+				10 = {
+					trigger = {
+						has_variable = recently_decolonized
+						is_subject = no
+						any_scope_state = {
+							any_neighbouring_state = {
+								owner = {
+									NOT = { this = root }
+									has_variable = recently_decolonized
+									is_subject = no
+								}
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.17 }
+				}
+				# Post-Independence: Strongman's Promise (political instability)
+				10 = {
+					trigger = {
+						has_variable = recently_decolonized
+						is_subject = no
+						OR = {
+							any_political_movement = {
+								is_revolutionary = yes
+							}
+							any_scope_state = {
+								turmoil >= 0.25
+							}
+						}
+					}
+					trigger_event = { id = decolonization_events.18 }
+				}
+				# GP Intervention Crisis: Suez Crisis model (GP vs nationalizing colony)
+				15 = {
+					trigger = {
+						country_rank >= rank_value:great_power
+						any_country = {
+							NOT = { this = root }
+							has_variable = recently_decolonized
+							is_subject = no
+							has_modifier = independence_nationalization_modifier
+						}
+					}
+					trigger_event = { id = decolonization_events.19 }
+				}
+				# Post-Independence: Non-Aligned Movement (Cold War alignment)
+				10 = {
+					trigger = {
+						has_variable = recently_decolonized
+						is_subject = no
+						any_country = {
+							NOT = { this = root }
+							country_rank >= rank_value:great_power
+							has_variable = gp_anti_colonial_stance
+						}
+						any_country = {
+							NOT = { this = root }
+							country_rank >= rank_value:great_power
+							has_variable = gp_pro_colonial_stance
+						}
+					}
+					trigger_event = { id = decolonization_events.21 }
+				}
+				# Metropole pressure: The Treasury Says No (high debt + colonial empire)
+				12 = {
+					trigger = {
+						any_scope_state = { is_overseas_colonial_state = yes }
+						scaled_debt > 0.4
+					}
+					trigger_event = { id = decolonization_events.50 }
+				}
+				# Metropole pressure: Conscription Crisis (a colonial war + colonial
+				# empire). Same trigger as the event's own, so the slot is not
+				# spent on a war the event will not narrate.
+				12 = {
+					trigger = {
+						any_scope_state = { is_overseas_colonial_state = yes }
+						decol_fighting_colonial_war = yes
+					}
+					trigger_event = { id = decolonization_events.51 }
+				}
+				# Metropole pressure: The Intelligentsia Petition (anti-colonialist intelligentsia)
+				12 = {
+					trigger = {
+						any_scope_state = { is_overseas_colonial_state = yes }
+						ig:ig_intelligentsia ?= {
+							leader ?= { has_ideology = ideology:ideology_anti_colonialist_leader }
+						}
+					}
+					trigger_event = { id = decolonization_events.52 }
+				}
+				# Metropole pressure: The Universities Speak — public mobilization
+				# flavor distinct from event 52's quiet petition. Fires after JE
+				# active >10 years with intelligentsia in opposition.
+				8 = {
+					trigger = {
+						has_variable = colonial_je_total_months
+						any_scope_state = { is_overseas_colonial_state = yes }
+						var:colonial_je_total_months > 120
+						ig:ig_intelligentsia ?= {
+							is_in_government = no
+							is_powerful = yes
+						}
+					}
+					trigger_event = { id = decolonization_events.53 }
+				}
+				# Metropole pressure: The Veterans' Protest — fires after sustained
+				# garrison campaigns. Returning soldiers organize against further
+				# deployment.
+				# A lost war of independence brings the veterans out too
+				# (decol_iw_lost_modifier, decolonization_events.73).
+				8 = {
+					trigger = {
+						any_scope_state = { is_overseas_colonial_state = yes }
+						OR = {
+							AND = {
+								has_variable = colonial_garrison_months
+								var:colonial_garrison_months > 36
+							}
+							has_modifier = decol_iw_lost_modifier
+						}
+					}
+					modifier = {
+						if = {
+							limit = { has_modifier = decol_iw_lost_modifier }
+							add = 8
+						}
+					}
+					trigger_event = { id = decolonization_events.54 }
+				}
+			}
+		}
+	}
+}
+
+# ============================================================================
+# POLITICAL MOVEMENT EVENTS - monthly chance for eligible countries
+# ============================================================================
+movement_events_te_on_action = {
+	effect = {
+		random_list = {
+			900 = { } # ~90% chance of nothing
+
+			# === CIVIL RIGHTS MOVEMENT ===
+			# Civil rights events (1-4) have been moved to je_civil_rights journal entry monthly pulse.
+
+			# === ANTI-WAR MOVEMENT ===
+
+			# Draft Resistance
+			10 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_anti_war }
+					is_at_war = yes
+				}
+				trigger_event = { id = movement_events_te.5 }
+			}
+			# Veterans Speak Against the War
+			10 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_anti_war }
+					has_technology_researched = anti_war_movement
+					OR = {
+						is_at_war = yes
+						any_scope_war = { always = yes }
+					}
+				}
+				trigger_event = { id = movement_events_te.6 }
+			}
+			# Peace Rally Fills the Capital
+			10 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_anti_war }
+					country_rank >= rank_value:minor_power
+					is_at_war = yes
+				}
+				trigger_event = { id = movement_events_te.7 }
+			}
+			# War Profiteering Exposed
+			5 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_anti_war }
+					any_scope_state = {
+						any_scope_building = {
+							OR = {
+								is_building_group = bg_military_industry
+								is_building_type = building_arms_industry
+								is_building_type = building_munition_plant
+							}
+							level >= 3
+						}
+					}
+				}
+				trigger_event = { id = movement_events_te.8 }
+			}
+
+			# === TRANSHUMANIST MOVEMENT ===
+
+			# Neural Implant Human Trials
+			5 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_transhumanist }
+					has_technology_researched = brain_computer_interfaces
+				}
+				trigger_event = { id = movement_events_te.9 }
+			}
+			# The Augmentation Divide
+			5 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_transhumanist }
+					has_technology_researched = biohacking_and_human_augmentation
+				}
+				trigger_event = { id = movement_events_te.10 }
+			}
+			# The Biohacker Underground
+			5 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_transhumanist }
+					has_technology_researched = biohacking_and_human_augmentation
+					NOT = { has_law = law_type:law_human_purity }
+				}
+				trigger_event = { id = movement_events_te.11 }
+			}
+			# Digital Consciousness Debate
+			5 = {
+				trigger = {
+					any_political_movement = { is_political_movement_type = movement_transhumanist }
+					has_technology_researched = mind_backups
+				}
+				trigger_event = { id = movement_events_te.12 }
+			}
+		}
+	}
+}
+
+# ============================================================================
+# SOCIETY & TECHNOLOGY EVENTS - monthly chance for eligible countries
+# ============================================================================
+society_technology_events_on_action = {
+	effect = {
+		random_list = {
+			900 = { } # ~90% chance of nothing
+
+			# === SECOND WAVE FEMINISM ===
+			5 = {
+				trigger = {
+					has_technology_researched = second_wave_feminism
+					OR = { has_law = law_type:law_women_in_the_workplace has_law = law_type:law_women_own_property }
+				}
+				trigger_event = { id = society_technology_events.1 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = second_wave_feminism
+					has_law = law_type:law_women_in_the_workplace
+				}
+				trigger_event = { id = society_technology_events.2 }
+			}
+
+			# === CONTRACEPTIVE PILLS ===
+			5 = {
+				trigger = { has_technology_researched = contraceptive_pill }
+				trigger_event = { id = society_technology_events.3 }
+			}
+
+			# === SEXUAL REVOLUTION ===
+			5 = {
+				trigger = { has_technology_researched = sexual_revolution }
+				trigger_event = { id = society_technology_events.4 }
+			}
+			5 = {
+				trigger = { has_technology_researched = sexual_revolution }
+				trigger_event = { id = society_technology_events.5 }
+			}
+
+			# === VIDEO GAMES ===
+			5 = {
+				trigger = {
+					has_technology_researched = video_games
+					any_scope_building = {
+						OR = { is_building_type = building_art_academy is_building_type = building_software_industry }
+						level >= 2
+					}
+				}
+				trigger_event = { id = society_technology_events.6 }
+			}
+
+			# === LGBTQ+ RIGHTS ===
+			5 = {
+				trigger = {
+					has_technology_researched = LGBTQ_rights_movement
+					NOT = { has_law = law_type:law_full_equality_and_protection }
+				}
+				trigger_event = { id = society_technology_events.7 }
+			}
+			5 = {
+				# Mirrors the event's own trigger, so a pick never lands on an event
+				# that cannot fire: one-shot (ste_event_8_fired), not while one of its
+				# outcome modifiers runs, and not under Full Equality and Protection
+				# (marriage equality is already law there).
+				trigger = {
+					has_technology_researched = LGBTQ_rights_movement
+					NOT = { has_variable = ste_event_8_fired }
+					NOT = { has_modifier = ste_marriage_equality }
+					NOT = { has_modifier = ste_marriage_traditional }
+					NOT = { has_modifier = ste_civil_unions }
+					OR = { has_law = law_type:law_basic_protections has_law = law_type:law_comprehensive_rights }
+				}
+				trigger_event = { id = society_technology_events.8 }
+			}
+
+			# === GLOBALIZATION ===
+			5 = {
+				trigger = {
+					has_technology_researched = globalization
+					country_rank >= rank_value:major_power
+				}
+				trigger_event = { id = society_technology_events.9 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = globalization
+					country_rank >= rank_value:major_power
+				}
+				trigger_event = { id = society_technology_events.10 }
+			}
+
+			# === TERRORISM ===
+			5 = {
+				trigger = {
+					has_technology_researched = terrorism_and_anti_terrorism
+					country_rank >= rank_value:minor_power
+					NOT = { has_intelligence_ministry_5 = yes }
+				}
+				trigger_event = { id = society_technology_events.11 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = terrorism_and_anti_terrorism
+					OR = { has_technology_researched = cybersecurity has_technology_researched = social_media }
+				}
+				trigger_event = { id = society_technology_events.12 }
+			}
+
+			# === SOCIAL MEDIA ===
+			5 = {
+				trigger = { has_technology_researched = social_media }
+				trigger_event = { id = society_technology_events.13 }
+			}
+			# Election interference: offered to the rival great power that
+			# would meddle (.32); the campaigning country hears of it in .14
+			# only if it does. Covert-disabled only. 5 → 8 for the ~67% act chance.
+			8 = {
+				trigger = {
+					has_game_rule = covert_warfare_disabled
+					has_technology_researched = social_media
+					country_rank >= rank_value:great_power
+					any_country = { te_ea_ir_election_target = yes }
+				}
+				trigger_event = { id = society_technology_events.32 }
+			}
+
+			# === SOCIAL JUSTICE ===
+			5 = {
+				trigger = {
+					has_technology_researched = social_justice_movements
+					any_scope_building = { is_building_type = building_university level >= 3 }
+				}
+				trigger_event = { id = society_technology_events.15 }
+			}
+
+			# === BRAIN-COMPUTER INTERFACES ===
+			5 = {
+				trigger = { has_technology_researched = brain_computer_interfaces }
+				trigger_event = { id = society_technology_events.16 }
+			}
+
+			# === HUMAN AUGMENTATION ===
+			5 = {
+				trigger = {
+					has_technology_researched = biohacking_and_human_augmentation
+					NOT = { has_law = law_type:law_human_purity }
+				}
+				trigger_event = { id = society_technology_events.17 }
+			}
+
+			# === SPACE COLONIZATION ===
+			# Establishment dispatches the first-colony story. The enabled monthly
+			# branch backfills existing saves without racing that delayed event.
+			5 = {
+				trigger = {
+					NOT = { has_variable = ste_event_18_fired }
+					OR = {
+						AND = {
+							sr_space_race_on = yes
+							has_variable = sr_colony_count
+							var:sr_colony_count > 0
+							NOT = { has_variable = sr_colony_charter_pending }
+						}
+						AND = {
+							has_game_rule = space_race_disabled
+							has_technology_researched = space_colonization
+							any_scope_building = { is_building_type = building_aerospace_industry level >= 3 }
+						}
+					}
+				}
+				trigger_event = { id = society_technology_events.18 }
+			}
+			5 = {
+				trigger = {
+					OR = {
+						AND = {
+							sr_space_race_on = yes
+							has_variable = sr_colony_count
+							var:sr_colony_count > 0
+							has_variable = ste_event_18_fired
+						}
+						AND = {
+							has_game_rule = space_race_disabled
+							has_technology_researched = space_colonization
+							any_scope_building = { is_building_type = building_space_elevator level >= 1 }
+						}
+					}
+				}
+				trigger_event = { id = society_technology_events.19 }
+			}
+
+			# === TELEPATHIC COMMUNITIES ===
+			5 = {
+				trigger = { has_technology_researched = telepathic_communities }
+				trigger_event = { id = society_technology_events.20 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = telepathic_communities
+					any_country = {
+						NOT = { this = root }
+						has_technology_researched = telepathic_communities
+					}
+				}
+				trigger_event = { id = society_technology_events.21 }
+			}
+
+			# === NUCLEAR POWER / MELTDOWNS ===
+			3 = {
+				trigger = {
+					has_technology_researched = nuclear_energy
+					any_scope_building = { is_building_type = building_nuclear_plant level >= 1 }
+				}
+				trigger_event = { id = society_technology_events.22 }
+			}
+			2 = {
+				trigger = {
+					has_technology_researched = nuclear_energy
+					NOT = { has_technology_researched = fusion_power }
+					NOT = { has_consumer_protection_ministry_5 = yes }
+					any_scope_building = { is_building_type = building_nuclear_plant level >= 3 }
+				}
+				trigger_event = { id = society_technology_events.23 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = nuclear_energy
+					any_scope_building = { is_building_type = building_nuclear_plant level >= 2 }
+					OR = {
+						has_modifier = ste_reactor_leak_contained
+						has_modifier = ste_reactor_leak_coverup
+						has_modifier = ste_reactor_leak_shutdown
+						has_modifier = ste_meltdown_evacuate
+						has_modifier = ste_meltdown_contain
+					}
+				}
+				trigger_event = { id = society_technology_events.24 }
+			}
+
+			# === ARTIFICIAL INTELLIGENCE ===
+			5 = {
+				trigger = { has_technology_researched = generative_ai }
+				trigger_event = { id = society_technology_events.25 }
+			}
+			5 = {
+				trigger = { has_technology_researched = artificial_intelligence }
+				trigger_event = { id = society_technology_events.26 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = ai_agents
+					NOT = { has_law = law_type:law_automated_bureaucracy }
+				}
+				trigger_event = { id = society_technology_events.27 }
+			}
+
+			# === BIOENGINEERING ===
+			5 = {
+				trigger = { has_technology_researched = genetic_engineering }
+				trigger_event = { id = society_technology_events.28 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = synthetic_biology
+					any_scope_building = {
+						OR = { is_building_group = bg_agriculture is_building_group = bg_ranching }
+						level >= 3
+					}
+				}
+				trigger_event = { id = society_technology_events.29 }
+			}
+
+			# === AUTONOMOUS VEHICLES ===
+			5 = {
+				trigger = { has_technology_researched = autonomous_vehicles }
+				trigger_event = { id = society_technology_events.30 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = autonomous_vehicles
+					OR = { has_modifier = ste_av_full_adoption has_modifier = ste_av_cautious_rollout }
+				}
+				trigger_event = { id = society_technology_events.31 }
+			}
+
+			# === AI TUTORS ===
+			# Who writes what the tutors teach (era 13 spec § 7.6). Each mirrors its
+			# event's trigger and fires once per country.
+			5 = {
+				trigger = {
+					has_technology_researched = ai_tutors
+					has_law = law_type:law_unregulated_internet
+					NOT = { has_variable = ste_event_36_fired }
+				}
+				trigger_event = { id = society_technology_events.36 }
+			}
+			5 = {
+				trigger = {
+					has_technology_researched = ai_tutors
+					OR = {
+						has_law = law_type:law_state_controlled_internet
+						has_law = law_type:law_ministry_of_propaganda
+						has_law = law_type:law_ministry_of_thought_control
+					}
+					NOT = { has_variable = ste_event_37_fired }
+				}
+				trigger_event = { id = society_technology_events.37 }
+			}
+
+			# === RELIGIOUS REVIVAL EVENTS ===
+			# These events can significantly strengthen the Devout IG,
+			# counterbalancing its natural decline from modernization.
+
+			# The Moral Majority (television_broadcasting, era 7)
+			8 = {
+				trigger = {
+					has_technology_researched = television_broadcasting
+					NOT = { has_variable = rre_revival_1_fired }
+					NOT = { has_law = law_type:law_state_atheism }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.10
+					}
+				}
+				trigger_event = { id = religious_revival_events.1 }
+			}
+
+			# The Electronic Pulpit (pop_culture, era 8)
+			8 = {
+				trigger = {
+					has_technology_researched = pop_culture
+					NOT = { has_variable = rre_revival_2_fired }
+					NOT = { has_law = law_type:law_state_atheism }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.10
+					}
+				}
+				trigger_event = { id = religious_revival_events.2 }
+			}
+
+			# Liberation Theology (civil_rights_movement, era 7) — atheism carve-out preserved
+			8 = {
+				trigger = {
+					has_technology_researched = civil_rights_movement
+					NOT = { has_variable = rre_revival_3_fired }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.10
+					}
+				}
+				trigger_event = { id = religious_revival_events.3 }
+			}
+
+			# One Nation Under God (globalization, era 9) — rebound event, 0.15 cap
+			8 = {
+				trigger = {
+					has_technology_researched = globalization
+					NOT = { has_variable = rre_revival_4_fired }
+					NOT = { has_law = law_type:law_state_atheism }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.15
+					}
+				}
+				trigger_event = { id = religious_revival_events.4 }
+			}
+
+			# The Digital Pulpit (social_media, era 9)
+			8 = {
+				trigger = {
+					has_technology_researched = social_media
+					NOT = { has_variable = rre_revival_5_fired }
+					NOT = { has_law = law_type:law_state_atheism }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.10
+					}
+				}
+				trigger_event = { id = religious_revival_events.5 }
+			}
+
+			# The Culture War (sexual_revolution, era 8) — rebound event, 0.15 cap
+			8 = {
+				trigger = {
+					has_technology_researched = sexual_revolution
+					NOT = { has_variable = rre_revival_6_fired }
+					NOT = { has_law = law_type:law_state_atheism }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.15
+					}
+				}
+				trigger_event = { id = religious_revival_events.6 }
+			}
+
+			# Faith-Based Welfare (social_justice_movements, era 9) — rebound event, 0.15 cap, atheism carve-out preserved
+			8 = {
+				trigger = {
+					has_technology_researched = social_justice_movements
+					NOT = { has_variable = rre_revival_7_fired }
+					NOR = {
+						has_law_or_variant = law_type:law_state_religion
+					}
+					NOR = {
+						has_law = law_type:law_autocracy
+						has_law = law_type:law_oligarchy
+					}
+					NOT = { has_variable = rre_recent_cooldown }
+					any_interest_group = {
+						is_interest_group_type = ig_devout
+						ig_clout > 0.02
+						ig_clout < 0.15
+					}
+				}
+				trigger_event = { id = religious_revival_events.7 }
+			}
+		}
+	}
+}
+
+# ---- Construction Cost Scaling (country scope, yearly) ----
+# Applies goods_input_construction_mult penalty based on GDP per capita and
+# the country's slack (peasants and unemployed): te_cc_yearly_update first
+# reads the slack and moves the share of the GDP part that applies.
+# Uses adjusted multiplier that combines multiplicatively with other
+# sources of goods_input_construction_mult (ministry, laws, etc.).
+# See extra_script_values.txt for tuning constants.
+construction_cost_scaling_on_action = {
+	effect = {
+		te_cc_yearly_update = yes
+		# free_market_construction_rule disabled: there is no construction good
+		# to scale, so the scaling goes on vanilla's own lever for the cost of
+		# the goods construction consumes (construction_cost_scaling_direct).
+		# The rule is fixed for the whole game, so the two branches never share
+		# var:prior_construction_scaling.
+		if = {
+			limit = { te_free_market_construction_off = yes }
+			# Compute before removing, so the modifier read certainly still holds
+			# the contribution var:prior_construction_scaling backs out.
+			set_variable = { name = prior_construction_scaling value = construction_cost_scaling_direct_adjusted_mult }
+			remove_modifier = construction_cost_scaling_direct
+			if = {
+				limit = { var:prior_construction_scaling > 0 }
+				add_modifier = { name = construction_cost_scaling_direct multiplier = var:prior_construction_scaling }
+			}
+		}
+		else = {
+			remove_modifier = construction_cost_scaling
+			if = {
+				limit = { NOT = { has_variable = prior_construction_scaling } }
+				# First run (new save or pre-adjustment saves) - use raw scaling
+				if = {
+					limit = { construction_cost_scaling_mult > 0 }
+					add_modifier = { name = construction_cost_scaling multiplier = construction_cost_scaling_mult }
+					set_variable = { name = prior_construction_scaling value = construction_cost_scaling_mult }
+				}
+			}
+			else = {
+				# Subsequent runs - use adjusted scaling (multiplicative with other modifiers)
+				if = {
+					limit = { construction_cost_scaling_adjusted_mult > 0 }
+					add_modifier = { name = construction_cost_scaling multiplier = construction_cost_scaling_adjusted_mult }
+					set_variable = { name = prior_construction_scaling value = construction_cost_scaling_adjusted_mult }
+				}
+				else = {
+					set_variable = { name = prior_construction_scaling value = 0 }
+				}
+			}
+		}
+	}
+}
+
+# ---- Migration Crowding (state scope, yearly) ----
+# Applies state_migration_pull_mult penalty based on state population.
+# See extra_script_values.txt for tuning constants.
+migration_crowding_on_action = {
+	effect = {
+		te_update_migration_crowding_modifier = yes
+	}
+}
+
+# ---- State-input treaty articles (state scope) ----
+# Free Port Concession, Minority Protection, Religious Mission Rights and
+# Demilitarized Zone put their effects on the state they name, and a treaty
+# can end without the article's on_break / on_withdrawal removing them (a
+# party annexed). Monthly, a state that carries one but is no longer conceded
+# under it loses it; a change of owner also puts them back on a state that
+# returns to the country that conceded it. treaty_article_effects.txt.
+te_state_treaty_article_sync_on_action = {
+	effect = {
+		te_sync_state_treaty_articles = yes
+	}
+}
+
+te_state_treaty_article_owner_change_on_action = {
+	effect = {
+		te_sync_state_treaty_articles = yes
+		te_restore_state_treaty_articles = yes
+	}
+}
+
+# ---- Free Port Tariff (state scope, yearly) ----
+# Recalculates the dynamic tariff reduction for free port states,
+# ensuring tariffs never go negative even when laws or other modifiers change.
+free_port_tariff_update_on_action = {
+	effect = {
+		te_update_free_port_tariff = yes
+	}
+}
+
+# ============================================================================
+# STATE MODIFIER UPDATES ARE PULSE-ONLY - no immediate tech/law/building hook
+# ============================================================================
+# There used to be te_modifier_update_on_technology_on_action and
+# te_modifier_update_on_law_on_action here, dispatched from
+# on_acquired_technology / on_law_activated so that migration crowding and
+# friends responded the same tick a tech or law landed. Both had been
+# emptied to `effect = { }` and were removed (2026-09-13) along with their
+# dispatch entries; the reasons they were emptied still apply:
+#
+# - All state modifier updates (migration crowding, pollution, free-port
+#   tariffs) use has_variable in their script values. On on_acquired_technology
+#   (ROOT = country) the engine traces the parent scope chain through that root
+#   and emits "Value of wrong type: none" for the has_variable checks; on
+#   on_law_activated (ROOT = law type, owner = enacting country) the law scope
+#   doesn't support variables at all, producing "has_variable trigger" errors.
+# - Tourism additionally uses state_region = s:STATE_X comparisons, which only
+#   resolve in genuine state scope - even wrapped in every_scope_state, the
+#   engine still validates against the parent scope.
+# - The investment hook was removed for the same reason (institution scope
+#   supports neither variables nor modifiers).
+#
+# All of these are instead refreshed from the periodic state pulses:
+# pollution_on_action on on_monthly_pulse_state, migration_crowding_on_action
+# and free_port_tariff_update_on_action on on_yearly_pulse_state (within
+# 1 year), and tourism from tourism_on_action on on_monthly_pulse_state.
+# Do not re-add an immediate hook for them - add the work to a state pulse
+# instead.
+
+# ============================================================================
+# WORLD WAR EVENTS - DEPRECATED: All events now fire from je_world_war
+# monthly pulse. This on_action is kept as an empty stub to avoid breaking
+# the on_monthly_pulse_country reference.
+# ============================================================================
+world_war_events_on_action = {
+	effect = { }
+}
+
+orbital_battlestation_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_orbital_battlestation_construction_site
+			}
+			orbital_battlestation_construction = yes
+			every_scope_building = {
+				limit = {
+					is_building_type = building_orbital_battlestation_construction_site
+				}
+				remove_modifier = orbital_battlestation_progress
+				add_modifier = {
+					name = orbital_battlestation_progress
+					multiplier = root.var:orbital_battlestation_progress_var
+				}
+			}
+		}
+	}
+}
+
+mind_upload_nexus_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_mind_upload_nexus_construction_site
+			}
+			mind_upload_nexus_construction = yes
+			# demographics' uploaded minds: a level the site just added is a new building with none of the Nexus's
+			# modifiers; under Full scale it at once rather than at the next monthly refresh (te_demog_um_effects.txt)
+			if = {
+				limit = {
+					te_demog_effects_run = yes
+					has_building = building_mind_upload_nexus
+					b:building_mind_upload_nexus = { NOT = { has_modifier = te_demog_um_nexus_out_digital_assets } }
+				}
+				te_demog_um_nexus_refresh = yes
+			}
+			every_scope_building = {
+				limit = {
+					is_building_type = building_mind_upload_nexus_construction_site
+				}
+				remove_modifier = mind_upload_nexus_progress
+				add_modifier = {
+					name = mind_upload_nexus_progress
+					multiplier = root.var:mind_upload_nexus_progress_var
+				}
+			}
+		}
+	}
+}
+
+#==================================================
+# Antimatter Facility Construction On-Action
+#==================================================
+
+antimatter_facility_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_antimatter_facility_construction_site
+			}
+			antimatter_facility_construction = yes
+			every_scope_building = {
+				limit = {
+					is_building_type = building_antimatter_facility_construction_site
+				}
+				remove_modifier = antimatter_facility_progress
+				add_modifier = {
+					name = antimatter_facility_progress
+					multiplier = root.var:antimatter_facility_progress_var
+				}
+			}
+		}
+	}
+}
+
+#==================================================
+# Overbuild Protection - removes excess sub-buildings
+# when slot modifier goes negative (race condition fix).
+# Grace period: buildings are only removed after ~6 consecutive
+# months over the limit. The counter resets if the modifier
+# returns to zero or positive.
+#==================================================
+
+overbuild_protection_on_action = {
+	effect = {
+		# --- Solar receivers ---
+		if = {
+			limit = { modifier:country_solar_receiver_max_level_add < 0 }
+			# Increment grace counter
+			if = {
+				limit = { NOT = { has_variable = overbuild_solar_receiver_months } }
+				set_variable = { name = overbuild_solar_receiver_months value = 1 }
+			}
+			else = {
+				change_variable = { name = overbuild_solar_receiver_months add = 1 }
+			}
+			# After 6 months, start removing 1 excess level per month
+			if = {
+				limit = { var:overbuild_solar_receiver_months >= 6 }
+				ordered_scope_state = {
+					limit = { has_building = building_solar_receiver }
+					order_by = market.mg:electricity.market_goods_cheaper
+					max = 1
+					set_variable = {
+						name = lvl_tmp
+						value = b:building_solar_receiver.level
+					}
+					change_variable = {
+						name = lvl_tmp
+						add = -1
+					}
+					remove_building = building_solar_receiver
+					if = {
+						limit = { var:lvl_tmp > 0 }
+						te_construction_market_add_specified_level = {
+							ADD_LEVEL = var:lvl_tmp
+							SPEC_TYPE = building_solar_receiver
+						}
+					}
+					remove_variable = lvl_tmp
+				}
+			}
+		}
+		else = {
+			remove_variable = overbuild_solar_receiver_months
+		}
+
+		# --- Antimatter sub-buildings ---
+		if = {
+			limit = { modifier:country_antimatter_facility_max_level_add < 0 }
+			# Increment grace counter
+			if = {
+				limit = { NOT = { has_variable = overbuild_antimatter_months } }
+				set_variable = { name = overbuild_antimatter_months value = 1 }
+			}
+			else = {
+				change_variable = { name = overbuild_antimatter_months add = 1 }
+			}
+			# After 6 months, start removing 1 excess level per month
+			if = {
+				limit = { var:overbuild_antimatter_months >= 6 }
+				random_scope_state = {
+					limit = { has_building = building_antimatter_engine }
+					set_variable = {
+						name = lvl_tmp
+						value = b:building_antimatter_engine.level
+					}
+					change_variable = {
+						name = lvl_tmp
+						add = -1
+					}
+					remove_building = building_antimatter_engine
+					if = {
+						limit = { var:lvl_tmp > 0 }
+						te_construction_market_add_specified_level = {
+							ADD_LEVEL = var:lvl_tmp
+							SPEC_TYPE = building_antimatter_engine
+						}
+					}
+					remove_variable = lvl_tmp
+				}
+				random_scope_state = {
+					limit = { has_building = building_antimatter_warhead_plant }
+					set_variable = {
+						name = lvl_tmp
+						value = b:building_antimatter_warhead_plant.level
+					}
+					change_variable = {
+						name = lvl_tmp
+						add = -1
+					}
+					remove_building = building_antimatter_warhead_plant
+					if = {
+						limit = { var:lvl_tmp > 0 }
+						te_construction_market_add_specified_level = {
+							ADD_LEVEL = var:lvl_tmp
+							SPEC_TYPE = building_antimatter_warhead_plant
+						}
+					}
+					remove_variable = lvl_tmp
+				}
+			}
+		}
+		else = {
+			remove_variable = overbuild_antimatter_months
+		}
+	}
+}
+
+#==================================================
+# Nanofabrication Center Construction On-Action
+#==================================================
+
+nanofabrication_center_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_nanofabrication_center_construction_site
+			}
+			nanofabrication_center_construction = yes
+			every_scope_building = {
+				limit = {
+					is_building_type = building_nanofabrication_center_construction_site
+				}
+				remove_modifier = nanofabrication_center_progress
+				add_modifier = {
+					name = nanofabrication_center_progress
+					multiplier = root.var:nanofabrication_center_progress_var
+				}
+			}
+		}
+	}
+}
+
+#==================================================
+# Consciousness Network Construction On-Action
+#==================================================
+
+consciousness_network_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_building = building_consciousness_network_construction_site
+			}
+			consciousness_network_construction = yes
+			every_scope_building = {
+				limit = {
+					is_building_type = building_consciousness_network_construction_site
+				}
+				remove_modifier = consciousness_network_progress
+				add_modifier = {
+					name = consciousness_network_progress
+					multiplier = root.var:consciousness_network_progress_var
+				}
+			}
+		}
+	}
+}
+
+# ============================================================================
+# IRREDENTIST PRESSURE EVENTS — monthly chance for eligible same-culture
+# pairs. Fires Event 1 ("Diaspora Calls") for warlike/general candidates,
+# Event 3 ("Opportunity for Union") for peaceful-driver candidates with
+# high relations. Total fire rate ~3.5%/month per active country.
+#
+# See events/irredentism_events.txt and the design plan at
+# /home/jakef/.claude/plans/can-we-make-a-sparkling-pine.md.
+# ============================================================================
+# Operation Polo dispatcher: when a formed India (BHA) finds an independent,
+# sub-minor-power, Muslim-ruled state surviving bordered by Indian territory —
+# the holdout the formation religion guard (can_be_unification_target) leaves
+# behind — offer the annex/accede/decline event (formation_te.10). Gated to
+# c:BHA only, so the any_country sweep is cheap. A 2-year cooldown variable is
+# set when the event resolves.
+operation_polo_on_action = {
+	effect = {
+		if = {
+			limit = {
+				c:BHA ?= this
+				NOT = { has_variable = operation_polo_cooldown }
+				any_country = {
+					NOT = { this = c:BHA }
+					NOT = { is_country_type = decentralized }
+					is_subject = no
+					NOT = { country_rank >= rank_value:minor_power }
+					OR = {
+						country_has_state_religion = rel:sunni
+						country_has_state_religion = rel:shiite
+						country_has_state_religion = rel:ibadi
+					}
+					any_scope_state = {
+						any_neighbouring_state = { owner = c:BHA }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					NOT = { this = c:BHA }
+					NOT = { is_country_type = decentralized }
+					is_subject = no
+					NOT = { country_rank >= rank_value:minor_power }
+					OR = {
+						country_has_state_religion = rel:sunni
+						country_has_state_religion = rel:shiite
+						country_has_state_religion = rel:ibadi
+					}
+					any_scope_state = {
+						any_neighbouring_state = { owner = c:BHA }
+					}
+				}
+				save_scope_as = polo_target_country
+			}
+			trigger_event = { id = formation_te.10 popup = yes }
+		}
+	}
+}
+
+irredentism_events_on_action = {
+	effect = {
+		if = {
+			limit = {
+				NOT = { is_country_type = decentralized }
+				has_technology_researched = decolonization
+				irredentist_unifier_can_act = yes
+				# Existence gate: at least one valid candidate
+				any_country = {
+					NOT = { THIS = ROOT }
+					NOT = { is_country_type = decentralized }
+					# Shares a primary culture with ROOT. Not `ROOT = { any_primary_culture
+					# = { is_primary_culture_of = PREV } }`: PREV there is ROOT itself,
+					# which made this test always true (prev_scope_audit).
+					any_primary_culture = { is_primary_culture_of = ROOT }
+					any_scope_state = {
+						is_homeland_of_country_cultures = ROOT
+						has_claim_by = ROOT
+					}
+				}
+			}
+			random_list = {
+				965 = { } # ~96.5% nothing
+				# "The Diaspora Calls" — central pressure event
+				25 = {
+					trigger_event = { id = irredentism.1 }
+				}
+				# "An Opportunity for Union" — peaceful proposal
+				10 = {
+					trigger = {
+						any_country = {
+							NOT = { THIS = ROOT }
+							# Shares a primary culture with ROOT. Not `ROOT = { any_primary_culture
+							# = { is_primary_culture_of = PREV } }`: PREV there is ROOT itself,
+							# which made this test always true (prev_scope_audit).
+							any_primary_culture = { is_primary_culture_of = ROOT }
+							ROOT.relations:THIS >= relations_threshold:amicable
+						}
+					}
+					trigger_event = { id = irredentism.3 }
+				}
+			}
+		}
+	}
+}
+
+# ============================================================================
+# IRREDENTIST BLOC APPROVAL — fires Events 5a/5b on bloc leaders when one of
+# their non-leader members would activate the war or peace path but lacks
+# the corresponding approval var. Low fire rate (~1.5%/month per eligible
+# non-leader member).
+#
+# 5a: an AI bloc member whose government is warlike toward a reunification
+#     candidate (irredentist_war_tilt >= 1) asks its leader to bless the war.
+#     A player member asks only when it chooses to, through the
+#     irr_seek_war_blessing diplomatic action; both paths share the triggers
+#     in te_event_agency_irr_triggers.txt. A leader hears at most one AI
+#     request per 5 years (irr_war_blessing_heard, set when an AI request is sent).
+# 5b: bloc member chose to hear a union proposal (irredentism.4.a) and lacks
+#     peace approval. The leader is asked about the country that actually
+#     proposed (var:irr_union_proposer, set by irredentism.4.a).
+# ============================================================================
+irredentism_bloc_approval_on_action = {
+	effect = {
+		# 5a: warlike AI client asks bloc leader to bless a war
+		if = {
+			limit = {
+				is_ai = yes
+				irr_war_blessing_member = yes
+				irr_war_blessing_requester_ready = yes
+				# Stands in for irredentism.7's old 5-year event cooldown, which
+				# would also have swallowed a player's request.
+				power_bloc ?= {
+					power_bloc_leader ?= {
+						NOT = { has_variable = irr_war_blessing_heard }
+					}
+				}
+				# At least one candidate
+				any_country = {
+					irr_war_blessing_target_potential = yes
+				}
+			}
+			random_list = {
+				985 = { } # 98.5% nothing
+				15 = {
+					random_country = {
+						limit = {
+							irr_war_blessing_target_potential = yes
+							# The full target test and the war tilt both read
+							# scope:target_country; bind it to this candidate.
+							save_temporary_scope_as = target_country
+							ROOT = {
+								irr_war_blessing_target_ok = yes
+								irredentist_war_tilt >= 1
+							}
+						}
+						save_scope_as = target_country
+					}
+					if = {
+						limit = {
+							exists = scope:target_country
+							irr_war_blessing_target_ok = yes
+							irredentist_war_tilt >= 1
+						}
+						irr_send_war_blessing_request = yes
+					}
+				}
+			}
+		}
+
+		# 5b: peaceful client received a union proposal -- ask bloc leader.
+		# Skip for Diplomatic-Framework blocs: that identity has no leader
+		# authority over members, so irredentist_bloc_check_peace already
+		# passes without an approval var. Firing 5b would be wasted.
+		if = {
+			limit = {
+				NOT = { is_country_type = decentralized }
+				is_in_power_bloc = yes
+				is_power_bloc_leader = no
+				NOT = {
+					power_bloc ?= {
+						has_identity = identity:identity_diplomatic
+					}
+				}
+				has_modifier = irr_open_to_union_modifier
+				NOT = {
+					AND = {
+						has_variable = irredentist_peace_approval
+						exists = var:irredentist_peace_approval
+					}
+				}
+				NOT = { has_modifier = irr_union_forbidden_modifier }
+				# The country whose proposal we agreed to hear (irredentism.4.a)
+				# still exists and is still on warm terms with us.
+				has_variable = irr_union_proposer
+				exists = var:irr_union_proposer
+				var:irr_union_proposer ?= {
+					NOT = { is_country_type = decentralized }
+					relations:ROOT >= relations_threshold:amicable
+				}
+			}
+			random_list = {
+				985 = { }
+				15 = {
+					save_scope_as = irr_proposed_target
+					var:irr_union_proposer ?= {
+						save_scope_as = irr_unifier
+					}
+					power_bloc ?= {
+						power_bloc_leader ?= {
+							trigger_event = { id = irredentism.8 days = 3 }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# --- Agricultural diffusion: backfill for new countries --------------------
+# The agdiff broadcast in agricultural_diffusion_effects.txt only reaches
+# countries that exist at the moment of first research. Decolonized 1960+
+# African states, formables, and released subjects are exactly the cohort
+# the issue is about, so we have to catch them on creation. Civil wars are
+# handled from the shared hooks in te_civil_war_on_actions.txt
+# (agdiff_on_uprising, agdiff_repair_after_civil_war). Hook list: the
+# backfill's header in agricultural_diffusion_effects.txt.
+on_country_formed = {
+	on_actions = {
+		agdiff_backfill_on_country_formed
+		te_bespoke_formation_dispatcher
+	}
+}
+
+# Fire the bespoke India/Indonesia formation events as forced popups (matching
+# vanilla's `trigger_event = { ... popup = yes }` formation idiom). An on_action
+# `events = { }` list fires without `popup = yes`, which surfaces as a small
+# notification card rather than the milestone popup these formation moments want.
+te_bespoke_formation_dispatcher = {
+	effect = {
+		if = {
+			limit = { c:BHA ?= this }
+			trigger_event = { id = formation_te.1 popup = yes }
+		}
+		else_if = {
+			limit = { c:NUS ?= this }
+			trigger_event = { id = formation_te.2 popup = yes }
+		}
+	}
+}
+
+# Root = Releasing Country
+# scope:target = Released Country (vanilla 00_code_on_actions.txt:3634-3840)
+on_country_released_as_independent = {
+	on_actions = {
+		agdiff_backfill_on_released_country
+	}
+}
+
+on_country_released_as_own_subject = {
+	on_actions = {
+		agdiff_backfill_on_released_country
+	}
+}
+
+on_country_released_as_overlord_subject = {
+	on_actions = {
+		agdiff_backfill_on_released_country
+	}
+}
+
+on_country_released_as_company_subject = {
+	on_actions = {
+		agdiff_backfill_on_released_country
+	}
+}
+
+agdiff_backfill_on_country_formed = {
+	effect = {
+		agdiff_backfill_diffusion_for_country = yes
+	}
+}
+
+# Shared by the four release hooks: the new country is scope:target and ROOT
+# is its parent. The backfill has no multiplier and reads no ROOT, so it runs
+# in place; no dispatch is needed.
+agdiff_backfill_on_released_country = {
+	effect = {
+		scope:target ?= {
+			agdiff_backfill_diffusion_for_country = yes
+		}
+	}
+}
+
+# Both homeland tracks use deterministic monthly progress.
+te_homeland_monthly = {
+	effect = {
+		set_variable = { name = te_homeland_monthly_units value = te_homeland_annual_progress }
+		te_homeland_creation_monthly_effect = yes
+		te_homeland_removal_monthly_effect = yes
+		remove_variable = te_homeland_monthly_units
+	}
+}

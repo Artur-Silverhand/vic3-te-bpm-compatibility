@@ -1,0 +1,226 @@
+﻿
+# IG scope. Each transition replaces only its relevant BPM axis.
+tbcp_rlit_official_effect = {
+    if = {
+        limit = { has_ideology = ideology:ideology_gov_moderate_monarchist }
+        bpm_set_ideology = { type = gov name = radical_monarchist }
+    }
+    else_if = {
+        limit = { OR = { has_ideology = ideology:ideology_gov_anti_proletarian has_ideology = ideology:ideology_gov_liberal_republican has_ideology = ideology:ideology_gov_radical_republican } }
+        bpm_set_ideology = { type = gov name = moderate_monarchist }
+    }
+    if = {
+        limit = { has_ideology = ideology:ideology_dop_authoritarian_democrat }
+        bpm_set_ideology = { type = dop name = autocrat }
+    }
+    else_if = {
+        limit = { OR = { has_ideology = ideology:ideology_dop_moderate_democrat has_ideology = ideology:ideology_dop_radical_democrat } }
+        bpm_set_ideology = { type = dop name = authoritarian_democrat }
+    }
+}
+tbcp_rlit_republican_effect = {
+    if = {
+        limit = { OR = { has_ideology = ideology:ideology_gov_anti_proletarian has_ideology = ideology:ideology_gov_moderate_monarchist has_ideology = ideology:ideology_gov_radical_monarchist } }
+        bpm_set_ideology = { type = gov name = liberal_republican }
+    }
+    if = {
+        limit = { OR = { has_ideology = ideology:ideology_dop_autocrat has_ideology = ideology:ideology_dop_authoritarian_democrat } }
+        bpm_set_ideology = { type = dop name = moderate_democrat }
+    }
+}
+tbcp_rlit_spiritual_effect = {
+    remove_ideology = ideology_anti_clerical
+    bpm_set_ideology = { type = rel name = modern_moralist }
+}
+tbcp_rlit_universal_effect = {
+    bpm_set_ideology = { type = cit name = liberal_nationalist }
+}
+
+tbcp_cr_ukraine_join = {
+	if = {
+		limit = {
+			NOT = {
+				has_variable = tbcp_cr_ukraine_joined
+			}
+		}
+		set_variable = tbcp_cr_ukraine_joined
+		hidden_effect = {
+			cultural_renaissance_ai_approach_roll = {
+				NAME = ukraine
+				CULTURE = ukrainian
+			}
+		}
+		if = {
+			limit = {
+				has_state_in_state_region = STATE_EAST_GALICIA
+			}
+			trigger_event = {
+				id = cultural_renaissances_events.1
+				popup = yes
+			}
+		}
+		if = {
+			limit = {
+				has_state_in_state_region = STATE_KIEV
+			}
+			trigger_event = {
+				id = cultural_renaissances_events.2
+				popup = yes
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					any_political_movement = {
+						is_political_movement_type = movement_cultural_minority
+						culture = cu:ukrainian
+					}
+				}
+			}
+			create_political_movement = {
+				type = movement_cultural_minority
+				culture = cu:ukrainian
+			}
+			custom_tooltip_no_bullet = ukraine_national_movement
+			show_as_tooltip = {
+				add_modifier = {
+					name = cultural_renaissance
+					days = very_long_modifier_time
+				}
+			}
+			hidden_effect = {
+				random_political_movement = {
+					limit = {
+						is_political_movement_type = movement_cultural_minority
+						culture = cu:ukrainian
+					}
+					add_modifier = {
+						name = cultural_renaissance
+						days = very_long_modifier_time
+					}
+				}
+			}
+		}
+		else = {
+			random_political_movement = {
+				limit = {
+					is_political_movement_type = movement_cultural_minority
+					culture = cu:ukrainian
+				}
+				add_modifier = {
+					name = cultural_renaissance
+					days = very_long_modifier_time
+				}
+			}
+		}
+	}
+}
+tbcp_cr_ukraine_reconcile = {
+
+if = { limit = { NOT = { has_global_variable = tbcp_cr_ukraine_active_days } } set_global_variable = { name = tbcp_cr_ukraine_active_days value = 0 } }
+if = { limit = { has_global_variable = tbcp_cr_ukraine_last_day tbcp_cr_ukraine_has_homelands = yes } change_global_variable = { name = tbcp_cr_ukraine_active_days add = tbcp_cr_ukraine_elapsed } }
+set_global_variable = { name = tbcp_cr_ukraine_last_day value = game_date }
+scope:journal_entry = {
+    every_scope_je_involved = {
+        limit = { NOT = { tbcp_cr_ukraine_country_has_homeland = yes } }
+        scope:journal_entry = { remove_involved_country = prev }
+    }
+}
+cu:ukrainian = {
+    every_scope_homeland_state = {
+        owner ?= {
+            if = {
+                limit = { NOT = { is_in_list = tbcp_cr_ukraine_seen } NOT = { is_involved_in_journal_entry = je_ukraine_cultural_renaissance } }
+                add_to_temporary_list = tbcp_cr_ukraine_seen
+                scope:journal_entry = { add_involved_country = prev }
+            }
+        }
+    }
+}
+
+}
+tbcp_cr_belarus_join = {
+	if = {
+		limit = {
+			NOT = {
+				has_variable = tbcp_cr_belarus_joined
+			}
+		}
+		set_variable = tbcp_cr_belarus_joined
+		hidden_effect = {
+			cultural_renaissance_ai_approach_roll = {
+				NAME = belarus
+				CULTURE = byelorussian
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					any_political_movement = {
+						is_political_movement_type = movement_cultural_minority
+						culture = cu:byelorussian
+					}
+				}
+			}
+			create_political_movement = {
+				type = movement_cultural_minority
+				culture = cu:byelorussian
+			}
+			custom_tooltip_no_bullet = belarus_national_movement
+			show_as_tooltip = {
+				add_modifier = {
+					name = cultural_renaissance
+					days = very_long_modifier_time
+				}
+			}
+			hidden_effect = {
+				random_political_movement = {
+					limit = {
+						is_political_movement_type = movement_cultural_minority
+						culture = cu:byelorussian
+					}
+					add_modifier = {
+						name = cultural_renaissance
+						days = very_long_modifier_time
+					}
+				}
+			}
+		}
+		else = {
+			random_political_movement = {
+				limit = {
+					is_political_movement_type = movement_cultural_minority
+					culture = cu:byelorussian
+				}
+				add_modifier = {
+					name = cultural_renaissance
+					days = very_long_modifier_time
+				}
+			}
+		}
+	}
+}
+tbcp_cr_belarus_reconcile = {
+
+if = { limit = { NOT = { has_global_variable = tbcp_cr_belarus_active_days } } set_global_variable = { name = tbcp_cr_belarus_active_days value = 0 } }
+if = { limit = { has_global_variable = tbcp_cr_belarus_last_day tbcp_cr_belarus_has_homelands = yes } change_global_variable = { name = tbcp_cr_belarus_active_days add = tbcp_cr_belarus_elapsed } }
+set_global_variable = { name = tbcp_cr_belarus_last_day value = game_date }
+scope:journal_entry = {
+    every_scope_je_involved = {
+        limit = { NOT = { tbcp_cr_belarus_country_has_homeland = yes } }
+        scope:journal_entry = { remove_involved_country = prev }
+    }
+}
+cu:byelorussian = {
+    every_scope_homeland_state = {
+        owner ?= {
+            if = {
+                limit = { NOT = { is_in_list = tbcp_cr_belarus_seen } NOT = { is_involved_in_journal_entry = je_belarus_cultural_renaissance } }
+                add_to_temporary_list = tbcp_cr_belarus_seen
+                scope:journal_entry = { add_involved_country = prev }
+            }
+        }
+    }
+}
+
+}

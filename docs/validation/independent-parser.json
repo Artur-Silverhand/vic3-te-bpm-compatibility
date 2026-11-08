@@ -40,8 +40,20 @@
     "definitions": 21
   },
   {
+    "file": "patch/common/journal_entries/08_cultural_renaissances.txt",
+    "definitions": 2
+  },
+  {
     "file": "patch/common/journal_entries/BPM_je_america.txt",
     "definitions": 8
+  },
+  {
+    "file": "patch/common/journal_entries/je_banking.txt",
+    "definitions": 1
+  },
+  {
+    "file": "patch/common/journal_entries/je_nuclear_program.txt",
+    "definitions": 1
   },
   {
     "file": "patch/common/journal_entries/zzzzzz_tbcp_tax_journals.txt",
@@ -64,6 +76,10 @@
     "definitions": 56
   },
   {
+    "file": "patch/common/on_actions/extra_on_actions.txt",
+    "definitions": 101
+  },
+  {
     "file": "patch/common/parties/zzzzzz_tbcp_future_parties.txt",
     "definitions": 3
   },
@@ -74,6 +90,14 @@
   {
     "file": "patch/common/power_bloc_principles/zzzzzz_tbcp_principles.txt",
     "definitions": 2
+  },
+  {
+    "file": "patch/common/production_methods/extra_pms.txt",
+    "definitions": 628
+  },
+  {
+    "file": "patch/common/production_methods/te_construction_market_pms.txt",
+    "definitions": 15
   },
   {
     "file": "patch/common/production_methods/zzzzzz_tbcp_production.txt",
@@ -92,8 +116,16 @@
     "definitions": 8
   },
   {
+    "file": "patch/common/script_values/extra_script_values.txt",
+    "definitions": 266
+  },
+  {
     "file": "patch/common/script_values/ip5_je_values.txt",
     "definitions": 124
+  },
+  {
+    "file": "patch/common/script_values/nuclear_exchange_values.txt",
+    "definitions": 17
   },
   {
     "file": "patch/common/script_values/te_fptp_values.txt",
@@ -116,12 +148,36 @@
     "definitions": 1
   },
   {
+    "file": "patch/common/script_values/zzzzzz_tbcp_culture.txt",
+    "definitions": 4
+  },
+  {
+    "file": "patch/common/scripted_buttons/nuclear_program_buttons.txt",
+    "definitions": 2
+  },
+  {
+    "file": "patch/common/scripted_effects/banking_cycle_effects.txt",
+    "definitions": 38
+  },
+  {
     "file": "patch/common/scripted_effects/BPM_CAB_effects.txt",
     "definitions": 39
   },
   {
     "file": "patch/common/scripted_effects/BPM_CAB_SYNERGY_effects.txt",
     "definitions": 7
+  },
+  {
+    "file": "patch/common/scripted_effects/nuclear_custody_effects.txt",
+    "definitions": 42
+  },
+  {
+    "file": "patch/common/scripted_effects/nuclear_deterrence_effects.txt",
+    "definitions": 91
+  },
+  {
+    "file": "patch/common/scripted_effects/nuclear_weapon_effects.txt",
+    "definitions": 6
   },
   {
     "file": "patch/common/scripted_effects/te_construction_market_update_effects.txt",
@@ -148,6 +204,10 @@
     "definitions": 2
   },
   {
+    "file": "patch/common/scripted_effects/zzzzzz_tbcp_culture.txt",
+    "definitions": 8
+  },
+  {
     "file": "patch/common/scripted_effects/zzzzzz_tbcp_tax_legacy_effects.txt",
     "definitions": 6
   },
@@ -158,6 +218,10 @@
   {
     "file": "patch/common/scripted_guis/te_tax_sguis.txt",
     "definitions": 39
+  },
+  {
+    "file": "patch/common/scripted_progress_bars/00_ip5_cultural_renaissance_bars.txt",
+    "definitions": 2
   },
   {
     "file": "patch/common/scripted_rules/00_scripted_rules.txt",
@@ -172,12 +236,24 @@
     "definitions": 17
   },
   {
+    "file": "patch/common/scripted_triggers/nuke_triggers.txt",
+    "definitions": 23
+  },
+  {
     "file": "patch/common/scripted_triggers/te_fptp_triggers.txt",
     "definitions": 6
   },
   {
     "file": "patch/common/scripted_triggers/te_tax_generated_triggers.txt",
     "definitions": 56
+  },
+  {
+    "file": "patch/common/scripted_triggers/un_economy_triggers.txt",
+    "definitions": 22
+  },
+  {
+    "file": "patch/common/scripted_triggers/zzzzzz_tbcp_culture.txt",
+    "definitions": 4
   },
   {
     "file": "patch/common/scripted_triggers/zzzzzz_tbcp_future_party_bans.txt",
@@ -194,6 +270,10 @@
   {
     "file": "patch/common/static_modifiers/te_tax_light_generated_modifiers.txt",
     "definitions": 47
+  },
+  {
+    "file": "patch/common/static_modifiers/un_economy_modifiers.txt",
+    "definitions": 3
   },
   {
     "file": "patch/common/technology/technologies/zzzzzz_tbcp_technologies.txt",

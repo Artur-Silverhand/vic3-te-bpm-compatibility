@@ -1,0 +1,28 @@
+{
+  "effect:nd_log_arsenal_watch": {
+    "body_sha256": "94bc5657b8bb766e0c6b1b02a0cba08a1af70e2a7fb3a80392911f14767acd52",
+    "loops": {
+      "while": 1
+    },
+    "max_loop_depth": 1,
+    "rationale": "Upstream milestone logger doubles a positive threshold from 50; logarithmic in a finite arsenal; tests in test_culture.py."
+  },
+  "effect:tbcp_cr_ukraine_reconcile": {
+    "body_sha256": "9c30be78ad7e44e12a4df02eaf3d0c37bb6efbbf7283896da90b848a6abb0d0c",
+    "loops": {
+      "every_scope_je_involved": 1,
+      "every_scope_homeland_state": 1
+    },
+    "max_loop_depth": 1,
+    "rationale": "One monthly pass over involved countries and existing cultural homelands; no every_country or nested loop; lifecycle scenarios in test_culture.py."
+  },
+  "effect:tbcp_cr_belarus_reconcile": {
+    "body_sha256": "7b38ecd7cb61b8e509938c693084006f2ef59bafebcd66aabe1a87e10b5638bf",
+    "loops": {
+      "every_scope_je_involved": 1,
+      "every_scope_homeland_state": 1
+    },
+    "max_loop_depth": 1,
+    "rationale": "One monthly pass over involved countries and existing cultural homelands; no every_country or nested loop; lifecycle scenarios in test_culture.py."
+  }
+}

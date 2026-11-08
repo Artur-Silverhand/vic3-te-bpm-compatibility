@@ -99,6 +99,10 @@ def source_state(root=ROOT):
             'update_review_sha256':sha(root/'update-review.json') if (root/'update-review.json').exists() else None,
             'game':game,'sources':{}}
     pending_update_review(root)
+    if (root/'backports').exists():
+        result['backports']={p.relative_to(root).as_posix():sha(p) for p in sorted((root/'backports').rglob('*')) if p.is_file()}
+    if (root/'docs/decisions/iteration-reviews.json').exists():
+        result['iteration_reviews_sha256']=sha(root/'docs/decisions/iteration-reviews.json')
     for label in ('timeline','bpm','game'):
         config=report['sources'][label];actual=scoped_files(config['root'])
         baseline_scope=tuple(name for name in BASE_SCOPE if name!='map_data' or any(rel.startswith('map_data/') for rel in config['files']))

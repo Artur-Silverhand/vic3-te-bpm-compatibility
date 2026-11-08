@@ -1,24 +1,231 @@
 ﻿namespace = rlit
-
-# TBCP: rlit.001 supplied by events/_rlit_events.txt.
-
+rlit.001 = {
+	type = country_event
+	placement = root
+	fire_only_once = yes
+	title = rlit.001.t
+	desc = rlit.001.d
+	flavor = rlit.001.f
+	event_image = {
+		video = "ip5_theater"
+	}
+	dlc = dlc019
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	duration = 3
+	dlc = dlc019
+	immediate = {
+		random_scope_character = {
+			limit = {
+				has_template = RUS_faddei_bulgarin
+			}
+			save_scope_as = bulgarin_scope
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:bulgarin_scope
+				}
+			}
+			random_character_in_exile_pool = {
+				limit = {
+					has_template = RUS_faddei_bulgarin
+				}
+				save_scope_as = bulgarin_scope
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:bulgarin_scope
+				}
+			}
+			create_character = {
+				template = RUS_faddei_bulgarin
+				save_scope_as = bulgarin_scope
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:bulgarin_scope
+			}
+			scope:bulgarin_scope = {
+				set_temporary_event_immortality = {
+					DURATION = 3
+				}
+			}
+		}
+		random_scope_character = {
+			limit = {
+				has_template = RUS_alexander_pushkin
+			}
+			save_scope_as = pushkin_scope
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:pushkin_scope
+				}
+			}
+			random_character_in_exile_pool = {
+				limit = {
+					has_template = RUS_alexander_pushkin
+				}
+				save_scope_as = pushkin_scope
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:pushkin_scope
+				}
+			}
+			create_character = {
+				template = RUS_alexander_pushkin
+				save_scope_as = pushkin_scope
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:pushkin_scope
+			}
+			scope:pushkin_scope = {
+				set_temporary_event_immortality = {
+					DURATION = 3
+				}
+			}
+		}
+		set_variable = {
+			name = rlit_001_fired
+			value = yes
+		}
+		add_journal_entry = {
+			type = je_rlit_golden_age
+		}
+	}
+	option = {
+		default_option = yes
+		name = rlit.001.a
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					var:rus_rlit_path_var ?= flag:autocratic
+				}
+				add = 5
+			}
+		}
+		show_as_tooltip = {
+			add_journal_entry = {
+				type = je_rlit_golden_age
+			}
+		}
+		rlit_outlook_official_up_minor = {
+			VALUE = 1
+		}
+		add_modifier = {
+			name = third_section_literary_oversight
+			days = normal_modifier_time
+		}
+		add_modifier = {
+			name = pushkin_circle_marginalised
+			days = short_modifier_time
+		}
+		rlit_prestige_down_moderate = {
+			VALUE = -13
+		}
+		set_variable = {
+			name = rlit_bulgarin_favoured
+			value = yes
+		}
+		rlit_censorship_up_moderate = {
+			VALUE = 10
+		}
+	}
+	option = {
+		name = rlit.001.b
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					var:rus_rlit_path_var ?= flag:universalist
+				}
+				add = 5
+			}
+		}
+		show_as_tooltip = {
+			add_journal_entry = {
+				type = je_rlit_golden_age
+			}
+		}
+		rlit_outlook_universal_up_minor = {
+			VALUE = 2
+		}
+		add_modifier = {
+			name = pushkin_circle_patronised
+			days = short_modifier_time
+		}
+		rlit_prestige_up_moderate = {
+			VALUE = 13
+		}
+		add_modifier = {
+			name = bulgarin_propaganda_surge
+			days = short_modifier_time
+		}
+		rlit_censorship_up_minor = {
+			VALUE = 5
+		}
+	}
+	option = {
+		name = rlit.001.c
+		ai_chance = {
+			base = 1
+			modifier = {
+				trigger = {
+					var:rus_rlit_path_var ?= flag:radical
+				}
+				add = 5
+			}
+			modifier = {
+				trigger = {
+					var:rus_rlit_path_var ?= flag:spiritual
+				}
+				add = 5
+			}
+		}
+		show_as_tooltip = {
+			add_journal_entry = {
+				type = je_rlit_golden_age
+			}
+		}
+		add_modifier = {
+			name = literary_tension_unresolved
+			days = short_modifier_time
+		}
+	}
+	trigger = {
+		has_dlc_feature = ip5_content
+		c:RUS ?= this
+		NOT = {
+			has_variable = rlit_001_fired
+		}
+		NOT = {
+			has_variable = rlit_arc_abandoned
+		}
+	}
+}
 rlit.002 = {
 	type = country_event
 	placement = root
-
 	title = rlit.002.t
 	desc = rlit.002.d
 	flavor = rlit.002.f
-
 	event_image = {
 		video = "southamerica_public_figure_assassination"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -41,7 +248,6 @@ rlit.002 = {
 			has_variable = rlit_002_forced
 		}
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -124,14 +330,12 @@ rlit.002 = {
 			remove_variable = rlit_002_forced
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.002.a
 		ai_chance = {
 			base = 1
 		}
-
 		if = {
 			limit = {
 				exists = scope:pushkin_scope
@@ -161,7 +365,6 @@ rlit.002 = {
 			VALUE = 10
 		}
 	}
-
 	option = {
 		name = rlit.002.b
 		ai_chance = {
@@ -185,7 +388,6 @@ rlit.002 = {
 				add = 5
 			}
 		}
-
 		if = {
 			limit = {
 				exists = scope:pushkin_scope
@@ -219,7 +421,6 @@ rlit.002 = {
 			VALUE = 40
 		}
 	}
-
 	option = {
 		name = rlit.002.c
 		ai_chance = {
@@ -231,7 +432,6 @@ rlit.002 = {
 				add = 5
 			}
 		}
-
 		if = {
 			limit = {
 				exists = scope:pushkin_scope
@@ -262,24 +462,19 @@ rlit.002 = {
 		}
 	}
 }
-
 rlit.003 = {
 	type = country_event
 	placement = root
-
 	title = rlit.003.t
 	desc = rlit.003.d
 	flavor = rlit.003.f
-
 	event_image = {
 		video = "europenorthamerica_before_the_battle"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -291,7 +486,6 @@ rlit.003 = {
 		has_variable = rlit_002_fired
 		game_date >= 1840.4.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -338,7 +532,6 @@ rlit.003 = {
 			value = yes
 		}
 	}
-
 	option = {
 		name = rlit.003.a
 		ai_chance = {
@@ -356,7 +549,6 @@ rlit.003 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -375,7 +567,6 @@ rlit.003 = {
 			VALUE = -5
 		}
 	}
-
 	option = {
 		name = rlit.003.b
 		ai_chance = {
@@ -387,7 +578,6 @@ rlit.003 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_minor = {
 			VALUE = 2
 		}
@@ -402,7 +592,6 @@ rlit.003 = {
 			VALUE = -20
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.003.c
@@ -415,7 +604,6 @@ rlit.003 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_radical_up_major = {
 			VALUE = 6
 		}
@@ -446,24 +634,19 @@ rlit.003 = {
 		}
 	}
 }
-
 rlit.004 = {
 	type = country_event
 	placement = root
-
 	title = rlit.004.t
 	desc = rlit.004.d
 	flavor = rlit.004.f
-
 	event_image = {
 		video = "ep2_intellectual_writer"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -475,7 +658,6 @@ rlit.004 = {
 		has_variable = rlit_002_fired
 		game_date >= 1841.1.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -534,7 +716,6 @@ rlit.004 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.004.a
@@ -547,7 +728,6 @@ rlit.004 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -609,7 +789,6 @@ rlit.004 = {
 			}
 		}
 	}
-
 	option = {
 		name = rlit.004.b
 		ai_chance = {
@@ -639,7 +818,6 @@ rlit.004 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_minor = {
 			VALUE = 1
 		}
@@ -654,7 +832,6 @@ rlit.004 = {
 			VALUE = 5
 		}
 	}
-
 	option = {
 		name = rlit.004.c
 		ai_chance = {
@@ -666,7 +843,6 @@ rlit.004 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -682,24 +858,19 @@ rlit.004 = {
 		}
 	}
 }
-
 rlit.005 = {
 	type = country_event
 	placement = root
-
 	title = rlit.005.t
 	desc = rlit.005.d
 	flavor = rlit.005.f
-
 	event_image = {
 		video = "ip5_countryside_procession"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -711,7 +882,6 @@ rlit.005 = {
 		has_variable = rlit_003_fired
 		game_date >= 1842.5.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -758,7 +928,6 @@ rlit.005 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.005.a
@@ -771,7 +940,6 @@ rlit.005 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -801,7 +969,6 @@ rlit.005 = {
 			VALUE = 5
 		}
 	}
-
 	option = {
 		name = rlit.005.b
 		ai_chance = {
@@ -819,7 +986,6 @@ rlit.005 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_minor = {
 			VALUE = 2
 		}
@@ -838,7 +1004,6 @@ rlit.005 = {
 			VALUE = -20
 		}
 	}
-
 	option = {
 		name = rlit.005.c
 		ai_chance = {
@@ -850,7 +1015,6 @@ rlit.005 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -881,24 +1045,19 @@ rlit.005 = {
 		}
 	}
 }
-
 rlit.006 = {
 	type = country_event
 	placement = root
-
 	title = rlit.006.t
 	desc = rlit.006.d
 	flavor = rlit.006.f
-
 	event_image = {
 		video = "ip5_countryside_procession"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -910,7 +1069,6 @@ rlit.006 = {
 		has_variable = rlit_004_fired
 		game_date >= 1845.1.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -957,7 +1115,6 @@ rlit.006 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.006.a
@@ -976,7 +1133,6 @@ rlit.006 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -994,7 +1150,6 @@ rlit.006 = {
 			name = peasant_commune_ideologically_sacred
 			days = normal_modifier_time
 		}
-
 		if = {
 			limit = {
 				has_variable = rlit_dostoevsky_exiled
@@ -1022,7 +1177,6 @@ rlit.006 = {
 			VALUE = 10
 		}
 	}
-
 	option = {
 		name = rlit.006.b
 		ai_chance = {
@@ -1040,7 +1194,6 @@ rlit.006 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_spiritual_up_major = {
 			VALUE = 4
 		}
@@ -1053,27 +1206,19 @@ rlit.006 = {
 		}
 	}
 }
-
 rlit.007 = {
 	type = country_event
 	placement = root
-
 	title = rlit.007.t
 	desc = rlit.007.d
 	flavor = rlit.007.f
-
 	icon = "gfx/interface/icons/event_icons/event_fire.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	gui_window = event_window_1char_tabloid
-
 	left_icon = scope:belinsky_scope
-
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -1088,7 +1233,6 @@ rlit.007 = {
 		}
 		game_date >= 1847.7.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -1135,7 +1279,6 @@ rlit.007 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.007.a
@@ -1148,7 +1291,6 @@ rlit.007 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -1178,7 +1320,6 @@ rlit.007 = {
 			VALUE = 5
 		}
 	}
-
 	option = {
 		name = rlit.007.b
 		ai_chance = {
@@ -1190,7 +1331,6 @@ rlit.007 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_spiritual_up_minor = {
 			VALUE = 2
 		}
@@ -1205,7 +1345,6 @@ rlit.007 = {
 			VALUE = 10
 		}
 	}
-
 	option = {
 		name = rlit.007.c
 		ai_chance = {
@@ -1223,7 +1362,6 @@ rlit.007 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_major = {
 			VALUE = 3
 		}
@@ -1243,24 +1381,19 @@ rlit.007 = {
 		}
 	}
 }
-
 rlit.008 = {
 	type = country_event
 	placement = root
-
 	title = rlit.008.t
 	desc = rlit.008.d
 	flavor = rlit.008.f
-
 	event_image = {
 		video = "europenorthamerica_london_center"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -1272,7 +1405,6 @@ rlit.008 = {
 		has_variable = rlit_005_fired
 		game_date >= 1857.7.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -1319,7 +1451,6 @@ rlit.008 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.008.a
@@ -1338,7 +1469,6 @@ rlit.008 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_radical_up_major = {
 			VALUE = 4
 		}
@@ -1356,7 +1486,6 @@ rlit.008 = {
 			VALUE = 15
 		}
 	}
-
 	option = {
 		name = rlit.008.b
 		ai_chance = {
@@ -1368,7 +1497,6 @@ rlit.008 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -1402,7 +1530,6 @@ rlit.008 = {
 			VALUE = -5
 		}
 	}
-
 	option = {
 		name = rlit.008.c
 		ai_chance = {
@@ -1414,7 +1541,6 @@ rlit.008 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_major = {
 			VALUE = 3
 		}
@@ -1430,24 +1556,19 @@ rlit.008 = {
 		}
 	}
 }
-
 rlit.009 = {
 	type = country_event
 	placement = root
-
 	title = rlit.009.t
 	desc = rlit.009.d
 	flavor = rlit.009.f
-
 	event_image = {
 		video = "unspecific_ruler_speaking_to_people"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -1459,7 +1580,6 @@ rlit.009 = {
 		has_variable = rlit_006_fired
 		game_date >= 1862.1.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -1506,7 +1626,6 @@ rlit.009 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.009.a
@@ -1519,7 +1638,6 @@ rlit.009 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -1534,7 +1652,6 @@ rlit.009 = {
 			VALUE = -5
 		}
 	}
-
 	option = {
 		name = rlit.009.b
 		ai_chance = {
@@ -1546,7 +1663,6 @@ rlit.009 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -1561,7 +1677,6 @@ rlit.009 = {
 			VALUE = -5
 		}
 	}
-
 	option = {
 		name = rlit.009.c
 		ai_chance = {
@@ -1579,7 +1694,6 @@ rlit.009 = {
 				add = 5
 			}
 		}
-
 		add_modifier = {
 			name = nihilism_left_to_the_critics
 			days = normal_modifier_time
@@ -1589,24 +1703,19 @@ rlit.009 = {
 		}
 	}
 }
-
 rlit.010 = {
 	type = country_event
 	placement = root
-
 	title = rlit.010.t
 	desc = rlit.010.d
 	flavor = rlit.010.f
-
 	event_image = {
 		video = "votp_hostile_court"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -1618,7 +1727,6 @@ rlit.010 = {
 		has_variable = rlit_007_fired
 		game_date >= 1849.12.22
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -1665,7 +1773,6 @@ rlit.010 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.010.a
@@ -1678,7 +1785,6 @@ rlit.010 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -1695,7 +1801,9 @@ rlit.010 = {
 		if = {
 			limit = {
 				exists = scope:dostoevsky_scope
-				ROOT = { has_regional_exile_pool_access = siberian_exile_pool }
+				ROOT = {
+					has_regional_exile_pool_access = siberian_exile_pool
+				}
 			}
 			scope:dostoevsky_scope = {
 				custom_tooltip = {
@@ -1719,7 +1827,6 @@ rlit.010 = {
 			VALUE = 10
 		}
 	}
-
 	option = {
 		name = rlit.010.b
 		ai_chance = {
@@ -1737,7 +1844,6 @@ rlit.010 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_minor = {
 			VALUE = 2
 		}
@@ -1756,7 +1862,6 @@ rlit.010 = {
 			VALUE = 10
 		}
 	}
-
 	option = {
 		name = rlit.010.c
 		ai_chance = {
@@ -1786,7 +1891,6 @@ rlit.010 = {
 			name = rlit_dostoevsky_executed
 			value = yes
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 2
 		}
@@ -1806,24 +1910,19 @@ rlit.010 = {
 		}
 	}
 }
-
 rlit.011 = {
 	type = country_event
 	placement = root
-
 	title = rlit.011.t
 	desc = rlit.011.d
 	flavor = rlit.011.f
-
 	event_image = {
 		video = "ip4_university_lecture"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -1839,7 +1938,6 @@ rlit.011 = {
 		}
 		game_date >= 1862.2.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -1898,7 +1996,6 @@ rlit.011 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.011.a
@@ -1911,7 +2008,6 @@ rlit.011 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -1929,7 +2025,6 @@ rlit.011 = {
 			VALUE = 15
 		}
 	}
-
 	option = {
 		name = rlit.011.b
 		ai_chance = {
@@ -1947,7 +2042,6 @@ rlit.011 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_universal_up_major = {
 			VALUE = 3
 		}
@@ -1966,7 +2060,6 @@ rlit.011 = {
 			VALUE = 15
 		}
 	}
-
 	option = {
 		name = rlit.011.c
 		ai_chance = {
@@ -1978,7 +2071,6 @@ rlit.011 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2030,24 +2122,19 @@ rlit.011 = {
 		}
 	}
 }
-
 rlit.012 = {
 	type = country_event
 	placement = root
-
 	title = rlit.012.t
 	desc = rlit.012.d
 	flavor = rlit.012.f
-
 	event_image = {
 		video = "votp_prison"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_fire.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -2059,7 +2146,6 @@ rlit.012 = {
 		has_variable = rlit_011_fired
 		game_date >= 1863.1.1
 	}
-
 	immediate = {
 		random_scope_character = {
 			limit = {
@@ -2118,7 +2204,6 @@ rlit.012 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.012.a
@@ -2143,7 +2228,6 @@ rlit.012 = {
 				add = 1
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2213,7 +2297,6 @@ rlit.012 = {
 			}
 		}
 	}
-
 	option = {
 		name = rlit.012.b
 		ai_chance = {
@@ -2231,7 +2314,6 @@ rlit.012 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_radical_up_major = {
 			VALUE = 6
 		}
@@ -2265,7 +2347,6 @@ rlit.012 = {
 			VALUE = 15
 		}
 	}
-
 	option = {
 		name = rlit.012.c
 		ai_chance = {
@@ -2277,7 +2358,6 @@ rlit.012 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2295,7 +2375,9 @@ rlit.012 = {
 		if = {
 			limit = {
 				exists = scope:chernyshevsky_scope
-				ROOT = { has_regional_exile_pool_access = siberian_exile_pool }
+				ROOT = {
+					has_regional_exile_pool_access = siberian_exile_pool
+				}
 			}
 			scope:chernyshevsky_scope = {
 				custom_tooltip = {
@@ -2323,24 +2405,19 @@ rlit.012 = {
 		}
 	}
 }
-
 rlit.013 = {
 	type = country_event
 	placement = root
-
 	title = rlit.013.t
 	desc = rlit.013.d
 	flavor = rlit.013.f
-
 	event_image = {
 		video = "unspecific_politicians_arguing"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -2352,7 +2429,6 @@ rlit.013 = {
 		has_variable = rlit_011_fired
 		game_date >= 1863.1.1
 	}
-
 	immediate = {
 		s:STATE_HOME_COUNTIES = {
 			save_scope_as = herzen_exile_state
@@ -2405,7 +2481,6 @@ rlit.013 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.013.a
@@ -2430,7 +2505,6 @@ rlit.013 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2480,7 +2554,6 @@ rlit.013 = {
 			}
 		}
 	}
-
 	option = {
 		name = rlit.013.b
 		ai_chance = {
@@ -2510,7 +2583,6 @@ rlit.013 = {
 				add = 2
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2536,7 +2608,6 @@ rlit.013 = {
 			VALUE = 10
 		}
 	}
-
 	option = {
 		name = rlit.013.c
 		trigger = {
@@ -2563,7 +2634,6 @@ rlit.013 = {
 				add = 1
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2587,24 +2657,19 @@ rlit.013 = {
 		}
 	}
 }
-
 rlit.014 = {
 	type = country_event
 	placement = root
-
 	title = rlit.014.t
 	desc = rlit.014.d
 	flavor = rlit.014.f
-
 	event_image = {
 		video = "ep1_printing_press"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		has_journal_entry = je_rlit_golden_age
 		NOT = {
@@ -2616,7 +2681,6 @@ rlit.014 = {
 		has_variable = rlit_011_fired
 		game_date >= 1863.1.1
 	}
-
 	immediate = {
 		c:RUS ?= {
 			save_scope_as = russia
@@ -2669,7 +2733,6 @@ rlit.014 = {
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.014.a
@@ -2688,7 +2751,6 @@ rlit.014 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2711,7 +2773,6 @@ rlit.014 = {
 			name = pochvennichestvo_movement
 			days = long_modifier_time
 		}
-
 		if = {
 			limit = {
 				has_variable = rlit_dostoevsky_monarchist
@@ -2750,7 +2811,6 @@ rlit.014 = {
 			VALUE = 20
 		}
 	}
-
 	option = {
 		name = rlit.014.b
 		ai_chance = {
@@ -2768,7 +2828,6 @@ rlit.014 = {
 				add = 5
 			}
 		}
-
 		rlit_outlook_spiritual_up_major = {
 			VALUE = 4
 		}
@@ -2788,13 +2847,11 @@ rlit.014 = {
 			}
 		}
 	}
-
 	option = {
 		name = rlit.014.c
 		ai_chance = {
 			base = 1
 		}
-
 		rlit_outlook_official_up_minor = {
 			VALUE = 1
 		}
@@ -2805,7 +2862,6 @@ rlit.014 = {
 		rlit_prestige_down_minor = {
 			VALUE = -5
 		}
-
 		custom_tooltip = {
 			text = rlit_concludes_golden_age_tt
 			rlit_classify_cluster1_route = yes
@@ -2819,24 +2875,19 @@ rlit.014 = {
 		}
 	}
 }
-
 rlit.015 = {
 	type = country_event
 	placement = root
-
 	title = rlit.015.t
 	desc = rlit.015.d
 	flavor = rlit.015.f
-
 	event_image = {
 		video = "ip5_theater"
 	}
 	dlc = dlc019
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	duration = 3
-
 	dlc = dlc019
-
 	trigger = {
 		NOT = {
 			has_variable = rlit_arc_abandoned
@@ -2846,14 +2897,12 @@ rlit.015 = {
 			has_variable = rlit_015_fired
 		}
 	}
-
 	immediate = {
 		set_variable = {
 			name = rlit_015_fired
 			value = yes
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.015.a
@@ -2863,16 +2912,22 @@ rlit.015 = {
 		ai_chance = {
 			base = 3
 		}
-
-		add_modifier = {
-			name = golden_age_closed_official
-			days = normal_modifier_time
-		}
-		ig:ig_intelligentsia ?= {
-			ig_ideology_towards_autocratic = yes
+		if = {
+			limit = {
+				NOT = {
+					has_variable = tbcp_rlit_015_applied
+				}
+			}
+			set_variable = tbcp_rlit_015_applied
+			add_modifier = {
+				name = golden_age_closed_official
+				days = normal_modifier_time
+			}
+			ig:ig_intelligentsia ?= {
+				tbcp_rlit_official_effect = yes
+			}
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.015.b
@@ -2882,16 +2937,22 @@ rlit.015 = {
 		ai_chance = {
 			base = 3
 		}
-
-		add_modifier = {
-			name = golden_age_closed_radical
-			days = normal_modifier_time
-		}
-		ig:ig_intelligentsia ?= {
-			ig_ideology_towards_republican = yes
+		if = {
+			limit = {
+				NOT = {
+					has_variable = tbcp_rlit_015_applied
+				}
+			}
+			set_variable = tbcp_rlit_015_applied
+			add_modifier = {
+				name = golden_age_closed_radical
+				days = normal_modifier_time
+			}
+			ig:ig_intelligentsia ?= {
+				tbcp_rlit_republican_effect = yes
+			}
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.015.c
@@ -2901,17 +2962,22 @@ rlit.015 = {
 		ai_chance = {
 			base = 3
 		}
-
-		add_modifier = {
-			name = golden_age_closed_spiritual
-			days = normal_modifier_time
-		}
-		ig:ig_intelligentsia ?= {
-			remove_ideology = ideology_anti_clerical
-			add_ideology = ideology_spiritual
+		if = {
+			limit = {
+				NOT = {
+					has_variable = tbcp_rlit_015_applied
+				}
+			}
+			set_variable = tbcp_rlit_015_applied
+			add_modifier = {
+				name = golden_age_closed_spiritual
+				days = normal_modifier_time
+			}
+			ig:ig_intelligentsia ?= {
+				tbcp_rlit_spiritual_effect = yes
+			}
 		}
 	}
-
 	option = {
 		default_option = yes
 		name = rlit.015.opt_d
@@ -2921,44 +2987,38 @@ rlit.015 = {
 		ai_chance = {
 			base = 3
 		}
-
-		add_modifier = {
-			name = golden_age_closed_universal
-			days = normal_modifier_time
-		}
 		if = {
 			limit = {
-				ig:ig_intelligentsia ?= {
-					has_ideology = ideology:ideology_liberal
+				NOT = {
+					has_variable = tbcp_rlit_015_applied
 				}
 			}
-			ig:ig_intelligentsia ?= {
-				remove_ideology = ideology_liberal
-				add_ideology = ideology_universalist
-			}
-		}
-		else_if = {
-			limit = {
-				ig:ig_intelligentsia ?= {
-					has_ideology = ideology:ideology_liberal_modern
-				}
+			set_variable = tbcp_rlit_015_applied
+			add_modifier = {
+				name = golden_age_closed_universal
+				days = normal_modifier_time
 			}
 			ig:ig_intelligentsia ?= {
-				remove_ideology = ideology_liberal_modern
-				add_ideology = ideology_universalist_modern
+				tbcp_rlit_universal_effect = yes
 			}
 		}
 	}
-
 	option = {
 		name = rlit.015.e
 		ai_chance = {
 			base = 1
 		}
-
-		add_modifier = {
-			name = golden_age_closed_universal
-			days = short_modifier_time
+		if = {
+			limit = {
+				NOT = {
+					has_variable = tbcp_rlit_015_applied
+				}
+			}
+			set_variable = tbcp_rlit_015_applied
+			add_modifier = {
+				name = golden_age_closed_universal
+				days = short_modifier_time
+			}
 		}
 	}
 }
